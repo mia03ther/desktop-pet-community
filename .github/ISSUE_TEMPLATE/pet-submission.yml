@@ -1,0 +1,78 @@
+name: 桌宠投稿
+description: 提交自行制作或保留原格式的完整桌宠作品，等待审核。
+title: "[桌宠投稿] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请上传完整作品。提交后进入审核队列，不表示已经公开或兼容验收通过。
+  - type: input
+    id: work_name
+    attributes:
+      label: 作品名称
+      placeholder: 桌宠在广场展示的名字
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: 作者署名
+      description: 填写实际作者；可附作者明确公开的主页，不猜测身份。
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 作品说明
+      description: 介绍角色、外观、动作和使用方式。
+    validations:
+      required: true
+  - type: dropdown
+    id: format
+    attributes:
+      label: 文件格式
+      options:
+        - desktop pet 原生包
+        - 视频动作包
+        - 动画 WebP 或图集包
+        - 其他原项目完整文件
+        - 暂不确定，请帮助检测兼容性
+    validations:
+      required: true
+  - type: textarea
+    id: actions
+    attributes:
+      label: 动作名称、种类与素材
+      description: 列出实际提供的动作；自定义动作请写明名称、素材文件与状态绑定。没有新增动作的不要重复计数。
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: 完整 ZIP 与预览附件
+      description: 在这里拖入完整 ZIP，可同时附封面或演示。使用下载地址时请给有权公开的固定链接。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 使用环境与导入步骤
+      description: 需要原应用、Java 或其他环境时请写明实际版本和步骤；没有依赖则填“无需其他环境”。
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: 许可、版权与署名
+      description: 填写代码和素材各自许可、允许的分发范围及必要署名；包内原声明与附属文件必须保留。
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 投稿确认
+      options:
+        - label: 我有权公开分发本投稿内容，已说明必要许可、署名与第三方权利限制。
+          required: true
+        - label: 公开附件不包含密钥、令牌、账号数据或私人配置。
+          required: true

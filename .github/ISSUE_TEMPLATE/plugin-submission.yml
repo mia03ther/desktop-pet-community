@@ -1,0 +1,74 @@
+name: 插件投稿
+description: 提交自行制作的完整插件与相关信息，等待审核。
+title: "[插件投稿] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        插件由作者自行制作，再上传完整文件。提交后进入审核队列，不会自动执行插件或公开上架。
+  - type: input
+    id: work_name
+    attributes:
+      label: 插件名称
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: 作者署名
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 插件版本
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 功能说明
+      description: 说明插件的实际功能与使用步骤。
+    validations:
+      required: true
+  - type: dropdown
+    id: format
+    attributes:
+      label: 运行格式
+      options:
+        - desktop pet 原生插件
+        - 其他原应用的完整插件
+        - 暂不确定，请帮助检测兼容性
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: 权限与外部依赖
+      description: 列出文件、网络、系统等权限及需要的服务、环境；有 manifest.json 时可复制权限段。无相关依赖请填“无”。
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: 完整插件 ZIP 与封面
+      description: 在这里拖入完整 ZIP，可附封面。保留清单、入口、资源与原许可，不只提交截图。
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: 许可、版权与署名
+      description: 说明允许的公开分发范围及必要署名；原项目的许可证和附属文件必须保留。
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 投稿确认
+      options:
+        - label: 我有权公开分发本投稿内容，并已保留其许可与署名资料。
+          required: true
+        - label: 公开附件不包含密钥、令牌、账号数据或私人配置。
+          required: true
