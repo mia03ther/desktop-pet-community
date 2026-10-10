@@ -36,15 +36,15 @@
 外部 AI 需要自己的账号、工具和配置；预设入口、链路测试或原程序启动不代表全部平台已经接通，也不代表任意导入项目都能完整运行。当前实际交付和验证范围见[交付状态](outputs/desktop-pet/docs/release-status.md)。
 
 ## 2. 安装方法
-
-### Windows 便携版
+### 若不熟悉GitHub下载流程，直接把网址复制给AI，让AI帮你安装
+### Windows
 
 1. 打开 [v4.0.1-preview.1 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
 2. 将便携 ZIP **完整解压**到一个可写目录，例如 `D:\Apps\desktop-pet`。保留同目录的 `resources`、运行库与其他文件，不单独移动 EXE，也不直接在 ZIP 内启动。
 3. 双击解压目录中的 `desktop-pet.exe`。自带运行环境，无需安装 Node.js 或 Python；首次启动创建本机档案，不附带作者的 AI 账号或个人设置。
 4. 平时直接打开此 EXE；也可为它创建桌面快捷方式。基础桌宠无需配置 AI，插件从共创平台按需下载后导入。
 
-此版本面向 **Windows x64**，标为预览版，尚未做代码签名；当前未提供已验收的 macOS、Linux 或 Windows ARM 安装包。更新时先退出旧程序，再将新版完整解压到单独目录；不要把发布包当作个人配置备份。
+此版本面向 **Windows x64**；当前未提供已验收的 macOS、Linux 或 Windows ARM 安装包。更新时先退出旧程序，再将新版完整解压到单独目录；不要把发布包当作个人配置备份。
 
 核对下载文件完整性可在 PowerShell 执行：
 
