@@ -37,7 +37,7 @@ https://desktoppet-e9e.pages.dev/#pets
 外部 AI 需要自己的账号、工具和配置；预设入口、链路测试或原程序启动不代表全部平台已经接通，也不代表任意导入项目都能完整运行。当前实际交付和验证范围见[交付状态](outputs/desktop-pet/docs/release-status.md)。
 
 ## 2. 安装方法
-### 若不熟悉GitHub下载流程，直接把网址复制给AI，让AI帮你安装
+### 若不熟悉GitHub下载流程，直接把网址复制给AI，让AI帮你安装或https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.1-preview.1/desktop-pet-4.0.1-preview.1-windows-x64-portable.zip 一键下载
 ### Windows
 
 1. 打开 [v4.0.1-preview.1 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
