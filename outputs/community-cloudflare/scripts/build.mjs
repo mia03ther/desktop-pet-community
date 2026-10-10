@@ -3,6 +3,7 @@ import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { build } from '../../community-site/node_modules/esbuild/lib/main.js';
+import { videoAssetPaths } from '../worker/media-assets.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = resolve(root, 'dist');
@@ -22,7 +23,7 @@ const indexPath = resolve(dist, 'index.html');
 await writeFile(indexPath, (await readFile(indexPath, 'utf8')).replace('<script type="module" src="account-client.js"></script>', ''));
 await rm(resolve(dist, 'account-client.js'), { force: true });
 await build({ entryPoints: [resolve(root, 'worker/index.mjs')], bundle: true, format: 'esm', platform: 'browser', target: 'es2022', minify: true, outfile: resolve(dist, '_worker.js') });
-await writeFile(resolve(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/api/*'], exclude: [] }));
+await writeFile(resolve(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/api/*', ...videoAssetPaths], exclude: [] }));
 await writeFile(resolve(dist, '_headers'), '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: same-origin\n/assets/*.zip\n  Content-Disposition: attachment\n');
 // 发布与互动状态由原生前端协议处理，不在构建时改写客户端逻辑。
 const publicationConfigPath = resolve(dist, 'publication-config.js');

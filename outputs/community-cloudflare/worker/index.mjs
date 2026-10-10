@@ -2,6 +2,7 @@ import community from '../../community-host/server/community-api.mjs';
 import { pets, toolPlugins, templates, projectAuthor } from '../../community-host/public/catalog.js';
 import { sourcePlugins } from '../../community-host/public/plugin-catalog.js';
 import { createAnonymousInteractionService } from './anonymous-session.mjs';
+import { serveVideoAsset } from './media-assets.mjs';
 
 const origin = 'https://desktoppet-e9e.pages.dev';
 const works = [...pets, ...toolPlugins, ...sourcePlugins, ...templates.map(template => ({ ...template, author: projectAuthor }))];
@@ -12,7 +13,9 @@ export function createWorker(interactionFactory = createAnonymousInteractionServ
   return {
     async fetch(request, env) {
       const url = new URL(request.url);
-      if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
+      if (!url.pathname.startsWith('/api/')) {
+        return await serveVideoAsset(request, env.ASSETS) || env.ASSETS.fetch(request);
+      }
       if (url.origin !== origin) return json({ error: '请使用正式共创平台地址。' }, 403);
       // 匿名互动不能提升为账号或投稿者身份；清除客户传入的身份及代理头。
       const headers = new Headers(request.headers);

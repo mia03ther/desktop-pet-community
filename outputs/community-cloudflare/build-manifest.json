@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-10T11:22:50.978Z",
+  "builtAt": "2026-10-10T11:44:49.313Z",
   "mode": "anonymous-interactions",
   "migrations": [
     "0000_first_deathstrike.sql",
@@ -2649,14 +2649,14 @@
     },
     {
       "path": "_routes.json",
-      "bytes": 47,
-      "sha256": "7cc274574ae8daabe5fb9aaf7b32e00ad75df679bf3c2b6a0ed45625ebd7b87d"
+      "bytes": 947,
+      "sha256": "25e31f31f177f51b56783bbf3f7189bef5bdefe810fc99d10290038d4e92bc09"
     },
     {
       "path": "_worker.js",
-      "bytes": 1138267,
-      "sha256": "74ade89ab6f0de684b932583da8c0b325eef4a340f3b6cb52feda7c400e60947"
+      "bytes": 1229751,
+      "sha256": "e73d8406006db60be38e6dc2cf723e4e512b89bd028de518bafbb63df7fb4b03"
     }
   ],
-  "totalBytes": 753983628
+  "totalBytes": 754076012
 }
