@@ -48,7 +48,7 @@ Cloudflare 配置仅提供 wrangler.toml.example。复制为 wrangler.toml 后�
 
 网站三步重建完成后，可执行 npm test --prefix outputs/community-cloudflare；测试使用随包迁移和本机 SQLite 临时数据库，不读取生产数据库或私人档案。本次公开预构建采用干净重建的 app.js、_worker.js 和对应公开 API 编译产物，仅去掉取消密码后残留的旧账号监听与内嵌页面；400 件登记素材与原 ZIP 字节保持。GitHub 版本与此前公网版本的这两份代码文件不宣称逐字节相同。
 
-当前共创平台已部署至 https://desktoppet-e9e.pages.dev，417 个发布文件完成上传，固定 HTTPS 连接的 9 项公网检查通过。国内各运营商和地区的可达情况尚未全面覆盖。更换域名需同步 Worker 的 origin 与公开 publication-config.js。当前投稿入口是自有 GitHub 仓库，不指向上游。
+当前共创平台已部署至[正式网站](https://desktoppet-e9e.pages.dev)，417 个发布文件完成上传，固定 HTTPS 连接的 9 项公网检查通过。国内各运营商和地区的可达情况尚未全面覆盖。更换域名需同步 Worker 的 origin 与公开 publication-config.js。当前投稿入口是自有 GitHub 仓库，不指向上游。
 
 ## 验证边界
 
