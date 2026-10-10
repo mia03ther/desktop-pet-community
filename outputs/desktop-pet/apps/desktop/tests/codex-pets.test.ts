@@ -107,7 +107,7 @@ async function runImportContracts(): Promise<void> {
   const sourceRoot = join(fixture, ".codex", "pets");
   const installedRoot = join(fixture, "installed");
   const statePath = join(fixture, "state.json");
-  await Promise.all([sourceRoot, installedRoot].map((directory) => mkdir(directory, { recursive: true })));
+  await Promise.all([sourceRoot, installedRoot].map((directory) => mkdir(directory, { recursive: true, mode: 0o700 })));
   await writeFile(statePath, JSON.stringify({ pets: { installed: [] } }));
   // 仅隔离本机档案与用户目录；素材读取、格式校验和安装事务保持真实。
   const stateMock = `data:text/javascript,${encodeURIComponent(`
