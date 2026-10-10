@@ -48,7 +48,7 @@ export interface DeepSeekHarnessSetupActionResult {
 }
 
 const packageName = "desktop-pet-dsh";
-const bundleFiles = ["package.json", "index.mjs", "runtime.mjs", "cordis.patch.yml"];
+const bundleFiles = ["package.json", "index.mjs", "runtime.mjs", "progress.mjs", "cordis.patch.yml"];
 const ownershipFile = "desktop-pet-ownership.json";
 
 export function getDeepSeekHarnessHome(homeDir: string, env: NodeJS.ProcessEnv): string {
@@ -85,7 +85,15 @@ export function getDeepSeekHarnessSetup(dependencies: DeepSeekHarnessSetupDepend
     const settings = owned ? readOptionalJson(join(dependencies.managedBundleDir, "settings.json")) : {};
     const installedPath = join(profileDir, "node_modules", packageName, "package.json");
     const installed = existsSync(installedPath) && readOptionalJson(installedPath).name === packageName;
-    const configured = owned && bundled && installed && settings.discoveryPath === dependencies.discoveryPath;
+    const currentBundle = owned && bundleFiles.every((name) => {
+      const managedPath = join(dependencies.managedBundleDir, name);
+      const sourcePath = join(dependencies.bundleSourceDir, name);
+      assertNoSymlinks(managedPath);
+      return existsSync(managedPath) && existsSync(sourcePath)
+        && lstatSync(managedPath).isFile() && lstatSync(managedPath).size <= 1024 * 1024
+        && readFileSync(managedPath).equals(readFileSync(sourcePath));
+    });
+    const configured = owned && bundled && installed && currentBundle && settings.discoveryPath === dependencies.discoveryPath;
     const disabled = owned && !bundled;
     const state = conflict ? "conflict" : disabled ? "disabled" : configured ? "configured" : dependencies.detected ? "needs_setup" : "not_detected";
     return {
@@ -96,7 +104,8 @@ export function getDeepSeekHarnessSetup(dependencies: DeepSeekHarnessSetupDepend
           : disabled ? "桌宠插件已安装，但未列入当前 profile 的 bundles。请在 DSH 内启用后刷新。"
           : configured ? "插件已登记到当前 profile；重启对应 DSH 界面并开始工作，才能验证实际联动。"
           : dependencies.profile === "desktop" && !existsSync(configPath) ? "请先打开一次 DeepSeek Harness Desktop 初始化 desktop profile，再退出后安装联动。"
-          : "通过 DeepSeek Harness 官方 Cordis bundle 与 plugin 命令接入，仅转发工作、完成、错误和等待确认状态。",
+          : owned && bundled && installed ? "已登记旧版联动，请更新后重启对应 DSH 界面，才能显示真实工具与成功编辑进度。"
+          : "通过官方 Cordis bundle 与 plugin 命令接入，显示思考、工具调用、成功编辑和等待确认。",
         configPath,
         canInstall: dependencies.detected && !conflict && !disabled && !configured && (dependencies.profile !== "desktop" || existsSync(configPath)),
         canRemove: dependencies.detected && owned,

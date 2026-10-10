@@ -327,6 +327,7 @@ function createOpenPetsClient(options = {}) {
     acquireLease: (leaseOptions) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.acquire", { requestedPetId: leaseOptions?.requestedPetId, clientPid: process.pid, sessionNonce: SESSION_NONCE }, options),
     heartbeatLease: (leaseId) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.heartbeat", { leaseId }, options),
     releaseLease: (leaseId) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.release", { leaseId }, options),
+    reportActivity: (event) => remote ? unsupportedRemote() : sendDiscoveredRequest("pet.react", { reaction: event.event === "permission" ? "waiting" : event.event === "tool-failed" ? "error" : event.event === "turn-end" ? "success" : ["session-end", "session-start", "interrupt"].includes(event.event) ? "idle" : "thinking", externalAi: event }, options),
     react: (reaction, reactOptions) => remote ? sendRemoteRequest(remote.endpoint, remote.token, remote.clientId, "pet.react", { reaction: validateRemoteReaction(reaction) }, options) : sendDiscoveredRequest("pet.react", { reaction: validateReaction(reaction), leaseId: reactOptions?.leaseId }, options),
     say: (message, sayOptions) => remote ? sendRemoteRequest(remote.endpoint, remote.token, remote.clientId, "pet.say", { message: validateRemoteMessage(message), ...sayOptions?.reaction === void 0 ? {} : { reaction: validateRemoteReaction(sayOptions.reaction) } }, options) : sendDiscoveredRequest("pet.say", { message, reaction: sayOptions?.reaction, leaseId: sayOptions?.leaseId }, options),
     showMedia: (path, mediaOptions) => {
@@ -736,5 +737,7 @@ export {
   classifyDshEvent,
   createOpenPetsClient,
   createOpenPetsDshRuntime,
-  registerDshListeners
+  readDiscoveryFile,
+  registerDshListeners,
+  sendRequest
 };

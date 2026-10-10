@@ -424,9 +424,9 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
 - `i18n/`: Host message catalogs and localized reaction pools; see [i18n/codemap.md](i18n/codemap.md)
 
 **IPC**:
-- `local-ipc.ts`：原本机服务、发现、网络门禁及请求／约束组合；租约按 leaseId 投影，Codex／ZCode Hooks 的真实会话摘要由单一 `ExternalAiActivityTracker` 投影为独立来源、工具进度与本轮成功文件数，一个会话结束不清其他会话。九十秒失联撤销 Hooks 活动，十分钟有限保留；退出清理全部来源。缺少身份的旧事件仍走原匿名槽，不猜测账户。
+- `local-ipc.ts`：原本机服务、发现、网络门禁及请求／约束组合；租约按 leaseId 投影，外部平台的工作摘要由单一 `ExternalAiActivityTracker` 投影为独立来源、工具进度与本轮成功文件数，一个会话结束不清其他会话。九十秒失联撤销活动，十分钟有限保留；退出清理全部来源。缺少身份的旧事件仍走原匿名槽，不猜测账户。
 - `local-ipc-request-handler.ts`：纯本机 IPC 解析、校验、请求路由、效果顺序与响应；效果前校验 `externalAi` 最小元数据，禁止与租约混用身份，原请求与响应保持不变。
-- `external-ai-activity.ts`／`external-ai-progress.ts`：有限会话、并行工具调用和唯一成功文件计数；纯显示格式供控制中心与默认宠物浮层共用，不传原始提示词／命令／文件路径。
+- `external-ai-activity.ts`／`external-ai-progress.ts`：有限会话、并行工具调用和唯一成功文件计数；平台白名单包含十类接入，方舟应用与豆包客户端区分，白名单不代表全部宿主已提供事件。无调用编号的终态工具失败清除该会话挂起工具；纯显示格式供控制中心与默认宠物浮层共用，不传原始提示词／命令／文件路径。
 - `local-ipc-confinement.ts`: Electron-free module-lifetime coordination between explicit leases, terminal tracking, confinement state updates, and tracker cancellation
 - `local-ipc-protocol.ts`: Protocol constants, request/response types, validation functions
 - `local-ipc-paths.ts`: Platform-specific socket paths and discovery file locations
@@ -516,9 +516,11 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
 **Agent Integration**:
 - `agent-setup.ts`: Claude/OpenCode/Cursor detection, OpenClaw native plugin discovery/mutation, MCP configuration, hooks management, action journaling
 - `agent-setup-external.ts`：消费 façade 的当前档案、Node／DSH 命令和解包资源，聚合 Codex、ZCode、DeepSeek Harness、豆包开发接口，保留配置状态与运行时验证的区别；外部工具接入不改变宠物大脑提供方。
+  `agent-setup.ts` 的命令路径白名单包含 Codex，使用既有绝对路径与可执行文件校验保存到当前桌宠档案；空值清除覆盖，不改 Codex 本身的配置。
+  `main.ts` 在正式 IPC 就绪后通过 `bindAgentSetupActivitySource()` 注入同一个会话投影读取器；快照分别显示配置与近期正式工作事件，不新建第二套会话状态，自测与单独 session-start 不算会话确认。
 - `agent-setup-codex.ts` / `agent-setup-zcode.ts`：管理各工具用户级官方 Hooks／MCP 及本项目条目，固定本机发现文件；Codex 状态始终保留“信任待确认”，ZCode 全局 Hooks 已停用或同名 MCP 不属本项目时报告冲突。
 - `agent-setup-deepseek-harness.ts`：拥有本档案 `integrations/dsh` bundle 准备与源校验、profile 备份、官方 plugin 命令调用和读回验证；`web` 与 `desktop` 档案分别配置，安装登记不代表当前运行界面已加载。
-- `agent-setup-doubao.ts`：拥有本档案 `integrations/doubao/doubao-pet-bridge.mjs` 的生成、冲突检查、移除和本机测试；仅接收六种工作状态，`remote: false`，不读豆包登录状态，不建立 HTTP 服务，不传聊天文本或额度。
+- `agent-setup-doubao.ts`：拥有本档案 `integrations/doubao/doubao-pet-bridge.mjs` 的生成、冲突检查、移除和本机测试；兼容六种简短状态，另接收有界的正式应用会话／工具事件，`remote: false`，不读豆包登录状态，不建立 HTTP 服务，不传聊天文本或额度。聚合卡片明确禁用 PC／网页自动连接，开发桥不算其客户端已连接。
 - `external-ai-setup-types.ts` / `external-command-runner.ts`：前者定义渲染器可消费的窄卡片、动作与白名单；后者单独管理新增外部工具的命令运行、16 KiB 输出流和超时后自有进程树清理，不替代既有 runner。
 - `claude-memory.ts`: Claude instructions file management (`~/.claude/openpets.md`)
 - `update-checker.ts`: GitHub release polling, update status

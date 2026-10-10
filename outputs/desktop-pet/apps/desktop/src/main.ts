@@ -49,7 +49,7 @@ import { prepareCaptureSessionBeforeReady, resolveCaptureSessionDir, startCaptur
 import { resolveDevControlCenterRoute } from "./control-center-route.js";
 import { readPersonalLaunchOptions, type PersonalLaunchIntent } from "./personal-launch-options.js";
 import { bindDesktopPetMessageSink, clearDesktopPetMessageSink } from "./desktop-pet-messages.js";
-import { getCodexQuotaCommandContext } from "./agent-setup.js";
+import { bindAgentSetupActivitySource, getCodexQuotaCommandContext } from "./agent-setup.js";
 
 // 工作室自行组合生命周期；迁入模块继续使用原来的档案和本机协议以兼容已有数据。
 app.commandLine.appendSwitch("use-mock-keychain");
@@ -150,6 +150,7 @@ else {
     displayCoordinator = new PetDisplayCoordinator({ displaySource: screen, powerSource: powerMonitor, invalidateDisplayCache, reclampDefaultPetWindow, reclampAgentPetWindows, reclampLanVisitingPetWindows, reclampPluginPetWindows, recoverDefaultPetMouseInterop });
     displayCoordinator.start();
     await startLocalIpcServer();
+    bindAgentSetupActivitySource(getCompanionAgentSessions);
     releaseStartupInstallLock();
 
     const roots = developerPaths(process.env.OPENPETS_DEV_PLUGIN_ROOTS);

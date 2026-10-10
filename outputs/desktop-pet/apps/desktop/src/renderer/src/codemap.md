@@ -17,7 +17,8 @@
 - studio/CommunityPortalView.tsx：gallery 路由及插件共创标签的本站入口，只通过 openCommunityWebsite 打开 pets/plugins/create，不复制网站画廊。
 - integrations/IntegrationsView.tsx 与 integrations.css：组件自有接入卡片与 body Portal 详情沿用工作室的灰金青主题，保留中文真实配置状态与窄窗口布局；固定标题、独立滚动正文、Tab 循环/Esc 关闭/焦点恢复，长路径和 JSON 换行。
 - integrations/IntegrationsView.tsx 消费 `AgentSetupSnapshot.externalIntegrations`，展示 Codex、ZCode、DeepSeek Harness、豆包四张动态卡片，沿用原生发送方校验后的安装、移除、本机测试、复制配置和官方文档入口。新增外部契约来自 `external-ai-setup-types.ts`；界面不读写配置或启动子进程。详情可保存 Node.js 路径，Harness 还可保存可执行文件与 `web`／`desktop` profile；Codex 的信任待确认及豆包“开发接口、客户端自动监测未支持”直接展示适配器状态，不把配置登记渲染为运行时已连接。
-- 四种外部卡片另显示命令行程序检测和真实会话待确认，详情将程序、配置、近期真实事件分别展示；版本超时不判为未安装。CompanionAiView 只根据主进程 `officialQuotaProvider` 展示受支持来源的官方查询，配置未就绪禁用，其他来源不显示通用查询按钮。
+  若快照表明另一个接入操作仍在运行，页面等待一秒后读取新快照，并在结束后恢复安装操作；本页操作期间暂停此读取，离页取消定时器并忽略迟到结果。刷新状态只在本页操作期间禁用，读取失败后仍可手动重试。
+- 外部卡片另显示命令行程序检测和近期工作事件，详情将程序、配置、近期正式事件分别展示；消费 `sessionStates` 和各卡片 `session`，没有收到正式工作事件时保持待确认，不把链路自测或单独会话开始当作已连接。豆包 PC／网页明确显示未支持并禁用安装测试，不使用方舟桥状态冒充。版本超时不判为未安装。CompanionAiView 只根据主进程 `officialQuotaProvider` 展示受支持来源的官方查询，配置未就绪禁用，其他来源不显示通用查询按钮。
 - studio/StudioAiView.tsx：宠物大脑的对话与监测、对话 AI 来源、外部 AI 接入三页。CompanionAiView 展示同一桌宠会话及每条时间，共用对话外观；对话来源额度与外部真实会话分别展示。外部页显示工具、本轮成功文件数、失联状态及独立 Codex 官方账户额度开关／窗口／恢复时间；Hooks 不携带账户身份，不假定逐会话归属。没有公开额度接口的来源明确未知。原提供方和接入模块仍持有连接配置，Codex CLI 路径在接入页配置。
 - studio/PersonaStudioView.tsx：全局与蒸馏 Markdown 两种方式；单文档或完整 Skill 文件夹导入、托管 skills 目录入口、可见扫描/人物选择、当前 AI 与宿主人设能力状态、正文编辑、提炼、导出及启停。主动导入自动启用并每轮应用；多个候选不抢占现有人设，普通正文保存默认停用，生成不自动落盘。
 - studio/StudioPluginsView.tsx：独立插件卡片、权限、启停、配置、命令表单和导入；studio-tabs 保留标签角色与 aria-selected，刷新、配置和重载为辅助操作，卸载为危险操作。两个可选工具按已安装、已启用、权限齐全、非损坏且真实 runtime active 的快照挂载 CompanionToolsView；失效立即收起与卸载配置，读取快照失败不沿用旧权限。工具卸载提示保留工具库与设置，普通插件语义不变。复杂结构显式 JSON 编辑，保存仍由宿主校验。
@@ -58,4 +59,4 @@ smoke-studio-ui.mjs 专门检查工作室界面：新隔离档案、隐藏真实
 
 已索引目录详情默认收起；文件列表、AI 建议、推荐计划和历史条目提供各自语义类，工作室容器样式决定紧凑布局与滚动边界，不改变预览、采用、确认移动和撤销授权。
 
-smoke-community-website.mjs 以新隔离档案验证本地配置边界和三个本站入口；外部 AI 详情采用明确标注的配置状态夹具，覆盖正文逐屏几何及最小视口中段、底部、JSON和管理按钮截图，不验证真实外部工具连通性。
+smoke-community-website.mjs 以新隔离档案验证本地配置边界和三个本站入口；外部 AI 详情采用明确标注的配置状态夹具，覆盖正文逐屏几何及最小视口中段、底部、JSON和管理按钮截图，不验证真实外部工具连通性。它还使用真实主进程所有者检查 Codex 命令路径保存、拒绝非法字段与清除，并验证忙碌快照结束后安装按钮恢复、忙碌期间离页停止读取；`DESKTOP_PET_SMOKE_BUILD_DIR` 可指定隔离编译目录，`DESKTOP_PET_SMOKE_INTEGRATION_ONLY=1` 只运行这组回归。

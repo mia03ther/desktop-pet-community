@@ -78,10 +78,34 @@ test("迟到事件不能假装当前工作，90秒无事件则待确认，结束
 test("活动载荷拒绝原始数据、伪会话和超量文件，不接收聊天或账户用量", () => {
   assert.equal(validateExternalAiEvent(event(), time)?.adapter, "codex");
   for (const extra of [{ sessionId: "session-secret" }, { prompt: "secret" }, { tokenUsage: 1 },
+    { adapter: ["codex"] }, { sessionId: [hash(1)] }, { event: ["session-end"] }, { turnId: [hash(4)] }, { callId: [hash(5)] },
     { toolName: "JS <script>" }, { editedFileIds: [hash(3)] }, { sentAt: time + 60_001 },
     { event: "tool-complete", editedFileIds: Array.from({ length: 101 }, () => hash(3)) }]) {
     assert.throws(() => validateExternalAiEvent({ ...event(), ...extra }, time));
   }
+});
+
+test("跨回合迟到工具不污染新回合，已结束会话不被迟到结果复活", () => {
+  let now = time;
+  const tracker = new ExternalAiActivityTracker(() => now);
+  tracker.record(event({ turnId: hash(4) }));
+  tracker.record(event({ turnId: hash(5), sentAt: ++now }));
+  let session = tracker.record(event({ event: "tool-complete", turnId: hash(4), editedFileIds: [hash(8)], sentAt: ++now }));
+  assert.equal(session.progress.editedFileCount, 0);
+  assert.equal(session.lastActivityAt, time + 1);
+  tracker.record(event({ event: "turn-end", turnId: hash(5), sentAt: ++now }));
+  session = tracker.record(event({ event: "tool-start", turnId: hash(5), callId: hash(6), toolName: "Write", sentAt: ++now }));
+  assert.equal(session.reaction, "success");
+  assert.equal(session.progress.activeToolCount, 0);
+  tracker.record(event({ event: "session-end", sentAt: ++now }));
+  session = tracker.record(event({ event: "tool-complete", editedFileIds: [hash(8)], sentAt: ++now }));
+  assert.equal(session.ended, true);
+  assert.equal(session.reaction, "idle");
+  assert.equal(session.progress.editedFileCount, 0);
+  session = tracker.record(event({ event: "session-start", sentAt: ++now }));
+  assert.equal(session.ended, false);
+  session = tracker.record(event({ turnId: hash(9), sentAt: ++now }));
+  assert.equal(session.reaction, "thinking");
 });
 
 test("官方 hook 输入只输出摘要；成功补丁准确计数，失败或普通命令不冒充改动", () => {
@@ -109,4 +133,24 @@ test("无限会话与文件不会无限保留，文件上限明确显示至少�
   assert.equal(tracker.sessions().at(-1)?.progress.fileCountLimited, true);
   tracker.clear();
   assert.equal(tracker.petProgress(), null);
+});
+
+test("多平台气泡保持独立，成功编辑去重且失败终态清除未完成工具", () => {
+  const tracker = new ExternalAiActivityTracker(() => time);
+  for (const adapter of ["deepseek-harness", "doubao", "claude", "opencode", "pi", "openclaw"] as const) {
+    const start = event({ adapter, event: "tool-start", toolName: "write", callId: hash(12) });
+    assert.equal(validateExternalAiEvent(start, time)?.adapter, adapter);
+    tracker.record(start);
+    tracker.record(event({ adapter, event: "tool-complete", callId: hash(12), editedFileIds: [hash(13), hash(13)] }));
+  }
+  assert.equal(tracker.sessions().length, 6);
+  assert.ok(tracker.sessions().every(session => session.progress.editedFileCount === 1));
+  tracker.record(event({ adapter: "deepseek-harness", event: "tool-start", toolName: "bash", callId: hash(14) }));
+  assert.match(tracker.petProgress()!.label, /^DeepSeek Harness/);
+  assert.equal(tracker.petProgress()?.message, "正在调用 bash");
+  const failed = tracker.record(event({ adapter: "deepseek-harness", event: "tool-failed" }));
+  assert.equal(failed.progress.activeToolCount, 0);
+  assert.equal(failed.reaction, "error");
+  assert.equal(failed.progress.editedFileCount, 1);
+  assert.throws(() => validateExternalAiEvent({ ...event(), adapter: "__proto__" }, time));
 });

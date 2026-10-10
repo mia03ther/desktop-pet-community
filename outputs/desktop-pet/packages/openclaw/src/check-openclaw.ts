@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import type { OpenPetsClient } from "@open-pets/client";
+import { createOpenPetsClient, type AgentActivityEvent, type OpenPetsClient } from "@open-pets/client";
 import { buildOpenClawCommand, classifyOpenClawStatus, parseOpenClawPluginList, planOpenClawMutation } from "./management.js";
 import { createOpenPetsOpenClawRuntime } from "./runtime.js";
 
@@ -59,4 +59,30 @@ const failingRuntime = createOpenPetsOpenClawRuntime({ clientFactory: () => fail
 failingRuntime.handleBeforeToolCall();
 await failedQueue.shift()!();
 assert.deepEqual(debugCodes, ["dispatch_failed"], "opaque failures use only a closed debug signal");
+{
+  const events: AgentActivityEvent[] = [];
+  const scheduled: Array<() => Promise<void>> = [];
+  const client = createOpenPetsClient({ remote: false });
+  const observing = createOpenPetsOpenClawRuntime({
+    now: () => 1_000,
+    schedule: (work) => { scheduled.push(work); },
+    clientFactory: () => ({ ...client, reportActivity: async (event) => { events.push(event); } }),
+  });
+  (observing.handleModelCallStarted as unknown as (event: unknown) => void)(hostilePayload);
+  await scheduled.shift()?.();
+  (observing.handleBeforeToolCall as unknown as (event: unknown) => void)(hostilePayload);
+  await scheduled.shift()?.();
+  assert.equal(payloadRead, false, "详细气泡仍不读取任何宿主事件原文");
+  assert.deepEqual(events.map((event) => event.event), ["turn-start", "tool-start"]);
+  assert.equal(events[0]?.sessionId, events[1]?.sessionId, "同一个本机运行实例使用同一个匿名活动槽");
+  assert.ok(events.every((event) => event.adapter === "openclaw" && !event.toolName && !event.callId && !event.editedFileIds && !event.turnId));
+  const anotherInstance = createOpenPetsOpenClawRuntime({
+    schedule: (work) => { scheduled.push(work); },
+    clientFactory: () => ({ ...client, reportActivity: async (event) => { events.push(event); } }),
+  });
+  anotherInstance.handleModelCallStarted();
+  await scheduled.shift()?.();
+  assert.notEqual(events[2]?.sessionId, events[0]?.sessionId, "匿名槽不会误合并不同插件实例");
+  assert.ok(events.every((event) => event.event !== "turn-end" && event.event !== "session-end"), "没有可靠结束钩子时不制造完成事件");
+}
 console.error("OpenClaw package contract validation passed.");

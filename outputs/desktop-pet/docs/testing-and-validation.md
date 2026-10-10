@@ -95,6 +95,7 @@ dist checks. The dist-check step wipes `dist/` and rebuilds the full app
     `@open-pets/*` integration runtime entry (including OpenClaw) exists, and
     the pet-window CSP allows the bundled emoji font, etc. This is the guard
     that a _packaged_ build is actually shippable.
+    普通检查的清理测试在临时项目执行，不能删除实际发布目录；打包产物检查通过 `--output --output-dir` 明确读取本次构建。
   - `check-opencode-desktop-setup.ts` - verifies the bundled OpenCode setup
     preview matches expectations.
   - `check-zed-desktop.ts` - verifies desktop Zed path resolution, preview

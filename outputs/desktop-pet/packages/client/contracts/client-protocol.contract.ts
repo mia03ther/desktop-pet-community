@@ -1,10 +1,25 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import net from "node:net";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 import { parseIpcEndpoint, validateDiscovery } from "../src/discovery.js";
 import { createOpenPetsClient, parsePetInstallResult, parsePetListResult } from "../src/index.js";
 import { OpenPetsClientError, parseIpcResponse, validateReaction } from "../src/protocol.js";
 import { maxRemoteMessageBytes, parseRemoteEndpoint, validateRemoteMessage, validateRemoteToken } from "../src/remote-protocol.js";
+import { createAgentActivityEvent, type AgentActivityEvent } from "../src/agent-activity.js";
+
+const activity = createAgentActivityEvent("claude", "private-session", "tool-complete", {
+  callId: "private-call", turnId: "private-turn", toolName: "Write", cwd: "C:/private",
+  editedFiles: ["a.txt", "a.txt"],
+});
+assert.equal(activity?.editedFileIds?.length, 1);
+assert.match(activity!.sessionId, /^[a-f0-9]{64}$/);
+assert.equal(JSON.stringify(activity).includes("private"), false);
+assert.equal(JSON.stringify(activity).includes("a.txt"), false);
+assert.equal(createAgentActivityEvent("claude", "", "turn-start"), undefined);
+assert.equal(createAgentActivityEvent("claude", "session", "tool-failed", { editedFiles: ["a.txt"] })?.editedFileIds, undefined);
 
 const baseDiscovery = {
   protocolVersion: 1,
@@ -104,6 +119,7 @@ try {
   assert.equal(remoteClient.transport, "remote");
   assert.deepEqual(await remoteClient.status(), { ok: true, appRunning: true });
   await assert.rejects(remoteClient.listPets(), (error: unknown) => error instanceof OpenPetsClientError && error.code === "remote_method_not_supported");
+  await assert.rejects(remoteClient.reportActivity!(activity!), (error: unknown) => error instanceof OpenPetsClientError && error.code === "remote_method_not_supported");
 } finally {
   if (previousDiscovery === undefined) delete process.env.OPENPETS_DISCOVERY_FILE;
   else process.env.OPENPETS_DISCOVERY_FILE = previousDiscovery;
@@ -165,6 +181,87 @@ await withRemoteServer("oversize", async (endpoint) => {
   await assert.rejects(client.react("working"), (error: unknown) => error instanceof OpenPetsClientError && error.code === "response_too_large");
 });
 console.log("Remote client operation validation passed.");
+
+// 隐私回归：读取真实发送字节，额外原文字段必须被丢弃，无效摘要必须在连接前拒绝。
+const activityDirectory = mkdtempSync(join(tmpdir(), "openpets-activity-"));
+const activityDiscoveryPath = join(activityDirectory, "ipc.json");
+const activityRequests: string[] = [];
+const activitySockets = new Set<net.Socket>();
+let activityConnections = 0;
+const activityServer = net.createServer((socket) => {
+  activityConnections += 1;
+  activitySockets.add(socket);
+  socket.once("close", () => activitySockets.delete(socket));
+  socket.setEncoding("utf8");
+  let buffer = "";
+  socket.on("data", (chunk: string) => {
+    buffer += chunk;
+    const newline = buffer.indexOf("\n");
+    if (newline < 0) return;
+    const line = buffer.slice(0, newline);
+    activityRequests.push(line);
+    const request = JSON.parse(line) as { readonly id: string };
+    socket.end(`${JSON.stringify({ id: request.id, ok: true, result: { shown: true } })}\n`);
+  });
+});
+await new Promise<void>((resolve, reject) => {
+  activityServer.once("error", reject);
+  activityServer.listen({ host: "127.0.0.1", port: 0 }, () => resolve());
+});
+try {
+  const address = activityServer.address();
+  if (!address || typeof address === "string") throw new Error("活动测试服务未监听。");
+  writeFileSync(activityDiscoveryPath, JSON.stringify({ ...baseDiscovery, endpoint: `tcp://127.0.0.1:${address.port}` }));
+  const client = createOpenPetsClient({ remote: false, discoveryPath: activityDiscoveryPath });
+  assert.ok(activity);
+  const suppliedFileIds = [...activity.editedFileIds!];
+  const suppliedActivity = {
+    ...activity,
+    editedFileIds: suppliedFileIds,
+    rawPrompt: "PRIVATE_PROMPT_MARKER",
+    paths: ["C:/PRIVATE_PATH_MARKER/a.txt"],
+    toJSON: () => ({ rawPrompt: "PRIVATE_SERIALIZER_MARKER" }),
+  };
+  const pending = client.reportActivity!(suppliedActivity);
+  suppliedFileIds[0] = "PRIVATE_MUTATED_PATH_MARKER";
+  assert.deepEqual(await pending, { shown: true });
+  const request = JSON.parse(activityRequests[0]!) as { readonly method: string; readonly params: unknown };
+  assert.equal(request.method, "pet.react");
+  assert.deepEqual(request.params, { reaction: "thinking", externalAi: activity });
+  assert.equal(activityRequests[0]!.includes("PRIVATE_"), false);
+
+  const invalidActivities: readonly unknown[] = [
+    null,
+    { ...activity, adapter: "unknown" },
+    { ...activity, event: ["turn-end"] },
+    { ...activity, sessionId: "PRIVATE_ORIGINAL_SESSION_MARKER" },
+    { ...activity, turnId: "PRIVATE_ORIGINAL_TURN_MARKER" },
+    { ...activity, callId: "PRIVATE_ORIGINAL_CALL_MARKER" },
+    { ...activity, sentAt: Number.NaN },
+    { ...activity, sentAt: Date.now() - 11 * 60_000 },
+    { ...activity, sentAt: Date.now() + 61_000 },
+    { ...activity, toolName: 123 },
+    { ...activity, toolName: "x".repeat(101) },
+    { ...activity, editedFileIds: ["PRIVATE_RAW_FILE_MARKER"] },
+    { ...activity, editedFileIds: Array.from({ length: 101 }, () => "a".repeat(64)) },
+    { ...activity, event: "tool-failed" },
+  ];
+  for (const invalid of invalidActivities) {
+    // 模拟 JavaScript 调用方；公开 TypeScript 类型不能代替运行时边界。
+    await assert.rejects(client.reportActivity!(invalid as AgentActivityEvent), (error: unknown) => {
+      assert.ok(error instanceof OpenPetsClientError);
+      assert.equal(error.message.includes("PRIVATE_"), false);
+      return error.code === "invalid_params";
+    });
+  }
+  assert.equal(activityConnections, 1);
+  assert.equal(activityRequests.length, 1);
+} finally {
+  for (const socket of activitySockets) socket.destroy();
+  await new Promise<void>((resolve) => activityServer.close(() => resolve()));
+  rmSync(activityDirectory, { recursive: true, force: true });
+}
+console.log("本机工作摘要发送隐私验证通过。");
 
 type RemoteFixtureMode = "success" | "forbidden" | "timeout" | "oversize";
 

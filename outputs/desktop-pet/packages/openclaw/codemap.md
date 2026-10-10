@@ -19,6 +19,7 @@ manifest and `openclaw.extensions` package metadata.
   payloads.
 - **Local-only dispatch**: reactions use `@open-pets/client` with remote mode
   disabled, scheduled asynchronously with bounded timeouts and curated speech.
+- **匿名工作气泡**：同一本机插件实例使用一个随机活动槽，只报告思考或工具活动；不读取事件内容，不标识真实会话、工具名、账户，不虚构结束或文件数。无后续活动时由桌宠的 90 秒失联期限清理。
 - **Management contract**: `src/management.ts` builds exact OpenClaw CLI
   commands, classifies cold inventory into explicit setup states, and plans
   install/update/enable/remove mutations without replacing conflicts.
@@ -78,3 +79,5 @@ inspection and Gateway restart remain OpenClaw lifecycle concerns.
 - `src/openclaw.d.ts`: narrow local type declaration for the supported SDK entry
   helper and hook registration contract.
 - `src/check-openclaw.ts`: focused package contract validation.
+
+工作气泡契约与官方依据见 `docs/pi-openclaw-progress.md`。

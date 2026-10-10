@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 
-import { allowedReactions } from "@open-pets/client";
+import { allowedReactions, createOpenPetsClient, type AgentActivityEvent } from "@open-pets/client";
 
 import extension from "./extension.js";
 import { classifyPiEvent, classifyPiToolExecutionStart, createOpenPetsPiExtension, createOpenPetsPiRuntime, getPiOpenPetsHelp, normalizePiEvent, parseOpenPetsCommand, shouldIgnoreOpenPetsTool, validateManualSpeech, type OpenPetsPiExtensionApi } from "./runtime.js";
@@ -150,6 +150,76 @@ for (const unsafe of [
   assert.ok(debugLogs.some((entry) => entry.includes("ENOENT")));
   assert.ok(!debugLogs.join("\n").includes("/Users/alvin/private"));
   assert.ok(!debugLogs.join("\n").includes("token=abc"));
+}
+
+{
+  const events: AgentActivityEvent[] = [];
+  const handlers = new Map<string, (event: unknown, ctx?: unknown) => unknown>();
+  const client = createOpenPetsClient({ remote: false });
+  const api: OpenPetsPiExtensionApi = {
+    on: (name, handler) => { handlers.set(name, handler); },
+  };
+  const runtime = createOpenPetsPiExtension(api, {
+    clientFactory: () => ({
+      ...client,
+      react: async () => {},
+      say: async () => {},
+      reportActivity: async (event) => { events.push(event); },
+    }),
+  });
+  const ctx = { cwd: process.cwd(), sessionManager: { getSessionId: () => "official-session-A" } };
+  const emit = (type: string, payload: unknown = {}, context: unknown = ctx): void => {
+    handlers.get(type)?.(payload, context);
+  };
+  const flush = async (): Promise<void> => { await new Promise<void>((resolve) => setImmediate(resolve)); };
+  emit("session_start");
+  emit("agent_start", { prompt: "PRIVATE_PROMPT" });
+  emit("tool_execution_start", { toolCallId: "call-1", toolName: "write", args: { path: "private-a.txt", content: "SECRET" } });
+  emit("tool_execution_end", { toolCallId: "call-1", toolName: "write", isError: false, result: "PRIVATE_OUTPUT" });
+  emit("turn_start", { turnIndex: 1 });
+  emit("tool_execution_start", { toolCallId: "call-2", toolName: "edit", args: { path: "private-a.txt" } });
+  emit("tool_execution_end", { toolCallId: "call-2", toolName: "edit", isError: false });
+  emit("tool_execution_start", { toolCallId: "call-3", toolName: "write", args: { path: "private-failed.txt" } });
+  emit("tool_execution_end", { toolCallId: "call-3", toolName: "write", isError: true });
+  emit("tool_execution_end", { toolCallId: "unmatched", toolName: "write", isError: false, args: { path: "invented.txt" } });
+  emit("agent_end", { messages: "PRIVATE_TRANSCRIPT" });
+  assert.equal(events.length, 0, "自动回调不等待本机 IPC");
+  await flush();
+  assert.ok(events.every((event) => event.adapter === "pi" && /^[a-f0-9]{64}$/.test(event.sessionId)));
+  assert.equal(new Set(events.map((event) => event.sessionId)).size, 1, "同一官方会话保留稳定摘要");
+  const successfulFiles = events.filter((event) => event.event === "tool-complete").flatMap((event) => event.editedFileIds ?? []);
+  assert.equal(successfulFiles.length, 2);
+  assert.equal(new Set(successfulFiles).size, 1, "同一文件重复成功编辑可去重");
+  assert.ok(events.filter((event) => event.event === "tool-failed").every((event) => !event.editedFileIds));
+  assert.equal(events.some((event) => event.event === "turn-end"), false, "agent_end 尚可能续跑，不能假报完成");
+  assert.equal(new Set(events.filter((event) => event.turnId).map((event) => event.turnId)).size, 1, "多个模型迭代属于同一用户工作轮次");
+  const serialized = JSON.stringify(events);
+  for (const secret of ["PRIVATE", "SECRET", "private-a.txt", "private-failed.txt", "invented.txt", "official-session-A", process.cwd()]) assert.ok(!serialized.includes(secret));
+
+  emit("agent_before_settle", { outcome: "completed", context: "PRIVATE_CONTEXT" });
+  emit("agent_settled", { aborted: false });
+  await flush();
+  assert.equal(events.at(-1)?.event, "turn-end");
+  const previousTurnId = events.at(-1)?.turnId;
+  emit("agent_start");
+  emit("agent_settled", { aborted: true });
+  await flush();
+  assert.equal(events.at(-1)?.event, "interrupt");
+  assert.notEqual(events.at(-1)?.turnId, previousTurnId);
+  emit("agent_start");
+  emit("agent_before_settle", { outcome: "error" });
+  emit("agent_settled", { aborted: false });
+  await flush();
+  assert.equal(events.at(-1)?.event, "tool-failed", "正式失败结果不变为成功");
+  emit("session_shutdown");
+  await flush();
+  assert.equal(events.at(-1)?.event, "session-end");
+
+  const count = events.length;
+  emit("agent_start", {}, { cwd: process.cwd() });
+  await runtime.handleCommand("test");
+  await flush();
+  assert.equal(events.length, count, "缺少官方会话身份和手工连通测试均不制造真实会话记录");
 }
 
 console.log("Pi integration package checks passed.");

@@ -2,7 +2,7 @@ import { homedir, tmpdir, userInfo } from "node:os";
 import { dirname, join } from "node:path";
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 
-import { createOpenPetsClient, type OpenPetsClient, type OpenPetsReaction } from "@open-pets/client";
+import { createAgentActivityEvent, createOpenPetsClient, type AgentActivityEvent, type AgentActivityPhase, type OpenPetsClient, type OpenPetsReaction } from "@open-pets/client";
 import { pickHookSpeech, type HookSpeechCategory, validateHookSpeech } from "@open-pets/agent-events";
 
 import { sanitizeOpenCodeExcludedReactions, validateOpenPetsPetArg } from "./opencode-previews.js";
@@ -31,8 +31,8 @@ export interface OpenCodePluginDecision {
 export type OpenCodeHooks = {
   readonly event: (input: { readonly event: unknown }) => void;
   readonly "chat.message": (input: unknown, output: unknown) => void;
-  readonly "tool.execute.before": (input: { readonly tool?: string }, output: { readonly args?: unknown }) => void;
-  readonly "tool.execute.after": (input: { readonly tool?: string }, output: unknown) => void;
+  readonly "tool.execute.before": (input: { readonly tool?: string; readonly sessionID?: string; readonly callID?: string }, output: { readonly args?: unknown }) => void;
+  readonly "tool.execute.after": (input: { readonly tool?: string; readonly sessionID?: string; readonly callID?: string; readonly args?: unknown }, output: unknown) => void;
 };
 
 const speechCooldownMs = 20_000;
@@ -53,20 +53,27 @@ export function createOpenPetsOpenCodeHooks(options: OpenCodePluginRuntimeOption
   let client: OpenPetsClient | undefined;
   let lease: { readonly leaseId: string; readonly expiresAt?: number } | undefined;
 
-  const run = (decision: OpenCodePluginDecision | undefined): void => {
-    if (!decision?.reaction) return;
-    if (isReactionExcluded(decision.reaction, excludedReactions)) return;
-    const reaction = decision.reaction;
+  const run = (decision: OpenCodePluginDecision | undefined, activity?: AgentActivityEvent): void => {
+    if (pet) activity = undefined;
+    if (!decision?.reaction && !activity) return;
+    if (decision?.reaction && isReactionExcluded(decision.reaction, excludedReactions)) return;
+    const reaction = decision?.reaction;
     try {
       schedule(async () => {
         try {
-          const shouldSpeak = decision.speechCategory ? shouldSendSpeech(decision.speechCategory, options) : false;
+          // 每个真实工具与终态都先送达；动作／语音冷却只影响原有简短反应。
+          if (activity) {
+            client ??= clientFactory();
+            await client.reportActivity?.(activity);
+          }
+          if (!reaction) return;
+          const shouldSpeak = decision?.speechCategory ? shouldSendSpeech(decision.speechCategory, options) : false;
           const shouldReact = shouldSendReaction(reaction, options);
           if (!shouldSpeak && !shouldReact) return;
 
           client ??= clientFactory();
           const leaseId = pet ? await getLeaseId(client, pet) : undefined;
-          if (decision.speechCategory && shouldSpeak) {
+          if (decision?.speechCategory && shouldSpeak) {
             await client.say(validateHookSpeech(pickHookSpeech(decision.speechCategory, options.random)), { reaction, leaseId });
             return;
           }
@@ -95,23 +102,73 @@ export function createOpenPetsOpenCodeHooks(options: OpenCodePluginRuntimeOption
   return {
     event(input) {
       try {
-        run(classifyOpenCodeBusEvent(input.event));
+        run(classifyOpenCodeBusEvent(input.event), createOpenCodeBusActivity(input.event));
       } catch (error) {
         debugLog(`OpenPets OpenCode event ignored error: ${sanitizeDebugError(error)}`);
       }
     },
-    "chat.message"() {
-      run({ reaction: "thinking" });
+    "chat.message"(input) {
+      const payload = isRecord(input) ? input : {};
+      run({ reaction: "thinking" }, createOpenCodeActivity(payload.sessionID, "turn-start", { turnId: typeof payload.messageID === "string" ? payload.messageID : undefined }));
     },
     "tool.execute.before"(input, output) {
       const tool = typeof input.tool === "string" ? input.tool : "";
       if (shouldIgnoreOpenPetsTool(tool)) return;
-      run({ reaction: classifyOpenCodeToolReaction(tool, output.args) });
+      run({ reaction: classifyOpenCodeToolReaction(tool, output.args) }, createOpenCodeActivity(input.sessionID, "tool-start", { callId: input.callID, toolName: tool }));
     },
-    "tool.execute.after"() {
-      // Intentionally quiet for now; session.error/session.status events provide less noisy completion signals.
+    "tool.execute.after"(input, output) {
+      const tool = typeof input.tool === "string" ? input.tool : "";
+      if (shouldIgnoreOpenPetsTool(tool) || !isRecord(output) || typeof output.output !== "string") return;
+      const metadata = isRecord(output.metadata) ? output.metadata : undefined;
+      const failed = metadata?.is_error === true || metadata?.isError === true || metadata?.success === false;
+      run(undefined, createOpenCodeActivity(input.sessionID, failed ? "tool-failed" : "tool-complete", {
+        callId: input.callID, toolName: tool,
+        editedFiles: failed ? undefined : getOpenCodeEditedFiles(tool, metadata),
+      }));
     },
   };
+}
+
+function createOpenCodeActivity(sessionId: unknown, phase: AgentActivityPhase, fields: Parameters<typeof createAgentActivityEvent>[3] = {}): AgentActivityEvent | undefined {
+  return typeof sessionId === "string" ? createAgentActivityEvent("opencode", sessionId, phase, fields) : undefined;
+}
+
+function createOpenCodeBusActivity(event: unknown): AgentActivityEvent | undefined {
+  const type = getEventType(event);
+  const properties = getEventProperties(event);
+  if (!properties) return undefined;
+  const info = isRecord(properties.info) ? properties.info : undefined;
+  const session = properties.sessionID ?? info?.id;
+  if (type === "session.created") return createOpenCodeActivity(session, "session-start");
+  if (type === "session.deleted") return createOpenCodeActivity(session, "session-end");
+  if (type === "permission.asked") return shouldIgnoreOpenPetsTool(getEventPermission(event) ?? "") ? undefined : createOpenCodeActivity(session, "permission");
+  if (type === "session.error") return createOpenCodeActivity(session, "tool-failed");
+  if (type === "session.status" && getEventStatusType(event) === "idle") return createOpenCodeActivity(session, "turn-end");
+  if (type === "message.part.updated") {
+    const part = isRecord(properties.part) ? properties.part : undefined;
+    const state = isRecord(part?.state) ? part.state : undefined;
+    if (part?.type === "tool" && state?.status === "error" && !shouldIgnoreOpenPetsTool(typeof part.tool === "string" ? part.tool : "")) {
+      return createOpenCodeActivity(properties.sessionID ?? part.sessionID, "tool-failed", {
+        callId: typeof part.callID === "string" ? part.callID : undefined,
+        toolName: typeof part.tool === "string" ? part.tool : undefined,
+      });
+    }
+  }
+  return undefined;
+}
+
+function getOpenCodeEditedFiles(tool: string, metadata?: Record<string, unknown>): string[] | undefined {
+  // 只读取官方写入工具成功返回的结构化路径；不采信模型文字或提交参数。
+  if (tool === "write" && typeof metadata?.filepath === "string") return [metadata.filepath];
+  if (tool === "edit" && isRecord(metadata?.filediff) && typeof metadata.filediff.file === "string") return [metadata.filediff.file];
+  if (tool === "apply_patch" && Array.isArray(metadata?.files)) {
+    return metadata.files.flatMap((file: unknown) => {
+      if (!isRecord(file)) return [];
+      const path = typeof file.movePath === "string" ? file.movePath : file.filePath;
+      return typeof path === "string" ? [path] : [];
+    });
+  }
+  return undefined;
 }
 
 export function classifyOpenCodeToolReaction(toolName: string, args?: unknown): OpenPetsReaction | undefined {
@@ -181,20 +238,26 @@ function getEventType(event: unknown): string | undefined {
 }
 
 function getEventStatusType(event: unknown): string | undefined {
-  if (!isRecord(event)) return undefined;
-  const properties = isRecord(event.properties) ? event.properties : isRecord(event.payload) && isRecord(event.payload.properties) ? event.payload.properties : undefined;
+  const properties = getEventProperties(event);
   const status = isRecord(properties?.status) ? properties.status : undefined;
   return typeof status?.type === "string" ? status.type : undefined;
 }
 
 function getEventPermission(event: unknown): string | undefined {
-  if (!isRecord(event)) return undefined;
-  const properties = isRecord(event.properties) ? event.properties : isRecord(event.payload) && isRecord(event.payload.properties) ? event.payload.properties : undefined;
+  const properties = getEventProperties(event);
   if (typeof properties?.permission === "string") return properties.permission;
   if (Array.isArray(properties?.patterns)) {
     const hit = properties.patterns.find((pattern) => typeof pattern === "string" && shouldIgnoreOpenPetsTool(pattern));
     if (typeof hit === "string") return hit;
   }
+  return undefined;
+}
+
+function getEventProperties(event: unknown): Record<string, unknown> | undefined {
+  if (!isRecord(event)) return undefined;
+  if (isRecord(event.properties)) return event.properties;
+  if (isRecord(event.data)) return event.data;
+  if (isRecord(event.payload)) return getEventProperties(event.payload);
   return undefined;
 }
 

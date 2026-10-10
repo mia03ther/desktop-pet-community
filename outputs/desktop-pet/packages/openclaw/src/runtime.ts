@@ -1,5 +1,6 @@
+import { randomUUID } from "node:crypto";
 import { pickHookSpeech, validateHookSpeech } from "@open-pets/agent-events";
-import { createOpenPetsClient, type OpenPetsClient } from "@open-pets/client";
+import { createAgentActivityEvent, createOpenPetsClient, type OpenPetsClient } from "@open-pets/client";
 
 export type OpenClawActivity = "thinking" | "working";
 
@@ -49,6 +50,8 @@ export function createOpenPetsOpenClawRuntime(options: OpenPetsOpenClawRuntimeOp
   let speechSentAt = Number.NEGATIVE_INFINITY;
   let pending = false;
   let client: OpenPetsClient | undefined;
+  // 仅标识本机插件实例的匿名活动槽，不代表 OpenClaw 的真实会话或账户。
+  const activitySlot = `openclaw-runtime:${randomUUID()}`;
 
   const report = (code: OpenPetsDebugCode): void => {
     if (debugEnabled) debugLog(code);
@@ -76,6 +79,11 @@ export function createOpenPetsOpenClawRuntime(options: OpenPetsOpenClawRuntimeOp
       schedule(async () => {
         try {
           const openPets = getClient();
+          if (openPets.reportActivity) {
+            const event = createAgentActivityEvent("openclaw", activitySlot, activity === "thinking" ? "turn-start" : "tool-start");
+            if (event) await openPets.reportActivity(event);
+            return;
+          }
           if (activity === "thinking" && timestamp - speechSentAt >= (options.speechCooldownMs ?? defaultSpeechCooldownMs)) {
             const speech = validateHookSpeech(pickHookSpeech("thinking", options.random));
             speechSentAt = timestamp;

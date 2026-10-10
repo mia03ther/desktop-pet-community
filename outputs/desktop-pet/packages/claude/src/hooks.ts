@@ -2,12 +2,12 @@ import { lstatSync, mkdirSync, readFileSync, realpathSync, renameSync, statSync,
 import { dirname, isAbsolute, join, relative } from "node:path";
 import { homedir, tmpdir, userInfo } from "node:os";
 
-import { createOpenPetsClient, type OpenPetsClient, type OpenPetsReaction, OpenPetsClientError } from "@open-pets/client";
+import { createAgentActivityEvent, createOpenPetsClient, type AgentActivityEvent, type AgentActivityPhase, type OpenPetsClient, type OpenPetsReaction, OpenPetsClientError } from "@open-pets/client";
 import { validateHookSpeech as validateSharedHookSpeech } from "@open-pets/agent-events";
 
 import { pickHookSpeech, type HookSpeechCategory } from "./hook-messages.js";
 
-export type ClaudeHookEventName = "UserPromptSubmit" | "PreToolUse" | "PermissionRequest" | "Notification" | "Stop" | "StopFailure";
+export type ClaudeHookEventName = "SessionStart" | "UserPromptSubmit" | "PreToolUse" | "PostToolUse" | "PostToolUseFailure" | "PermissionRequest" | "Notification" | "Stop" | "StopFailure" | "SessionEnd";
 
 export interface ClaudeHookDecision {
   readonly eventName?: string;
@@ -52,14 +52,27 @@ export async function handleClaudeHookPayload(raw: string, options: ClaudeHookOp
     return null;
   }
   const decision = mapClaudeHookEvent(parsed);
-  if (!decision?.reaction) return decision;
+  if (!decision) return decision;
   if (!options.projectLocal && hasProjectLocalOpenPetsHook()) return decision;
+
+  // 会话与工具进度必须逐项送达，不能被原有语音／动作冷却吞掉完成或失败事件。
+  const activity = options.configuredPetId ? undefined : createClaudeActivity(parsed);
+  let client = options.client;
+  if (activity) {
+    client ??= createOpenPetsClient({ connectTimeoutMs: 500, responseTimeoutMs: 500, remote: false });
+    try {
+      await client.reportActivity?.(activity);
+    } catch (error) {
+      if (options.debug) process.stderr.write(`桌宠 Claude 工作事件未送达：${sanitizeDebugError(error)}\n`);
+    }
+  }
+  if (!decision.reaction) return decision;
 
   const shouldSpeak = decision.speechCategory ? shouldSendSpeech(decision.speechCategory, options) : false;
   const shouldReact = shouldSendReaction(decision.reaction, options);
   if (!shouldSpeak && !shouldReact) return decision;
 
-  const client = options.client ?? createOpenPetsClient({ connectTimeoutMs: 500, responseTimeoutMs: 500 });
+  client ??= createOpenPetsClient({ connectTimeoutMs: 500, responseTimeoutMs: 500 });
   const lease = options.configuredPetId ? await acquireHookLease(client, options.configuredPetId, options.debug) : undefined;
   try {
     if (decision.speechCategory && shouldSpeak) {
@@ -119,13 +132,46 @@ export function parseHookPayload(raw: string): Record<string, unknown> {
 
 export function mapClaudeHookEvent(payload: Record<string, unknown>): ClaudeHookDecision | null {
   const eventName = typeof payload.hook_event_name === "string" ? payload.hook_event_name : undefined;
+  if (eventName === "SessionStart" || eventName === "SessionEnd") return { eventName };
   if (eventName === "UserPromptSubmit") return { eventName, reaction: "thinking" };
   if (eventName === "PermissionRequest") return { eventName, reaction: "waiting", speechCategory: "permission" };
   if (eventName === "Notification") return { eventName };
   if (eventName === "Stop") return { eventName, reaction: "success" };
   if (eventName === "StopFailure") return { eventName, reaction: "error", speechCategory: "error" };
   if (eventName === "PreToolUse") return { eventName, reaction: classifyToolReaction(payload) };
+  if (eventName === "PostToolUseFailure") return { eventName, reaction: "error" };
+  if (eventName === "PostToolUse") return { eventName };
   return eventName ? { eventName } : null;
+}
+
+function createClaudeActivity(payload: Record<string, unknown>): AgentActivityEvent | undefined {
+  if (typeof payload.session_id !== "string") return undefined;
+  const phases: Partial<Record<ClaudeHookEventName, AgentActivityPhase>> = {
+    SessionStart: "session-start",
+    UserPromptSubmit: "turn-start",
+    PreToolUse: "tool-start",
+    PostToolUse: "tool-complete",
+    PostToolUseFailure: "tool-failed",
+    PermissionRequest: "permission",
+    Stop: "turn-end",
+    StopFailure: "tool-failed",
+    SessionEnd: "session-end",
+  };
+  const event = typeof payload.hook_event_name === "string" ? phases[payload.hook_event_name as ClaudeHookEventName] : undefined;
+  if (!event) return undefined;
+  const tool = typeof payload.tool_name === "string" ? payload.tool_name : undefined;
+  const response = isRecord(payload.tool_response) ? payload.tool_response : undefined;
+  const failed = response?.is_error === true || response?.isError === true || response?.success === false;
+  const input = isRecord(payload.tool_input) ? payload.tool_input : undefined;
+  const path = input?.file_path;
+  const editedFiles = event === "tool-complete" && !failed && tool && ["Edit", "Write", "MultiEdit"].includes(tool)
+    && typeof path === "string" ? [path] : undefined;
+  return createAgentActivityEvent("claude", payload.session_id, failed && event === "tool-complete" ? "tool-failed" : event, {
+    callId: typeof payload.tool_use_id === "string" ? payload.tool_use_id : undefined,
+    toolName: tool,
+    editedFiles,
+    cwd: typeof payload.cwd === "string" ? payload.cwd : undefined,
+  });
 }
 
 export function validateHookSpeech(message: string): string {
@@ -217,7 +263,8 @@ function readLimitedStdin(stdin: NodeJS.ReadStream, maxBytes: number): Promise<s
 
 function sanitizeDebugError(error: unknown): string {
   const message = error instanceof Error ? error.message : String(error);
-  return message.replace(/(?:[A-Za-z]:)?[\\/][^\s"']{2,}/g, "<path>").slice(0, 200);
+  return message.replace(/(?:[A-Za-z]:)?[\\/][^\s"']{2,}/g, "<path>")
+    .replace(/\b(api[_-]?key|secret|password|token)\s*[:=]\s*\S+/gi, "$1=<redacted>").slice(0, 200);
 }
 
 function safeUid(): string {

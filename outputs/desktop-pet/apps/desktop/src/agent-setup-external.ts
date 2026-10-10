@@ -128,13 +128,14 @@ export async function getExternalAiSetups(context: ExternalAiSetupDependencies):
       session: { state: "unconfirmed", details: "尚无可归属当前 Harness profile 的真实会话确认。请重启对应界面并开始工作；插件登记和本机测试不能证明该会话已联动。" },
     },
     {
-      id: "doubao", name: "豆包", state: doubao.status.state, label: doubao.status.label,
-      description: "使用方舟 Function Calling 的本机开发接口。", details: doubao.status.details,
-      configPath: doubao.preview.bridgePath, instructions: ["准备本机桥接脚本。", "将复制的函数声明加入自己的方舟应用，并由本机工具执行器调用桥接脚本。", "普通豆包模型支持该开发路径；豆包网页、PC 客户端自动监测未支持。", "测试桌宠联动不会调用豆包模型。"],
-      canInstall: doubao.status.canInstall, canRemove: doubao.status.canRemove, canTest: doubao.status.state === "configured", installLabel: "准备本机桥",
-      preview: JSON.stringify({ tools: doubao.preview.functionTools, command: doubao.preview.command }, null, 2), docsUrl: documentation.doubao,
-      program: { detected: null, label: "本机开发接口", details: "不检测豆包网页或 PC 客户端。需要你自己的方舟应用执行本机工具调用。" },
-      session: { state: "unconfirmed", details: "尚未确认你的方舟应用已执行真实调用。本机桥准备或联动自测成功，不代表豆包客户端已接入。" },
+      id: "doubao", name: "豆包", state: "needs_setup", label: "PC／网页监测未支持",
+      description: "豆包 PC／网页的工作状态监测。", details: "尚未取得可用的客户端工作事件接口，不能自动接入。已安装豆包、已有登录或本机桥自测均不代表工作状态已连通。",
+      configPath: doubao.preview.bridgePath, instructions: ["PC／网页的自动监测暂不可用。", "下面的方舟开发桥仅供自己的 API 应用调用，与豆包客户端监测分开。"],
+      canInstall: false, canRemove: doubao.status.canRemove, canTest: false, installLabel: "客户端暂不支持",
+      preview: JSON.stringify({ tools: doubao.preview.functionTools, command: doubao.preview.command,
+        eventCommand: doubao.preview.eventCommand, eventExample: doubao.preview.eventExample }, null, 2), docsUrl: documentation.doubao,
+      program: { detected: null, label: "客户端事件接口待支持", details: "不根据进程存在推测豆包客户端的真实工作状态。" },
+      session: { state: "unconfirmed", details: "豆包 PC／网页工作事件尚未接通；方舟开发桥的事件不能作为客户端验收结果。" },
     },
   ];
 }

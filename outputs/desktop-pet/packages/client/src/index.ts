@@ -3,6 +3,8 @@ import { randomUUID } from "node:crypto";
 import { posix, win32 } from "node:path";
 
 import { parseIpcEndpoint, readDiscoveryFile, type OpenPetsDiscoveryFile } from "./discovery.js";
+import { sanitizeAgentActivityEvent, type AgentActivityEvent } from "./agent-activity.js";
+export { createAgentActivityEvent, type AgentActivityEvent, type AgentActivityFields, type AgentActivityAdapter, type AgentActivityPhase } from "./agent-activity.js";
 import { connectTimeoutMs, maxIpcMessageBytes, openPetsIpcVersion, parseIpcResponse, responseTimeoutMs, validateReaction, OpenPetsClientError, type OpenPetsIpcMethod, type OpenPetsIpcRequest, type OpenPetsReaction } from "./protocol.js";
 import { maxRemoteMessageBytes, openPetsRemoteProtocol, openPetsRemoteVersion, parseRemoteEndpoint, parseRemoteResponse, remoteConnectTimeoutMs, remoteResponseTimeoutMs, validateRemoteClientId, validateRemoteMessage, validateRemoteReaction, validateRemoteToken, type OpenPetsRemoteEndpoint, type OpenPetsRemoteMethod, type OpenPetsRemoteRequest } from "./remote-protocol.js";
 
@@ -85,6 +87,7 @@ export interface OpenPetsClient {
   heartbeatLease(leaseId: string): Promise<{ readonly leaseId: string; readonly expiresAt: number }>;
   releaseLease(leaseId: string): Promise<{ readonly released: boolean }>;
   react(reaction: OpenPetsReaction, options?: { readonly leaseId?: string }): Promise<unknown>;
+  reportActivity?(event: AgentActivityEvent): Promise<unknown>;
   say(message: string, options?: { readonly reaction?: OpenPetsReaction; readonly leaseId?: string }): Promise<unknown>;
   showMedia(path: string, options?: { readonly message?: string; readonly reaction?: OpenPetsReaction; readonly durationMs?: number; readonly clickUrl?: string; readonly leaseId?: string }): Promise<unknown>;
 }
@@ -127,6 +130,14 @@ export function createOpenPetsClient(options: OpenPetsClientOptions = {}): OpenP
     acquireLease: (leaseOptions) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.acquire", { requestedPetId: leaseOptions?.requestedPetId, clientPid: process.pid, sessionNonce: SESSION_NONCE }, options),
     heartbeatLease: (leaseId) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.heartbeat", { leaseId }, options),
     releaseLease: (leaseId) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.release", { leaseId }, options),
+    reportActivity: async (event) => {
+      if (remote) return unsupportedRemote();
+      const activity = sanitizeAgentActivityEvent(event);
+      if (!activity) throw new OpenPetsClientError("invalid_params", "外部 AI 活动元数据无效；只接受有界的会话摘要与工具名称。");
+      return sendDiscoveredRequest("pet.react", { reaction: activity.event === "permission" ? "waiting"
+        : activity.event === "tool-failed" ? "error" : activity.event === "turn-end" ? "success"
+        : ["session-end", "session-start", "interrupt"].includes(activity.event) ? "idle" : "thinking", externalAi: activity }, options);
+    },
     react: (reaction, reactOptions) => remote
       ? sendRemoteRequest(remote.endpoint, remote.token, remote.clientId, "pet.react", { reaction: validateRemoteReaction(reaction) }, options)
       : sendDiscoveredRequest("pet.react", { reaction: validateReaction(reaction), leaseId: reactOptions?.leaseId }, options),

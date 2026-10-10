@@ -167,6 +167,24 @@ export function IntegrationsView({ api: injectedApi }: IntegrationsViewProps) {
   }, []);
 
   useEffect(() => {
+    if (!snapshot?.busy || busy) return;
+    let cancelled = false;
+    const timeout = window.setTimeout(() => {
+      void api.getIntegrationsState(snapshot.selectedPetId, snapshot.commandMode).then((next) => {
+        if (cancelled) return;
+        setSnapshot(next);
+        setError("");
+      }).catch((err) => {
+        if (!cancelled) setError(displayProductText(String((err as Error)?.message ?? err)));
+      });
+    }, 1000);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timeout);
+    };
+  }, [api, busy, snapshot]);
+
+  useEffect(() => {
     if (!message) return;
     const timeout = window.setTimeout(() => setMessage(""), 3000);
     return () => window.clearTimeout(timeout);
@@ -335,7 +353,7 @@ export function IntegrationsView({ api: injectedApi }: IntegrationsViewProps) {
           variant="secondary"
           size="compact"
           icon={<RefreshIcon />}
-          disabled={isBusy}
+          disabled={Boolean(busy)}
           onClick={() => void load()}
         >
           {t("integrations.refreshStatus")}
@@ -375,9 +393,12 @@ export function IntegrationsView({ api: injectedApi }: IntegrationsViewProps) {
                   <StatusPill tone={item.tone}>{item.status}</StatusPill>
                 </div>
                 <small>{item.description}</small>
-                {snapshot.externalIntegrations?.find((external) => external.id === item.id) && <small className="integration-readiness">
-                  {snapshot.externalIntegrations.find((external) => external.id === item.id)?.program.label} · 真实会话待确认
-                </small>}
+                <small className="integration-readiness">
+                  {snapshot.externalIntegrations?.find((external) => external.id === item.id)?.program.label}
+                  {snapshot.externalIntegrations?.some((external) => external.id === item.id) ? " · " : ""}
+                  {item.id === "doubao" ? "PC／网页监测未支持"
+                    : snapshot.sessionStates?.[item.id]?.state === "observed" ? "已收到会话工作事件" : "会话工作事件待确认"}
+                </small>
               </div>
             </div>
             <div className="integration-card-footer">
@@ -387,6 +408,9 @@ export function IntegrationsView({ api: injectedApi }: IntegrationsViewProps) {
                     onClick={() => void run("正在配置连接…", `${item.id}-install` as AgentSetupAction)}>
                     {snapshot.externalIntegrations.find((external) => external.id === item.id)?.installLabel}
                   </Button>
+                )}
+                {item.id === "doubao" && !snapshot.externalIntegrations?.find((external) => external.id === item.id)?.canInstall && (
+                  <Button variant="primary" size="compact" icon={<InstallIcon />} disabled>客户端暂不支持</Button>
                 )}
                 {item.id === "claude" && snapshot.status.canConfigure && (
                   <Button
@@ -568,7 +592,7 @@ export function IntegrationsView({ api: injectedApi }: IntegrationsViewProps) {
                   {selectedExternal.configPath && <p className="integration-file-path">{selectedExternal.configPath}</p>}
                 </section>
                 <section className="integration-section">
-                  <div className="integration-section-title"><small>近期真实事件</small><strong>会话待确认</strong></div>
+                  <div className="integration-section-title"><small>近期会话事件</small><strong>{selectedExternal.session.state === "observed" ? "已收到工作事件" : "会话待确认"}</strong></div>
                   <p className="text-sm text-slatecopy leading-relaxed">{selectedExternal.session.details}</p>
                 </section>
                 <section className="integration-section">

@@ -31,6 +31,8 @@ Runtime protocol validation (79 lines). Imports from `../src/` and asserts:
 - **Public IP rejection**: Ensures public IPs are rejected for security
 - **Response parsing**: ok/error discriminated union parsing
 - **Pet list/install result parsing**: Validates pet data structures
+- **本机活动隐私**：读取真实回环 TCP 发送字节，验证额外提示词、路径、自定义序列化函数和调用后的数组修改不会传出；无效摘要、类型、时间或长度在连接前拒绝，合法摘要仍送达
+- **远程活动边界**：远程客户端拒绝工作摘要，不复用远程反应请求发送它
 
 **Security Coverage**:
 - IPv4 only (no hostnames)

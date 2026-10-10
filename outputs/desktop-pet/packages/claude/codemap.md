@@ -21,10 +21,11 @@ Provides Claude Code editor integration via MCP configuration and lifecycle hook
 - Throttling: 20s speech, 3s permission, 10s reaction cooldowns via JSON state file
 - Lease acquisition for targeted pets
 - Error handling: Debug logging, graceful degradation
+- 本机工作气泡：由官方会话与工具生命周期上报摘要，支持工具名称、成功编辑文件数与完成／失败；不发送提示词、源码、路径或工具输出，不转发到远程桌宠。
 
 **Hook Settings Management** (`hook-settings.ts`):
 - Settings path: `~/.claude/settings.json`
-- Hook events: `UserPromptSubmit`, `PreToolUse`, `PermissionRequest`, `Notification`, `Stop`, `StopFailure`
+- Hook events: `UserPromptSubmit`, `PreToolUse`, `PermissionRequest`, `Notification`, `Stop`, `StopFailure`, `SessionStart`, `PostToolUse`, `PostToolUseFailure`, `SessionEnd`
 - Command entry: `{ type: "command", command, timeout: 3, async: true, asyncRewake: false }`
 - Marker: `--openpets-managed` in command for identification
 - Install modes: `published` (npx), `local` (node path), `bundled` (asar unpacked)
@@ -54,6 +55,8 @@ parseHookPayload() → mapClaudeHookEvent()
 Decision: { reaction?, speechCategory? }
     ↓
 hasProjectLocalOpenPetsHook() → Skip if project-local exists
+    ↓
+默认桌宠且有官方 session_id → client.reportActivity(会话／工具摘要)
     ↓
 shouldSendSpeech() / shouldSendReaction() → Throttle check
     ↓

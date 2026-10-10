@@ -49,6 +49,10 @@ test("DSH 用官方 plugin 命令安装本机 bundle，仅移除本项目的依�
     assert.equal(getDeepSeekHarnessSetup(dependencies).status.state, "configured");
     assert.deepEqual(commands[0], ["plugin", "--profile", "web", "add", managedBundleDir]);
     assert.equal(JSON.parse(readFileSync(join(managedBundleDir, "settings.json"), "utf8")).discoveryPath, dependencies.discoveryPath);
+    writeFileSync(join(managedBundleDir, "index.mjs"), "// 旧版联动\n");
+    assert.equal(getDeepSeekHarnessSetup(dependencies).status.state, "needs_setup");
+    assert.equal(getDeepSeekHarnessSetup(dependencies).status.canInstall, true);
+    copyFileSync(join(bundleSourceDir, "index.mjs"), join(managedBundleDir, "index.mjs"));
     assert.equal((await removeDeepSeekHarness(dependencies)).ok, true);
     assert.deepEqual(JSON.parse(readFileSync(configPath, "utf8")), original);
     assert.equal(readFileSync(join(profileDir, "cordis.patch.yml"), "utf8"), patch);

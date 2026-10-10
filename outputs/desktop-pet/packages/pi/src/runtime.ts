@@ -1,5 +1,6 @@
+import { randomUUID } from "node:crypto";
 import { pickHookSpeech, validateHookSpeech } from "@open-pets/agent-events";
-import { allowedReactions, createOpenPetsClient, type OpenPetsClient, type OpenPetsReaction } from "@open-pets/client";
+import { allowedReactions, createAgentActivityEvent, createOpenPetsClient, type AgentActivityEvent, type OpenPetsClient, type OpenPetsReaction } from "@open-pets/client";
 
 export interface OpenPetsPiOptions {
   readonly clientFactory?: () => OpenPetsClient;
@@ -36,6 +37,8 @@ export interface PiEventDecision {
 export interface PiEventEnvelope {
   readonly type: string;
   readonly payload?: unknown;
+  readonly sessionId?: string;
+  readonly cwd?: string;
 }
 
 export type OpenPetsPiCommand =
@@ -57,10 +60,10 @@ export function createOpenPetsPiExtension(pi: unknown, options: OpenPetsPiOption
   if (!api) return runtime;
 
   const subscribe = (eventName: string): void => {
-    api.on?.(eventName, (event) => runtime.handleEvent({ type: eventName, payload: event }));
+    api.on?.(eventName, (event, ctx) => runtime.handleEvent({ type: eventName, payload: event, ...readPiSessionContext(ctx) }));
   };
 
-  for (const eventName of ["session_start", "session_shutdown", "agent_start", "agent_end", "turn_start", "tool_execution_start", "tool_execution_end"]) {
+  for (const eventName of ["session_start", "session_shutdown", "agent_start", "agent_end", "agent_before_settle", "agent_settled", "turn_start", "tool_execution_start", "tool_execution_end"]) {
     subscribe(eventName);
   }
 
@@ -82,6 +85,9 @@ export function createOpenPetsPiRuntime(options: OpenPetsPiOptions = {}): OpenPe
   let client: OpenPetsClient | undefined;
   let recentErrorAt = Number.NEGATIVE_INFINITY;
   let lastErrorSpeechAt = Number.NEGATIVE_INFINITY;
+  const sessions = new Map<string, PiActivityState>();
+  let activityQueue = Promise.resolve();
+  let activityPending = 0;
 
   const getClient = (): OpenPetsClient => {
     client ??= clientFactory();
@@ -118,10 +124,37 @@ export function createOpenPetsPiRuntime(options: OpenPetsPiOptions = {}): OpenPe
     return true;
   };
 
+  const runActivity = (event: PiEventEnvelope): boolean => {
+    if (!event.sessionId || !getClient().reportActivity) return false;
+    const activity = buildPiActivity(event, sessions);
+    if (!activity || activityPending >= 200) return true;
+    activityPending += 1;
+    // 生命周期和并行工具结果按接收顺序提交；桌宠故障不影响 Pi。
+    activityQueue = activityQueue.then(() => new Promise<void>((resolve) => {
+      try {
+        schedule(async () => {
+          try {
+            await getClient().reportActivity?.(activity);
+          } catch (error) {
+            debugLog(`OpenPets Pi activity ignored error: ${sanitizeDebugError(error)}`);
+          } finally {
+            activityPending -= 1;
+            resolve();
+          }
+        });
+      } catch (error) {
+        activityPending -= 1;
+        debugLog(`OpenPets Pi activity scheduling ignored error: ${sanitizeDebugError(error)}`);
+        resolve();
+      }
+    }));
+    return true;
+  };
+
   return {
     handleEvent(event) {
       try {
-        runAutomatic(classifyPiEvent(event));
+        if (!runActivity(normalizePiEvent(event))) runAutomatic(classifyPiEvent(event));
       } catch (error) {
         debugLog(`OpenPets Pi event ignored error: ${sanitizeDebugError(error)}`);
       }
@@ -165,9 +198,101 @@ export function classifyPiEvent(event: unknown): PiEventDecision | undefined {
 
 export function normalizePiEvent(event: unknown): PiEventEnvelope {
   if (isRecord(event) && typeof event.type === "string") {
-    return { type: event.type, payload: "payload" in event ? event.payload : event };
+    return {
+      type: event.type,
+      payload: "payload" in event ? event.payload : event,
+      ...(boundedString(event.sessionId) ? { sessionId: boundedString(event.sessionId) } : {}),
+      ...(boundedString(event.cwd, 4_096) ? { cwd: boundedString(event.cwd, 4_096) } : {}),
+    };
   }
   return { type: "", payload: event };
+}
+
+interface PiActivityState {
+  turnId?: string;
+  active: boolean;
+  outcome?: "completed" | "aborted" | "error";
+  readonly filesByCall: Map<string, { readonly path: string; readonly cwd?: string; readonly toolName: string }>;
+}
+
+function buildPiActivity(event: PiEventEnvelope, sessions: Map<string, PiActivityState>): AgentActivityEvent | undefined {
+  const sessionId = event.sessionId;
+  if (!sessionId) return undefined;
+  let state = sessions.get(sessionId);
+  if (!state) {
+    if (sessions.size >= 100) sessions.delete(sessions.keys().next().value ?? "");
+    state = { active: false, filesByCall: new Map() };
+    sessions.set(sessionId, state);
+  }
+  const payload = isRecord(event.payload) ? event.payload : {};
+  const fields = { turnId: state.active ? state.turnId : undefined };
+  switch (event.type) {
+    case "session_start":
+      return createAgentActivityEvent("pi", sessionId, "session-start");
+    case "session_shutdown":
+      sessions.delete(sessionId);
+      return createAgentActivityEvent("pi", sessionId, "session-end");
+    case "agent_start":
+      if (!state.active) {
+        state.turnId = randomUUID();
+        state.active = true;
+        state.outcome = undefined;
+        state.filesByCall.clear();
+      }
+      return createAgentActivityEvent("pi", sessionId, "turn-start", { turnId: state.turnId });
+    case "turn_start":
+      return state.active ? createAgentActivityEvent("pi", sessionId, "turn-start", fields) : undefined;
+    case "agent_before_settle":
+      if (payload.outcome === "completed" || payload.outcome === "aborted" || payload.outcome === "error") state.outcome = payload.outcome;
+      return undefined;
+    case "agent_settled": {
+      if (!state.active) return undefined;
+      state.active = false;
+      state.filesByCall.clear();
+      const phase = payload.aborted === true || state.outcome === "aborted" ? "interrupt"
+        : state.outcome === "error" ? "tool-failed"
+        : state.outcome === "completed" ? "turn-end" : undefined;
+      return phase ? createAgentActivityEvent("pi", sessionId, phase, fields) : undefined;
+    }
+    case "tool_execution_start": {
+      const toolName = boundedString(payload.toolName, 100);
+      const callId = boundedString(payload.toolCallId);
+      if (!state.active || !toolName || shouldIgnoreOpenPetsTool(toolName)) return undefined;
+      const path = (toolName === "write" || toolName === "edit") && isRecord(payload.args) ? boundedString(payload.args.path, 4_096) : undefined;
+      if (callId && path) {
+        if (state.filesByCall.size >= 200) state.filesByCall.delete(state.filesByCall.keys().next().value ?? "");
+        state.filesByCall.set(callId, { path, cwd: event.cwd, toolName });
+      }
+      return createAgentActivityEvent("pi", sessionId, "tool-start", { ...fields, callId, toolName });
+    }
+    case "tool_execution_end": {
+      const toolName = boundedString(payload.toolName, 100);
+      const callId = boundedString(payload.toolCallId);
+      const file = callId ? state.filesByCall.get(callId) : undefined;
+      if (callId) state.filesByCall.delete(callId);
+      if (!state.active || !toolName || shouldIgnoreOpenPetsTool(toolName) || typeof payload.isError !== "boolean") return undefined;
+      // 只有正式成功结果才计入编辑数；路径在共享客户端内哈希，不进入 IPC。
+      const editedFiles = payload.isError === false && file?.toolName === toolName ? [file.path] : undefined;
+      return createAgentActivityEvent("pi", sessionId, payload.isError ? "tool-failed" : "tool-complete", { ...fields, callId, toolName, editedFiles, cwd: file?.cwd });
+    }
+    default:
+      return undefined;
+  }
+}
+
+function readPiSessionContext(ctx: unknown): Pick<PiEventEnvelope, "sessionId" | "cwd"> {
+  try {
+    if (!isRecord(ctx) || !isRecord(ctx.sessionManager) || typeof ctx.sessionManager.getSessionId !== "function") return {};
+    const sessionId = boundedString(ctx.sessionManager.getSessionId());
+    return sessionId ? { sessionId, cwd: boundedString(ctx.cwd, 4_096) } : {};
+  } catch {
+    // 宿主上下文未就绪时只保留普通动作，不伪造会话身份。
+    return {};
+  }
+}
+
+function boundedString(value: unknown, maximum = 512): string | undefined {
+  return typeof value === "string" && value.trim().length > 0 && value.length <= maximum ? value : undefined;
 }
 
 export function classifyPiToolExecutionStart(toolName: unknown, args?: unknown): OpenPetsReaction | undefined {

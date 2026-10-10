@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
-import type { OpenPetsClient, OpenPetsReaction } from "@open-pets/client";
+import type { AgentActivityEvent, OpenPetsClient, OpenPetsReaction } from "@open-pets/client";
 
 import plugin, { openPetsOpenCodePluginId } from "./plugin.js";
 import { classifyOpenCodeBusEvent, classifyOpenCodeToolReaction, createOpenPetsOpenCodeHooks, getDefaultOpenCodeThrottlePath, isReactionExcluded, shouldIgnoreOpenPetsTool } from "./opencode-plugin-runtime.js";
@@ -112,6 +112,54 @@ try {
 
   const throwingSchedule = createOpenPetsOpenCodeHooks({ schedule: () => { throw new Error("schedule failed"); }, debug: true, debugLog: (message) => errors.push(message) });
   assert.doesNotThrow(() => throwingSchedule.event({ event: { type: "session.error" } }));
+
+  const activities: AgentActivityEvent[] = [];
+  const progressScheduled: Array<() => Promise<void>> = [];
+  const progressClient: OpenPetsClient = { ...client, reportActivity: async (event) => { activities.push(event); } };
+  const progressHooks = createOpenPetsOpenCodeHooks({ clientFactory: () => progressClient, schedule: (work) => progressScheduled.push(work), throttlePath: join(dir, "progress.json"), now: () => 700_000 });
+  const sessionID = "private-session";
+  progressHooks.event({ event: { type: "session.created", properties: { info: { id: sessionID, directory: dir } } } });
+  progressHooks["chat.message"]({ sessionID, messageID: "private-turn" }, { message: { text: "private prompt api_key=never-send" } });
+  progressHooks["tool.execute.before"]({ sessionID, callID: "read-call", tool: "read" }, { args: { filePath: join(dir, "private.txt") } });
+  progressHooks["tool.execute.after"]({ sessionID, callID: "read-call", tool: "read" }, { output: "private file content", metadata: {} });
+  progressHooks["tool.execute.before"]({ sessionID, callID: "write-call", tool: "write" }, { args: { filePath: join(dir, "written.txt"), content: "private body" } });
+  progressHooks["tool.execute.after"]({ sessionID, callID: "write-call", tool: "write" }, { output: "success", metadata: { filepath: join(dir, "written.txt") } });
+  progressHooks["tool.execute.after"]({ sessionID, callID: "edit-call", tool: "edit" }, { output: "success", metadata: { filediff: { file: join(dir, "written.txt"), patch: "private diff" } } });
+  progressHooks["tool.execute.after"]({ sessionID, callID: "patch-call", tool: "apply_patch" }, { output: "success", metadata: { files: [{ filePath: join(dir, "other.txt") }, { filePath: join(dir, "old.txt"), movePath: join(dir, "moved.txt") }] } });
+  progressHooks["tool.execute.after"]({ sessionID, callID: "self-reported", tool: "write", args: { filePath: join(dir, "claimed.txt") } }, { output: "edited claimed.txt", metadata: {} });
+  progressHooks["tool.execute.after"]({ sessionID, callID: "failed-response", tool: "write" }, { output: "failed", metadata: { success: false, filepath: join(dir, "failed.txt") } });
+  const beforeUndefinedAfter = progressScheduled.length;
+  progressHooks["tool.execute.after"]({ sessionID, callID: "failed-call", tool: "task" }, undefined);
+  assert.equal(progressScheduled.length, beforeUndefinedAfter, "官方失败任务没有成功结果，不能当成工具完成");
+  progressHooks.event({ event: { type: "message.part.updated", properties: { part: { sessionID, type: "tool", callID: "failed-call", tool: "task", state: { status: "error", error: "private error" } } } } });
+  progressHooks.event({ event: { type: "permission.asked", properties: { sessionID, prompt: "private permission" } } });
+  progressHooks.event({ event: { type: "session.status", properties: { sessionID, status: { type: "idle" } } } });
+  progressHooks.event({ event: { type: "session.status", properties: { sessionID, status: { type: "idle" } } } });
+  progressHooks.event({ event: { type: "session.deleted", data: { sessionID } } });
+  for (const work of progressScheduled.splice(0)) await work();
+  assert.deepEqual(activities.map((event) => event.event), ["session-start", "turn-start", "tool-start", "tool-complete", "tool-start", "tool-complete", "tool-complete", "tool-complete", "tool-complete", "tool-failed", "tool-failed", "permission", "turn-end", "turn-end", "session-end"]);
+  assert.equal(activities[5]?.editedFileIds?.length, 1);
+  assert.equal(activities[5]?.editedFileIds?.[0], activities[6]?.editedFileIds?.[0]);
+  assert.equal(activities[7]?.editedFileIds?.length, 2);
+  assert.equal(new Set(activities.flatMap((event) => event.editedFileIds ?? [])).size, 3);
+  assert.equal(activities[8]?.editedFileIds, undefined);
+  assert.equal(activities[9]?.editedFileIds, undefined);
+  assert.equal(activities[2]?.callId, activities[3]?.callId);
+  assert.equal(activities.every((event) => event.adapter === "opencode" && /^[a-f0-9]{64}$/.test(event.sessionId)), true);
+  assert.equal(/private-session|private prompt|private body|private diff|written\.txt|api_key/.test(JSON.stringify(activities)), false);
+  progressHooks.event({ event: { type: "session.created", properties: {} } });
+  progressHooks["tool.execute.before"]({ sessionID, callID: "own-call", tool: "openpets_openpets_say" }, { args: {} });
+  assert.equal(progressScheduled.length, 0, "没有会话 ID 与桌宠自身 MCP 调用不能产生工作事件");
+
+  const targetedHooks = createOpenPetsOpenCodeHooks({ pet: "fixer", clientFactory: () => progressClient, schedule: (work) => progressScheduled.push(work), throttlePath: join(dir, "targeted-progress.json"), now: () => 800_000 });
+  targetedHooks.event({ event: { type: "session.created", properties: { info: { id: sessionID } } } });
+  targetedHooks["chat.message"]({ sessionID }, {});
+  const beforeTargeted = activities.length;
+  for (const work of progressScheduled.splice(0)) await work();
+  assert.equal(activities.length, beforeTargeted, "显式绑定另一只宠物时不能发送默认桌宠工作进度");
+  const filteredHooks = createOpenPetsOpenCodeHooks({ excludeReactions: ["success"], clientFactory: () => progressClient, schedule: (work) => progressScheduled.push(work) });
+  filteredHooks.event({ event: { type: "session.status", properties: { sessionID, status: { type: "idle" } } } });
+  assert.equal(progressScheduled.length, 0, "工作事件不能绕过用户明确排除的动作设置");
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }

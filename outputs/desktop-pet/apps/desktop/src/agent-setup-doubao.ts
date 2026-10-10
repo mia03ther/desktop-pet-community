@@ -20,7 +20,7 @@ export interface DoubaoSetupDependencies {
 }
 
 export interface DoubaoSetupStatus {
-  readonly state: "configured" | "needs_setup" | "conflict" | "error";
+  readonly state: "configured" | "needs_setup" | "needs_update" | "conflict" | "error";
   readonly label: string;
   readonly details: string;
   readonly canInstall: boolean;
@@ -31,6 +31,8 @@ export interface DoubaoSetupPreview {
   readonly instructions: string;
   readonly functionTools: readonly Record<string, unknown>[];
   readonly command: readonly string[];
+  readonly eventCommand: readonly string[];
+  readonly eventExample: Readonly<Record<string, unknown>>;
   readonly bridgePath: string;
   readonly documentationUrl: string;
   readonly cozeDocumentationUrl: string;
@@ -60,11 +62,15 @@ export function getDoubaoSetup(dependencies: DoubaoSetupDependencies): {
         preview,
       };
     }
-    const matches = readManagedBridge(preview.bridgePath) === source;
+    const existing = readManagedBridge(preview.bridgePath);
+    const matches = existing === source;
+    const previousVersion = existing === createLegacyDoubaoBridgeSource(dependencies);
     return {
       status: matches
         ? { state: "configured", label: "本机桥已准备", details: integrationLimitations, canInstall: false, canRemove: true }
-        : { state: "conflict", label: "本机桥文件存在冲突", details: "现有桥接文件与当前配置不同，请先检查该文件。" + integrationLimitations, canInstall: false, canRemove: false },
+        : previousVersion
+          ? { state: "needs_update", label: "本机桥可更新", details: "更新后可接收真实应用的会话、工具与文件编辑事件。" + integrationLimitations, canInstall: true, canRemove: true }
+          : { state: "conflict", label: "本机桥文件存在冲突", details: "现有桥接文件与当前配置不同，请先检查该文件。" + integrationLimitations, canInstall: false, canRemove: false },
       preview,
     };
   } catch (error) {
@@ -81,9 +87,12 @@ export function installDoubaoBridge(dependencies: DoubaoSetupDependencies): Doub
     const source = createDoubaoBridgeSource(dependencies);
     assertSafeDirectory(dependencies.integrationDir);
     const bridgePath = join(dependencies.integrationDir, bridgeFileName);
+    let updating = false;
     if (pathExists(bridgePath)) {
-      if (readManagedBridge(bridgePath) !== source) throw new Error("已有本机桥文件与当前配置不同，未覆盖文件。");
-      return { ok: true, action, message: "本机桥已准备；请在自己的方舟应用里接入工具执行。", changed: false };
+      const existing = readManagedBridge(bridgePath);
+      if (existing === source) return { ok: true, action, message: "本机桥已准备；请在自己的方舟应用里接入工具执行。", changed: false };
+      if (existing !== createLegacyDoubaoBridgeSource(dependencies)) throw new Error("已有本机桥文件与当前配置不同，未覆盖文件。");
+      updating = true;
     }
     mkdirSync(dependencies.integrationDir, { recursive: true });
     const pendingPath = join(dependencies.integrationDir, `${bridgeFileName}.${process.pid}.tmp`);
@@ -93,7 +102,9 @@ export function installDoubaoBridge(dependencies: DoubaoSetupDependencies): Doub
     } finally {
       if (pathExists(pendingPath)) unlinkSync(pendingPath);
     }
-    return { ok: true, action, message: "已生成本机桥。尚未连接豆包客户端；将函数工具与执行命令接入自己的方舟应用后即可联动桌宠。", changed: true };
+    return { ok: true, action, message: updating
+      ? "已更新本机桥；自己的方舟应用可发送会话和工具事件，豆包客户端仍未连接。"
+      : "已生成本机桥。尚未连接豆包客户端；将函数工具与执行命令接入自己的方舟应用后即可联动桌宠。", changed: true };
   } catch (error) {
     return { ok: false, action, message: error instanceof Error ? error.message : "本机桥生成失败。", changed: false };
   }
@@ -105,7 +116,8 @@ export function removeDoubaoBridge(dependencies: DoubaoSetupDependencies): Douba
     assertSafeDirectory(dependencies.integrationDir);
     const bridgePath = join(dependencies.integrationDir, bridgeFileName);
     if (!pathExists(bridgePath)) return { ok: true, action, message: "本机桥已不存在。", changed: false };
-    if (readManagedBridge(bridgePath) !== createDoubaoBridgeSource(dependencies)) {
+    const source = readManagedBridge(bridgePath);
+    if (source !== createDoubaoBridgeSource(dependencies) && source !== createLegacyDoubaoBridgeSource(dependencies)) {
       throw new Error("本机桥文件已改变，未删除文件，请先检查内容。");
     }
     unlinkSync(bridgePath);
@@ -136,12 +148,91 @@ export async function testDoubaoBridge(dependencies: DoubaoSetupDependencies): P
 }
 
 export function createDoubaoBridgeSource(dependencies: DoubaoSetupDependencies): string {
+  validateBridgeDependencies(dependencies);
+  return [
+    "// desktop pet 豆包方舟本机事件桥；只传工作摘要，不传聊天内容或凭据。",
+    'import { createHash } from "node:crypto";',
+    'import { isAbsolute, normalize } from "node:path";',
+    'import { pathToFileURL } from "node:url";',
+    `import { createOpenPetsClient, readDiscoveryFile, sendRequest } from ${JSON.stringify(pathToFileURL(dependencies.clientEntryPath).href)};`,
+    `const discoveryPath = ${JSON.stringify(dependencies.discoveryPath)};`,
+    `const reactions = ${JSON.stringify(doubaoActivityReactions)};`,
+    'const eventReactions = { "session-start": "idle", "turn-start": "thinking", "tool-start": "working", "tool-complete": "working", "tool-failed": "error", permission: "waiting", "turn-end": "success", interrupt: "idle", "session-end": "idle" };',
+    'const allowedFields = ["event", "sessionId", "turnId", "callId", "toolName", "succeeded", "editedFiles"];',
+    'const digest = value => createHash("sha256").update(value).digest("hex");',
+    'function invalid() { throw new Error("工作事件无效；只接受有界的会话、工具与成功编辑摘要。"); }',
+    'function identity(value) {',
+    '  if (typeof value !== "string" || !value.trim() || value.length > 512) invalid();',
+    '  return digest(value);',
+    '}',
+    'export async function reportDoubaoActivity(input) {',
+    '  if (!input || typeof input !== "object" || Array.isArray(input) || JSON.stringify(input).length > 16 * 1024',
+    '    || Object.keys(input).some(key => !allowedFields.includes(key)) || !Object.hasOwn(eventReactions, input.event)) invalid();',
+    '  const event = { adapter: "doubao", sessionId: identity(input.sessionId), event: input.event, sentAt: Date.now() };',
+    '  if (input.turnId !== undefined) event.turnId = identity(input.turnId);',
+    '  if (input.callId !== undefined) event.callId = identity(input.callId);',
+    '  if (input.toolName !== undefined) {',
+    '    if (typeof input.toolName !== "string" || !/^[a-zA-Z0-9_.:-]{1,100}$/.test(input.toolName)) invalid();',
+    '    event.toolName = input.toolName;',
+    '  }',
+    '  if (input.succeeded !== undefined && (typeof input.succeeded !== "boolean" || input.event !== "tool-complete")) invalid();',
+    '  if (input.succeeded === false) event.event = "tool-failed";',
+    '  if (input.editedFiles !== undefined) {',
+    '    if (input.event !== "tool-complete" || !Array.isArray(input.editedFiles) || input.editedFiles.length > 100',
+    '      || input.editedFiles.some(file => typeof file !== "string" || file.length > 4096 || /[\\0\\r\\n]/.test(file) || !isAbsolute(file))) invalid();',
+    '    // 只有本机执行器明确确认成功才累计文件，模型文字和失败结果不能作依据。',
+    '    if (input.succeeded === true) event.editedFileIds = [...new Set(input.editedFiles.map(file => digest(normalize(file).replaceAll("\\\\", "/"))))];',
+    '  }',
+    '  await sendRequest(readDiscoveryFile(discoveryPath), "pet.react", { reaction: eventReactions[event.event], externalAi: event });',
+    '  return { ok: true, event: event.event };',
+    '}',
+    'async function readEventInput() {',
+    '  const chunks = [];',
+    '  let bytes = 0;',
+    '  for await (const chunk of process.stdin) {',
+    '    bytes += chunk.length;',
+    '    if (bytes > 16 * 1024) invalid();',
+    '    chunks.push(chunk);',
+    '  }',
+    '  return JSON.parse(Buffer.concat(chunks).toString("utf8"));',
+    '}',
+    'if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {',
+    '  const state = process.argv[2];',
+    '  if (process.argv.length !== 3 || (state !== "--event" && !Object.hasOwn(reactions, state))) {',
+    "    process.stderr.write('仅支持六种工作状态，或 --event 从标准输入读取工作事件。\\n');",
+    '    process.exitCode = 2;',
+    '  } else {',
+    '    try {',
+    '      let result;',
+    '      if (state === "--event") result = await reportDoubaoActivity(await readEventInput());',
+    '      else {',
+    '        const client = createOpenPetsClient({ discoveryPath, remote: false });',
+    '        await client.react(reactions[state]);',
+    '        result = { ok: true, state };',
+    '      }',
+    "      process.stdout.write(JSON.stringify(result) + '\\n');",
+    '    } catch {',
+    "      process.stderr.write('事件无效或无法连接桌宠，请检查输入并确认程序已启动。\\n');",
+    '      process.exitCode = 1;',
+    '    }',
+    '  }',
+    '}',
+    '',
+  ].join("\n");
+}
+
+function validateBridgeDependencies(dependencies: DoubaoSetupDependencies): void {
   if (!isAbsolute(dependencies.clientEntryPath) || /[\0\r\n]/.test(dependencies.clientEntryPath) || /\.asar(?:[\\/]|$)/i.test(dependencies.clientEntryPath)) {
     throw new Error("本机桥需要可由 Node.js 读取的桌宠客户端文件路径。");
   }
   if (!isAbsolute(dependencies.discoveryPath) || /[\0\r\n]/.test(dependencies.discoveryPath) || !dependencies.nodeCommand.trim() || /[\0\r\n]/.test(dependencies.nodeCommand)) {
     throw new Error("本机桥的 Node.js 命令或桌宠发现文件路径无效。");
   }
+}
+
+// 仅用于识别本项目上一版生成的文件，避免覆盖用户改写过的桥接程序。
+function createLegacyDoubaoBridgeSource(dependencies: DoubaoSetupDependencies): string {
+  validateBridgeDependencies(dependencies);
   return [
     "// desktop pet 生成的豆包方舟本机事件桥；只传工作状态，不传聊天内容或凭据。",
     `import { createOpenPetsClient } from ${JSON.stringify(pathToFileURL(dependencies.clientEntryPath).href)};`,
@@ -169,9 +260,11 @@ function createPreview(dependencies: DoubaoSetupDependencies): DoubaoSetupPrevie
   return {
     bridgePath,
     command: [dependencies.nodeCommand, bridgePath, "<state>"],
+    eventCommand: [dependencies.nodeCommand, bridgePath, "--event"],
+    eventExample: { event: "tool-start", sessionId: "应用的真实会话编号", turnId: "本轮编号", callId: "工具调用编号", toolName: "search" },
     documentationUrl: "https://docs.volcengine.com/docs/ark/function-calling?lang=zh",
     cozeDocumentationUrl: "https://docs.coze.cn/mcp",
-    instructions: "1. 生成本机桥并测试。\n2. 在自己本机运行的方舟应用中，将函数工具加入普通豆包模型请求的 tools。\n3. 收到 desktop_pet_activity 调用时，把 state 作为单个参数传给本机执行命令；用 execFile 等参数数组调用，不拼接 shell 命令。\n4. 将执行结果回填给模型。应用也可在开始、等待、完成或失败时直接调用该命令。\n豆包助手 API 的 doubao_app 工具不可与 Function Calling 混用。扣子云端 MCP 使用 HTTP/SSE，不能直接访问此本机桥。",
+    instructions: "1. 生成本机桥并测试。\n2. 在自己的方舟应用中导入桥接文件的 reportDoubaoActivity，或用 --event 参数并通过标准输入发送 JSON。\n3. 应用在真实会话开始、请求开始、工具执行前后、完成或失败时发送对应事件；sessionId、turnId、callId 用自己的真实标识，桥会转成摘要。\n4. 只有执行器实际确认成功的文件修改才发送 succeeded:true 与 editedFiles 绝对路径；不得将模型声称已编辑作为依据。\n5. desktop_pet_activity 函数工具与六状态命令仍可仅播放动作，不作为真实会话确认。\n豆包助手 API 的 doubao_app 工具不可与 Function Calling 混用。扣子云端 MCP 使用 HTTP/SSE，不能直接访问此本机桥。",
     functionTools: [{
       type: "function",
       function: {

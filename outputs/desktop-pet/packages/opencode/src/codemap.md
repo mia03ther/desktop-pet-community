@@ -4,7 +4,7 @@
 
 - **index.ts**: Barrel export. Re-exports all public modules including path-safety helpers.
 - **plugin.ts**: OpenCode plugin definition (10 lines). Default export with `id` and `server` factory.
-- **opencode-plugin-runtime.ts**: Plugin hook implementations (229 lines). `createOpenPetsOpenCodeHooks()`, event classification, tool reaction mapping, lease management, throttling.
+- **opencode-plugin-runtime.ts**: 官方会话、消息、工具前后与失败事件转换；`sessionID`／`callID` 经客户端摘要后生成本机默认桌宠工作气泡。成功编辑只读取 write/edit/apply_patch 的官方返回 metadata，不读取模型自报文件数；保留租约、排除设置与原动作／语音冷却。
 - **opencode-config.ts**: Config file management. Path resolution, JSONC parsing, safe file operations, atomic writes with backups, actionable symlink/parent diagnostics.
 - **opencode-path-safety.ts**: Shared safety message builders. Symlink target display, scope-aware (`global`/`project`) config/instruction/parent/directory error formatters, lstat-based existence helpers, and full-ancestor symlink rejection for global roots.
 - **opencode-project-setup.ts**: Project-level setup. `prepareOpenCodeProjectSetup()`, `writePreparedOpenCodeProjectSetup()`, instruction block management with path-aware safety errors.

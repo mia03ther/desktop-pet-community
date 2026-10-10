@@ -20,6 +20,8 @@ import { externalAiSetupActions, type ExternalAiSetup, type ExternalAiSetupActio
 import { getDiscoveryFilePath } from "./local-ipc-paths.js";
 import { getExternalAiSetups, runExternalAiSetupAction } from "./agent-setup-external.js";
 import { runExternalCommand } from "./external-command-runner.js";
+import type { ExternalAiSessionStatus } from "./external-ai-setup-types.js";
+import type { ExternalAiAdapter, ExternalAiProgress } from "./external-ai-activity.js";
 
 export type { CursorSetupPreview, CursorSetupStatus } from "./agent-setup-cursor.js";
 export type { OpenCodeSetupPreview, OpenCodeSetupStatus } from "./agent-setup-opencode.js";
@@ -56,6 +58,7 @@ export interface AgentSetupSnapshot {
   readonly busy: boolean;
   readonly lastAction?: AgentSetupActionResult;
   readonly externalIntegrations?: readonly ExternalAiSetup[];
+  readonly sessionStates?: Readonly<Partial<Record<ExternalAiAdapter, ExternalAiSessionStatus>>>;
 }
 
 export interface AgentSetupCommandPaths {
@@ -108,6 +111,26 @@ const maxOutputBytes = 16_384;
 const require = createRequire(import.meta.url);
 let operationRunning = false;
 let lastAction: AgentSetupActionResult | undefined;
+type AgentActivityEvidence = { readonly progress?: ExternalAiProgress; readonly lastActivityAt: number | null };
+let agentActivitySource: () => readonly AgentActivityEvidence[] = () => [];
+
+/** 启动编排注入已有 IPC 投影，不另读聊天文件、不复制活动状态。 */
+export function bindAgentSetupActivitySource(source: () => readonly AgentActivityEvidence[]): void {
+  agentActivitySource = source;
+}
+
+function getSessionStates(): Readonly<Partial<Record<ExternalAiAdapter, ExternalAiSessionStatus>>> {
+  const states: Partial<Record<ExternalAiAdapter, ExternalAiSessionStatus>> = {};
+  for (const session of agentActivitySource()) {
+    if (!session.progress || session.lastActivityAt === null || session.progress.phase === "session-start") continue;
+    const adapter = session.progress.adapter;
+    if ((states[adapter]?.lastActivityAt ?? 0) > session.lastActivityAt) continue;
+    states[adapter] = { state: "observed", lastActivityAt: session.lastActivityAt,
+      details: adapter === "openclaw" ? "已收到匿名工作活动；不代表已识别真实会话，也不提供具体工具或文件计数。"
+        : "本次启动已收到该平台的会话工作事件；链路自测不计入。模型调用与工具结果的验收另行记录。" };
+  }
+  return states;
+}
 
 export async function getAgentSetupSnapshot(selectedPetId?: unknown, commandModeInput?: unknown): Promise<AgentSetupSnapshot> {
   const petId = validateSelectedPetId(selectedPetId);
@@ -120,6 +143,7 @@ export async function getAgentSetupSnapshot(selectedPetId?: unknown, commandMode
     getZedSetup(commandMode, petId),
     getExternalAiSetups(getExternalAiDependencies()),
   ]);
+  const sessionStates = getSessionStates();
 
   return {
     selectedPetId: petId,
@@ -141,14 +165,16 @@ export async function getAgentSetupSnapshot(selectedPetId?: unknown, commandMode
     commandPaths: getAgentSetupCommandPaths(),
     busy: operationRunning,
     lastAction,
-    externalIntegrations,
+    externalIntegrations: externalIntegrations.map((item) => item.id === "doubao" ? item
+      : { ...item, session: sessionStates[item.id] ?? item.session }),
+    sessionStates,
   };
 }
 
 export function updateAgentSetupCommandPaths(patch: unknown): AgentSetupCommandPaths {
   if (!isRecord(patch)) throw new Error("Invalid command path settings.");
   for (const key of Object.keys(patch)) {
-    if (key !== "claude" && key !== "node" && key !== "opencode" && key !== "openclaw" && key !== "dsh" && key !== "dshProfile") throw new Error("Invalid command path setting.");
+    if (key !== "codex" && key !== "claude" && key !== "node" && key !== "opencode" && key !== "openclaw" && key !== "dsh" && key !== "dshProfile") throw new Error("Invalid command path setting.");
   }
   const updates: Writable<Partial<OpenPetsStateV1["preferences"]>> = {};
   if ("claude" in patch) updates.claudeCommandPath = normalizeOptionalCommandPath(patch.claude, "Claude");

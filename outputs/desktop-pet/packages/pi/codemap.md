@@ -6,6 +6,7 @@ Publishable npm package for the OpenPets Pi coding-agent integration.
 
 - Exposes `@open-pets/pi` as a Pi package with a Pi extension resource.
 - Maps Pi session/tool activity to safe OpenPets reactions through `@open-pets/client`.
+- 通过官方 `ctx.sessionManager.getSessionId()` 将稳定会话摘要、工具名称和成功编辑文件摘要送入工作气泡；手工连通测试不记录为真实会话。
 - Registers a user slash command namespace, `/openpets`, for status, test, react, and say commands.
 - Keeps MVP behavior default-pet-only and non-blocking; no Pi model-callable tools are registered.
 
@@ -30,8 +31,8 @@ Pi extension loader
 **Automatic event flow**:
 1. Pi emits lifecycle events (`session_start`, `agent_start`, `turn_start`, etc.)
 2. `extension.ts` receives event via `api.on()` and wraps in `PiEventEnvelope`
-3. `runtime.ts` classifies event to determine appropriate reaction
-4. Reaction dispatched to OpenPets client via scheduled non-blocking call
+3. `runtime.ts` 优先生成不含原文的活动摘要；缺少官方会话 ID 时只提供普通动作
+4. 通过客户端串行、有界、非阻塞提交；`agent_end` 不提前结束详细气泡，仅正式 `agent_settled` 和结果类别决定终态
 5. IPC failures logged (if debug enabled) but never thrown to Pi
 
 **Command flow**:
@@ -50,6 +51,8 @@ Pi extension loader
 
 ## Safety notes
 
-- Automatic events use reactions and fixed message pools only.
+- 详细气泡只发送摘要、工具名称与成功编辑数；其他普通动作使用固定消息池。
 - Prompt text, assistant text, tool output, command output, file paths, URLs, and secrets are not forwarded.
 - OpenPets IPC failures are swallowed by automatic event handlers so Pi execution continues.
+
+工作气泡契约与官方依据见 `docs/pi-openclaw-progress.md`。

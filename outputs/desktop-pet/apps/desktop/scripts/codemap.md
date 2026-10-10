@@ -41,6 +41,8 @@ Load/validate checkpoint in .release-state/v<version>.json (discarded when HEAD 
 Check preload syntax → Compile tests to .test-dist → Run behavior tests → Run contract tests → Run remaining dist checks
 ```
 
+打包清理检查在 `check-packaging-contract.ts` 创建的临时项目中复制并执行正式清理脚本，验证只移除该临时项目的 `dist-electron`；不清理实际工作区或正在运行的发布包。
+
 ## Integration Points
 
 - **File System**: `apps/desktop/dist-electron/` (build output), `apps/desktop/.release-state/` (gitignored release checkpoints), `apps/desktop/dist/` (compiled JS), optional external Linux package staging directory
@@ -51,6 +53,7 @@ Check preload syntax → Compile tests to .test-dist → Run behavior tests → 
 
 ## Key Scripts
 
+- `build-deepseek-harness-bridge.mjs`：将 Harness Cordis bundle 和无原文的 `progress.mjs` 投影器一起暂存到打包资源；复用公开本机客户端，不读取用户凭据。
 - `build-brand-icons.mjs`：以 `assets/brand-logo.png` 为唯一品牌源，使用已安装 sharp 导出应用／托盘 PNG 与多尺寸 ICO，复用 electron-builder 离线转换器生成 ICNS；只调整技术尺寸，不重绘作品。
 - `clean-package-output.cjs`: Removes `dist-electron` directory with path safety checks
 - `release-local.mjs`: Full release orchestration with preflight validation, per-platform/architecture unpacked package validation, multi-platform builds, and GitHub draft creation

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -250,12 +251,24 @@ function collectDirectories(dir: string, result: string[], depth: number): void 
 }
 
 function checkCleanupHelper(): void {
-  const sentinel = join(appDir, "dist-electron", ".openpets-clean-sentinel");
-  mkdirSync(dirname(sentinel), { recursive: true });
-  writeFileSync(sentinel, "stale", "utf8");
-  const result = spawnSync(process.execPath, [join(appDir, "scripts", "clean-package-output.cjs")], { cwd: appDir, encoding: "utf8" });
-  assert.equal(result.status, 0, `cleanup helper failed: ${result.stderr || result.stdout}`);
-  assert.ok(!existsSync(sentinel), "cleanup helper did not remove stale package output sentinel.");
+  // 清理逻辑必须在临时项目运行，不能触碰正在使用的真实发布包。
+  const testRoot = mkdtempSync(join(tmpdir(), "desktop-pet-packaging-contract-"));
+  assert.equal(dirname(resolve(testRoot)), resolve(tmpdir()));
+  try {
+    const isolatedApp = join(testRoot, "desktop");
+    const script = join(isolatedApp, "scripts", "clean-package-output.cjs");
+    const sentinel = join(isolatedApp, "dist-electron", ".openpets-clean-sentinel");
+    const retained = join(isolatedApp, "keep.txt");
+    mkdirSync(dirname(script), { recursive: true });
+    mkdirSync(dirname(sentinel), { recursive: true });
+    copyFileSync(join(appDir, "scripts", "clean-package-output.cjs"), script);
+    writeFileSync(sentinel, "stale", "utf8");
+    writeFileSync(retained, "保留其他文件", "utf8");
+    const result = spawnSync(process.execPath, [script], { cwd: isolatedApp, encoding: "utf8" });
+    assert.equal(result.status, 0, `cleanup helper failed: ${result.stderr || result.stdout}`);
+    assert.ok(!existsSync(sentinel), "cleanup helper did not remove stale package output sentinel.");
+    assert.equal(readFileSync(retained, "utf8"), "保留其他文件");
+  } finally { rmSync(testRoot, { recursive: true, force: true }); }
 }
 
 function assertRegularNonSymlink(path: string): void {

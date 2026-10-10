@@ -41,7 +41,7 @@ const runtime = createOpenPetsPiExtension(api, {
 assert.equal(typeof extension, "function");
 assert.equal(typeof runtime.handleEvent, "function");
 assert.equal(typeof commandHandler, "function");
-for (const eventName of ["session_start", "session_shutdown", "agent_start", "agent_end", "turn_start", "tool_execution_start", "tool_execution_end"]) {
+for (const eventName of ["session_start", "session_shutdown", "agent_start", "agent_end", "agent_before_settle", "agent_settled", "turn_start", "tool_execution_start", "tool_execution_end"]) {
   assert.equal(typeof handlers.get(eventName), "function", `${eventName} must be subscribed`);
 }
 

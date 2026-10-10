@@ -20,6 +20,8 @@ Provides comprehensive OpenCode editor integration including: MCP server configu
 - Lease management: Acquires on first use, 2s buffer before expiry
 - Throttling: 20s speech cooldown, 3s permission cooldown, 10s reaction cooldown
 - Async scheduling via `queueMicrotask`
+- 本机工作气泡：有官方 `sessionID` 时逐项上报会话、工具、等待许可和终态；只有成功 write/edit/apply_patch 的返回 metadata 才计文件，工具参数和输出不外发。
+- 默认桌宠详细进度不受旧动作冷却影响；显式宠物绑定仍走租约。用户 `excludeReactions` 不被绕过，排除对应终态时依赖桌宠无活动后回待机。
 
 **Config Management** (`opencode-config.ts`):
 - JSONC parsing with `jsonc-parser` (comments, trailing commas)

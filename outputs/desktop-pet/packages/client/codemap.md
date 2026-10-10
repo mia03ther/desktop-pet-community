@@ -36,6 +36,12 @@ Provides the foundational client library for all OpenPets integrations. Handles 
 - Lease-aware operations for multi-pet targeting
 - Result parsers with validation
 
+**本机工作摘要**（`agent-activity.ts`）：
+- `createAgentActivityEvent()` 将正式会话、轮次、工具调用和成功编辑路径转换为有界 SHA-256 摘要；不读取文件、账户或聊天。
+- `reportActivity()` 复用 `pet.react` 的 `externalAi` 通道，只支持本机默认桌宠，远程模式返回不支持；具体平台需自己提供正式成功事件，不能从提示词推断完成。
+- 发送前通过 `sanitizeAgentActivityEvent()` 运行时校验平台、事件、摘要、工具名、时间与数量，重建白名单对象和文件数组；不能依赖 TypeScript 类型或把调用者额外原文字段转发给桌面。
+- 旧客户端替身可不实现可选方法，运行实现始终提供它；协议契约覆盖摘要、文件去重和失败不计文件。
+
 **Socket Management**:
 - Node.js `net.createConnection()` for TCP/Unix sockets/Windows named pipes
 - Dual timeout handling (connect + response)

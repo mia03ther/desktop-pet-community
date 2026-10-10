@@ -1,4 +1,6 @@
 import type { ExternalAiSetup, ExternalAiSetupAction } from "../../../external-ai-setup-types.js";
+import type { ExternalAiSessionStatus } from "../../../external-ai-setup-types.js";
+import type { ExternalAiAdapter } from "../../../external-ai-activity.js";
 
 export type AgentSetupAction = ExternalAiSetupAction
   | "configure"
@@ -193,6 +195,7 @@ export type AgentSetupSnapshot = {
   readonly busy: boolean;
   readonly lastAction?: AgentSetupActionResult;
   readonly externalIntegrations?: readonly ExternalAiSetup[];
+  readonly sessionStates?: Readonly<Partial<Record<ExternalAiAdapter, ExternalAiSessionStatus>>>;
 };
 
 export type IntegrationsApi = {

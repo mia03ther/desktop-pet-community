@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { copyFileSync, mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { createServer } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -10,7 +10,7 @@ import { testDeepSeekHarness, type DeepSeekHarnessSetupDependencies } from "../s
 
 test("真实 ZCode 子进程与 DSH Cordis bundle 只把状态发到本档案 IPC；测试失败不会假报成功", async () => {
   const homeDir = mkdtempSync(join(realpathSync(tmpdir()), "desktop-pet-agent-bridge-"));
-  const received: Array<{ method: string; params: { reaction?: string; message?: string } }> = [];
+  const received: Array<{ method: string; params: { reaction?: string; message?: string; externalAi?: { adapter: string; sessionId: string; event: string } } }> = [];
   const server = createServer((socket) => {
     let raw = "";
     socket.on("data", (chunk) => {
@@ -53,22 +53,23 @@ test("真实 ZCode 子进程与 DSH Cordis bundle 只把状态发到本档案 IP
     assert.equal(received.at(-1)?.params.message, "我在思考中。");
     assert.equal((await testDeepSeekHarness({ ...dependencies, discoveryPath: invalidDiscovery })).ok, false);
 
-    // 验证实际分发包的入口关闭正文流与工具参数，只保留官方状态/权限事件。
-    mkdirSync(dependencies.managedBundleDir);
-    for (const name of ["package.json", "index.mjs", "runtime.mjs", "cordis.patch.yml"]) copyFileSync(join(dependencies.bundleSourceDir, name), join(dependencies.managedBundleDir, name));
+    // 暂存完整正式 bundle，避免新增分发资源遗漏；设置由当前测试档案生成。
+    cpSync(dependencies.bundleSourceDir, dependencies.managedBundleDir, { recursive: true });
     writeFileSync(join(dependencies.managedBundleDir, "settings.json"), JSON.stringify({ discoveryPath }));
     const module = await import(pathToFileURL(join(dependencies.managedBundleDir, "index.mjs")).href);
     const handlers = new Map<string, (...args: unknown[]) => unknown>();
     module.apply({ on: (name: string, handler: (...args: unknown[]) => unknown) => handlers.set(name, handler) });
     const count = received.length;
-    handlers.get("agent/assistant-stream")?.({ frame: { type: "chunk", chunk: { type: "text-delta", text: "⏵ PRIVATE_PROMPT\n" } } });
-    handlers.get("tools/result")?.({ name: "bash", arguments: { description: "PRIVATE_SECRET" } }, "PRIVATE_RESULT");
-    handlers.get("agent/status")?.({ status: "running", prompt: "PRIVATE_PROMPT" });
-    const permissionResult = handlers.get("approval/request")?.({ secret: "PRIVATE_SECRET" }, () => "user-decision");
+    const agent = { session: { id: "PRIVATE_SESSION", header: { cwd: "C:/PRIVATE_PATH" } } };
+    handlers.get("agent/assistant-stream")?.({ agent, frame: { type: "chunk", chunk: { type: "text-delta", text: "⏵ PRIVATE_PROMPT\n" } } });
+    handlers.get("tools/result")?.({ agent, name: "bash", arguments: { description: "PRIVATE_SECRET" } }, "PRIVATE_RESULT");
+    handlers.get("agent/status")?.({ agent, status: "running", prompt: "PRIVATE_PROMPT" });
+    const permissionResult = handlers.get("approval/request")?.({ agent, secret: "PRIVATE_SECRET" }, () => "user-decision");
     assert.equal(permissionResult, "user-decision");
     await waitFor(() => received.length === count + 2);
     assert.deepEqual(received.slice(count).map((request) => request.params.reaction).sort(), ["thinking", "waiting"]);
-    assert.deepEqual(received.slice(count).map((request) => request.params.message).sort(), ["我在思考中。", "需要你确认一下。"].sort());
+    assert.deepEqual(received.slice(count).map((request) => request.params.externalAi?.event).sort(), ["permission", "turn-start"]);
+    assert.ok(received.slice(count).every((request) => request.params.externalAi?.adapter === "deepseek-harness" && /^[a-f0-9]{64}$/.test(request.params.externalAi.sessionId)));
     assert.equal(JSON.stringify(received).includes("PRIVATE_"), false);
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));

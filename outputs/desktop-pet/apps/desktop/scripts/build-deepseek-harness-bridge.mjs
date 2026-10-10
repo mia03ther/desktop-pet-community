@@ -13,7 +13,7 @@ const eventsEntry = resolve(desktopDir, "../../packages/agent-events/src/index.t
 // 合并本项目已有的运行时；Cordis 仅为类型导入，不进入桌宠安装包。
 await build({
   stdin: {
-    contents: `export { createOpenPetsClient } from "@open-pets/client"; export { registerDshListeners, createOpenPetsDshRuntime, classifyDshEvent } from ${JSON.stringify(dshRuntime)};`,
+    contents: `export { createOpenPetsClient, readDiscoveryFile, sendRequest } from "@open-pets/client"; export { registerDshListeners, createOpenPetsDshRuntime, classifyDshEvent } from ${JSON.stringify(dshRuntime)};`,
     resolveDir: desktopDir,
     loader: "ts",
   },

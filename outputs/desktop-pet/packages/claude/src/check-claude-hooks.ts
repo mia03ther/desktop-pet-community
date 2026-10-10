@@ -3,6 +3,8 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
+import type { AgentActivityEvent } from "@open-pets/client";
 
 import { addOpenPetsHooks, assertInstalledClaudeCliPath, claudeHookEvents, createOpenPetsHookCommand, createOpenPetsHookSettingsPreview, doctorClaudeHooks, findInstalledOpenPetsClaudeCli, getBundledClaudeCliPath, getLocalClaudeCliPath, installClaudeHooks, openPetsHookMarker, removeOpenPetsHooks, uninstallClaudeHooks } from "./hook-settings.js";
 import { hookSpeechPools } from "./hook-messages.js";
@@ -50,7 +52,40 @@ const client = {
   showMedia: async () => ({ ok: true, shown: true }),
 };
 const dir = mkdtempSync(join(tmpdir(), "openpets-hooks-"));
+let skippedSymlinkChecks = 0;
 try {
+const activities: AgentActivityEvent[] = [];
+const progressClient = { ...client, reportActivity: async (event: AgentActivityEvent) => { activities.push(event); } };
+const progressOptions = { client: progressClient, projectLocal: true, throttlePath: join(dir, "progress-throttle.json"), now: () => 700_000 };
+const progressPayloads = [
+  { hook_event_name: "SessionStart" },
+  { hook_event_name: "UserPromptSubmit", prompt: "private prompt api_key=never-send" },
+  { hook_event_name: "PreToolUse", tool_name: "Read", tool_use_id: "read-call", tool_input: { file_path: join(dir, "private.txt") } },
+  { hook_event_name: "PostToolUse", tool_name: "Read", tool_use_id: "read-call", tool_response: "private file content" },
+  { hook_event_name: "PreToolUse", tool_name: "Write", tool_use_id: "write-call" },
+  { hook_event_name: "PostToolUse", tool_name: "Write", tool_use_id: "write-call", tool_input: { file_path: join(dir, "written.txt"), content: "private body" }, tool_response: { type: "create" } },
+  { hook_event_name: "PostToolUseFailure", tool_name: "Write", tool_use_id: "failed-call", tool_input: { file_path: join(dir, "failed.txt") } },
+  { hook_event_name: "PostToolUse", tool_name: "Write", tool_use_id: "failed-response", tool_input: { file_path: join(dir, "failed.txt") }, tool_response: { success: false } },
+  { hook_event_name: "PermissionRequest" },
+  { hook_event_name: "Stop" },
+  { hook_event_name: "Stop" },
+  { hook_event_name: "SessionEnd" },
+];
+for (const payload of progressPayloads) await handleClaudeHookPayload(JSON.stringify({ ...payload, session_id: "private-session", cwd: dir }), progressOptions);
+assert.deepEqual(activities.map((event) => event.event), ["session-start", "turn-start", "tool-start", "tool-complete", "tool-start", "tool-complete", "tool-failed", "tool-failed", "permission", "turn-end", "turn-end", "session-end"]);
+assert.equal(activities[5]?.editedFileIds?.length, 1);
+assert.match(activities[5]?.editedFileIds?.[0] ?? "", /^[a-f0-9]{64}$/);
+assert.equal(activities[3]?.editedFileIds, undefined);
+assert.equal(activities[6]?.editedFileIds, undefined);
+assert.equal(activities[7]?.editedFileIds, undefined);
+assert.equal(activities[2]?.callId, activities[3]?.callId);
+assert.equal(activities.every((event) => event.adapter === "claude" && /^[a-f0-9]{64}$/.test(event.sessionId)), true);
+assert.equal(/private-session|private prompt|private body|written\.txt|failed\.txt|api_key/.test(JSON.stringify(activities)), false);
+const beforeUnidentifiedActivity = activities.length;
+await handleClaudeHookPayload(JSON.stringify({ hook_event_name: "SessionStart" }), progressOptions);
+await handleClaudeHookPayload(JSON.stringify({ hook_event_name: "UserPromptSubmit", session_id: "explicit-session" }), { ...progressOptions, configuredPetId: "fixer" });
+assert.equal(activities.length, beforeUnidentifiedActivity, "没有真实会话 ID 或显式绑定另一只宠物时不能上报默认桌宠进度");
+calls.length = 0;
 await handleClaudeHookPayload(JSON.stringify({ hook_event_name: "UserPromptSubmit", prompt: "never shown" }), { client, configuredPetId: "fixer", throttlePath: join(dir, "throttle.json"), now: () => 100_000, random: () => 0 });
 assert.deepEqual(calls[0], { kind: "lease", value: "acquire", requestedPetId: "fixer" });
 assert.deepEqual(calls[1], { kind: "react", value: "thinking", leaseId: "lease-fixer" });
@@ -93,11 +128,11 @@ for (const event of claudeHookEvents) {
 }
 const localPreview = createOpenPetsHookSettingsPreview("local");
 const localHook = (((localPreview.hooks as Record<string, unknown>).Stop as Array<{ hooks: Array<{ command: string }> }>)[0]?.hooks[0]);
-assert.ok(localHook?.command.includes(getLocalClaudeCliPath()));
+assert.ok(localHook?.command.replaceAll("\\\\", "\\").includes(getLocalClaudeCliPath()));
 assert.ok(localHook?.command.includes(openPetsHookMarker));
 const bundledPreview = createOpenPetsHookSettingsPreview("bundled");
 const bundledHook = (((bundledPreview.hooks as Record<string, unknown>).Stop as Array<{ hooks: Array<{ command: string }> }>)[0]?.hooks[0]);
-assert.ok(bundledHook?.command.includes(getBundledClaudeCliPath()));
+assert.ok(bundledHook?.command.replaceAll("\\\\", "\\").includes(getBundledClaudeCliPath()));
 assert.ok(bundledHook?.command.includes(openPetsHookMarker));
 const customNodeHookCommand = createOpenPetsHookCommand("bundled", "fixer", "/Users/test/Library/Application Support/Herd/config/nvm/versions/node/v22.22.2/bin/node");
 assert.ok(customNodeHookCommand.startsWith('"/Users/test/Library/Application Support/Herd/config/nvm/versions/node/v22.22.2/bin/node"'));
@@ -140,28 +175,28 @@ assert.equal(doctorClaudeHooks(settingsPath).status, "error");
 writeFileSync(settingsPath, JSON.stringify({ hooks: { Stop: { bad: true } } }), "utf8");
 assert.equal(doctorClaudeHooks(settingsPath).status, "error");
 const symlinkPath = join(dir, "settings-link.json");
-symlinkSync(settingsPath, symlinkPath);
-assert.equal(doctorClaudeHooks(symlinkPath).status, "error");
+if (createTestSymlink(settingsPath, symlinkPath)) assert.equal(doctorClaudeHooks(symlinkPath).status, "error");
 
 process.env.OPENPETS_DISABLE_CLAUDE_ASYNC_HOOKS = "1";
 assert.throws(() => installClaudeHooks(join(dir, "async-disabled.json")));
 delete process.env.OPENPETS_DISABLE_CLAUDE_ASYNC_HOOKS;
 
 const isolatedEnv = { ...process.env, OPENPETS_DISCOVERY_FILE: join(dir, "missing-ipc.json") };
-const normalHook = spawnSync(process.execPath, [new URL("./cli.js", import.meta.url).pathname, "hook", "--openpets-managed"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
+const cliPath = fileURLToPath(new URL("./cli.js", import.meta.url));
+const normalHook = spawnSync(process.execPath, [cliPath, "hook", "--openpets-managed"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
 assert.equal(normalHook.status, 0);
 assert.equal(normalHook.stdout, "");
 
-const petHookRun = spawnSync(process.execPath, [new URL("./cli.js", import.meta.url).pathname, "hook", "--openpets-managed", "--pet", "fixer"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
+const petHookRun = spawnSync(process.execPath, [cliPath, "hook", "--openpets-managed", "--pet", "fixer"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
 assert.equal(petHookRun.status, 0);
 assert.equal(petHookRun.stdout, "");
 
-const invalidPetHook = spawnSync(process.execPath, [new URL("./cli.js", import.meta.url).pathname, "hook", "--openpets-managed", "--pet", "bad/pet"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
+const invalidPetHook = spawnSync(process.execPath, [cliPath, "hook", "--openpets-managed", "--pet", "bad/pet"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
 assert.equal(invalidPetHook.status, 1);
-const missingPetHook = spawnSync(process.execPath, [new URL("./cli.js", import.meta.url).pathname, "hook", "--openpets-managed", "--pet"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
+const missingPetHook = spawnSync(process.execPath, [cliPath, "hook", "--openpets-managed", "--pet"], { input: JSON.stringify({ hook_event_name: "Notification", message: "safe" }), encoding: "utf8", env: isolatedEnv });
 assert.equal(missingPetHook.status, 1);
 
-const malformedHook = spawnSync(process.execPath, [new URL("./cli.js", import.meta.url).pathname, "hook", "--openpets-managed"], { input: "not json", encoding: "utf8", env: isolatedEnv });
+const malformedHook = spawnSync(process.execPath, [cliPath, "hook", "--openpets-managed"], { input: "not json", encoding: "utf8", env: isolatedEnv });
 assert.equal(malformedHook.status, 0);
 assert.equal(malformedHook.stdout, "");
 
@@ -174,7 +209,9 @@ const fakeAppCliPath = join(fakeAppCliDir, "cli.js");
 writeFileSync(fakeAppCliPath, "// bundled cli", "utf8");
 assertInstalledClaudeCliPath(fakeAppCliPath);
 const installedCliCommand = createOpenPetsHookCommand("published", undefined, "node", fakeAppCliPath);
-assert.ok(installedCliCommand.startsWith(`node ${fakeAppCliPath} hook ${openPetsHookMarker}`), "explicit installed CLI path must produce a node + absolute-path hook command");
+assert.match(installedCliCommand, /^node\s/);
+assert.ok(installedCliCommand.replaceAll("\\\\", "\\").includes(fakeAppCliPath), "指定入口应使用实际绝对路径，兼容 Windows 路径的 Shell 转义");
+assert.ok(installedCliCommand.endsWith(` hook ${openPetsHookMarker}`));
 assert.ok(!installedCliCommand.includes("npx"), "explicit installed CLI path must not fall back to npx");
 const installedCliPreview = createOpenPetsHookSettingsPreview("published", undefined, "node", fakeAppCliPath);
 const installedCliHook = (((installedCliPreview.hooks as Record<string, unknown>).Stop as Array<{ hooks: Array<{ command: string }> }>)[0]?.hooks[0]);
@@ -197,13 +234,21 @@ assert.throws(() => assertInstalledClaudeCliPath(join(dir, "OpenPets.app", "Cont
 assert.throws(() => assertInstalledClaudeCliPath(join(fakeAppCliDir, "index.js")));
 const symlinkedCliPath = join(dir, "linked-cli.js-target", "@open-pets", "claude", "dist", "cli.js");
 mkdirSync(join(dir, "linked-cli.js-target", "@open-pets", "claude", "dist"), { recursive: true });
-symlinkSync(fakeAppCliPath, symlinkedCliPath);
-assert.throws(() => assertInstalledClaudeCliPath(symlinkedCliPath));
+if (createTestSymlink(fakeAppCliPath, symlinkedCliPath)) assert.throws(() => assertInstalledClaudeCliPath(symlinkedCliPath));
 
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }
-console.error("Claude hooks validation passed.");
+console.error(`Claude hooks validation passed.${skippedSymlinkChecks ? ` Windows EPERM：跳过 ${skippedSymlinkChecks} 项符号链接创建检查，业务与 CLI 行为检查均执行。` : ""}`);
+
+function createTestSymlink(target: string, path: string): boolean {
+  try { symlinkSync(target, path); return true; }
+  catch (error) {
+    if (process.platform !== "win32" || (error as NodeJS.ErrnoException).code !== "EPERM") throw error;
+    skippedSymlinkChecks += 1;
+    return false;
+  }
+}
 
 function doctorStatus(value: Record<string, unknown>, selectedPetId?: string) {
   const path = doctorStatusPath(value);

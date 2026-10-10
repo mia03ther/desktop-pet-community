@@ -59,7 +59,8 @@ test("四个新增外部入口的快照只读，未接入客户端不能标为�
     assert.ok(setups.every((item) => item.state !== "configured"));
     const doubao = setups.find((item) => item.id === "doubao")!;
     assert.equal(doubao.state, "needs_setup");
-    assert.match(doubao.details, /客户端自动监测未支持/);
+    assert.match(doubao.details, /不能自动接入/);
+    assert.equal(doubao.canInstall, false);
     assert.equal(doubao.canTest, false);
     const dsh = setups.find((item) => item.id === "deepseek-harness")!;
     assert.equal(dsh.state, "not_detected");
@@ -169,9 +170,11 @@ test("豆包编排只准备本档案的桥，移除保留旁边资料且不声�
     assert.equal(installed.ok, true);
     assert.equal(installed.changed, true);
     const setup = (await getExternalAiSetups(context)).find((item) => item.id === "doubao")!;
-    assert.equal(setup.state, "configured");
-    assert.match(setup.label, /本机桥/);
-    assert.match(setup.details, /客户端自动监测未支持/);
+    assert.equal(setup.state, "needs_setup");
+    assert.match(setup.label, /PC.*网页监测未支持/);
+    assert.match(setup.details, /不能自动接入/);
+    assert.equal(setup.canInstall, false);
+    assert.equal(setup.canTest, false);
     assert.ok(setup.configPath?.startsWith(context.dataDir));
     assert.equal(existsSync(setup.configPath!), true);
     const bridgeContent = readFileSync(setup.configPath!, "utf8");

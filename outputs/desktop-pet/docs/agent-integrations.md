@@ -25,18 +25,25 @@ in each `packages/*/codemap.md`.
 | Codex | 使用官方生命周期 Hooks，管理 `CODEX_HOME/hooks.json`（默认 `~/.codex/hooks.json`）和其 `desktop-pet/codex-hook.mjs`。保留其他 Hooks，修改前备份。 | 安装后在 Codex `/hooks` 或桌面 Hooks 设置中审阅并信任命令，再开始新会话。控制中心无法确认 Codex 的信任状态；需支持生命周期 Hooks 的新版，本地命令 Hooks 不适用于云端编排。 |
 | ZCode | 在用户级 `~/.zcode/cli/config.json` 中加入自有 `mcp.servers` 项和 `hooks.events`，复用打包的 `assets/agent-hooks/zcode-pet-hook.cjs`。保留其他服务器、Hooks 和设置。 | 在 ZCode 内检查 MCP 与 Hooks，开始新会话。用户关闭全局 Hooks 或已有其他来源同名 MCP 时报告冲突，不代替用户重新启用或覆盖。当前使用用户级配置，工作区级 Hooks 不执行。 |
 | DeepSeek Harness | 通过官方 `dsh plugin --profile <profile> add/remove` 管理 Cordis bundle；读写 `<DSH_HOME>/profiles/<profile>/package.json`，自有 bundle 位于本档案的 `integrations/dsh`。`DSH_HOME` 默认 `~/.dsh`。 | 先安装 Harness；网页使用 `web`，桌面版使用 `desktop`。桌面版需先启动一次完成初始化，退出相应界面后安装，再重启并开始工作验证。其他来源的同名插件不覆盖。 |
-| 豆包 | 使用火山方舟普通豆包模型的 Function Calling，在本档案 `integrations/doubao` 生成 `doubao-pet-bridge.mjs`。用户自己的本机应用执行这个文件，再走现有桌宠 IPC。 | 点击“准备本机桥”，复制函数声明与执行命令，接入自己的方舟应用。当前不自动监测豆包网页或 PC 客户端；“本机桥已准备”不表示客户端已连接。 |
+| 豆包 PC／网页版 | 当前没有接通其客户端工作事件。卡片明确显示“PC／网页监测未支持”，安装与测试按钮禁用。独立方舟开发桥保留在本档案 `integrations/doubao`。 | PC／网页不能凭安装或登录推定已连接。自己的方舟应用可以调用开发桥，但不能替代客户端监测验收。 |
 
 Codex 和 ZCode 的 Hooks、豆包桥接均固定使用当前桌宠档案及本机客户端，不能因远程环境变量改变路由。新卡片的本机链路测试不调用模型、不使用真实账户凭据；Codex 的信任及其他工具加载新配置后的工作事件仍需在工具内验证。
 
-Codex 和 ZCode 的新版 Hooks 使用平台提供的真实会话、回合与调用编号，传给本机的是
+Codex、ZCode、Claude Code、OpenCode、DeepSeek Harness 与 Pi 的工作事件使用平台提供的真实会话编号，传给本机的是
 SHA256 摘要、工具名称和成功编辑文件摘要，不传提示词、命令、路径、原工具结果或账号。
 同一桌宠可分别显示多个会话，保持各来源动作；一个会话结束不清除另一个会话。
 进度显示具体工具（例如“正在调用 JS”）和本轮唯一成功编辑文件数。Codex 的补丁计数
 需要明确成功响应；普通 shell 输出不假定修改了文件。并行工具完成只撤销相同调用。
+明确带有旧回合编号的迟到事件不污染当前计数，终态后的迟到结果不重新激活工作；新的正式开始事件才恢复活动。
 九十秒无真实事件显示待确认并撤销活动动作，十分钟后移除会话；文件计数达到有界上限
 显示“至少”，未接入工具的修改不计数。Codex 子代理 Hooks 共享父会话编号，当前归入
 父会话，不声称能逐个分离其子代理。缺少会话编号的旧事件仍走匿名动作槽，不冒充已识别会话。
+OpenClaw 当前只提供按插件实例区分的匿名思考／工具活动，不猜测具体工具、文件数或完成。
+Cursor、Zed 保留原有接入能力，没有新增详细工作摘要。
+
+工作摘要复用 `@open-pets/client` 的 `createAgentActivityEvent()` 与 `reportActivity()`，只发往本机默认桌宠；显式宠物租约和远程连接不混入此进度。成功文件计数需要各适配器收到真实工具成功事件。Claude Code／OpenCode 的契约见[工作气泡](/agent-work-progress)，Harness 见[插件接入](/deepseek-harness-integration)，Pi／OpenClaw 见[对应说明](/pi-openclaw-progress)。
+
+控制中心将配置状态与近期会话事件分别展示。“已收到工作事件”只表示本次启动收到该平台的正式事件，不等于模型与工具均已验收；链路自测和单独会话开始不改变此状态。真实验收结论见[本机验收记录](/ai-session-validation)。
 
 已安装旧 Hooks 时需在接入页更新，再在原工具信任并新建会话。真实生成脚本与正式
 ZCode 脚本、公开本机客户端、临时鉴权 TCP IPC、行为控制和自定义映射的测试覆盖
@@ -57,6 +64,8 @@ ZCode 等没有接入公开账户额度接口的来源继续显示未知，桌�
 官方路径见 [Codex Hooks](https://learn.chatgpt.com/docs/hooks)、[ZCode Hooks](https://zcode.z.ai/cn/docs/hooks)、[DeepSeek Harness 文档](https://deepseek-harness.github.io/deepseek-harness/)及[火山方舟 Function Calling](https://docs.volcengine.com/docs/ark/function-calling?lang=zh)。豆包助手 API 的 `doubao_app` 工具不能与 Function Calling 混用；扣子云端 MCP 仅支持 HTTP/SSE，不能直接访问本机文件或命名管道。豆包方案、官方证据及已学习项目见 [豆包接入](/doubao-integration)。
 
 主进程 `agent-setup.ts` 继续拥有全局操作锁、保存的命令选择和既有 IPC 边界；`agent-setup-external.ts` 聚合四个独立适配器的状态、预览和动作分发，`external-ai-setup-types.ts` 定义共享卡片与动作白名单。`control-center-agent-setup-ipc.ts` 仍校验发送方和动作；渲染器只消费快照，不直接改外部配置。
+
+接入页打开时若另一个操作仍在运行，会等待一秒后读取新快照，在操作结束后自动恢复安装按钮。离开页面停止读取并忽略迟到结果；本页操作运行期间暂停该读取，刷新状态在本页操作结束后可用。Codex CLI 的自定义路径使用同样的绝对路径与现有可执行文件校验，只保存到当前桌宠档案，留空恢复自动检测。
 
 新 `external-command-runner.ts` 专门运行外部检测、管理和本机测试命令，限制各输出流为 16 KiB，使用参数数组、超时和隐藏窗口；Windows `.cmd` 通过明确的 COMSPEC 引号规则执行。超时时只结束本次启动的进程树，状态不会把超时或溢出当作成功。它不替代原有 Claude/OpenClaw runner，也不读取用户 shell 配置。
 

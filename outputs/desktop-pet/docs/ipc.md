@@ -91,6 +91,10 @@ absolute path and an explicit `zip`/`folder` kind. `react()`/`say()`/
 活动。无会话编号的多个来源共享此槽，需要精确并发区分时应使用租约。
 有效租约的心跳续原动作兜底，释放／到期仍只清对应会话，不影响其他会话。
 
+`pet.react` 可携带经过白名单校验的 `externalAi` 工作摘要。它与 `leaseId` 互斥，只作用于本机默认桌宠；平台限于 Codex、ZCode、DeepSeek Harness、豆包方舟应用、Claude Code、OpenCode、Pi、OpenClaw、Cursor 和 Zed。平台可接受不代表对应宿主都已接通详细事件。会话、回合、调用和成功文件均为 SHA-256 摘要，不接受原始命令、路径、提示词或工具结果。单一 `ExternalAiActivityTracker` 管理最多 100 个会话，每轮最多 1000 个唯一文件；90 秒无活动回到待确认，10 分钟后移除，终态只清对应会话。没有调用编号的终态工具失败会撤销该会话所有挂起调用。
+
+客户端的 `createAgentActivityEvent()` 在发送前摘要化标识与路径。`reportActivity()` 在运行时校验平台、事件、64 位 SHA-256 标识、最长 100 字符的工具名、最多 100 个文件摘要与发送时间（过去 10 分钟至未来 60 秒），随后重建白名单对象并复制文件数组；调用者附带的原文、路径及自定义序列化函数不会进入 IPC，无效已知字段在读取发现文件或连接前拒绝。它使用既有请求通道，不新增监听服务；远程模式明确返回不支持，不能把工作摘要发往远程桌宠。计数由实际工具执行结果决定，模型的文字声明不算编辑。
+
 Experimental multi-pet LAN mode converts only default-target `working`,
 `editing`, `running`, and `testing` reactions into a coarse authenticated
 `work` activity when the owner's pet is away and meeting another pet. The LAN

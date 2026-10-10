@@ -4,7 +4,7 @@
 
 OpenPets is a pnpm/TypeScript monorepo for an Electron desktop companion app plus npm packages that let coding agents control animated desktop pets. The workspace provides a local IPC protocol, MCP server, CLI tooling, and editor/agent integrations for Claude Code, OpenCode, Cursor, Zed, Pi, and OpenClaw.
 
-当前 desktop pet 控制中心另外管理 Codex 官方 Hooks、ZCode 用户级 MCP/Hooks、DeepSeek Harness Cordis bundle 和豆包方舟本机开发接口。这些接入复用现有本机事件和动作通道；不替换宠物大脑的文字来源，不根据动作推测账户额度，豆包网页／PC 自动监测当前未支持。
+当前 desktop pet 控制中心另外管理 Codex 官方 Hooks、ZCode 用户级 MCP/Hooks、DeepSeek Harness Cordis bundle 和豆包方舟本机开发接口。这些接入复用现有本机事件和动作通道；Claude Code、OpenCode、Pi 也可上报正式会话工作摘要，OpenClaw 仅上报匿名活动。不替换宠物大脑的文字来源，不根据动作推测账户额度，豆包网页／PC 自动监测当前未支持。
 
 ## System Entry Points
 

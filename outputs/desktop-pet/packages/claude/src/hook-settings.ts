@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { mapAsarPathToUnpacked, validateOpenPetsPetArg, type OpenPetsCommandMode } from "./claude-code.js";
 
 export const openPetsHookMarker = "--openpets-managed";
-export const claudeHookEvents = ["UserPromptSubmit", "PreToolUse", "PermissionRequest", "Notification", "Stop", "StopFailure"] as const;
+export const claudeHookEvents = ["UserPromptSubmit", "PreToolUse", "PermissionRequest", "Notification", "Stop", "StopFailure", "SessionStart", "PostToolUse", "PostToolUseFailure", "SessionEnd"] as const;
 
 export type ClaudeHookInstallStatus = "not_installed" | "installed" | "needs_update" | "error";
 

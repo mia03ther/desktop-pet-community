@@ -33,8 +33,11 @@ export interface ExternalAiSetup {
     readonly label: string;
     readonly details: string;
   };
-  readonly session: {
-    readonly state: "unconfirmed";
-    readonly details: string;
-  };
+  readonly session: ExternalAiSessionStatus;
+}
+
+export interface ExternalAiSessionStatus {
+  readonly state: "unconfirmed" | "observed";
+  readonly details: string;
+  readonly lastActivityAt?: number;
 }
