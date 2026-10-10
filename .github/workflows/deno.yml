@@ -33,6 +33,10 @@ jobs:
         working-directory: outputs/desktop-pet
         run: pnpm install --frozen-lockfile
 
+      - name: 先构建完整工作区依赖
+        working-directory: outputs/desktop-pet
+        run: pnpm build
+
       - name: 检查桌宠类型、构建、行为与契约
         working-directory: outputs/desktop-pet
         run: pnpm check
