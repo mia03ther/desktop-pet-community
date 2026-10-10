@@ -39,7 +39,6 @@ ${u==="pet"?"\u5728\u672C\u5730\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\
         <div class="home-hero-copy">
           <p class="home-badge"><span class="home-badge-dot" aria-hidden="true"></span><span id="home-collected-count">\u793E\u533A\u5171\u521B \xB7 \u6301\u7EED\u6536\u5F55</span></p>
           <h1 id="home-title" class="home-title"><span>\u5171\u521B\u5E73\u53F0</span></h1>
-          <p class="home-description">\u50CF\u901B\u5C0F\u5BA0\u7269\u5546\u5E97\u4E00\u6837\u9884\u89C8\u5B8C\u6574\u52A8\u4F5C\uFF0C\u5E26\u56DE\u559C\u6B22\u7684\u52A8\u6F2B\u3001\u52A8\u7269\u6216\u539F\u521B\u4F19\u4F34\u3002\u5916\u89C2\u4E0D\u7ED1\u5B9A AI\uFF0C\u4F60\u53EF\u4EE5\u5728\u672C\u5730\u8FDE\u63A5\u591A\u4E2A AI\uFF0C\u4E5F\u53EF\u4EE5\u5199\u4E0B\u60F3\u8981\u7684\u89D2\u8272\u3002</p>
           <div class="home-stats" aria-label="\u5E7F\u573A\u6536\u5F55\u4FE1\u606F">
             <div class="home-stat"><strong id="home-pet-count">\u2014</strong><span>\u4F5C\u54C1\u6536\u5F55</span></div>
             <div class="home-stat"><strong id="home-category-count">\u2014</strong><span>\u5206\u7C7B\u6570</span></div>
@@ -135,7 +134,7 @@ ${u==="pet"?"\u5728\u672C\u5730\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\
       </div>
     </section>
     <section id="requests-view" class="community-page" hidden>
-      <div class="community-page-heading"><p class="home-eyebrow">\u8BA9\u4E0B\u4E00\u4E2A\u4F19\u4F34\u6709\u4E2A\u8D77\u70B9</p><h1>\u684C\u5BA0\u9700\u6C42\u5E7F\u573A</h1><p class="community-scope">\u53D1\u5E03\u4F60\u7684\u521B\u610F\uFF0C\u6216\u5148\u4FDD\u5B58\u8349\u7A3F\u3002</p></div>
+      <div class="community-page-heading"><h1>\u684C\u5BA0\u9700\u6C42\u5E7F\u573A</h1></div>
       <div class="community-toolbar">
         <label class="search community-search"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input id="request-search" type="search" placeholder="\u641C\u7D22\u89D2\u8272\u6216\u5236\u4F5C\u9700\u6C42\u2026" aria-label="\u641C\u7D22\u5236\u4F5C\u9700\u6C42"></label>
         <label class="community-inline-label">\u7B5B\u9009<select id="request-state"><option value="all">\u5168\u90E8\u9700\u6C42</option><option value="waiting">\u5F85\u5236\u4F5C</option><option value="following">\u6211\u5173\u6CE8\u7684</option></select></label>
@@ -205,7 +204,7 @@ ${u==="pet"?"\u5728\u672C\u5730\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\
       <p id="creator-feedback" class="feedback" role="status" aria-live="polite"></p>
     </section>
     <section id="guide-view" hidden>
-      <div class="gallery-heading"><div><p class="eyebrow">\u4ECE\u7F51\u7AD9\u5230\u684C\u9762</p><h1>\u4E0B\u8F7D\uFF0C\u5BFC\u5165\uFF0C\u5F00\u59CB\u966A\u4F34</h1><p class="intro">\u7F51\u7AD9\u8D1F\u8D23\u4F5C\u54C1\u4E0E\u521B\u4F5C\uFF1B\u63A7\u5236\u4E2D\u5FC3\u4FDD\u5B58\u4F60\u7684\u672C\u5730\u914D\u7F6E\u3002</p></div></div>
+      <div class="gallery-heading"><div><p class="eyebrow">\u4ECE\u7F51\u7AD9\u5230\u684C\u9762</p><h1>\u4E0B\u8F7D\uFF0C\u5BFC\u5165\uFF0C\u5F00\u59CB\u966A\u4F34</h1></div></div>
       <div class="guide-grid"><article class="form-panel"><span class="step">01</span><h2>\u5B89\u88C5\u684C\u5BA0</h2><p>\u5728\u5E7F\u573A\u9884\u89C8\u52A8\u4F5C\uFF0C\u4E0B\u8F7D\u684C\u5BA0 ZIP\u3002\u6253\u5F00\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\u5BA0\u300D\uFF0C\u9009\u62E9\u300C\u5BFC\u5165 ZIP \u6216\u6587\u4EF6\u5939\u300D\u5E76\u5BFC\u5165 ZIP\uFF0C\u7136\u540E\u8BBE\u4E3A\u684C\u9762\u4F19\u4F34\u3002</p><p>\u5DF2\u5B58\u5728\u7684\u7F16\u53F7\u4F1A\u6309\u672C\u5730\u5BFC\u5165\u89C4\u5219\u5904\u7406\uFF0C\u5185\u7F6E\u684C\u5BA0\u65E0\u9700\u518D\u6B21\u5B89\u88C5\u3002</p></article><article class="form-panel"><span class="step">02</span><h2>\u5B89\u88C5\u63D2\u4EF6</h2><p>\u4E0B\u8F7D\u63D2\u4EF6 ZIP \u5E76\u89E3\u538B\u3002\u5728\u300C\u63D2\u4EF6\u7BA1\u7406\u300D\u9009\u62E9\u300C\u5BFC\u5165\u63D2\u4EF6\u6587\u4EF6\u5939\u300D\uFF0C\u9009\u4E2D\u542B\u63D2\u4EF6\u6E05\u5355\u7684\u6587\u4EF6\u5939\u3002\u9605\u8BFB\u5E76\u786E\u8BA4\u6743\u9650\u540E\u518D\u542F\u7528\u3002</p><p>\u63D0\u9192\u662F\u5426\u5F00\u542F\u3001\u8FD0\u884C\u9891\u7387\u4E0E\u505C\u7528\u64CD\u4F5C\u7531\u672C\u673A\u63A7\u5236\u3002</p></article><article class="form-panel"><span class="step">03</span><h2>\u8FDE\u63A5\u4F60\u9009\u62E9\u7684 AI</h2><p>\u5728\u63A7\u5236\u4E2D\u5FC3\u300C\u5BA0\u7269\u5927\u8111\u300D\u914D\u7F6E\u591A\u4E2A\u63D0\u4F9B\u65B9\u6216\u517C\u5BB9\u63A5\u53E3\uFF1B\u5728\u300C\u5916\u90E8 AI \u63A5\u5165\u300D\u8FDE\u63A5\u652F\u6301\u7684\u672C\u673A\u5DE5\u5177\u3002\u5916\u89C2\u7D20\u6750\u4E0D\u7ED1\u5B9A\u5355\u4E00 AI\u3002</p><p>\u5BC6\u94A5\u3001\u4EBA\u8BBE\u3001\u804A\u5929\u4E0E\u7535\u8111\u6587\u4EF6\u90FD\u7559\u5728\u672C\u5730\u914D\u7F6E\u6D41\u7A0B\u4E2D\u3002</p></article></div>
     </section>
   </main>
@@ -8172,7 +8171,6 @@ export const submissionRepository = 'https://github.com/xunguangzlj-cloud/deskto
         <div class="home-hero-copy">
           <p class="home-badge"><span class="home-badge-dot" aria-hidden="true"></span><span id="home-collected-count">\u793E\u533A\u5171\u521B \xB7 \u6301\u7EED\u6536\u5F55</span></p>
           <h1 id="home-title" class="home-title"><span>\u5171\u521B\u5E73\u53F0</span></h1>
-          <p class="home-description">\u50CF\u901B\u5C0F\u5BA0\u7269\u5546\u5E97\u4E00\u6837\u9884\u89C8\u5B8C\u6574\u52A8\u4F5C\uFF0C\u5E26\u56DE\u559C\u6B22\u7684\u52A8\u6F2B\u3001\u52A8\u7269\u6216\u539F\u521B\u4F19\u4F34\u3002\u5916\u89C2\u4E0D\u7ED1\u5B9A AI\uFF0C\u4F60\u53EF\u4EE5\u5728\u672C\u5730\u8FDE\u63A5\u591A\u4E2A AI\uFF0C\u4E5F\u53EF\u4EE5\u5199\u4E0B\u60F3\u8981\u7684\u89D2\u8272\u3002</p>
           <div class="home-stats" aria-label="\u5E7F\u573A\u6536\u5F55\u4FE1\u606F">
             <div class="home-stat"><strong id="home-pet-count">\u2014</strong><span>\u4F5C\u54C1\u6536\u5F55</span></div>
             <div class="home-stat"><strong id="home-category-count">\u2014</strong><span>\u5206\u7C7B\u6570</span></div>
@@ -8268,7 +8266,7 @@ export const submissionRepository = 'https://github.com/xunguangzlj-cloud/deskto
       </div>
     </section>
     <section id="requests-view" class="community-page" hidden>
-      <div class="community-page-heading"><p class="home-eyebrow">\u8BA9\u4E0B\u4E00\u4E2A\u4F19\u4F34\u6709\u4E2A\u8D77\u70B9</p><h1>\u684C\u5BA0\u9700\u6C42\u5E7F\u573A</h1><p class="community-scope">\u53D1\u5E03\u4F60\u7684\u521B\u610F\uFF0C\u6216\u5148\u4FDD\u5B58\u8349\u7A3F\u3002</p></div>
+      <div class="community-page-heading"><h1>\u684C\u5BA0\u9700\u6C42\u5E7F\u573A</h1></div>
       <div class="community-toolbar">
         <label class="search community-search"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input id="request-search" type="search" placeholder="\u641C\u7D22\u89D2\u8272\u6216\u5236\u4F5C\u9700\u6C42\u2026" aria-label="\u641C\u7D22\u5236\u4F5C\u9700\u6C42"></label>
         <label class="community-inline-label">\u7B5B\u9009<select id="request-state"><option value="all">\u5168\u90E8\u9700\u6C42</option><option value="waiting">\u5F85\u5236\u4F5C</option><option value="following">\u6211\u5173\u6CE8\u7684</option></select></label>
@@ -8338,7 +8336,7 @@ export const submissionRepository = 'https://github.com/xunguangzlj-cloud/deskto
       <p id="creator-feedback" class="feedback" role="status" aria-live="polite"></p>
     </section>
     <section id="guide-view" hidden>
-      <div class="gallery-heading"><div><p class="eyebrow">\u4ECE\u7F51\u7AD9\u5230\u684C\u9762</p><h1>\u4E0B\u8F7D\uFF0C\u5BFC\u5165\uFF0C\u5F00\u59CB\u966A\u4F34</h1><p class="intro">\u7F51\u7AD9\u8D1F\u8D23\u4F5C\u54C1\u4E0E\u521B\u4F5C\uFF1B\u63A7\u5236\u4E2D\u5FC3\u4FDD\u5B58\u4F60\u7684\u672C\u5730\u914D\u7F6E\u3002</p></div></div>
+      <div class="gallery-heading"><div><p class="eyebrow">\u4ECE\u7F51\u7AD9\u5230\u684C\u9762</p><h1>\u4E0B\u8F7D\uFF0C\u5BFC\u5165\uFF0C\u5F00\u59CB\u966A\u4F34</h1></div></div>
       <div class="guide-grid"><article class="form-panel"><span class="step">01</span><h2>\u5B89\u88C5\u684C\u5BA0</h2><p>\u5728\u5E7F\u573A\u9884\u89C8\u52A8\u4F5C\uFF0C\u4E0B\u8F7D\u684C\u5BA0 ZIP\u3002\u6253\u5F00\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\u5BA0\u300D\uFF0C\u9009\u62E9\u300C\u5BFC\u5165 ZIP \u6216\u6587\u4EF6\u5939\u300D\u5E76\u5BFC\u5165 ZIP\uFF0C\u7136\u540E\u8BBE\u4E3A\u684C\u9762\u4F19\u4F34\u3002</p><p>\u5DF2\u5B58\u5728\u7684\u7F16\u53F7\u4F1A\u6309\u672C\u5730\u5BFC\u5165\u89C4\u5219\u5904\u7406\uFF0C\u5185\u7F6E\u684C\u5BA0\u65E0\u9700\u518D\u6B21\u5B89\u88C5\u3002</p></article><article class="form-panel"><span class="step">02</span><h2>\u5B89\u88C5\u63D2\u4EF6</h2><p>\u4E0B\u8F7D\u63D2\u4EF6 ZIP \u5E76\u89E3\u538B\u3002\u5728\u300C\u63D2\u4EF6\u7BA1\u7406\u300D\u9009\u62E9\u300C\u5BFC\u5165\u63D2\u4EF6\u6587\u4EF6\u5939\u300D\uFF0C\u9009\u4E2D\u542B\u63D2\u4EF6\u6E05\u5355\u7684\u6587\u4EF6\u5939\u3002\u9605\u8BFB\u5E76\u786E\u8BA4\u6743\u9650\u540E\u518D\u542F\u7528\u3002</p><p>\u63D0\u9192\u662F\u5426\u5F00\u542F\u3001\u8FD0\u884C\u9891\u7387\u4E0E\u505C\u7528\u64CD\u4F5C\u7531\u672C\u673A\u63A7\u5236\u3002</p></article><article class="form-panel"><span class="step">03</span><h2>\u8FDE\u63A5\u4F60\u9009\u62E9\u7684 AI</h2><p>\u5728\u63A7\u5236\u4E2D\u5FC3\u300C\u5BA0\u7269\u5927\u8111\u300D\u914D\u7F6E\u591A\u4E2A\u63D0\u4F9B\u65B9\u6216\u517C\u5BB9\u63A5\u53E3\uFF1B\u5728\u300C\u5916\u90E8 AI \u63A5\u5165\u300D\u8FDE\u63A5\u652F\u6301\u7684\u672C\u673A\u5DE5\u5177\u3002\u5916\u89C2\u7D20\u6750\u4E0D\u7ED1\u5B9A\u5355\u4E00 AI\u3002</p><p>\u5BC6\u94A5\u3001\u4EBA\u8BBE\u3001\u804A\u5929\u4E0E\u7535\u8111\u6587\u4EF6\u90FD\u7559\u5728\u672C\u5730\u914D\u7F6E\u6D41\u7A0B\u4E2D\u3002</p></article></div>
     </section>
   </main>
