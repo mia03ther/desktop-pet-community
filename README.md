@@ -102,9 +102,9 @@ node outputs/community-cloudflare/scripts/build.mjs
 
 详细操作见[宠物大脑](outputs/desktop-pet/docs/companion-ai.md)、[人物人设](outputs/desktop-pet/docs/companion-persona.md)与[外部 AI 接入](outputs/desktop-pet/docs/agent-integrations.md)。
 
-### 安装桌宠与插件
+### 共创平台
 
-打开[共创平台](https://desktoppet-e9e.pages.dev)
+[共创平台](https://desktoppet-e9e.pages.dev)
 https://desktoppet-e9e.pages.dev/#pets
 下载作品包，再到控制中心“我的桌宠”或“插件管理”导入 ZIP／文件夹；查看兼容性及权限，确认后启用。新档案不预装全部插件，文件助手、电脑守护和健康提醒也需要自行安装。
 
