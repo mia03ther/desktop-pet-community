@@ -1,0 +1,7 @@
+node_modules/
+dist/
+public/
+worker/static-pages.js
+worker/builtin-atlases.js
+worker/builtin-packages.js
+.wrangler/

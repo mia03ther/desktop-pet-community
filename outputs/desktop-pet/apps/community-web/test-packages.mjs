@@ -60,7 +60,7 @@ export async function readZip(buffer) {
 
 const credits = attribution({ author: '验收示例作者', source: '验收用图集', license: '仅验收' });
 const manifest = petManifest({ id: 'test-web-pet', displayName: '网页桌宠', description: '用于下载包兼容验收。' }, 2);
-const image = await readFile(new URL('./dist/assets/hoodie.webp', import.meta.url));
+const image = await readFile(new URL('../desktop/assets/default-pet-spritesheet.webp', import.meta.url));
 const files = await readZip(Buffer.from(await zipPackage({ 'pet.json': JSON.stringify(manifest), 'spritesheet.webp': image, 'SHARE.md': shareNotes(manifest.displayName, credits, 'pet') }).arrayBuffer()));
 const tracker = new ZipEntryPathTracker(true);
 Object.keys(files).forEach(name => tracker.accept(name));
