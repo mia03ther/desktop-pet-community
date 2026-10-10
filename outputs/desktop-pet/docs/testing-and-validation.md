@@ -29,6 +29,11 @@ Run the suite with `pnpm test` (builds first, then each package's tests) and
 `pnpm check` (per-package typecheck + build + contract checks). See
 [Development](/development) for the command surface.
 
+GitHub 根目录的 `desktop pet CI` 使用 Node.js 24 与锁定的 pnpm 11，
+在 `outputs/desktop-pet` 运行工作区检查，再验证共创制作、导入与公开包。
+独立服务和 Cloudflare 发布包随后构建，投稿、权限与匿名互动测试使用隔离数据库。
+本项目不使用 Deno；生成后的发布 bundle 不作为 Deno 源码执行通用 lint。
+
 ## Desktop tests
 
 The desktop runner (`apps/desktop/scripts/run-tests.mjs`) orchestrates:
