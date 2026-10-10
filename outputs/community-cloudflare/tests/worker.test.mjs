@@ -5,10 +5,27 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import worker, { createWorker } from '../worker/index.mjs';
 import { publicAssets } from '../../community-host/server/storage.mjs';
+import { pets } from '../../community-host/public/catalog.js';
 
 const origin = 'https://desktoppet-e9e.pages.dev';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ASSETS = await publicAssets(resolve(root, '../community-host/public'));
+
+test('原应用下载只重定向到构建目录指定完整发行，不能由请求参数改写，原生动作包仍原字节', async () => {
+  const DB = { prepare: () => ({ bind: () => ({ run: async () => ({ success: true }) }) }) };
+  for (const pet of pets.filter(pet => pet.distribution === 'standalone')) {
+    const response = await worker.fetch(new Request(`${origin}/api/download/${pet.id}?url=https://untrusted.test/installer.exe`), { ASSETS, DB });
+    assert.equal(response.status, 302);
+    assert.equal(response.headers.get('location'), pet.download);
+    assert.equal((await response.arrayBuffer()).byteLength, 0);
+  }
+  const pet = pets.find(pet => pet.distribution === 'media');
+  assert.ok(pet);
+  const response = await worker.fetch(new Request(`${origin}/api/download/${pet.id}`), { ASSETS, DB });
+  assert.equal(response.status, 200);
+  assert.deepEqual(Buffer.from(await response.arrayBuffer()), await readFile(resolve(root, '../community-host/public', pet.download)));
+  assert.equal((await worker.fetch(new Request(`${origin}/api/download/nonexistent?url=https://untrusted.test`), { ASSETS })).status, 404);
+});
 
 test('密码入口停用，伪造身份不能投稿，发布和互动分别报告', async () => {
   const env = { ASSETS };

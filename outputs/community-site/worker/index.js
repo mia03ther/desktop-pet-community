@@ -250,6 +250,13 @@ export default {
       if (original && ['GET', 'HEAD'].includes(request.method)) {
         const work = builtins.get(original[1]); if (!work) return json({ error: '文件不存在。' }, 404);
         const asset = new URL(work.download, url.origin + '/');
+        if (work.distribution === 'standalone') {
+          // 地址只取维护者构建的固定目录，不接受请求参数作为重定向目标。
+          if (asset.protocol !== 'https:' || asset.username || asset.password) return json({ error: '作品地址无效。' }, 404);
+          const response = new Response(null, { status: 302, headers: { location: asset.href, 'cache-control': 'no-store' } });
+          if (request.method === 'GET') { const identity = visitor(request); await downloadActivity(request, env, work.id, identity); if (identity.cookie) response.headers.set('set-cookie', identity.cookie); }
+          return response;
+        }
         if (asset.origin !== url.origin || !/^\/assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9._-]+\.zip$/.test(asset.pathname)) return json({ error: '作品地址无效。' }, 404);
         const assetRequest = new Request(asset, { method: request.method });
         const result = await fixedAsset(assetRequest, env);

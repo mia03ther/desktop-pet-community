@@ -169,7 +169,7 @@ function renderCard(item, previewOnly = false) {
       ${previewOnly ? '<p class="hint">卡片预览，发布结果以下方反馈为准</p>' : `<div class="card-actions">
         <a class="button secondary" href="${previewHref}" data-preview="${item.id}">${pet ? '查看' : '查看功能'}</a>
         <details class="install-menu"><summary aria-label="安装 ${escapeHtml(item.title)}">${icon('download')}安装 ${icon('chevron')}</summary><div class="card-menu">
-          <a href="${escapeHtml(item.download)}" download data-download="${item.id}">下载 ${pet ? '桌宠' : '插件'} ZIP</a>
+          <a href="${escapeHtml(item.download)}" download data-download="${item.id}">${escapeHtml(item.downloadLabel || `下载 ${pet ? '桌宠' : '插件'} ZIP`)}</a>
           <button type="button" data-install-help="${item.id}">复制给 AI 的安装说明</button>
           <a href="#guide">阅读安装指南</a>
         </div></details>
@@ -351,7 +351,7 @@ function openToolDetail(tool) {
 }
 
 function openPetDetail(work) {
-  if (work.id.startsWith('community-') && !work.atlas) { openPublicMediaPet(work); return; }
+  if (!work.atlas) { openPublicMediaPet(work); return; }
   detailWork = work;
   $('#detail-title').textContent = `${work.title} · 动作预览`;
   $('#detail-description').textContent = work.description;
@@ -369,12 +369,13 @@ function openPublicMediaPet(work) {
   if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'public-pet-detail'; dialog.setAttribute('aria-labelledby', 'public-pet-title'); dialog.addEventListener('close', () => { if (location.hash.startsWith('#pets/')) history.replaceState(null, '', '#pets'); }); document.body.append(dialog); }
   dialog.querySelectorAll('video').forEach(video => video.pause());
   const entries = Object.entries(work.mediaActions || {});
-  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : `<p>${escapeHtml(work.hostNotice)}</p>`}<p>作者：${escapeHtml(work.author)}</p><a class="button primary" href="${escapeHtml(work.download)}" download data-download="${work.id}">下载桌宠 ZIP</a>`;
+  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
   const preview = () => {
-    const entry = work.mediaActions[dialog.querySelector('select')?.value];
+    const entry = work.mediaActions?.[dialog.querySelector('select')?.value];
     const stage = dialog.querySelector('[data-public-media]'); stage.replaceChildren();
-    if (!entry) return;
+    if (!entry) { if (work.thumbnail) { const cover = document.createElement('img'); cover.src = work.thumbnail; cover.alt = work.title; cover.style.maxHeight = '300px'; stage.append(cover); } return; }
     const media = document.createElement(entry.type.startsWith('video/') ? 'video' : 'img'); media.src = entry.url; media.style.maxHeight = '300px'; media.style.maxWidth = '100%';
+    if (media instanceof HTMLImageElement) { media.style.width = '192px'; media.style.imageRendering = 'pixelated'; }
     if (media instanceof HTMLVideoElement) { media.muted = true; media.loop = true; media.autoplay = true; media.controls = true; }
     stage.append(media);
   };
@@ -567,7 +568,9 @@ $('#cards').addEventListener('click', async event => {
     await copyGalleryText(url.href, url.hostname === '127.0.0.1' ? '本机作品链接已复制；其他电脑请分享 ZIP。' : '作品链接已复制。');
     closeCardMenus();
   } else {
-    const instruction = work.kind === 'pet'
+    const instruction = work.distribution === 'standalone'
+      ? `请帮助我使用「${work.title}」。下载完整原应用：${new URL(work.download, location.href).href}。${work.hostNotice} ${(work.secondaryDownloads || []).map(file => `${file.label}：${file.url}`).join('；')} 保留原应用和素材许可。在 desktop pet 控制中心使用「独立运行」选择已安装的实际应用 EXE，安装器不能作为运行入口。不要改动我的 AI 配置或密钥。`
+      : work.kind === 'pet'
       ? `请帮助我在 desktop pet 中安装「${work.title}」。先下载作品 ZIP：${new URL(work.download, location.href).href}。在本地控制中心「我的桌宠」选择「导入 ZIP 或文件夹」，导入这个 ZIP 后设为当前桌宠。保留包内 SHARE.md 的作者与许可声明。不要改动我的 AI 配置或密钥。`
       : work.pluginType === 'community-plugin' ? `请帮助我使用社区作品「${work.title}」。下载完整 ZIP：${new URL(work.download, location.href).href}。先阅读原项目清单、包内 SHARE.md 和作品说明：${work.hostNotice}。兼容 desktop pet 时从本地插件管理导入并确认权限、依赖；需要其他宿主则按原项目说明使用，不自动改写原逻辑或执行未知命令。保留作者和许可。`
       : `请帮助我安装${work.pluginType ? '本机' : '提醒'}插件「${work.title}」。下载 ZIP：${new URL(work.download, location.href).href}。先解压，在本地控制中心「插件管理」导入含插件清单的文件夹，确认权限后启用。保留原包中的版权与许可声明。${work.requirements ?? ''}${work.pluginType === 'host-tool' ? '本机工具由匹配版本的 desktop pet 宿主提供，启用后从插件配置进入。不要代我自动删除文件、卸载程序或开启监测。' : ''}`;

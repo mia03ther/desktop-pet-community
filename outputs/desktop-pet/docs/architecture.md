@@ -6,6 +6,8 @@ description: Understand the OpenPets desktop app, companion pets, plugin host, c
 
 ## 当前 desktop pet 产品
 
+共创网站的开源伙伴复用既有内容目录、独立媒体播放器及原项目独立运行流程。能转换的动画分发原生媒体 ZIP；完整键鼠、Live2D 或 VRM 宿主使用固定官方完整发行，保留原程序逻辑。网页按实际格式预览，安装说明区分原生导入与原应用安装；固定下载重定向只引用维护者公开目录，不能由访问者指定地址。原程序的 AI 服务与模型仍在原宿主配置，不把官方下载条目当作本系统已完成 AI 联动。
+
 本地原项目导入由 `original-projects.ts` 单独持有静态报告和原件存储，`control-center-original-project-ipc.ts` 持有窗口绑定的一次性检测凭证，`original-project-types.ts` 为无实现依赖的共享能力契约。确认导入后先完整保存原件，原生包才沿既有桌宠事务或插件 SDK 安装；其他宿主不进入本机运行时，不因为修改清单或转换素材就宣称原逻辑已运行。Shimeji 转换必须另行明确选择制作副本，原项目仍保留部分兼容状态。
 
 原项目的“独立运行”使用 `original-project-execution.ts` 检查 Windows EXE 或 Main-Class JAR、Java 最低版本和已知声明依赖，再由窄 IPC 在用户点击后调用无 shell 启动。Java 路径由原项目档案保存，选定环境与运行前才进行 `-version` 探测；JAR 使用固定 `-jar` 参数及原资源目录，不读取上传启动脚本、不自动安装运行时。包内明确入口与包外原应用分别返回项目程序已请求启动和仅打开应用待导入两种结果，不改变兼容判定；缺少入口或已知运行环境时相应能力不可用。原件、许可证和用户原设置保留。

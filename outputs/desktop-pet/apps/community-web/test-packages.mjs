@@ -16,6 +16,7 @@ import { sourcePlugins } from './dist/plugin-catalog.js';
 import { sourcePluginPackage, sourcePluginLicense } from './source-plugin-packages.mjs';
 import { assessAssetPermission } from './upstream-assets.mjs';
 import { readLocalPackageFiles, selectLocalPackageRoot } from '../desktop/dist/local-package-files.js';
+import { validateInstalledPetMetadata, validatePetMediaBytes } from '../desktop/dist/pet-media-files.js';
 
 const require = createRequire(new URL('../desktop/package.json', import.meta.url));
 const yauzl = require('yauzl');
@@ -70,8 +71,34 @@ assert.match(files['SHARE.md'].toString(), /验收示例作者/);
 
 // 保护真实画廊下载契约：每个公开 ZIP 都能解码、安装，并保留对应图集和作者声明。
 for (const pet of pets) {
+  const cover = await sharp(await readFile(new URL(`./dist/${pet.thumbnail}`, import.meta.url))).metadata();
+  assert.equal(cover.format, 'webp');
+  assert.equal(cover.width, 192);
+  assert.equal(cover.height, 208);
+  assert.equal(cover.hasAlpha, true);
+  if (pet.distribution === 'standalone') {
+    for (const address of [pet.download, ...(pet.secondaryDownloads || []).map(file => file.url)]) {
+      const url = new URL(address);
+      assert.equal(url.protocol, 'https:');
+      assert.equal(url.username + url.password, '');
+    }
+    assert.ok(pet.hostNotice);
+    assert.ok(pet.downloadLabel);
+    continue;
+  }
   const archiveFiles = await readLocalPackageFiles(fileURLToPath(new URL(`./dist/${pet.download}`, import.meta.url)), { maxBytes: 200 * 1024 * 1024, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 });
   const packageFiles = Object.fromEntries(selectLocalPackageRoot(archiveFiles, ['pet.json']).files);
+  if (pet.distribution === 'media') {
+    const metadata = validateInstalledPetMetadata(JSON.parse(packageFiles['pet.json']), pet.id);
+    assert.equal(metadata.mediaVersion, 1);
+    assert.deepEqual(Object.keys(pet.mediaActions).sort(), Object.keys(metadata.actions).sort());
+    for (const [id, file] of Object.entries(metadata.actions)) {
+      await validatePetMediaBytes(packageFiles[file], file, metadata);
+      assert.deepEqual(packageFiles[file], await readFile(new URL(`./dist/${pet.mediaActions[id].url}`, import.meta.url)));
+    }
+    assert.ok(Object.keys(packageFiles).some(file => /LICENSE|授权/i.test(file)));
+    continue;
+  }
   const decodedPet = validateCodexPetMetadata(JSON.parse(packageFiles['pet.json']), pet.id);
   await validateCodexPetSpritesheet(packageFiles['spritesheet.webp'], decodedPet);
   const sheet = await sharp(packageFiles['spritesheet.webp']).metadata();
@@ -116,7 +143,7 @@ for (const file of gallery.files) {
   assert.equal(bytes.length, file.bytes);
   assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256);
 }
-for (const pet of pets) for (const path of [pet.atlas, pet.thumbnail, pet.download]) assert.ok(gallery.files.some(file => file.path === path));
+for (const pet of pets) for (const path of [pet.atlas, pet.thumbnail, pet.distribution === 'standalone' ? null : pet.download, ...Object.values(pet.mediaActions || {}).map(entry => entry.url)].filter(Boolean)) assert.ok(gallery.files.some(file => file.path === path));
 assert.ok(!gallery.files.some(file => file.path === 'assets/hoodie.webp' || file.path === 'assets/deepseek-girl--legeling.zip'));
 
 for (const template of templates) {
@@ -204,4 +231,4 @@ assert.throws(() => petManifest({ id: 'builtin', displayName: '猫', description
 assert.throws(() => pluginManifest({ id: 'openpets.test', title: '示例', speech: '你好', everyMinutes: 25 }));
 assert.throws(() => pluginManifest({ id: 'community.test', title: '示例', speech: '你好', everyMinutes: 4 }));
 assert.throws(() => zipPackage({ '../private.json': '不应写入' }));
-console.log(`${pets.length} 个桌宠、${templates.length + toolPlugins.length + sourcePlugins.length} 个插件的真实安装、字段、许可与下载包隐私边界校验通过。`);
+console.log(`${pets.filter(pet => pet.distribution !== 'standalone').length} 个原生桌宠包、${pets.filter(pet => pet.distribution === 'standalone').length} 个原应用下载条目、${templates.length + toolPlugins.length + sourcePlugins.length} 个插件的对应格式、媒体、声明及隐私边界校验通过；原应用安装与AI配置另行验收。`);

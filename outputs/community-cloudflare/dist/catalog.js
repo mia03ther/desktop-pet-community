@@ -4019,6 +4019,764 @@ export const pets = [
     "spritesheetSha256": "d8514dac88d4811c9f238530602f22721f5e2368d5b05238ff906251d457eb72",
     "metadataNameAlias": false,
     "authorUrl": "https://github.com/legeling"
+  },
+  {
+    "id": "vscode-rubber-duck-yellow",
+    "title": "VSCode Pets 小黄鸭",
+    "description": "原作 GIF 逐帧无损转换，保留透明通道和实际帧延时；只提供原项目已有的动作。缺少的系统状态回退待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "Marc Duiker",
+    "authorUrl": "",
+    "source": "https://github.com/tonybaloney/vscode-pets/tree/6554662a53ef093b7598598b77e51f95128a1f38/media/rubber-duck",
+    "license": "MIT",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/thumbnail.webp",
+    "tags": [
+      "独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/idle.webp"
+      },
+      "walk": {
+        "displayName": "行走",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/walk.webp"
+      },
+      "run": {
+        "displayName": "奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/run.webp"
+      },
+      "swipe": {
+        "displayName": "挥动",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/swipe.webp"
+      },
+      "with-ball": {
+        "displayName": "持球",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/with-ball.webp"
+      }
+    }
+  },
+  {
+    "id": "vscode-snake-green",
+    "title": "VSCode Pets 绿蛇",
+    "description": "原作 GIF 逐帧无损转换，保留透明通道和实际帧延时；只提供原项目已有的动作。缺少的系统状态回退待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "Marc Duiker",
+    "authorUrl": "",
+    "source": "https://github.com/tonybaloney/vscode-pets/tree/6554662a53ef093b7598598b77e51f95128a1f38/media/snake",
+    "license": "MIT",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/vscode-snake-green/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/vscode-snake-green/thumbnail.webp",
+    "tags": [
+      "独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-snake-green/idle.webp"
+      },
+      "walk": {
+        "displayName": "行走",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-snake-green/walk.webp"
+      },
+      "run": {
+        "displayName": "奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-snake-green/run.webp"
+      },
+      "swipe": {
+        "displayName": "挥动",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-snake-green/swipe.webp"
+      },
+      "with-ball": {
+        "displayName": "持球",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-snake-green/with-ball.webp"
+      }
+    }
+  },
+  {
+    "id": "vscode-crab-red",
+    "title": "VSCode Pets Ferris 蟹",
+    "description": "原作 GIF 逐帧无损转换，保留透明通道和实际帧延时；只提供原项目已有的动作。缺少的系统状态回退待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "Marc Duiker；Ferris 原概念 Karen Rustad Tölva",
+    "authorUrl": "",
+    "source": "https://github.com/tonybaloney/vscode-pets/tree/6554662a53ef093b7598598b77e51f95128a1f38/media/crab",
+    "license": "MIT",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/vscode-crab-red/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/vscode-crab-red/thumbnail.webp",
+    "tags": [
+      "独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-crab-red/idle.webp"
+      },
+      "walk": {
+        "displayName": "行走",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-crab-red/walk.webp"
+      },
+      "run": {
+        "displayName": "奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-crab-red/run.webp"
+      },
+      "swipe": {
+        "displayName": "挥动",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-crab-red/swipe.webp"
+      },
+      "with-ball": {
+        "displayName": "持球",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-crab-red/with-ball.webp"
+      }
+    }
+  },
+  {
+    "id": "vscode-cockatiel-gray",
+    "title": "VSCode Pets 灰玄凤",
+    "description": "原作 GIF 逐帧无损转换，保留透明通道和实际帧延时；只提供原项目已有的动作。缺少的系统状态回退待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "Marc Duiker",
+    "authorUrl": "",
+    "source": "https://github.com/tonybaloney/vscode-pets/tree/6554662a53ef093b7598598b77e51f95128a1f38/media/cockatiel",
+    "license": "MIT",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/vscode-cockatiel-gray/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/vscode-cockatiel-gray/thumbnail.webp",
+    "tags": [
+      "独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-gray/idle.webp"
+      },
+      "walk": {
+        "displayName": "行走",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-gray/walk.webp"
+      },
+      "swipe": {
+        "displayName": "挥动",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-gray/swipe.webp"
+      },
+      "with-ball": {
+        "displayName": "持球",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-gray/with-ball.webp"
+      }
+    }
+  },
+  {
+    "id": "vscode-cockatiel-brown",
+    "title": "VSCode Pets 棕玄凤",
+    "description": "原作 GIF 逐帧无损转换，保留透明通道和实际帧延时；只提供原项目已有的动作。缺少的系统状态回退待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "Marc Duiker；棕色变体 MUL7ii (MULTi)",
+    "authorUrl": "",
+    "source": "https://github.com/tonybaloney/vscode-pets/tree/6554662a53ef093b7598598b77e51f95128a1f38/media/cockatiel",
+    "license": "MIT",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/vscode-cockatiel-brown/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/vscode-cockatiel-brown/thumbnail.webp",
+    "tags": [
+      "独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-brown/idle.webp"
+      },
+      "walk": {
+        "displayName": "行走",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-brown/walk.webp"
+      },
+      "swipe": {
+        "displayName": "挥动",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-brown/swipe.webp"
+      },
+      "with-ball": {
+        "displayName": "持球",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vscode-cockatiel-brown/with-ball.webp"
+      }
+    }
+  },
+  {
+    "id": "oneko-classic",
+    "title": "oneko 经典白猫",
+    "description": "经典 32px 白猫图集的真实动作转换：8 方向奔跑、睡眠和抓挠；原公开领域 XBM 与图集逐像素一致。保持透明与原 100ms 动作节拍，睡眠每帧 400ms。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "Masayuki Koba；Tatsuya Kato；oneko / oneko.js 贡献者",
+    "authorUrl": "",
+    "source": "https://github.com/adryd325/oneko.js/tree/5281d057c4ea9bd4f6f997ee96ba30491aed16c0",
+    "license": "Public Domain (经典猫素材)；MIT (oneko.js)",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/oneko-classic/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/oneko-classic/thumbnail.webp",
+    "tags": [
+      "独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/idle.webp"
+      },
+      "alert": {
+        "displayName": "警觉",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/alert.webp"
+      },
+      "scratch-self": {
+        "displayName": "挠痒",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/scratch-self.webp"
+      },
+      "scratch-wall-n": {
+        "displayName": "朝N抓墙",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-n.webp"
+      },
+      "scratch-wall-s": {
+        "displayName": "朝S抓墙",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-s.webp"
+      },
+      "scratch-wall-e": {
+        "displayName": "朝E抓墙",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-e.webp"
+      },
+      "scratch-wall-w": {
+        "displayName": "朝W抓墙",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-w.webp"
+      },
+      "tired": {
+        "displayName": "困倦",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/tired.webp"
+      },
+      "sleeping": {
+        "displayName": "睡眠",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/sleeping.webp"
+      },
+      "run-n": {
+        "displayName": "朝N奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-n.webp"
+      },
+      "run-ne": {
+        "displayName": "朝NE奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-ne.webp"
+      },
+      "run-e": {
+        "displayName": "朝E奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-e.webp"
+      },
+      "run-se": {
+        "displayName": "朝SE奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-se.webp"
+      },
+      "run-s": {
+        "displayName": "朝S奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-s.webp"
+      },
+      "run-sw": {
+        "displayName": "朝SW奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-sw.webp"
+      },
+      "run-w": {
+        "displayName": "朝W奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-w.webp"
+      },
+      "run-nw": {
+        "displayName": "朝NW奔跑",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/oneko-classic/run-nw.webp"
+      }
+    }
+  },
+  {
+    "id": "vpet-loris-pages-c3420bb",
+    "title": "VPet 萝莉斯 · 原序列核心包",
+    "description": "萝莉斯的 36 个透明独立动作：散步、爬行、睡觉、抚摸、学习、思考等，保留原分辨率与节拍。此包用于本系统播放动作。",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "虚拟主播模拟器制作组",
+    "authorUrl": "https://github.com/LorisYounger",
+    "source": "https://github.com/LorisYounger/VPet/tree/c3420bb77d6d00ed5fabf975a0945c4f6179bba3",
+    "license": "自带动画单独授权：免费、非商业再分发，保留完整版权及来源声明；代码 Apache-2.0",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/package.zip",
+    "thumbnail": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/thumbnail.webp",
+    "tags": [
+      "萝莉斯",
+      "VPet",
+      "36个独立动作",
+      "透明素材"
+    ],
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入，设为当前桌宠。动作名称、分类和 AI 状态绑定可自行配置。",
+    "mediaActions": {
+      "vpet-default-nomal-1": {
+        "displayName": "Default/Nomal/1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-default-nomal-1.webp"
+      },
+      "vpet-default-happy-1": {
+        "displayName": "Default/Happy/1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-default-happy-1.webp"
+      },
+      "vpet-move-walk-left-b_nomal": {
+        "displayName": "MOVE/walk.left/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-left-b_nomal.webp"
+      },
+      "vpet-move-walk-right-b_nomal": {
+        "displayName": "MOVE/walk.right/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-right-b_nomal.webp"
+      },
+      "vpet-move-walk-left-faster-b_happy": {
+        "displayName": "MOVE/walk.left.faster/B_Happy",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-left-faster-b_happy.webp"
+      },
+      "vpet-move-walk-right-faster-b_happy": {
+        "displayName": "MOVE/walk.right.faster/B_Happy",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-right-faster-b_happy.webp"
+      },
+      "vpet-move-crawl-left-b_nomal": {
+        "displayName": "MOVE/crawl.left/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-crawl-left-b_nomal.webp"
+      },
+      "vpet-move-crawl-right-b_nomal": {
+        "displayName": "MOVE/crawl.right/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-crawl-right-b_nomal.webp"
+      },
+      "vpet-move-climb-left-b_nomal": {
+        "displayName": "MOVE/climb.left/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-climb-left-b_nomal.webp"
+      },
+      "vpet-move-climb-right-b_nomal": {
+        "displayName": "MOVE/climb.right/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-climb-right-b_nomal.webp"
+      },
+      "vpet-move-fall-left-b_nomal": {
+        "displayName": "MOVE/fall.left/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-fall-left-b_nomal.webp"
+      },
+      "vpet-move-fall-right-b_nomal": {
+        "displayName": "MOVE/fall.right/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-fall-right-b_nomal.webp"
+      },
+      "vpet-sleep-b_nomal": {
+        "displayName": "Sleep/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-sleep-b_nomal.webp"
+      },
+      "vpet-touch_head-b_nomal": {
+        "displayName": "Touch_Head/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-touch_head-b_nomal.webp"
+      },
+      "vpet-touch_head-happy-b": {
+        "displayName": "Touch_Head/Happy/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-touch_head-happy-b.webp"
+      },
+      "vpet-touch_body-happy_turn-b": {
+        "displayName": "Touch_Body/Happy_Turn/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-touch_body-happy_turn-b.webp"
+      },
+      "vpet-raise-raised_dynamic-nomal-1": {
+        "displayName": "Raise/Raised_Dynamic/Nomal/1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-raise-raised_dynamic-nomal-1.webp"
+      },
+      "vpet-raise-raised_static-b_nomal": {
+        "displayName": "Raise/Raised_Static/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-raise-raised_static-b_nomal.webp"
+      },
+      "vpet-think-nomal-b": {
+        "displayName": "Think/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-think-nomal-b.webp"
+      },
+      "vpet-pinch-nomal-b": {
+        "displayName": "Pinch/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-pinch-nomal-b.webp"
+      },
+      "vpet-state-stateone-b_nomal-1": {
+        "displayName": "State/StateONE/B_Nomal/1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-state-stateone-b_nomal-1.webp"
+      },
+      "vpet-state-statetwo-b_nomal": {
+        "displayName": "State/StateTWO/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-state-statetwo-b_nomal.webp"
+      },
+      "vpet-idel-yawning-nomal": {
+        "displayName": "IDEL/yawning/Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-idel-yawning-nomal.webp"
+      },
+      "vpet-idel-boring-b_nomal": {
+        "displayName": "IDEL/Boring/B_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-idel-boring-b_nomal.webp"
+      },
+      "vpet-music-b-nomal_1": {
+        "displayName": "Music/B/Nomal_1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-music-b-nomal_1.webp"
+      },
+      "vpet-work-study-b_1_nomal": {
+        "displayName": "WORK/Study/B_1_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-study-b_1_nomal.webp"
+      },
+      "vpet-work-workone-b_1_nomal": {
+        "displayName": "WORK/WorkONE/B_1_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-workone-b_1_nomal.webp"
+      },
+      "vpet-work-worktwo-b_1_nomal": {
+        "displayName": "WORK/WorkTWO/B_1_Nomal",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-worktwo-b_1_nomal.webp"
+      },
+      "vpet-work-studytwo-nomal-b": {
+        "displayName": "WORK/StudyTWO/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-studytwo-nomal-b.webp"
+      },
+      "vpet-work-studypaint-nomal-b": {
+        "displayName": "WORK/StudyPaint/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-studypaint-nomal-b.webp"
+      },
+      "vpet-work-calligraphy-nomal-b": {
+        "displayName": "WORK/Calligraphy/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-calligraphy-nomal-b.webp"
+      },
+      "vpet-work-playone-nomal-b": {
+        "displayName": "WORK/PlayONE/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-playone-nomal-b.webp"
+      },
+      "vpet-work-grilledsausage-nomal-b": {
+        "displayName": "WORK/GrilledSausage/Nomal/B",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-grilledsausage-nomal-b.webp"
+      },
+      "vpet-work-workclean-nomal-b_1": {
+        "displayName": "WORK/WorkClean/Nomal/B_1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-workclean-nomal-b_1.webp"
+      },
+      "vpet-work-ropeskipping-nomal-b-1": {
+        "displayName": "WORK/RopeSkipping/Nomal/B/1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-ropeskipping-nomal-b-1.webp"
+      },
+      "vpet-say-self-b_1": {
+        "displayName": "Say/Self/B_1",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-say-self-b_1.webp"
+      },
+      "idle": {
+        "displayName": "Default/Nomal/1（待机引用）",
+        "type": "image/webp",
+        "url": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-default-nomal-1.webp"
+      }
+    }
+  },
+  {
+    "id": "airi-windows-official",
+    "title": "AIRI · Windows AI 伴侣",
+    "description": "支持 Live2D／VRM、AI 对话和语音的独立伴侣应用。",
+    "author": "Neko Ayaka 与 Moeru AI / AIRI 贡献者",
+    "source": "https://github.com/moeru-ai/airi/releases/tag/v0.12.0-beta.5",
+    "license": "代码 MIT；Live2D / VRM 模型许可另计",
+    "download": "https://github.com/moeru-ai/airi/releases/download/v0.12.0-beta.5/AIRI-0.12.0-beta.5-windows-x64-setup.exe",
+    "downloadLabel": "官方下载 Windows 安装器 · 699 MiB",
+    "hostNotice": "官方 v0.12.0-beta.5 测试版独立应用。下载 Windows x64 安装器并完成安装，再在 AIRI 配置聊天服务或本地模型；语音功能需另外配置 ASR/TTS。Live2D/VRM 角色应按各自素材条款使用。本平台提供官方完整发行下载，不是本系统原生桌宠 ZIP，未做本机安装或 AI 联动验收。",
+    "secondaryDownloads": [
+      {
+        "label": "官方发行与校验值",
+        "url": "https://github.com/moeru-ai/airi/releases/tag/v0.12.0-beta.5"
+      },
+      {
+        "label": "官方安装与使用指南",
+        "url": "https://airi.moeru.ai/docs/en/docs/manual/tamagotchi/setup-and-use/"
+      }
+    ],
+    "thumbnail": "assets/pets/adapted-20261010/airi-windows-official/thumbnail.webp",
+    "tag": "v0.12.0-beta.5",
+    "commit": "2c1e223c8dd813d7c74a324d7fd7399fbf47e8bf",
+    "downloadSizeBytes": 733305834,
+    "upstreamSha256": "f64473fd54f905b5a5ec8d6d3c93277f0fc7a5368f53e0938b46d25a0d8a336b",
+    "distribution": "standalone",
+    "runtime": "external-host",
+    "installationVerified": false,
+    "modelLicense": "Live2D Hiyori 等样本遵守 Live2D 素材/样本条款；VRM 使用文件或作者的许可，不按代码 MIT 概括。",
+    "codeLicenseUrl": "https://github.com/moeru-ai/airi/blob/2c1e223c8dd813d7c74a324d7fd7399fbf47e8bf/LICENSE",
+    "thumbnailLicense": "CC0-1.0（本次制作的纯文字封面）",
+    "kind": "pet",
+    "category": "其他",
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "tags": [
+      "独立运行",
+      "原应用"
+    ]
+  },
+  {
+    "id": "ppet-windows-official",
+    "title": "PPet · Live2D 桌宠",
+    "description": "独立 Live2D 桌宠应用，在原应用内加载模型与设置交互。",
+    "author": "zenghongtu 与 PPet 贡献者",
+    "source": "https://github.com/zenghongtu/PPet/releases/tag/v3.3.0",
+    "license": "代码 MIT；默认/自选 Live2D 模型许可另计",
+    "download": "https://github.com/zenghongtu/PPet/releases/download/v3.3.0/PPet3-v3.3.0-win-x64.zip",
+    "downloadLabel": "官方下载 Windows x64 完整 ZIP · 79.3 MiB",
+    "hostNotice": "官方 v3.3.0 Windows x64 完整应用 ZIP。完整解压后运行目录内应用 EXE，保留其运行依赖；也可下载官方安装器安装。PPet 自己负责显示和交互，模型从原宿主加载。推荐模型来源多样，没有统一再分发许可，本平台不另行复制这些模型。此条提供原应用官方下载，未做本机安装或原生动作/AI 联动验收。",
+    "secondaryDownloads": [
+      {
+        "label": "官方 Windows 安装器 · 114 MiB",
+        "url": "https://github.com/zenghongtu/PPet/releases/download/v3.3.0/PPet3_3.3.0.exe"
+      },
+      {
+        "label": "官方 Windows 32位完整 ZIP",
+        "url": "https://github.com/zenghongtu/PPet/releases/download/v3.3.0/PPet3-v3.3.0-win-ia32.zip"
+      },
+      {
+        "label": "官方 v3.3.0 发行说明",
+        "url": "https://github.com/zenghongtu/PPet/releases/tag/v3.3.0"
+      }
+    ],
+    "thumbnail": "assets/pets/adapted-20261010/ppet-windows-official/thumbnail.webp",
+    "tag": "v3.3.0",
+    "commit": "663bf11796d98e96bb92be15f765ab81ee1cee56",
+    "downloadSizeBytes": 83131941,
+    "upstreamSha256": null,
+    "distribution": "standalone",
+    "runtime": "external-host",
+    "installationVerified": false,
+    "modelLicense": "代码仓库模型列表指向独立 live2d-model-assets 仓库，后者没有统一根许可证；具体模型仍需依据原作者条款。",
+    "codeLicenseUrl": "https://github.com/zenghongtu/PPet/blob/663bf11796d98e96bb92be15f765ab81ee1cee56/LICENSE.md",
+    "thumbnailLicense": "CC0-1.0（本次制作的纯文字封面）",
+    "kind": "pet",
+    "category": "其他",
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "tags": [
+      "独立运行",
+      "原应用"
+    ]
+  },
+  {
+    "id": "open-llm-vtuber-windows-official",
+    "title": "Open-LLM-VTuber · 语音 AI 桌宠",
+    "description": "可配置语音与 AI 对话的 Live2D 伙伴，提供完整后端和 Windows 前端。",
+    "author": "Yi-Ting Chiu 与 Open-LLM-VTuber 贡献者",
+    "source": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/releases/tag/v1.2.1",
+    "license": "后端 MIT；前端 Open-LLM-VTuber License 1.0；模型另有条款",
+    "download": "https://pub-17317087be374bc68161ac63de2022a5.r2.dev/v1.2.1/Open-LLM-VTuber-v1.2.1-zh.zip",
+    "downloadLabel": "官方加速下载中文完整后端 · 约 226 MiB",
+    "hostNotice": "v1.2.1 必须配合完整后端 ZIP 与 Windows 桌面前端使用。先解压后端到英文路径，准备 Python 3.10–3.12、uv、FFmpeg，安装依赖并配置 LLM/ASR/TTS，启动后端后再打开 Windows 前端连接 localhost:12393。前端 EXE 本身不能提供 AI 对话。中文后端含官方 SenseVoice 语音识别资源；LLM 服务/模型仍须配置。此条链接由官方发行说明提供的镜像，GitHub 原版作备用；未下载或完成本机安装验收。",
+    "secondaryDownloads": [
+      {
+        "label": "必需：官方加速 Windows 前端 · 96.4 MiB",
+        "url": "https://pub-17317087be374bc68161ac63de2022a5.r2.dev/v1.2.1/open-llm-vtuber-1.2.1-setup.exe"
+      },
+      {
+        "label": "GitHub 中文完整后端备用",
+        "url": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/releases/download/v1.2.1/v1.2.1_Open-LLM-VTuber-v1.2.1-zh.zip"
+      },
+      {
+        "label": "GitHub Windows 前端备用",
+        "url": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/releases/download/v1.2.1/open-llm-vtuber-1.2.1-setup.exe"
+      },
+      {
+        "label": "官方部署指南",
+        "url": "https://docs.llmvtuber.com/docs/quick-start/"
+      }
+    ],
+    "thumbnail": "assets/pets/adapted-20261010/open-llm-vtuber-windows-official/thumbnail.webp",
+    "tag": "v1.2.1",
+    "commit": "3afa41014b4548a0842e9ee2f576f4b164b48886",
+    "frontendCommit": "7a2e214c3f266c294541127520dab7fce46787e7",
+    "downloadSizeBytes": 236634662,
+    "upstreamSha256": "52f5908b8cee8190aca6692577277dbc8b3381bd7c541b52a2b7dfb3d8abf4dd",
+    "frontendSizeBytes": 101070444,
+    "frontendUpstreamSha256": "2d9df10fe113f38d0f07ab226c8fd5f96e8d0472f0f75c625d641a8621385c9c",
+    "sizeAndDigestScope": "GitHub 官方原发行文件；镜像源头在官方发行正文确认，本次未下载镜像做字节哈希比较。",
+    "distribution": "standalone",
+    "runtime": "external-host",
+    "installationVerified": false,
+    "modelLicense": "默认 Live2D 样本明确排除于 MIT，受 LICENSE-Live2D.md 及 Live2D 素材/样本条款约束；LLM、ASR、TTS 模型各自有许可。",
+    "codeLicenseUrl": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/blob/3afa41014b4548a0842e9ee2f576f4b164b48886/LICENSE",
+    "frontendLicenseUrl": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber-Web/blob/7a2e214c3f266c294541127520dab7fce46787e7/LICENSE",
+    "thumbnailLicense": "CC0-1.0（本次制作的纯文字封面）",
+    "kind": "pet",
+    "category": "其他",
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "tags": [
+      "独立运行",
+      "原应用"
+    ]
+  },
+  {
+    "id": "bongocat-vladelaina",
+    "title": "BongoCat · vladelaina",
+    "download": "https://github.com/vladelaina/BongoCat/releases/download/v1.14.0/BongoCat-1.14.0-windows-x64-portable.exe",
+    "displayName": "BongoCat · vladelaina",
+    "name": "BongoCat · vladelaina",
+    "author": "vladelaina",
+    "source": "https://github.com/vladelaina/BongoCat",
+    "version": "1.14.0",
+    "description": "陪你敲键盘、移动鼠标和玩手柄的实时互动猫咪。保留官方原程序、自带模型和完整键鼠互动，可独立运行。",
+    "license": "原程序 AGPL-3.0-only；三类内置模型及封面 MIT；Live2D 组件遵循其独立条款。",
+    "thumbnail": "assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp",
+    "thumbnailLicense": "MIT · Copyright (c) 2026 vladelaina",
+    "downloadUrl": "https://github.com/vladelaina/BongoCat/releases/download/v1.14.0/BongoCat-1.14.0-windows-x64-portable.exe",
+    "downloadLabel": "下载 Windows 便携版",
+    "hostNotice": "这是官方完整便携程序。下载后可直接运行；在本系统使用时，将便携 EXE 放进作品文件夹后导入，或归档后选择该 EXE 作为原应用入口，再点“独立运行”。实时键鼠互动沿用 BongoCat 原逻辑；本系统 AI 动作绑定等操作不可用。",
+    "runtime": "original-application",
+    "native": false,
+    "downloadKind": "official-portable-exe",
+    "release": "https://github.com/vladelaina/BongoCat/releases/tag/v1.14.0",
+    "commit": "666999650f8afb405fa34dbf1ee0b98cd7145117",
+    "officialSha256": "89ff21a675b3e58c54b841415901c1ab57692fc3e4edef86c9b13311b5036aa9",
+    "officialBytes": 6334296,
+    "kind": "pet",
+    "category": "其他",
+    "distribution": "standalone",
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "tags": [
+      "独立运行",
+      "原应用"
+    ]
+  },
+  {
+    "id": "bongocat-ayangweb",
+    "title": "BongoCat · ayangweb",
+    "download": "https://github.com/ayangweb/BongoCat/releases/download/v2.2.0/BongoCat_2.2.0_x64.exe",
+    "displayName": "BongoCat · ayangweb",
+    "name": "BongoCat · ayangweb",
+    "author": "ayangweb",
+    "source": "https://github.com/ayangweb/BongoCat",
+    "version": "2.2.0",
+    "description": "跟随真实键盘与鼠标操作的小猫，支持原项目模型与交互设置。下载官方完整 Windows 安装包，安装后通过原程序独立运行。",
+    "license": "原程序 Apache-2.0；Live2D 组件及模型遵循原发行条款；此处提供官方下载，不在本站镜像 SDK 或模型。",
+    "thumbnail": "assets/pets/adapted-20261010/bongocat-ayangweb/thumbnail.webp",
+    "thumbnailLicense": "MIT · Copyright (c) 2026 vladelaina（与原发行内置封面同一图片）",
+    "downloadUrl": "https://github.com/ayangweb/BongoCat/releases/download/v2.2.0/BongoCat_2.2.0_x64.exe",
+    "downloadLabel": "下载 Windows 安装包",
+    "hostNotice": "下载的是官方 NSIS 安装器，不是独立运行入口。先按官方流程安装，再在控制中心为导入的作品选择安装目录内实际的 bongocat-app.exe，点击“独立运行”。不要选择下载的安装器或卸载程序作为入口。键鼠监听、Live2D 模型和互动设置均沿用原项目。",
+    "runtime": "original-application",
+    "native": false,
+    "downloadKind": "official-installer",
+    "release": "https://github.com/ayangweb/BongoCat/releases/tag/v2.2.0",
+    "commit": "71782a73f300b7d4c69cfac5129da2e2b869932d",
+    "officialSha256": "3f486a5a07416b50682e244a4e37bbb84f9e69de2f15138eb0e90649c5f73834",
+    "officialBytes": 10247196,
+    "kind": "pet",
+    "category": "其他",
+    "distribution": "standalone",
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "tags": [
+      "独立运行",
+      "原应用"
+    ]
   }
 ];
 export function petCredit(work) {

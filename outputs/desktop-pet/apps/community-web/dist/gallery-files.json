@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "upstreamCommit": "0d0f06bb1721aef4ddbc7f893276f235ed8458ec",
-  "publicPets": 117,
+  "publicPets": 129,
   "publicPlugins": 24,
   "files": [
     {
@@ -147,6 +147,588 @@
       "mime": "application/zip",
       "bytes": 9072,
       "sha256": "36da575e91abaa1acb9a3421b6b3712d249ed6e98b15d8c9001ff1f5fc3ba6df"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/airi-windows-official/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 7362,
+      "sha256": "d5f81ede6cc3cbd9281ca7d2f84dddb2c18ebfe3c1376eaa71a6b25aca84fb43"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/bongocat-ayangweb/LICENSE-MIT.txt",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1550,
+      "sha256": "b2ebd60270f54dfc7d7865e8fb59bdd69170b23c3a3ee063bab5a023b2abfa08"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/bongocat-ayangweb/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 10566,
+      "sha256": "dfbe2080565618ec9bc449febfc1ed347a111aef4773cd4766524a8e1e3fc7c9"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/bongocat-vladelaina/LICENSE-MIT.txt",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1550,
+      "sha256": "b2ebd60270f54dfc7d7865e8fb59bdd69170b23c3a3ee063bab5a023b2abfa08"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 10566,
+      "sha256": "dfbe2080565618ec9bc449febfc1ed347a111aef4773cd4766524a8e1e3fc7c9"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/alert.webp",
+      "mime": "image/webp",
+      "bytes": 178,
+      "sha256": "7edb378b47d969dfd00f47d0b0361415a81f044261f89e4d8593914f3392de7e"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/idle.webp",
+      "mime": "image/webp",
+      "bytes": 152,
+      "sha256": "adc91e8031e40cb673fd7c240efd3156bcfb5fe189db2252a32905af035948d1"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/package.zip",
+      "mime": "application/zip",
+      "bytes": 55384,
+      "sha256": "7228ec46813648cba42c2c3014654b24003cea15517e1ff88a626ec32251accf"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-e.webp",
+      "mime": "image/webp",
+      "bytes": 380,
+      "sha256": "1a331cbc425abbebf98b0ce19c1e5079ae3fdc2a3906643195167260e0dfcb78"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-n.webp",
+      "mime": "image/webp",
+      "bytes": 334,
+      "sha256": "bdb90d8697f77f2b46e9d9242ba40c6922dcb28d1583603e113120d6e77d3bad"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-ne.webp",
+      "mime": "image/webp",
+      "bytes": 374,
+      "sha256": "454e227bde413f50c97dc55b3b51bca53b6f57b26007533ed4697877667b95be"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-nw.webp",
+      "mime": "image/webp",
+      "bytes": 370,
+      "sha256": "d3e4ea4490fe7af4e04d951eae5b286363fdab6ab4e2addd2f8622ccdacaa598"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-s.webp",
+      "mime": "image/webp",
+      "bytes": 354,
+      "sha256": "04797928879500497ccd611940704badd1efd9c306a2abdf482a80699305e393"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-se.webp",
+      "mime": "image/webp",
+      "bytes": 380,
+      "sha256": "d95cf51126dc22979f22c8e59cacf5d1f5e95f3e8e33f1461430e0908a1574d3"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-sw.webp",
+      "mime": "image/webp",
+      "bytes": 374,
+      "sha256": "26ed7e0fbd9ee8ba91b5fa979b78ef067dfe77cd852916d014a5682b19770035"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/run-w.webp",
+      "mime": "image/webp",
+      "bytes": 376,
+      "sha256": "0e57c44aca22e053aa1e197e6d9070a659f158f2cdc07472d638bddff9ab2415"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/scratch-self.webp",
+      "mime": "image/webp",
+      "bytes": 510,
+      "sha256": "c308db44b525c8302d2cdad217143f709c60c3a4913a2cd1db3e7fc28cba9cca"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-e.webp",
+      "mime": "image/webp",
+      "bytes": 362,
+      "sha256": "44acd047f3ebb8c34ce7f49ca435eb64835074c80565bac92ee5eaf712c32b6c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-n.webp",
+      "mime": "image/webp",
+      "bytes": 364,
+      "sha256": "2d604d27d3248449d3593b4015a455c311c89db680c03f00b079645768807f5c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-s.webp",
+      "mime": "image/webp",
+      "bytes": 350,
+      "sha256": "2bdd3e55f2eeae1a1bfae0129a880c54da2c4df06aac8151ce0cb6b44a69b3d5"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/scratch-wall-w.webp",
+      "mime": "image/webp",
+      "bytes": 354,
+      "sha256": "75f24391abc397bb07bdda1813ac14c791b598ec2d751831b057f22fa0692f5c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/sleeping.webp",
+      "mime": "image/webp",
+      "bytes": 344,
+      "sha256": "6866e31d59d4f6412f4399a2ec880580f90b84312caa0116edcee0cae796282f"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 7160,
+      "sha256": "d7c22110dec26a82906ea9be387b45d4d0a7873351026a483acd30680e95012c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/oneko-classic/tired.webp",
+      "mime": "image/webp",
+      "bytes": 158,
+      "sha256": "a30607841504a39f4a6214b9861c5ccd713d46b872a031d9db5ca0083acce888"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/open-llm-vtuber-windows-official/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 9258,
+      "sha256": "3ae02d4606aaf6158f0608b19858cba17b4eb7c3d23d8bbb85822f2af125fbdc"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/ppet-windows-official/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 6406,
+      "sha256": "6bccfc4ea52261ae2c9969c0a594f52c78bf3b4c31b72243cb49b4c2da409f58"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-default-happy-1.webp",
+      "mime": "image/webp",
+      "bytes": 1201718,
+      "sha256": "b17356c1a8fcf9ccb5c7fa1dabea3fd087105f134f0f7905fe58d0a4f51463bb"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-default-nomal-1.webp",
+      "mime": "image/webp",
+      "bytes": 910446,
+      "sha256": "bd5a2ef861580d766089a98251f695109d515d463890660728a48a87a37aa4f3"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-idel-boring-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 844150,
+      "sha256": "863704cd20be3b7680fcbc23ed2c004026d5b61e81ffe36d873394a1574ace48"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-idel-yawning-nomal.webp",
+      "mime": "image/webp",
+      "bytes": 1715338,
+      "sha256": "aadb0676c7f00b9391812fcd93aa55cc6bb81cc6fa9a28314403c03586eff04c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-climb-left-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 370946,
+      "sha256": "de7fcb9e4a8ca3a3846d88b6ae938c53a6b16def596a1366fff46267b78cec68"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-climb-right-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 331826,
+      "sha256": "0e39b23bee2bd79fa71b8812bed097a416164362c802a1cf8f291b0fa56afbdc"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-crawl-left-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 682636,
+      "sha256": "2f1a142e0361b42359a131576279ec33ce4dca2dbae21edaf0c3eae28128c30f"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-crawl-right-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 643764,
+      "sha256": "17a9963340a8a013987345f87ecd5529536cb110d2fa3056384b96f1362da2fb"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-fall-left-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 613792,
+      "sha256": "0edde9afda7a79fdbde3627506bbfdc2d570e0ad978e6e88cd656aa5d17d716b"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-fall-right-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 587356,
+      "sha256": "6bfaf97b38d5b6a8149223d4fc94de36d0bc89fde3c501f6b2480d4373269688"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-left-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 396250,
+      "sha256": "0a30d497dca81c9dbe373efb6ff230675a46e042194c6f0af7408f4caa2711c2"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-left-faster-b_happy.webp",
+      "mime": "image/webp",
+      "bytes": 722588,
+      "sha256": "fdc375f14322459f77849795e0c3587d2a3618307c102334762d03b0e4708d5f"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-right-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 389574,
+      "sha256": "0ac140989a49e7496f51bb351346277e6dcf1982223f021d8526752d6cdcc8d4"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-move-walk-right-faster-b_happy.webp",
+      "mime": "image/webp",
+      "bytes": 667638,
+      "sha256": "f02e4394ff458a1833e8fb36ff04d42c6a0a50ffb3bc1ac43c73f90b40c76b52"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-music-b-nomal_1.webp",
+      "mime": "image/webp",
+      "bytes": 2213130,
+      "sha256": "e807dddd6ddef09db49142409bf2e37e4452efc0190d9b7419e71f65eb8137ad"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-pinch-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 625366,
+      "sha256": "036ce40eeda4e7a1f4304314097336b4bce24a6e04722715deae7f87cf0fbe45"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-raise-raised_dynamic-nomal-1.webp",
+      "mime": "image/webp",
+      "bytes": 818708,
+      "sha256": "8d225fc9e14ba5193977204a6d0ad94ef2d9acd7f67f3f5dbf9502a1b588ab93"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-raise-raised_static-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 132774,
+      "sha256": "4b99d8c02ff42270b9d0be446707ca0cb6158e53005f7890febe0fc9eccbd47b"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-say-self-b_1.webp",
+      "mime": "image/webp",
+      "bytes": 134262,
+      "sha256": "06766672bd6ed28ad412c6632ffe97cdf36bc86e62ead75e55441400dd1fca77"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-sleep-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 148866,
+      "sha256": "715817105ef2cb3afebeeabbed3f7608bc995357441f307581dad41477ad62cd"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-state-stateone-b_nomal-1.webp",
+      "mime": "image/webp",
+      "bytes": 94726,
+      "sha256": "03fcc97712e77b4e060cb2a7464193fa8175fe0ee6421b0d1b0e968d649ce083"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-state-statetwo-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 70780,
+      "sha256": "4e57ac9596c7e387f600fc98c43ccf1a8ef35e2a2bbb9c777723d871c7bd0983"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-think-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 549392,
+      "sha256": "c6d3d231251de3e33bd8b694e69c9a46e96816e0125161856d96bf65018ed967"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-touch_body-happy_turn-b.webp",
+      "mime": "image/webp",
+      "bytes": 1394770,
+      "sha256": "60e4ad5c04e0965fe2c9cf5e358d881ece5f2f86ff920fd9cabccbb1e1539495"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-touch_head-b_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 1008260,
+      "sha256": "21fe807573b911aeae7edfa4e693780be7c8db14a06c0edca51d8d775436b6ad"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-touch_head-happy-b.webp",
+      "mime": "image/webp",
+      "bytes": 1114884,
+      "sha256": "49abc9585274a4933f72ed456477b9b8e37674e3c10b53794e5e9c931a32d583"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-calligraphy-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 1451626,
+      "sha256": "d9fe3e8b7757f618ef7f3509f93fda2ca4d7a986418ebfb09e7b76ac612b03fb"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-grilledsausage-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 1596034,
+      "sha256": "a7fb26fc70780cd580fa7bd0d1c46b8d2346bedc016d6b094e59f7c291909339"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-playone-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 587822,
+      "sha256": "cf15964ee53369a72a0eb402d91d1fbfe16678615a77ed656a6c3b814f7244ae"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-ropeskipping-nomal-b-1.webp",
+      "mime": "image/webp",
+      "bytes": 1408246,
+      "sha256": "d952a63db488c0ec9ba63d025d76e0d6cc83061b7f66aab76571b0e2381a4aed"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-study-b_1_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 217824,
+      "sha256": "5e5108c0184951ff2a80c0296dd06fbed2e07b6d2fee227de2dbf3aff96848af"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-studypaint-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 1133940,
+      "sha256": "14acd82743ea68bd018a6c3d92a9a5b13def5e21961b186939528684ca5fd91f"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-studytwo-nomal-b.webp",
+      "mime": "image/webp",
+      "bytes": 171308,
+      "sha256": "17cca8ee05ff0be960957b41928f5bf20f810ce2efdf93035bdec09ee46bbf6a"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-workclean-nomal-b_1.webp",
+      "mime": "image/webp",
+      "bytes": 344106,
+      "sha256": "ff8fb8dc2daa33ccdd5ff394aa19a86c75b5b3e11df9a1b254650b39f3bafd66"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-workone-b_1_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 107174,
+      "sha256": "ee7a932c8d792378c4713ff2825e56d1f167c3c5ae71b21700e7a3e6d3814891"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/media/vpet-work-worktwo-b_1_nomal.webp",
+      "mime": "image/webp",
+      "bytes": 270788,
+      "sha256": "8c96878f845b6c1d2361c3e5bef90e09b8226b3f55d034bf380ec483c48375b1"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/package.zip",
+      "mime": "application/zip",
+      "bytes": 25660221,
+      "sha256": "844205b844995c2f8bcbbe02d9eee25092b034f789d254a74ff20af437e3313d"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vpet-loris-pages-c3420bb/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 16504,
+      "sha256": "9be9bd77003d1eb416bb949830d1e9fc4eac0a8aa25c834e34ea4ccc528218dd"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-brown/idle.webp",
+      "mime": "image/webp",
+      "bytes": 1796,
+      "sha256": "f16da58163706bb531fd25ed17d94dc04fd453f119de357e2ec310a3fc1db26c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-brown/package.zip",
+      "mime": "application/zip",
+      "bytes": 22604,
+      "sha256": "d97a875c780b1e101ec5853e30e8dcd25b6656c49c04acef0006fdbca1f6b9e1"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-brown/swipe.webp",
+      "mime": "image/webp",
+      "bytes": 1314,
+      "sha256": "9a4d810d41e55cebf437bf47cbd8c8d95b7358bddd6abd893ebc123d38d3f092"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-brown/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 10992,
+      "sha256": "fd82cddbb97a4cac1083fe217cd70113551d84c5783496fc4eb0f77002f30a47"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-brown/walk.webp",
+      "mime": "image/webp",
+      "bytes": 2040,
+      "sha256": "1db8b445774f701b943b469c52d9ee782a9ea56f3fd5ceb7d82a421b507e0851"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-brown/with-ball.webp",
+      "mime": "image/webp",
+      "bytes": 822,
+      "sha256": "8c999bb2817e5636c02c507a91a59d978e0eb0fce7dd072ed9d4207e02f78205"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-gray/idle.webp",
+      "mime": "image/webp",
+      "bytes": 1882,
+      "sha256": "96939cdbf74cbf549908f1b7c95f873cbadfa83e47598664dcc6c17143782a93"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-gray/package.zip",
+      "mime": "application/zip",
+      "bytes": 24144,
+      "sha256": "faafe33ca67ea726be246a898efcb17bb5790970a88b8ae3155d4998d4ebb00e"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-gray/swipe.webp",
+      "mime": "image/webp",
+      "bytes": 1368,
+      "sha256": "abfb2b88cb85003680d427f4d6e7095f89440d65a7479e78772e96d75debdb20"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-gray/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 10066,
+      "sha256": "bd8ea0b837ea01a5a650c394d131d3800a9dd01e189298a9d8a205f5656cc828"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-gray/walk.webp",
+      "mime": "image/webp",
+      "bytes": 2172,
+      "sha256": "76a1b5e5fbc3541294e449035b94871eeaacefeabcb36571c0aff6f9f3ae9dc1"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-cockatiel-gray/with-ball.webp",
+      "mime": "image/webp",
+      "bytes": 880,
+      "sha256": "bb30d4149969748b64ed87c8312d98c1552f36d64d0afb44231e9213e6dab41d"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/idle.webp",
+      "mime": "image/webp",
+      "bytes": 1044,
+      "sha256": "2f7daab36d3b55d135fcdcdba616abe27ac6934eecbee159828e9e7fb1ad1aa7"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/package.zip",
+      "mime": "application/zip",
+      "bytes": 42070,
+      "sha256": "36847976fa66dc1309f1c24da39108c6d46615845814361c1cfb9d912f875211"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/run.webp",
+      "mime": "image/webp",
+      "bytes": 2282,
+      "sha256": "427cb5e2bada4d2b2b034c450d2d537cad6975e97848719d2b3a908510ae6365"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/swipe.webp",
+      "mime": "image/webp",
+      "bytes": 3046,
+      "sha256": "62360283161f7536d8e0520ff564b5941d9913950e1f66132455eb5d39a52ed7"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 7158,
+      "sha256": "33d27701120865955e3f4b31e3972be7eb45e8062bb59c9f50661da2da385cdf"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/walk.webp",
+      "mime": "image/webp",
+      "bytes": 1942,
+      "sha256": "c71da3d8ee3eb27f0218806b89c1854b406fab4179d9476c626808d98cab89b9"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-crab-red/with-ball.webp",
+      "mime": "image/webp",
+      "bytes": 918,
+      "sha256": "e704df750ffdf7b07fc1559f16b4a916822ae0e30b5adce5693b43d555460b9b"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/idle.webp",
+      "mime": "image/webp",
+      "bytes": 362,
+      "sha256": "2d3e6ce3725b038b3da52485f3e30a6d4f567b6eb7698cceef0c6cf90778599d"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/package.zip",
+      "mime": "application/zip",
+      "bytes": 28767,
+      "sha256": "7304f8f513a470c7b783b4b06d78a65aa3251c6cfac096bd10d193c35231441f"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/run.webp",
+      "mime": "image/webp",
+      "bytes": 1528,
+      "sha256": "de09da4fb05336b703d534ad67812936b3ed1781855774d5c56c11e1ba346e8b"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/swipe.webp",
+      "mime": "image/webp",
+      "bytes": 490,
+      "sha256": "af67ce303abae9ff13f6560e354b78ac968f3737a1dea9d859a8501aef9e848c"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 8164,
+      "sha256": "6359a4a5a71dc23354d3641db6ef92d8d3316a6624bdebd5a071748f9830b567"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/walk.webp",
+      "mime": "image/webp",
+      "bytes": 1318,
+      "sha256": "90041335dc67d352ab1b5b08907101d656d96ca0e7be3e41d45df04634d69071"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-rubber-duck-yellow/with-ball.webp",
+      "mime": "image/webp",
+      "bytes": 376,
+      "sha256": "45e89a81a4cea6095190786685c38f02aa6d801ef8aba0a4a8617ac5e6911cbe"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/idle.webp",
+      "mime": "image/webp",
+      "bytes": 2624,
+      "sha256": "b895e2e90487aafcf9ccec584d8df8f78a1ca1ae816cec614f3aa794b195ef85"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/package.zip",
+      "mime": "application/zip",
+      "bytes": 45889,
+      "sha256": "64c8714c06f5c277a55758f11edd98936d0a3a674b53988a411788996a119aa8"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/run.webp",
+      "mime": "image/webp",
+      "bytes": 1748,
+      "sha256": "030c1bd217de9bbea7fa85ec5bad351e28dbd9faa6be7c7da54994ddcad26374"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/swipe.webp",
+      "mime": "image/webp",
+      "bytes": 2132,
+      "sha256": "20c94389277f8a1d2d0504528221ee3b212a0ca2332708573a24ba3924d8a11a"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 19306,
+      "sha256": "806896fa8b6c588ff45bc0daad742333c5eb2d2d01d00fe3d9016a8a287b95db"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/walk.webp",
+      "mime": "image/webp",
+      "bytes": 2876,
+      "sha256": "8586869b01eff4ca861bba436b3ab3ed010878e6e8cc72457a9a4a2f0a4122cd"
+    },
+    {
+      "path": "assets/pets/adapted-20261010/vscode-snake-green/with-ball.webp",
+      "mime": "image/webp",
+      "bytes": 1060,
+      "sha256": "d2959c94724806ac0f5256a38e6aa5518002dd84808f92d03c7d2af9a3b23407"
     },
     {
       "path": "assets/pets/upstream-20261009/acheron--lingxiaotian-thumb.webp",
