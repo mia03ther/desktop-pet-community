@@ -1,0 +1,911 @@
+{
+  "schemaVersion": 1,
+  "scope": "本仓库贡献者和本站已收录作品作者；署名数不是贡献人数。",
+  "verifiedAt": "2026-10-10T04:21:03.360Z",
+  "contributors": [
+    {
+      "displayName": "Lykinzlj",
+      "role": "本站维护者与本仓库代码贡献者",
+      "profileUrl": "https://github.com/xunguangzlj-cloud",
+      "githubLogin": "xunguangzlj-cloud",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/293371022?u=ad00554c29f618c894ef2518bdb04d6f2dcb102c&v=4",
+      "workIds": [],
+      "evidencePath": [
+        "README.md",
+        "outputs/desktop-pet/apps/community-web/dist/catalog.js"
+      ],
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/xunguangzlj-cloud.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "legeling",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/legeling",
+      "githubLogin": "legeling",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/61688018?u=79581001f25d7beb19a714a2abde0726c3921919&v=4",
+      "workIds": [
+        "firefly--lingxiaotian",
+        "acheron--lingxiaotian",
+        "arlecchino--lingxiaotian",
+        "black-swan--lingxiaotian",
+        "buttercup--legeling",
+        "castorice--lingxiaotian",
+        "cyrene--lingxiaotian",
+        "doro--lingxiaotian",
+        "feixiao--lingxiaotian",
+        "frieren--lingxiaotian",
+        "furina--lingxiaotian",
+        "golden-lamp--legeling",
+        "hu-tao--lingxiaotian",
+        "kamisato-ayaka--lingxiaotian",
+        "kurimanju--legeling",
+        "mahiro--lingxiaotian",
+        "mikoto--lingxiaotian",
+        "miku--lingxiaotian",
+        "nahida--lingxiaotian",
+        "navia--lingxiaotian",
+        "paimon--lingxiaotian",
+        "potato--legeling",
+        "raiden-shogun--lingxiaotian",
+        "reimu--lingxiaotian",
+        "robin--lingxiaotian",
+        "ruan-mei--lingxiaotian",
+        "serge-le-lapin--legeling",
+        "silver-wolf--lingxiaotian",
+        "sparkle--lingxiaotian",
+        "sunny-retriever--legeling",
+        "tingyun--lingxiaotian",
+        "yuanbao--legeling",
+        "yae-miko--legeling",
+        "liuboer--legeling",
+        "miku-sea--legeling",
+        "virtuosa--legeling",
+        "dashu--legeling",
+        "vyron--legeling",
+        "xiaoda--legeling",
+        "little-black-cat--legeling",
+        "iuno--legeling",
+        "xuxu-baobao--legeling",
+        "shen-xinghui--legeling",
+        "otama--legeling",
+        "neptune--legeling",
+        "niulai--legeling",
+        "gift--legeling",
+        "luo-xiaohei--legeling",
+        "xiang-an--legeling",
+        "hongmao--legeling",
+        "jinmao--legeling",
+        "arona--legeling",
+        "zayne--legeling",
+        "bocchi--lingxiaotian"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/legeling.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "cuNuo",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/cuNuo",
+      "githubLogin": "cuNuo",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/152291938?u=6fc237bb01462b5358f239f1b10a8bfc3d67504c&v=4",
+      "workIds": [
+        "aemeath-mini--cunuo"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/cuNuo.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "tal",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/xchangee",
+      "githubLogin": "xchangee",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/21952556?u=943c1c5b599849c02d47ceb923242eea6c231dcd&v=4",
+      "workIds": [
+        "apu--xchangee"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/xchangee.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "NateWanggg",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/NateWanggg",
+      "githubLogin": "NateWanggg",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/166998836?v=4",
+      "workIds": [
+        "becky--natewanggg",
+        "fleta--natewanggg"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/NateWanggg.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Guo Beining",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/gbn666",
+      "githubLogin": "gbn666",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/133936643?v=4",
+      "workIds": [
+        "bubu--gbn666",
+        "yier--gbn666"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/gbn666.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Jorge",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Jorge-Cuevas90003",
+      "githubLogin": "Jorge-Cuevas90003",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/157677291?u=d426fbdee56de8af6466a06970be70183bb5e846&v=4",
+      "workIds": [
+        "chud-codex--jorge-cuevas90003",
+        "warden-codex--jorge-cuevas90003"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Jorge-Cuevas90003.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "ZaytsevZY",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/ZaytsevZY",
+      "githubLogin": "ZaytsevZY",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/187420341?u=70a8f7e4003f1d49cfe6a555b2902826f1d41165&v=4",
+      "workIds": [
+        "citlali--zaytsevzy"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/ZaytsevZY.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "XiangWang",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/xiangking",
+      "githubLogin": "xiangking",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/29096754?u=c4f107daa8d706f77f22500bfad8943f774066f5&v=4",
+      "workIds": [
+        "claude--xiangking"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/xiangking.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "z19t",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/z19t",
+      "githubLogin": "z19t",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/124674881?v=4",
+      "workIds": [
+        "codexy--z19t"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/z19t.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "cxian0928-afk",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/cxian0928-afk",
+      "githubLogin": "cxian0928-afk",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/267963549?v=4",
+      "workIds": [
+        "corgi-companion--cxian0928-afk"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/cxian0928-afk.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "zihualiu1997",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/zihualiu1997",
+      "githubLogin": "zihualiu1997",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/144887244?u=27bf8a2fd3500ec3060e45887e4dbe88743780b4&v=4",
+      "workIds": [
+        "desk-otter--zihualiu1997"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/zihualiu1997.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "LLLucasXU",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/LLLucasXU",
+      "githubLogin": "LLLucasXU",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/216555531?v=4",
+      "workIds": [
+        "diandian--lllucasxu"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/LLLucasXU.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "D1a0y1bb",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/D1a0y1bb",
+      "githubLogin": "D1a0y1bb",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/98245649?u=cb5bdc7297ae065294941e16eb66f23baee9020f&v=4",
+      "workIds": [
+        "diaoyi-baobao--d1a0y1bb",
+        "tian-hua-hua--d1a0y1bb"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/D1a0y1bb.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Jasdfgh",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Jasdfgh",
+      "githubLogin": "Jasdfgh",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/56393899?v=4",
+      "workIds": [
+        "evanescia-lunar-blossoming--jasdfgh"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Jasdfgh.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Aygun Varol",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/AygunVarol",
+      "githubLogin": "AygunVarol",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/55206464?u=4cf4087dec2c8ac1263c6c3cec516ae7a6d1385d&v=4",
+      "workIds": [
+        "frankie--aygunvarol"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/AygunVarol.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "initiatione",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/initiatione",
+      "githubLogin": "initiatione",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/170032601?v=4",
+      "workIds": [
+        "hana2--initiatione"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/initiatione.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Yau-427",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Yau-427",
+      "githubLogin": "Yau-427",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/64030700?u=8e4736b79adf22ddc6d2c57a7a0fa5124bfe2f3c&v=4",
+      "workIds": [
+        "iris--yau-427"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Yau-427.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "SiIverAsh",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/SiIverAsh",
+      "githubLogin": "SiIverAsh",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/108169083?u=87ebc66b5ecaf668154c3ccde6d2c0208f0fb3e6&v=4",
+      "workIds": [
+        "isekaijoucho--siiverash",
+        "rinami--siiverash"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/SiIverAsh.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Thankyou-Cheems",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Thankyou-Cheems",
+      "githubLogin": "Thankyou-Cheems",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/78412531?u=dcaab4d683303d7d971809afb9126098914c641b&v=4",
+      "workIds": [
+        "katana-cheems--thankyou-cheems"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Thankyou-Cheems.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "untko",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/untko",
+      "githubLogin": "untko",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/4147838?v=4",
+      "workIds": [
+        "kiko--untko"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/untko.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "gg0805",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/gg0805",
+      "githubLogin": "gg0805",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/144742106?u=e45f0753f156dfbd16b370f8eb6b64c4e54759cb&v=4",
+      "workIds": [
+        "lil-swole--gg0805"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/gg0805.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "YoGazz",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/YoGazz",
+      "githubLogin": "YoGazz",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/37612998?u=b53b4a53e1925e58808c1c98706ae4db256b9a8c&v=4",
+      "workIds": [
+        "lulu--yogazz"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/YoGazz.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "DwDestiny",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/DwDestiny",
+      "githubLogin": "DwDestiny",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/43989745?v=4",
+      "workIds": [
+        "mai--dwdestiny"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/DwDestiny.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Jeonghan Lee (@Hyoni1129)",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Hyoni1129",
+      "githubLogin": "Hyoni1129",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/113992375?u=e24b764224f99e85087810885232047a9eae85a1&v=4",
+      "workIds": [
+        "mihari--hyoni1129"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Hyoni1129.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "ROTl24",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/ROTl24",
+      "githubLogin": "ROTl24",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/119035617?u=690594d207cebf64bd69c55c7669575dd08a0e5d&v=4",
+      "workIds": [
+        "mika--rotl24"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/ROTl24.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Jerry",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Spacebody",
+      "githubLogin": "Spacebody",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/14873165?u=45dcbfbcc7f2e5a7e19cd518dbc73af98ff8fbec&v=4",
+      "workIds": [
+        "mimi--spacebody"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Spacebody.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Somnusochi",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Somnusochi",
+      "githubLogin": "Somnusochi",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/14160184?u=677a8e3ae98021ac6ad8780e538155ab511665a4&v=4",
+      "workIds": [
+        "minty--somnusochi"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Somnusochi.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "LyuDonglian",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/ldl1234",
+      "githubLogin": "ldl1234",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/47620092?u=77ee5373211f0ca343c1148ef1878501cdaf33a4&v=4",
+      "workIds": [
+        "misaka-network--ldl1234"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/ldl1234.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Ping",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/zpzjzj",
+      "githubLogin": "zpzjzj",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/4339349?v=4",
+      "workIds": [
+        "missile--zpzjzj"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/zpzjzj.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "zhou-jianwen",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/zhou-jianwen",
+      "githubLogin": "zhou-jianwen",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/118164769?u=f5b356b4d73e836cc057c8c01880f9dfa640b17b&v=4",
+      "workIds": [
+        "my-little-orange-cat--zhou-jianwen",
+        "niu-lai--wynn"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/zhou-jianwen.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "netizenXuan",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/netizenXuan",
+      "githubLogin": "netizenXuan",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/180856450?u=8cd2658bf298d48294ff23608064668904fd6dab&v=4",
+      "workIds": [
+        "night-neko--netizenxuan"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/netizenXuan.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Jason Bai",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Jason-Bai",
+      "githubLogin": "Jason-Bai",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/6286948?v=4",
+      "workIds": [
+        "panda--jason-bai"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Jason-Bai.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Flamur Maliqi",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/FlamurMaliqi",
+      "githubLogin": "FlamurMaliqi",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/120040061?u=da92260b4f615e8550861008dbb3a8c04042d8c7&v=4",
+      "workIds": [
+        "pixel-duck--flamurmaliqi"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/FlamurMaliqi.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "ltmcliao-cmyk",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/ltmcliao-cmyk",
+      "githubLogin": "ltmcliao-cmyk",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/229602268?v=4",
+      "workIds": [
+        "ruruka--ltmcliao-cmyk"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/ltmcliao-cmyk.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "rookie-09",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/rookie-09",
+      "githubLogin": "rookie-09",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/270748775?v=4",
+      "workIds": [
+        "saki--rookie-09"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/rookie-09.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "mistyShen",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/mistyShen",
+      "githubLogin": "mistyShen",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/196217716?u=2fabc83226be4b6e8807a63c43a3da7a28bce1fc&v=4",
+      "workIds": [
+        "shian-helper--mistyshen"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/mistyShen.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Carl-312",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Carl-312",
+      "githubLogin": "Carl-312",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/135222010?v=4",
+      "workIds": [
+        "tangdouren--carl312"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Carl-312.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Wally Pet Contributors",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/wally025",
+      "githubLogin": "wally025",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/207980527?v=4",
+      "workIds": [
+        "wally--wally025"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/wally025.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "qingyunAGI",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/qingyunAGI",
+      "githubLogin": "qingyunAGI",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/185877580?u=f55b8526c0a33e4c288b5f3c66980c11568d795b&v=4",
+      "workIds": [
+        "xian-xiao-lu--qingyunagi"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/qingyunAGI.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Keseras34938976",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Keseras34938976",
+      "githubLogin": "Keseras34938976",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/212235047?v=4",
+      "workIds": [
+        "yuzubou--keseras34938976"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Keseras34938976.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Ricardo-2005",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Ricardo-2005",
+      "githubLogin": "Ricardo-2005",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/172946357?u=df93cb5e9a38e521b61450ecfa8816716151fab9&v=4",
+      "workIds": [
+        "uesugi-erii--ricardo-2005"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Ricardo-2005.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "JbBom",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/JbBom",
+      "githubLogin": "JbBom",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/251421762?u=9e7543c4a99aa517d92ebedbdc94dd2f66c3bb04&v=4",
+      "workIds": [
+        "tuantuan--jbbom"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/JbBom.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "QunBoo",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/QunBoo",
+      "githubLogin": "QunBoo",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/62738531?u=7b0605114b3a8f85001515b84f291b2d5c3f75aa&v=4",
+      "workIds": [
+        "dnf-female-ammo--qunboo"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/QunBoo.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Yitian Sun",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/sandytruant",
+      "githubLogin": "sandytruant",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/142995823?u=cb0645257b46f5375ab9a16f6d0db411dd23dd5c&v=4",
+      "workIds": [
+        "naiwa--sandytruant"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/sandytruant.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "xxhh0822",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/xxhh0822",
+      "githubLogin": "xxhh0822",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/63662315?u=1d3f47303a2ddeb565e98ebece5a86ee2faf5d05&v=4",
+      "workIds": [
+        "bubu-codebrew-bear--xxhh0822"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/xxhh0822.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Octane0411",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/Octane0411",
+      "githubLogin": "Octane0411",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/88922959?u=6a258fba78ea3a68acf003d2752abeaf9142e3cd&v=4",
+      "workIds": [
+        "maodie--octane0411"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/Octane0411.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Amiaね",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://github.com/amiaverse",
+      "githubLogin": "amiaverse",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/217227079?u=61abce82b16b5ed1beee4808877fb65f8966ba18&v=4",
+      "workIds": [
+        "nijika--amia"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/amiaverse.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "Regis Benedito dos Santos Bittencourt",
+      "role": "已收录插件原作者",
+      "profileUrl": "https://github.com/regisbsb",
+      "githubLogin": "regisbsb",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/886819?u=d422a8d59c2a635c4b6b014c81e862d60dbbf3ee&v=4",
+      "workIds": [
+        "regis.usage-buddy"
+      ],
+      "evidencePath": [
+        "outputs/desktop-pet/plugins/community/regis.usage-buddy/LICENSE",
+        "outputs/desktop-pet/plugins/community/regis.usage-buddy/README.md",
+        "outputs/desktop-pet/apps/community-web/dist/plugin-catalog.js"
+      ],
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/regisbsb.svg",
+      "avatarKind": "核验的公开头像"
+    },
+    {
+      "displayName": "wxy",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/wxy",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "crt-monitor--wxy"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-50.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "zeyu.wang",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/zeyu.wang",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "hajimi--zeyuwang1999"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-51.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "oYTYo",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/oYTYo",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "joker--oytyo"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-52.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "MingDong",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/MingDong",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "little-sheep--mingdong"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-53.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "wynn",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/wynn",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "st-tibo-reset--wynn"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-54.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "Alter",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/Alter",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "starcorn--alterhq"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-55.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "Gaming33",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/Gaming33",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "yuanzai--gaming33"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-56.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "Rank",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/Rank",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "gudong--rank"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-57.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "hoody",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/hoody",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "koukou-penguin--hoody"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-58.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "korn",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/korn",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "hance-woniu--korn"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-59.svg",
+      "avatarKind": "真实署名占位"
+    },
+    {
+      "displayName": "Shawnzhou",
+      "role": "已收录桌宠作品作者",
+      "profileUrl": "https://desktoppet-e9e.pages.dev/#contributors/pets/Shawnzhou",
+      "githubLogin": null,
+      "avatarUrl": null,
+      "workIds": [
+        "liubao--killyer"
+      ],
+      "evidencePath": "outputs/desktop-pet/apps/community-web/dist/catalog.js",
+      "verifiedAt": "2026-10-10T04:21:03.360Z",
+      "image": "assets/contributors/author-60.svg",
+      "avatarKind": "真实署名占位"
+    }
+  ]
+}
