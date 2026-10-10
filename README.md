@@ -117,8 +117,9 @@ https://desktoppet-e9e.pages.dev/#pets
 <!-- CONTRIBUTORS_START -->
 <p>
   <a href="https://github.com/xunguangzlj-cloud"><img src="assets/contributors/xunguangzlj-cloud.svg" width="64" height="64" alt="Lykinzlj" title="Lykinzlj"></a>
- </p>
-  <a href="https://github.com/huty828"><img src="assets/contributors/huty828.svg" width="64" height="64" alt="mythosのmemes" title="mythosのmemes"></a>
+<p>
+  <a href=" ">< img src="https://github.com/huty828.png" width="64" height="64" alt="mythos@memes" title="mythos@memes"></a >
+</p >
 <!-- CONTRIBUTORS_END -->
 
 感谢每一位贡献桌宠、插件、代码、文档、评审和创意的伙伴。
