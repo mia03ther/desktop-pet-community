@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="浏览桌宠与插件，预览动作，制作兼容 desktop pet 的素材包。AI 来源在本机自行配置。">
+  <meta name="color-scheme" content="light dark">
+  <title>desktop pet · 广场与制作工作台</title>
+  <link rel="icon" type="image/png" href="assets/brand-logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#pets"><img class="brand-mark" src="assets/brand-logo.png" width="36" height="36" alt="">desktop pet<span class="beta">预览版</span></a>
+    <nav aria-label="网站导航">
+      <a href="#pets" data-route="pets">桌宠广场</a>
+      <a href="#requests" data-route="requests">需求广场</a>
+      <a href="#plugins" data-route="plugins">插件广场</a>
+      <a href="#create" data-route="create">共创平台</a>
+      <a href="#guide" data-route="guide">安装指南</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换深色主题" title="切换主题"><span aria-hidden="true">☼</span></button>
+  </header>
+  <main id="main">
+    <div id="community-home">
+      <section class="home-hero" aria-labelledby="home-title">
+        <div class="home-hero-copy">
+          <p class="home-badge"><span class="home-badge-dot" aria-hidden="true"></span><span id="home-collected-count">社区共创 · 持续收录</span></p>
+          <h1 id="home-title" class="home-title"><span>共创平台</span></h1>
+          <p class="home-description">像逛小宠物商店一样预览完整动作，带回喜欢的动漫、动物或原创伙伴。外观不绑定 AI，你可以在本地连接多个 AI，也可以写下想要的角色。</p>
+          <div class="home-stats" aria-label="广场收录信息">
+            <div class="home-stat"><strong id="home-pet-count">—</strong><span>作品收录</span></div>
+            <div class="home-stat"><strong id="home-category-count">—</strong><span>分类数</span></div>
+          </div>
+        </div>
+        <div id="hero-pets" class="home-pet-strip" aria-label="精选桌宠"></div>
+      </section>
+      <section id="home-rankings" class="home-section home-rankings" aria-labelledby="home-rankings-title">
+        <div class="home-ranking-heading">
+          <p class="home-eyebrow">本周</p>
+          <h2 id="home-rankings-title">社区排行榜</h2>
+          <p class="home-scope" data-activity-scope>近 7 日 · 本浏览器</p>
+          <a class="home-section-link" href="#rankings">榜单 <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="home-ranking-columns">
+          <div><h3 class="home-ranking-label">桌宠 · 近 7 日互动</h3><ol id="home-pet-ranking" class="community-ranking-list"></ol></div>
+          <div><h3 class="home-ranking-label">作者 · 本站收录</h3><ol id="home-author-ranking" class="community-ranking-list"></ol></div>
+        </div>
+      </section>
+      <section id="home-requests" class="home-section" aria-labelledby="home-requests-title">
+        <div class="home-section-heading">
+          <div><p class="home-eyebrow">等待制作</p><h2 id="home-requests-title">这些小宠物还在等人制作</h2></div>
+          <a class="home-section-link" href="#requests">进入需求广场 <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="home-scope home-request-scope">公开需求与创作提案；草稿、支持与关注保存在此浏览器。</p>
+        <div id="request-preview" class="home-request-strip"></div>
+      </section>
+      <section id="home-collections" class="home-section" aria-labelledby="home-collections-title">
+        <div class="home-section-heading">
+          <div><p class="home-eyebrow">精选合集</p><h2 id="home-collections-title">值得一起安装的精选组合</h2></div>
+          <a class="home-section-link" href="#collections">查看全部</a>
+        </div>
+        <div class="home-collection-carousel">
+          <button id="collection-prev" class="home-carousel-control home-carousel-prev" type="button" aria-label="上一组合集">‹</button>
+          <div id="collection-preview" class="home-collection-strip"></div>
+          <button id="collection-next" class="home-carousel-control home-carousel-next" type="button" aria-label="下一组合集">›</button>
+        </div>
+      </section>
+    </div>
+    <section id="plugin-rankings" class="home-section home-rankings" aria-labelledby="plugin-rankings-title" hidden>
+      <div class="home-ranking-heading"><p class="home-eyebrow">本周</p><h2 id="plugin-rankings-title">插件排行榜</h2><p class="home-scope" data-activity-scope>近 7 日 · 本浏览器</p><a class="home-section-link" href="#rankings/plugins">榜单 →</a></div>
+      <div class="home-ranking-columns"><div><h3 class="home-ranking-label">插件 · 近 7 日互动</h3><ol id="home-plugin-ranking" class="community-ranking-list"></ol></div><div><h3 class="home-ranking-label">作者 / 维护者 · 本站收录</h3><ol id="home-plugin-author-ranking" class="community-ranking-list"></ol></div></div>
+    </section>
+    <section id="gallery-view">
+      <div class="gallery-header">
+        <div class="gallery-title-group">
+          <h1 id="gallery-title">桌宠广场</h1>
+          <p id="gallery-total">正在读取作品…</p>
+        </div>
+        <div class="gallery-controls-group">
+          <p id="gallery-status" class="gallery-status" aria-live="polite">点赞、下载与近期趋势仅记录在此浏览器，不代表全站统计。</p>
+          <div class="gallery-controls">
+            <button id="gallery-random" class="secondary" type="button"><span aria-hidden="true">⚄</span>随机发现</button>
+            <label class="sort-label"><span class="sr-only">广场排序</span><select id="sort"><option value="random">随机</option><option value="downloads" title="按此浏览器发起 ZIP 下载的次数排序">最多下载</option><option value="likes">最多点赞</option><option value="trending">近期趋势</option><option value="name">名称（A → Z）</option></select></label>
+          </div>
+        </div>
+      </div>
+      <h2 id="catalog-title" class="sr-only">桌宠作品</h2>
+      <div class="gallery-toolbar">
+        <label class="search"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input id="search" type="search" placeholder="搜索桌宠、作者、标签…" aria-label="搜索广场"><kbd aria-hidden="true">/</kbd></label>
+      </div>
+      <div class="category-bar" role="group" aria-label="筛选分类"></div>
+      <div id="cards" class="gallery-grid"></div>
+      <div id="empty" class="empty" hidden><h2>暂时没有匹配的作品</h2><p>换一个关键词，或者把它变成你的下一个作品。</p><button id="clear-search" class="secondary" type="button">清除筛选</button></div>
+      <div class="gallery-pagination"><p id="result-count" class="result-count" aria-live="polite"></p><button id="gallery-more" class="secondary" type="button" hidden>加载更多</button></div>
+    </section>
+    <section id="rankings-view" class="community-page" hidden>
+      <div class="ranking-page-heading"><div><p class="home-eyebrow">发现社区作品</p><h1>社区排行榜</h1><p id="ranking-scope" class="community-scope">正在读取互动记录。</p></div><dl class="ranking-snapshot"><div><dt>统计快照</dt><dd id="ranking-snapshot">—</dd></div><div><dt>更新频率</dt><dd id="ranking-refresh">页面读取时更新</dd></div></dl></div>
+      <div id="ranking-kinds" class="community-filter ranking-kinds" role="group" aria-label="作品类型"><button type="button" data-ranking-kind="pets" aria-pressed="true">桌宠榜单</button><button type="button" data-ranking-kind="plugins" aria-pressed="false">插件榜单</button></div>
+      <div class="ranking-controls">
+        <div id="ranking-tabs" class="ranking-view-tabs" role="tablist" aria-label="榜单类型"><button type="button" role="tab" data-ranking-view="works" aria-selected="true">作品</button><button type="button" role="tab" data-ranking-view="authors" aria-selected="false">贡献者</button><button type="button" role="tab" data-ranking-view="collections" aria-selected="false">系列</button></div>
+        <div id="ranking-period-buttons" class="community-filter" role="group" aria-label="时间范围"><button type="button" data-ranking-period="week" aria-pressed="true">本周</button><button type="button" data-ranking-period="all" aria-pressed="false">总榜</button></div><select id="ranking-period" hidden aria-label="时间范围"><option value="week">本周</option><option value="all">总榜</option></select>
+      </div>
+      <ol id="ranking-list" class="community-ranking-list community-ranking-page-list"></ol>
+    </section>
+    <section id="contributors-view" class="community-page" hidden>
+      <a id="contributor-back" class="community-back" href="#rankings/authors">← 返回榜单</a>
+      <div class="contributor-heading"><div class="contributor-introduction"><p class="home-eyebrow">社区创作者</p><h1 id="contributor-name"></h1><p id="contributor-handle" class="contributor-handle"></p><p id="contributor-description" class="community-scope"></p><div class="contributor-actions"><button id="contributor-follow" class="primary" type="button" disabled>关注</button><a id="contributor-homepage" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>作者主页 ↗</a><button id="contributor-homepage-unavailable" class="secondary" type="button" disabled>作者主页</button></div><p id="contributor-follow-status" class="contributor-service-status" aria-live="polite"></p></div><dl class="contributor-statistics"><div><dd id="contributor-work-count">—</dd><dt>作品</dt></div><div><dd id="contributor-followers">—</dd><dt>关注者</dt></div><div><dd id="contributor-downloads">—</dd><dt>下载</dt></div><div><dd id="contributor-likes">—</dd><dt>点赞</dt></div></dl></div>
+      <div class="contributor-works-heading"><h2 id="contributor-works-title">作者的作品</h2><div id="contributor-kind-tabs" class="community-filter" role="group" aria-label="作者作品类型"></div></div><p id="contributor-statistics-scope" class="community-scope"></p><div id="contributor-works" class="gallery-grid"></div>
+    </section>
+    <section id="collections-view" class="community-page" hidden>
+      <div class="community-page-heading"><p class="home-eyebrow">精选合集</p><h1>找到值得一起安装的伙伴</h1><p class="community-scope">按作品系列或共同主题浏览本站收录的桌宠，打开合集后可逐个预览和下载。</p></div>
+      <div class="community-toolbar community-collection-toolbar">
+        <label class="search community-search"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input id="collection-search" type="search" placeholder="搜索合集或主题…" aria-label="搜索合集"></label>
+        <div id="collection-filter" class="community-filter" role="group" aria-label="合集类型"><button type="button" data-collection-filter="all" aria-pressed="true">全部</button><button type="button" data-collection-filter="franchise" aria-pressed="false">作品系列</button><button type="button" data-collection-filter="theme" aria-pressed="false">主题系列</button></div>
+      </div>
+      <div id="collection-list" class="community-collection-grid"></div>
+      <div id="collection-detail" class="community-collection-detail" hidden>
+        <a class="community-back" href="#collections">← 返回合集</a>
+        <h2 id="collection-detail-title"></h2>
+        <p id="collection-detail-description" class="community-scope"></p>
+        <div id="collection-pets" class="gallery-grid"></div>
+      </div>
+    </section>
+    <section id="requests-view" class="community-page" hidden>
+      <div class="community-page-heading"><p class="home-eyebrow">让下一个伙伴有个起点</p><h1>桌宠需求广场</h1><p class="community-scope">发布你的创意，或先保存草稿。</p></div>
+      <div class="community-toolbar">
+        <label class="search community-search"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg><input id="request-search" type="search" placeholder="搜索角色或制作需求…" aria-label="搜索制作需求"></label>
+        <label class="community-inline-label">筛选<select id="request-state"><option value="all">全部需求</option><option value="waiting">待制作</option><option value="following">我关注的</option></select></label>
+        <button id="export-requests" class="secondary" type="button">导出我的需求</button>
+      </div>
+      <div id="request-list" class="community-request-grid"></div>
+      <form id="request-form" class="community-request-form">
+        <div class="community-form-heading"><h2>申请你喜欢的角色</h2></div>
+        <div class="field-grid"><label>角色或作品名称<input name="title" required maxlength="80" placeholder="例如：戴耳机的云朵小猫"></label><label>分类<select name="category"><option>原创角色</option><option>游戏角色</option><option>动漫角色</option><option>吉祥物</option><option>其他</option><option>机器人</option><option>人物头像</option><option>动物伙伴</option><option>幻想生物</option><option>网络梗图</option><option>物件与道具</option></select></label></div>
+        <label>制作说明<textarea name="description" required maxlength="1000" rows="4" placeholder="它的模样、个性或你想看到的动作…"></textarea></label>
+        <div class="community-form-actions"><label>图集版本<select name="version"><option value="2">V2 · 动作与 16 向注视</option><option value="1">V1 · 九组动作</option></select></label><button id="request-publish" class="primary" type="submit" disabled>发布制作需求</button><button class="secondary" type="submit">保存草稿</button><a id="request-public-site" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>前往公开共创平台</a></div>
+        <p id="request-feedback" class="community-feedback" role="status" aria-live="polite"></p><a id="request-submission-link" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>打开本站需求投稿</a>
+      </form>
+      <div id="request-export" class="form-panel" hidden>
+        <h2>我的制作需求说明</h2>
+        <p class="community-scope">可保存 Markdown，也可以复制后交给你选择的 AI。</p>
+        <label>制作需求 Markdown<textarea id="request-export-text" readonly rows="10"></textarea></label>
+        <button id="copy-request-export" class="secondary" type="button">复制制作需求</button>
+      </div>
+    </section>
+    <section id="create-view" hidden>
+      <div class="gallery-heading"><div><p class="eyebrow">创作者工作台</p><h1>共创平台</h1></div><a class="button secondary" href="#pets">返回广场</a></div>
+      <nav class="creation-tabs" aria-label="共创入口"><a class="button secondary" href="#create/pet-make" data-creator-route="pet-make">制作桌宠</a><a class="button secondary" href="#create/plugin-make" data-creator-route="plugin-make">制作插件</a><a class="button secondary" href="#create/pet-import" data-creator-route="pet-import">导入桌宠</a><a class="button secondary" href="#create/plugin-import" data-creator-route="plugin-import">导入插件</a></nav>
+      <div id="creator-start" class="form-panel"><h2>选择一种共创方式</h2></div>
+      <h2 id="creator-workflow-title" hidden></h2>
+      <div class="form-panel plugin-publication-panel"><p id="plugin-publication-status" class="hint" role="status">正在检查投稿服务…</p><a id="plugin-public-site" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>前往公开共创平台</a><a id="creator-submission-link" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>打开本站投稿表单</a><p id="plugin-publication-help" class="hint"></p></div>
+      <div id="pet-form-panel" aria-label="桌宠作品工作台" hidden>
+        <form id="pet-form" class="creator-layout">
+          <div class="form-panel">
+            <h2>作品信息</h2>
+            <div class="field-grid"><label>名称<input name="displayName" required maxlength="80" placeholder="例如：云朵小猫"></label><label>作品 ID<input name="id" required maxlength="64" pattern="[a-z0-9][a-z0-9_-]{0,63}" placeholder="例如：cloud-cat"></label></div>
+            <label>简介<textarea name="description" required maxlength="500" rows="3" placeholder="它是什么样的伙伴？"></textarea></label>
+            <div class="field-grid"><label>作者<input name="author" required maxlength="120" placeholder="你的署名"></label><label>许可声明<input name="license" required maxlength="200" placeholder="例如：CC BY-NC 4.0 或个人使用"></label></div>
+            <input name="source" type="hidden" value="">
+            <div id="pet-make-fields">
+              <label>动作素材方式<select id="pet-media-mode"><option value="video">逐动作视频 / 动画 WebP</option><option value="atlas">WebP 图集</option></select></label>
+              <div id="pet-video-fields"><label class="upload-label">添加动作文件<input id="clip-input" type="file" accept="video/mp4,video/webm,image/webp,.mp4,.webm,.webp" multiple></label><p class="hint">每个文件是一个独立动作。名称、种类和与 AI 状态的对应关系均可自定义，未绑定状态显示待机。单文件 100 MB，总计 200 MB。</p><div id="clip-list" class="creator-clips"></div><div class="field-grid"><label>背景处理<select id="clip-background"><option value="chroma">纯色背景去背</option><option value="alpha">素材自带透明通道</option></select></label><label id="clip-color-label">背景颜色<input id="clip-color" type="color" value="#00ff00"></label></div><details><summary>AI 与交互动作绑定</summary><div id="state-bindings" class="field-grid"></div></details></div>
+              <div id="pet-atlas-fields" hidden><label class="upload-label">选择 WebP 图集<input id="atlas-input" type="file" accept="image/webp,.webp"></label><p class="hint">V1：1536 × 1872；V2：1536 × 2288。每格 192 × 208，8 列，透明背景。最大 24 MB。</p></div>
+            </div>
+            <div id="pet-import-fields" hidden><h3>先导入原项目文件</h3><div class="package-upload-options"><label class="upload-label">ZIP<input id="pet-package-zip" type="file" accept=".zip,application/zip"></label><label class="upload-label">完整文件夹<input id="pet-package-folder" type="file" webkitdirectory multiple></label><label class="upload-label">清单与配套文件<input id="pet-package-files" type="file" multiple></label></div><div id="pet-compatibility" class="compatibility-report" hidden></div><p id="pet-package-status" class="hint" role="status">尚未导入文件</p><div id="pet-import-capabilities" class="import-capabilities"><button class="secondary" type="button" data-import-preview disabled>预览原素材</button><button class="secondary" type="button" disabled title="导入保留原清单，不在网页改写映射">AI 动作绑定由原清单定义</button><p id="pet-import-capability-note" class="hint">导入后显示本系统支持范围。</p></div><div id="pet-import-preview" class="preview-stage" hidden></div><ul id="pet-package-list" class="package-file-list"></ul></div>
+            <div class="creator-submit-actions"><button id="pet-publish" class="primary" type="submit" disabled>打包并发布</button><button id="pet-download-backup" class="secondary" type="button">下载分享 ZIP</button><button class="secondary" type="button" data-save-draft="pet">保存草稿</button><button class="secondary" type="button" data-restore-draft="pet">恢复草稿</button></div>
+          </div>
+          <aside class="preview-panel">
+            <span class="eyebrow">动作预览</span>
+            <div id="creator-pet-stage" class="preview-stage"><p>选择图集后，在这里预览</p></div>
+            <label>预览背景<select id="creator-background"><option value="checker">透明棋盘</option><option value="light">浅色背景</option><option value="dark">深色背景</option></select></label>
+            <label>预览动作<select id="creator-action" disabled></select></label>
+            <div id="creator-action-buttons" class="action-grid" role="group" aria-label="上传图集的九组动作"></div>
+            <div id="creator-look-section" hidden>
+              <h3 class="preview-subheading">16 向注视</h3>
+              <div id="creator-look-buttons" class="look-grid" role="group" aria-label="上传图集的十六方向注视"></div>
+            </div>
+            <p id="creator-current-preview" class="hint" role="status">选择图集后即可预览</p>
+            
+            <p id="atlas-status" class="hint" role="status">等待选择图集</p>
+            
+          </aside>
+        </form>
+      </div>
+      <div id="plugin-form-panel" aria-label="插件作品工作台" hidden>
+        <form id="plugin-form" class="creator-layout">
+          <div class="form-panel"><h2 id="plugin-upload-title">上传你制作的插件</h2><div id="plugin-file-fields"><div class="package-upload-options"><label class="upload-label">ZIP<input id="plugin-package-zip" type="file" accept=".zip,application/zip"></label><label class="upload-label">完整文件夹<input id="plugin-package-folder" type="file" webkitdirectory multiple></label><label class="upload-label">清单与配套文件<input id="plugin-package-files" type="file" multiple></label></div><div id="plugin-compatibility" class="compatibility-report" hidden></div></div><h3>作品信息</h3><div class="field-grid"><label>插件名称<input name="title" required maxlength="120" placeholder="我的插件"></label><label>作品 ID<input name="id" required maxlength="64" placeholder="author.my-plugin"></label></div><label>说明<textarea name="description" required maxlength="1000" rows="3" placeholder="功能、适用环境与安装条件"></textarea></label><div class="field-grid"><label>作者<input name="author" required maxlength="120" placeholder="你的署名"></label><label>许可声明<input name="license" required maxlength="200" placeholder="例如：MIT"></label></div><input name="source" type="hidden" value=""><label class="upload-label">插件广场卡片封面（可选）<input id="plugin-cover-input" type="file" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp"></label><button id="plugin-cover-remove" class="secondary" type="button" hidden>移除本次封面</button><div class="creator-submit-actions"><button id="plugin-publish" class="primary" type="submit" disabled>打包并发布</button><button id="plugin-download-backup" class="secondary" type="button">下载分享 ZIP</button><button class="secondary" type="button" data-save-draft="plugin">保存草稿</button><button class="secondary" type="button" data-restore-draft="plugin">恢复草稿</button></div></div>
+          <aside class="preview-panel"><span class="eyebrow">插件广场卡片预览</span><div id="plugin-card-preview"></div><h3>作品文件</h3><p id="plugin-package-status" class="hint" role="status">尚未导入文件</p><ul id="plugin-package-list" class="package-file-list"></ul><h3>声明权限</h3><p id="permission-preview">尚未读取清单</p><div class="import-capabilities"><button class="secondary" type="button" disabled>运行插件</button><button class="secondary" type="button" disabled>运行配置</button><p id="plugin-import-capability-note" class="hint"></p></div></aside>
+        </form>
+      </div>
+      <p id="creator-publishing-note" class="hint creator-publishing-note">提交投稿后，审核收录才会在广场显示。</p>
+      <p id="creator-feedback" class="feedback" role="status" aria-live="polite"></p>
+    </section>
+    <section id="guide-view" hidden>
+      <div class="gallery-heading"><div><p class="eyebrow">从网站到桌面</p><h1>下载，导入，开始陪伴</h1><p class="intro">网站负责作品与创作；控制中心保存你的本地配置。</p></div></div>
+      <div class="guide-grid"><article class="form-panel"><span class="step">01</span><h2>安装桌宠</h2><p>在广场预览动作，下载桌宠 ZIP。打开控制中心「我的桌宠」，选择「导入 ZIP 或文件夹」并导入 ZIP，然后设为桌面伙伴。</p><p>已存在的编号会按本地导入规则处理，内置桌宠无需再次安装。</p></article><article class="form-panel"><span class="step">02</span><h2>安装插件</h2><p>下载插件 ZIP 并解压。在「插件管理」选择「导入插件文件夹」，选中含插件清单的文件夹。阅读并确认权限后再启用。</p><p>提醒是否开启、运行频率与停用操作由本机控制。</p></article><article class="form-panel"><span class="step">03</span><h2>连接你选择的 AI</h2><p>在控制中心「宠物大脑」配置多个提供方或兼容接口；在「外部 AI 接入」连接支持的本机工具。外观素材不绑定单一 AI。</p><p>密钥、人设、聊天与电脑文件都留在本地配置流程中。</p></article></div>
+    </section>
+  </main>
+  <footer><span>desktop pet</span><p>作品在网站相遇，陪伴在你的桌面发生。</p><a href="#guide">安装指南</a></footer>
+  <dialog id="pet-detail" aria-labelledby="detail-title">
+    <div class="dialog-heading"><h2 id="detail-title">桌宠动作预览</h2><button id="close-detail" class="secondary" aria-label="关闭详情">关闭</button></div>
+    <div class="detail-layout">
+      <div class="detail-visual">
+        <div id="detail-pet-stage" class="preview-stage"><div id="detail-sprite" class="sprite large" role="img" aria-label="桌宠动作"></div></div>
+        <label>预览背景<select id="detail-background"><option value="checker">透明棋盘</option><option value="light">浅色背景</option><option value="dark">深色背景</option></select></label>
+        <p id="detail-current-preview" class="hint" role="status">正在预览：安静陪伴</p>
+      </div>
+      <div class="detail-information">
+        <p id="detail-author" class="byline"></p>
+        <p id="detail-description"></p>
+        <label>动作<select id="detail-action"></select></label>
+        <div id="detail-action-buttons" class="action-grid" role="group" aria-label="九组动作"></div>
+        <div id="detail-look-section">
+          <h3 class="preview-subheading">16 向注视</h3>
+          <p class="hint">以屏幕为方向：0° 向上，90° 向右。点击查看实际单帧姿态。</p>
+          <div id="detail-look-buttons" class="look-grid" role="group" aria-label="十六方向注视"></div>
+        </div>
+        <div class="dialog-actions"><a id="detail-download" class="button primary" download>下载桌宠 ZIP</a></div>
+      </div>
+    </div>
+  </dialog>
+  <p id="toast" class="toast" role="status" hidden></p>
+</body>
+</html>

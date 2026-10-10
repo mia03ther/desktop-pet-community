@@ -1,0 +1,8 @@
+.companion-software .companion-software-items { display: grid; gap: 14px; }
+.companion-software .companion-installer-evidence { display: grid; gap: 12px; }
+.companion-software .companion-software-conclusion { padding: 12px 14px; border-radius: 10px; background: var(--diag-surface); border-left: 3px solid #d99a34; font-weight: 650; }
+.companion-software .companion-software-clues { padding-left: 20px; font-size: 13px; line-height: 1.7; }
+.companion-software details { padding: 12px; border: 1px solid var(--diag-line); border-radius: 12px; }
+.companion-software summary { cursor: pointer; font-size: 13px; }
+.companion-software details dl { margin-top: 14px; }
+.companion-software .companion-software-directory-result { font-size: 13px; line-height: 1.7; }

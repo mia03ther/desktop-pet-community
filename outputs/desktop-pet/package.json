@@ -1,0 +1,42 @@
+{
+  "name": "desktop-pet-workspace",
+  "version": "4.0.0",
+  "private": true,
+  "description": "desktop pet 本地桌面伙伴与共创平台",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xunguangzlj-cloud/desktop-pet-community.git"
+  },
+  "type": "module",
+  "packageManager": "pnpm@11.0.8",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "docs:dev": "blume dev",
+    "docs:build": "blume build",
+    "docs:preview": "blume preview",
+    "dev:desktop": "pnpm --filter @open-pets/desktop dev",
+    "dev:desktop:control-center": "pnpm --filter @open-pets/desktop dev:control-center",
+    "dev:desktop:plugins": "pnpm --filter @open-pets/desktop dev:plugins",
+    "package:desktop:dir": "pnpm build && pnpm --filter @open-pets/desktop package:dir",
+    "package:desktop": "pnpm build && pnpm --filter @open-pets/desktop package",
+    "plugins:locales": "node scripts/check-plugin-locales.mjs",
+    "plugins:test": "pnpm plugins:locales && node scripts/test-plugins.mjs",
+    "test": "pnpm build && pnpm -r --if-present test",
+    "check": "pnpm -r check",
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "@open-pets/plugin-sdk": "workspace:*",
+    "blume": "^1.3.1",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.120.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

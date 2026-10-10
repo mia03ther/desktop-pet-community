@@ -1,0 +1,635 @@
+import { BrowserWindow, shell, type Display } from "electron";
+
+import { getAppStateSnapshot, getDefaultPetPositionState, recordDefaultPetPosition, resetDefaultPetPosition, updatePreferences } from "./app-state.js";
+import { shouldShowDefaultPetForExternalEvent } from "./app-state-core.js";
+import { defaultPetWindowSize, getAllDisplayKeys, getDefaultPetInitialPosition, getDisplayKey, getDisplayKeyForPosition, type Point } from "./display.js";
+import { motionMoveTo } from "./pet-motion-engine.js";
+import { registerRoamingPet, unregisterRoamingPet } from "./pet-roaming-controller.js";
+import { bindDefaultPetChatWindow, collapseDefaultPetChat, unbindDefaultPetChatWindow } from "./default-pet-chat.js";
+import { debug, info, warn } from "./logger.js";
+import { transientDisplayMs, type OpenPetsReaction } from "./local-ipc-protocol.js";
+import { clearTransientReaction, createDefaultPetWindow, getSafeDefaultPetPosition, getTransientDisplayDurationMs, getTransientReactionAnimationMs, hidePetWindow, isPetWindowDragging, loadDefaultPetContent, mergePetTransientDisplay, readWindowPosition, recoverPetMouseInterop, showPetWindowInactive, type PetPluginBubbles, type PetShowMediaOptions, type PetStatusBadgeReaction, type PetTransientDisplay } from "./pet-window.js";
+import { PetBubbleArbiter, type ActiveBubble, type PetBubbleSink } from "./plugin-bubble-arbiter.js";
+import { publishPluginPetEvent } from "./plugin-events-source.js";
+import { composeVoiceActivityBadge, composeVoiceActivityDisplay } from "./voice-activity-slot.js";
+import { createPetTransientPresentation, type PetTransientPresentation } from "./pet-transient-presentation.js";
+import type { DisplayChangeReason } from "./pet-display-coordinator.js";
+import { setWindowPosition } from "./window-position.js";
+import { PetBehaviorController, composePetBehaviorDisplay } from "./pet-behavior.js";
+import type { UserSelectableAnimationState } from "./reaction-animation-mapping.js";
+import { recordDesktopPetBubble, recordDesktopPetMessage } from "./desktop-pet-messages.js";
+import type { PetMediaOptionalAction } from "./pet-media-contract.js";
+import type { ExternalAiPetProgress } from "./external-ai-activity.js";
+
+let defaultPetWindow: BrowserWindow | null = null;
+let paused = false;
+let voiceActivityReaction: OpenPetsReaction | null = null;
+let voiceTerminalReaction: OpenPetsReaction | null = null;
+let voiceTerminalReactionTimeout: NodeJS.Timeout | null = null;
+const maxPluginMoveDistance = 160;
+const minPluginMoveDurationMs = 250;
+const maxPluginMoveDurationMs = 1_500;
+let movementInProgress = false;
+const busyStatusBadgeMs = 120_000;
+let behaviorAnimation: UserSelectableAnimationState | null = null;
+let behaviorAiActive = false;
+let behaviorRandomActive = false;
+let behaviorMediaAction: PetMediaOptionalAction | null = null;
+let externalAiProgress: ExternalAiPetProgress | null = null;
+const behavior = new PetBehaviorController({
+  getPreferences: () => getAppStateSnapshot().preferences.petBehavior,
+  getReactionOverrides: () => getAppStateSnapshot().preferences.reactionAnimationOverrides,
+  render: (animation, aiActive, randomActive, mediaAction) => {
+    if (behaviorAnimation === animation && behaviorAiActive === aiActive && behaviorRandomActive === randomActive && behaviorMediaAction === mediaAction) return;
+    behaviorAnimation = animation;
+    behaviorAiActive = aiActive;
+    behaviorRandomActive = randomActive;
+    behaviorMediaAction = mediaAction;
+    refreshDefaultPetContent();
+  },
+});
+
+export function startDefaultPetBehavior(): void {
+  behavior.setBlocked("hidden", !isDefaultPetVisible());
+  behavior.start();
+}
+
+export function stopDefaultPetBehavior(): void {
+  behavior.stop();
+}
+
+export function refreshDefaultPetBehavior(): void {
+  behavior.refresh();
+}
+
+export function updateDefaultPetCareState(pluginId: string, topic: string, payload: unknown): void {
+  behavior.updateCareState(pluginId, topic, payload);
+}
+
+export function playDefaultPetAction(actionId: string): boolean {
+  return behavior.playAction(actionId);
+}
+
+export function setDefaultPetBehaviorBlocked(reason: string, blocked: boolean): void {
+  behavior.setBlocked(reason, blocked);
+}
+
+export function setDefaultPetAiActivity(source: string, reaction: OpenPetsReaction | null): void {
+  behavior.setAiActivity(source, reaction);
+}
+
+export function setDefaultPetExternalAiActivity(source: string, reaction?: OpenPetsReaction): void {
+  behavior.setExternalAiActivity(source, reaction);
+}
+
+export function setDefaultPetExternalAiProgress(progress: ExternalAiPetProgress | null): void {
+  if (JSON.stringify(externalAiProgress) === JSON.stringify(progress)) return;
+  externalAiProgress = progress;
+  refreshDefaultPetContent();
+}
+
+const transientPresentation: PetTransientPresentation = createPetTransientPresentation({
+  mergeDisplay: mergePetTransientDisplay,
+  getDisplayDurationMs: getDefaultTransientDisplayDurationMs,
+  getReactionAnimationMs: getDefaultTransientReactionAnimationMs,
+  clearReaction: clearTransientReaction,
+  badgeExpiryMs: { busy: busyStatusBadgeMs, normal: transientDisplayMs },
+  callbacks: {
+    onRenderNeeded: () => refreshDefaultPetContent(),
+    onReactionIdle: () => {
+      refreshDefaultPetContent();
+    },
+  },
+});
+
+export type PetMoveOptions = { readonly x: number; readonly y: number; readonly durationMs?: number };
+export type PetWanderOptions = { readonly distance?: number; readonly durationMs?: number };
+export type PetReactionOptions = { readonly showMessage?: boolean };
+
+// Plugin bubble slots (SDK v3): the arbiter decides what each slot shows; the
+// sink merges its decisions into the default pet render.
+let pluginTransientBubble: ActiveBubble | null = null;
+let pluginPinnedBubble: ActiveBubble | null = null;
+
+const defaultPetBubbleSink: PetBubbleSink = {
+  present(slot, content) {
+    if (slot === "pinned") pluginPinnedBubble = content;
+    else pluginTransientBubble = content;
+    recordDesktopPetBubble(content);
+    debug("pet.default", "plugin bubble slot", { slot, token: content?.token ?? null, pluginId: content?.pluginId });
+    if (content) showDefaultPetForExternalEvent();
+    refreshDefaultPetContent();
+  },
+};
+
+/** The default pet's bubble arbiter — the Electron bubbles capability targets this. */
+export const defaultPetBubbleArbiter = new PetBubbleArbiter(defaultPetBubbleSink);
+
+export function getDefaultPetPluginBubbles(): PetPluginBubbles | null {
+  if (!pluginTransientBubble && !pluginPinnedBubble) return null;
+  return { transient: pluginTransientBubble, pinned: pluginPinnedBubble };
+}
+
+export function showDefaultPet(): void {
+  updatePreferences({ openDefaultPetOnLaunch: true });
+  showDefaultPetWindow("user");
+}
+
+export function showDefaultPetForLan(): void {
+  showDefaultPetWindow("external-event");
+}
+
+function showDefaultPetWindow(source: "user" | "external-event"): void {
+  const window = getOrCreateDefaultPetWindow();
+  info("pet.default", "show requested", { source, windowId: window.id, visible: window.isVisible(), minimized: window.isMinimized(), paused, petId: getAppStateSnapshot().preferences.defaultPetId });
+
+  if (window.isMinimized()) {
+    window.restore();
+  }
+
+  showPetWindowInactive(window);
+  registerRoamingPet("default", getDefaultPetWindowForPlugins);
+}
+
+export function hideDefaultPet(): void {
+  updatePreferences({ openDefaultPetOnLaunch: false });
+  hideDefaultPetWindow();
+}
+
+export function hideDefaultPetTemporarily(): void {
+  if (hideDefaultPetWindow()) {
+    refreshTrayMenuAfterVisibilityChange();
+  }
+}
+
+export function hideDefaultPetForLan(): void {
+  hideDefaultPetWindow();
+}
+
+function hideDefaultPetWindow(): boolean {
+  behavior.setBlocked("hidden", true);
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) {
+    debug("pet.default", "hide skipped", { reason: "no-window" });
+    return false;
+  }
+  const window = defaultPetWindow;
+  const wasVisible = window.isVisible();
+  const hidePosition = wasVisible ? readWindowPosition(window) : null;
+  hidePetWindow(window);
+  unregisterRoamingPet("default");
+  collapseDefaultPetChat();
+  if (!hidePosition || window.isDestroyed()) return wasVisible;
+
+  info("pet.default", "hide requested", { windowId: window.id, position: hidePosition, petId: getAppStateSnapshot().preferences.defaultPetId });
+  handlePositionChanged(hidePosition);
+  return wasVisible;
+}
+
+function refreshTrayMenuAfterVisibilityChange(): void {
+  void import("./tray.js")
+    .then(({ refreshTrayMenu }) => refreshTrayMenu())
+    .catch((error: unknown) => {
+      warn("pet.default", "tray menu refresh after pet visibility change failed", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+    });
+}
+
+function watchDefaultPetVisibility(window: BrowserWindow): void {
+  window.on("show", refreshTrayMenuAfterVisibilityChange);
+  window.on("show", () => behavior.setBlocked("hidden", false));
+  window.on("hide", () => behavior.setBlocked("hidden", true));
+}
+
+export function getDefaultPetLanPosition(): { readonly x: number; readonly y: number } | null {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) return null;
+  return readWindowPosition(defaultPetWindow);
+}
+
+export function isDefaultPetVisible(): boolean {
+  return Boolean(defaultPetWindow && !defaultPetWindow.isDestroyed() && defaultPetWindow.isVisible());
+}
+
+export function setDefaultPetPaused(nextPaused: boolean): void {
+  paused = nextPaused;
+  behavior.setBlocked("paused", paused);
+  if (paused) {
+    voiceActivityReaction = null;
+    clearVoiceTerminalFeedback();
+  }
+  info("pet.default", "pause changed", { paused });
+
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) {
+    return;
+  }
+
+  void loadDefaultPetContent(defaultPetWindow, paused, getRenderedDisplay(), getRenderedBadge(), getCurrentDismissToken(), getDefaultPetPluginBubbles());
+}
+
+export function getDefaultPetPaused(): boolean {
+  return paused;
+}
+
+export function getDefaultPetWindowForPlugins(): BrowserWindow | null {
+  return defaultPetWindow && !defaultPetWindow.isDestroyed() ? defaultPetWindow : null;
+}
+
+export function refreshDefaultPetContent(): void {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) {
+    debug("pet.default", "refresh skipped", { reason: "no-window" });
+    return;
+  }
+
+  debug("pet.default", "refresh content", { windowId: defaultPetWindow.id, paused, hasDisplay: Boolean(getRenderedDisplay()), badge: getRenderedBadge(), petId: getAppStateSnapshot().preferences.defaultPetId });
+  void loadDefaultPetContent(defaultPetWindow, paused, getRenderedDisplay(), getRenderedBadge(), getCurrentDismissToken(), getDefaultPetPluginBubbles());
+}
+
+export function recoverDefaultPetMouseInterop(reason: string): void {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) {
+    debug("pet.default", "mouse interop recovery skipped", { reason, skippedReason: "no-window" });
+    return;
+  }
+
+  debug("pet.default", "mouse interop recovery requested", { windowId: defaultPetWindow.id, reason, petId: getAppStateSnapshot().preferences.defaultPetId });
+  recoverPetMouseInterop(defaultPetWindow, reason);
+}
+
+export function applyExternalPetReaction(reaction: OpenPetsReaction, options: PetReactionOptions = {}): { readonly shown: boolean; readonly reason?: string } {
+  if (paused) {
+    return { shown: false, reason: "paused" };
+  }
+
+  setTransientDisplay({ reaction, ...(options.showMessage === false ? { suppressReactionMessage: true } : {}) });
+  showDefaultPetForExternalEvent();
+  return { shown: isDefaultPetVisible() };
+}
+
+export function applyExternalPetSay(message: string, reaction?: OpenPetsReaction, options: { readonly recordInConversation?: boolean } = {}): { readonly shown: boolean; readonly reason?: string } {
+  if (paused) {
+    return { shown: false, reason: "paused" };
+  }
+
+  if (!reaction) clearStatusBadge();
+  if (options.recordInConversation !== false) recordDesktopPetMessage(message);
+  setTransientDisplay({ message, reaction });
+  showDefaultPetForExternalEvent();
+  return { shown: isDefaultPetVisible() };
+}
+
+export function applyExternalPetShowMedia(options: PetShowMediaOptions): { readonly shown: boolean; readonly reason?: string } {
+  if (paused) {
+    return { shown: false, reason: "paused" };
+  }
+
+  if (!options.reaction) clearStatusBadge();
+  setTransientDisplay({ message: options.message, reaction: options.reaction, mediaPath: options.mediaPath, displayDurationMs: options.durationMs, clickUrl: options.clickUrl });
+  showDefaultPetForExternalEvent();
+  return { shown: isDefaultPetVisible() };
+}
+
+export function applyExternalPetStatusReaction(reaction: OpenPetsReaction | null): void {
+  if (reaction === null || reaction === "idle") clearStatusBadge();
+  else setStatusBadge(reaction);
+  refreshDefaultPetContent();
+}
+
+/** Set only the voice-owned activity slot; plugin display and status state remain independent. */
+export function setDefaultPetVoiceActivity(reaction: OpenPetsReaction | null): void {
+  voiceActivityReaction = paused || reaction === "idle" ? null : reaction;
+  behavior.setAiActivity("assistant-feedback", voiceActivityReaction);
+  debug("pet.default", "voice activity slot changed", { reaction: voiceActivityReaction });
+  if (voiceActivityReaction) showDefaultPetForExternalEvent();
+  refreshDefaultPetContent();
+}
+
+/** Keep terminal Talk feedback above the next listening activity for one bounded display window. */
+export function setDefaultPetVoiceTerminalFeedback(reaction: OpenPetsReaction | null): void {
+  clearVoiceTerminalFeedback();
+  if (reaction === null || reaction === "idle" || paused) {
+    refreshDefaultPetContent();
+    return;
+  }
+  voiceTerminalReaction = reaction;
+  voiceTerminalReactionTimeout = setTimeout(() => {
+    clearVoiceTerminalFeedback();
+    refreshDefaultPetContent();
+  }, 2_500);
+  refreshDefaultPetContent();
+}
+
+export function applyExternalPetMoveBy(options: PetMoveOptions): Promise<{ readonly moved: boolean; readonly reason?: string }> {
+  return moveDefaultPetBy(Number(options.x), Number(options.y), options.durationMs);
+}
+
+export function applyExternalPetWander(options: PetWanderOptions): Promise<{ readonly moved: boolean; readonly reason?: string }> {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) return Promise.resolve({ moved: false, reason: "no-window" });
+  const blockedReason = getMovementBlockedReason(defaultPetWindow);
+  if (blockedReason) {
+    debug("pet.default", "wander skipped", { reason: blockedReason });
+    return Promise.resolve({ moved: false, reason: blockedReason });
+  }
+  const distance = clampNumber(Number(options.distance ?? 80), 0, maxPluginMoveDistance);
+  const angle = Math.random() * Math.PI * 2;
+  const current = readWindowPosition(defaultPetWindow);
+  const durationMs = clampNumber(Number(options.durationMs ?? 700), minPluginMoveDurationMs, maxPluginMoveDurationMs);
+  const rawTarget = {
+    x: current.x + Math.cos(angle) * distance,
+    y: current.y + Math.sin(angle) * distance,
+  };
+  const target = getSafeDefaultPetPosition(rawTarget);
+  return motionMoveTo("default", getDefaultPetWindowForPlugins, target, { durationMs })
+    .then(() => {
+      // The move loop repositions the window via repeated setBounds() calls
+      // (see pet-motion-engine.ts) without ever refreshing window content --
+      // on Linux this can leave the pet's shape/paint stale and effectively
+      // invisible until something else happens to trigger a refresh. Force
+      // one here so every wander hop actually leaves the pet visible.
+      refreshDefaultPetContent();
+      return { moved: true } as const;
+    })
+    .catch(() => ({ moved: false, reason: "engine-error" } as const));
+}
+
+export function applyExternalPetMoveToHome(): Promise<{ readonly moved: boolean; readonly reason?: string }> {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) return Promise.resolve({ moved: false, reason: "no-window" });
+  const current = readWindowPosition(defaultPetWindow);
+  const home = getSafeDefaultPetPosition(getDefaultPetInitialPosition(defaultPetWindowSize));
+  return moveDefaultPetBy(home.x - current.x, home.y - current.y, maxPluginMoveDurationMs, Number.POSITIVE_INFINITY);
+}
+
+export function destroyDefaultPet(): void {
+  clearDefaultPetDisplayTimers();
+  voiceActivityReaction = null;
+
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) {
+    debug("pet.default", "destroy skipped", { reason: "no-window" });
+    defaultPetWindow = null;
+    return;
+  }
+
+  const destroyPosition = readWindowPosition(defaultPetWindow);
+  info("pet.default", "destroy requested", { windowId: defaultPetWindow.id, position: destroyPosition, petId: getAppStateSnapshot().preferences.defaultPetId });
+  handlePositionChanged(destroyPosition);
+  const window = defaultPetWindow;
+  unregisterRoamingPet("default");
+  collapseDefaultPetChat();
+  unbindDefaultPetChatWindow();
+  defaultPetWindow = null;
+  window.setIgnoreMouseEvents(false);
+  window.destroy();
+}
+
+function handleBubbleDismissed(dismissToken: string): void {
+  debug("pet.default", "bubble dismissed callback", { windowId: defaultPetWindow?.id, dismissToken, currentGeneration: transientPresentation.getDismissToken() });
+  if (PetBubbleArbiter.isArbiterToken(dismissToken)) {
+    defaultPetBubbleArbiter.handleDismissed(dismissToken);
+    return;
+  }
+  const result = transientPresentation.dismiss(dismissToken);
+  if (!result.matched) {
+    debug("pet.default", "bubble dismissed stale token", { dismissToken, currentGeneration: transientPresentation.getDismissToken() });
+    return;
+  }
+  const clickUrl = result.display?.clickUrl;
+  if (clickUrl) {
+    info("pet.default", "media bubble clicked", { windowId: defaultPetWindow?.id });
+    void shell.openExternal(clickUrl).catch((error: unknown) => {
+      debug("pet.default", "media bubble click open failed", { error: error instanceof Error ? error.message : String(error) });
+    });
+  }
+  clearVoiceTerminalFeedback();
+  if (defaultPetWindow && !defaultPetWindow.isDestroyed()) {
+    void loadDefaultPetContent(defaultPetWindow, paused, getRenderedDisplay(), getRenderedBadge(), getCurrentDismissToken(), getDefaultPetPluginBubbles());
+  }
+}
+
+function getOrCreateDefaultPetWindow(): BrowserWindow {
+  if (defaultPetWindow && !defaultPetWindow.isDestroyed()) {
+    return defaultPetWindow;
+  }
+
+  // The flat position is the most recently saved position across all monitors.
+  // Do not scan every connected per-monitor entry here: display order is usually
+  // primary-first, which can override the true last position with an older
+  // primary-display entry.
+  const position = getSafeDefaultPetPosition(getDefaultPetPositionState().position);
+
+  defaultPetWindow = createDefaultPetWindow({
+    position,
+    paused,
+    display: getRenderedDisplay(),
+    badge: getRenderedBadge(),
+    pluginBubbles: getDefaultPetPluginBubbles(),
+    onPositionChanged: handlePositionChanged,
+    onHideRequested: hideDefaultPet,
+    onWindowCloseRequested: hideDefaultPetTemporarily,
+    onBubbleDismissed: handleBubbleDismissed,
+    onBubbleAction: (token, actionId) => defaultPetBubbleArbiter.handleAction(token, actionId),
+    onBubbleSubmit: (token, values) => defaultPetBubbleArbiter.handleSubmit(token, values),
+    onPetEvent: (name, payload) => {
+      if (name === "pet:clicked") behavior.click();
+      if (name === "pet:dragStart") behavior.setBlocked("dragging", true);
+      if (name === "pet:dragEnd") behavior.setBlocked("dragging", false);
+      publishPluginPetEvent("default", name, payload);
+    },
+    onWindowReplaced: (replacement) => {
+      defaultPetWindow = replacement;
+      watchDefaultPetVisibility(replacement);
+      bindDefaultPetChatWindow(replacement);
+      void loadDefaultPetContent(replacement, paused, getRenderedDisplay(), getRenderedBadge(), getCurrentDismissToken(), getDefaultPetPluginBubbles());
+      const replacementId = replacement.id;
+      replacement.on("closed", () => {
+        if (defaultPetWindow !== replacement) return;
+        unregisterRoamingPet("default");
+        collapseDefaultPetChat();
+        unbindDefaultPetChatWindow();
+        info("pet.default", "closed", { windowId: replacementId });
+        behavior.setBlocked("hidden", true);
+        defaultPetWindow = null;
+      });
+    },
+  }, getCurrentDismissToken());
+  const createdWindow = defaultPetWindow;
+  watchDefaultPetVisibility(createdWindow);
+  bindDefaultPetChatWindow(createdWindow);
+  const windowId = createdWindow.id;
+  info("pet.default", "created", { windowId, position, paused, petId: getAppStateSnapshot().preferences.defaultPetId });
+
+  createdWindow.on("closed", () => {
+    if (defaultPetWindow !== createdWindow) return;
+    unregisterRoamingPet("default");
+    collapseDefaultPetChat();
+    unbindDefaultPetChatWindow();
+    info("pet.default", "closed", { windowId });
+    behavior.setBlocked("hidden", true);
+    defaultPetWindow = null;
+  });
+
+  return defaultPetWindow;
+}
+
+function setTransientDisplay(display: PetTransientDisplay): void {
+  debug("pet.default", "transient display set", { reaction: display.reaction, hasMessage: Boolean(display.message), hasReactionMessage: Boolean(display.reactionMessage) });
+  transientPresentation.setDisplay(display);
+}
+
+function getDefaultTransientReactionAnimationMs(transientDisplay: PetTransientDisplay): number | null {
+  return getTransientReactionAnimationMs(transientDisplay);
+}
+
+function getDefaultTransientDisplayDurationMs(transientDisplay: PetTransientDisplay): number {
+  return getTransientDisplayDurationMs(transientDisplay);
+}
+
+export function showDefaultPetForExternalEvent(): void {
+  const state = getAppStateSnapshot();
+  const visible = isDefaultPetVisible();
+  if (!shouldShowDefaultPetForExternalEvent(visible, state.preferences.openDefaultPetOnLaunch, paused)) {
+    debug("pet.default", "external show skipped", { reason: paused ? "paused" : "user-hidden", visible, openDefaultPetOnLaunch: state.preferences.openDefaultPetOnLaunch });
+    return;
+  }
+
+  showDefaultPetWindow("external-event");
+}
+
+async function moveDefaultPetBy(rawX: number, rawY: number, rawDurationMs: unknown, maxDistance = maxPluginMoveDistance): Promise<{ readonly moved: boolean; readonly reason?: string }> {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) return { moved: false, reason: "no-window" };
+  const window = defaultPetWindow;
+  const blockedReason = getMovementBlockedReason(window);
+  if (blockedReason) {
+    debug("pet.default", "move skipped", { reason: blockedReason });
+    return { moved: false, reason: blockedReason };
+  }
+  const current = readWindowPosition(window);
+  const distance = Math.min(Math.hypot(rawX, rawY), maxDistance);
+  if (!Number.isFinite(distance) || distance <= 0) return { moved: false, reason: "invalid-distance" };
+  const scale = distance / Math.hypot(rawX, rawY);
+  const target = getSafeDefaultPetPosition({ x: current.x + rawX * scale, y: current.y + rawY * scale });
+  const durationMs = clampNumber(Number(rawDurationMs ?? 700), minPluginMoveDurationMs, maxPluginMoveDurationMs);
+  const steps = Math.max(8, Math.min(16, Math.round(durationMs / 100)));
+  movementInProgress = true;
+  debug("pet.default", "move start", { windowId: window.id, from: current, target, durationMs, steps });
+  try {
+    for (let step = 1; step <= steps; step += 1) {
+      if (window.isDestroyed()) return { moved: false, reason: "destroyed" };
+      const blocked = getMovementBlockedReason(window, true);
+      if (blocked) return { moved: false, reason: blocked };
+      const t = step / steps;
+      setWindowPosition(window, Math.round(current.x + (target.x - current.x) * t), Math.round(current.y + (target.y - current.y) * t), false);
+      await delay(durationMs / steps);
+    }
+    setWindowPosition(window, target.x, target.y, false);
+    handlePositionChanged(target);
+    debug("pet.default", "move finished", { windowId: window.id, target });
+    return { moved: true };
+  } finally {
+    movementInProgress = false;
+  }
+}
+
+function getMovementBlockedReason(window: BrowserWindow, allowMoving = false): string | undefined {
+  if (movementInProgress && !allowMoving) return "already-moving";
+  if (!window.isVisible()) return "hidden";
+  if (paused) return "paused";
+  if (isPetWindowDragging(window)) return "dragging";
+  if (transientPresentation.getDisplay() || voiceTerminalReaction || behaviorRandomActive) return "transient-display";
+  if (voiceActivityReaction || behaviorAiActive) return "status-active";
+  return undefined;
+}
+
+function clampNumber(value: number, min: number, max: number): number {
+  if (!Number.isFinite(value)) return min;
+  return Math.min(Math.max(value, min), max);
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function setStatusBadge(reaction: OpenPetsReaction): void {
+  transientPresentation.setStatusBadge(reaction);
+}
+
+function clearStatusBadge(): void {
+  transientPresentation.clearStatusBadge();
+}
+
+function clearDefaultPetDisplayTimers(): void {
+  transientPresentation.reset();
+  clearVoiceTerminalFeedback();
+}
+
+function getRenderedDisplay(): PetTransientDisplay | null {
+  const display = composeVoiceActivityDisplay(transientPresentation.getDisplay(), voiceActivityReaction, voiceTerminalReaction) as PetTransientDisplay | null;
+  const composed = composePetBehaviorDisplay(display, behaviorAnimation, behaviorAiActive, behaviorRandomActive);
+  const displayWithMedia = behaviorMediaAction ? { ...composed, mediaAction: behaviorMediaAction } : composed;
+  return externalAiProgress ? { ...displayWithMedia, externalAiProgress } : displayWithMedia;
+}
+
+function getRenderedBadge(): PetStatusBadgeReaction | null {
+  return composeVoiceActivityBadge(transientPresentation.getBadge(), voiceActivityReaction, voiceTerminalReaction) as PetStatusBadgeReaction | null;
+}
+
+function clearVoiceTerminalFeedback(): void {
+  voiceTerminalReaction = null;
+  if (voiceTerminalReactionTimeout) clearTimeout(voiceTerminalReactionTimeout);
+  voiceTerminalReactionTimeout = null;
+}
+
+function getCurrentDismissToken(): string | undefined {
+  return transientPresentation.getDismissToken();
+}
+
+/** Save the flat fallback and the per-monitor position in one state operation. */
+function handlePositionChanged(position: Point): void {
+  const displayKey = getDisplayKeyForPosition(position);
+  recordDefaultPetPosition(position, displayKey);
+}
+
+export function reclampDefaultPetWindow(reason: DisplayChangeReason, changedDisplay?: Display): void {
+  if (!defaultPetWindow || defaultPetWindow.isDestroyed()) {
+    return;
+  }
+
+  const currentPosition = readWindowPosition(defaultPetWindow);
+  const currentDisplayKey = getDisplayKeyForPosition(currentPosition);
+  const changedDisplayKey = changedDisplay ? getDisplayKey(changedDisplay.bounds) : undefined;
+  let restoredPosition: Point | undefined;
+
+  // Only restore to a newly-added display. Iterating every connected display can
+  // pick the primary display first and skip the secondary monitor that was just
+  // reconnected.
+  if (reason === "display-added" && changedDisplayKey && changedDisplayKey !== currentDisplayKey && getAllDisplayKeys().includes(changedDisplayKey)) {
+    restoredPosition = getDefaultPetPositionState().perMonitorPositions?.[changedDisplayKey];
+  }
+
+  const safePosition = restoredPosition
+    ? getSafeDefaultPetPosition(restoredPosition)
+    : getSafeDefaultPetPosition(currentPosition);
+
+  info("pet.default", "reclamp position", { windowId: defaultPetWindow.id, position: safePosition, restored: Boolean(restoredPosition), reason, changedDisplayKey });
+  setWindowPosition(defaultPetWindow, safePosition.x, safePosition.y, false);
+  handlePositionChanged(safePosition);
+  recoverDefaultPetMouseInterop("display-change");
+  // A live display-scale change invalidates the Linux setShape() click-through mask
+  // (it's computed from the display's scaleFactor at render time — see
+  // applyLinuxPetWindowShape() in pet-window.ts) — repositioning alone isn't enough,
+  // the content/shape must be recomputed too, or the mask goes stale relative to the
+  // new scale and the pet becomes invisible/unclickable.
+  if (reason === "display-metrics-changed") {
+    refreshDefaultPetContent();
+  }
+}
+
+export function shouldOpenDefaultPetOnLaunch(): boolean {
+  return getAppStateSnapshot().preferences.openDefaultPetOnLaunch;
+}
+
+export function resetDefaultPetToInitialPosition(): void {
+  const safePosition = getSafeDefaultPetPosition(getDefaultPetInitialPosition(defaultPetWindowSize));
+  resetDefaultPetPosition(safePosition);
+
+  if (defaultPetWindow && !defaultPetWindow.isDestroyed()) {
+    setWindowPosition(defaultPetWindow, safePosition.x, safePosition.y, false);
+  }
+}

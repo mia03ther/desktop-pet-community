@@ -1,0 +1,34 @@
+# 不提交个人运行档案、凭据与依赖
+**/node_modules/
+**/userdata/
+**/work/
+**/.git/
+**/.env
+**/.env.*
+**/.wrangler/
+**/.openai/
+**/.slim/
+**/.capture/
+**/.blume/
+**/.codegraph/
+**/.test*/
+**/.name-alias*/
+**/target/
+**/dist-electron/
+**/*.log
+**/*.sqlite*
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.map
+**/*.tsbuildinfo
+outputs/desktop-pet/apps/desktop/dist/
+outputs/desktop-pet/packages/*/dist/
+outputs/community-host/.build/
+outputs/community-host/public/
+outputs/community-cloudflare/wrangler.toml
+# 网页维护源在 apps/community-web/dist，不能笼统忽略所有 dist。

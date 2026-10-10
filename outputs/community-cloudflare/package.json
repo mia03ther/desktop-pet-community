@@ -1,0 +1,7 @@
+{
+  "name": "desktop-pet-community-cloudflare",
+  "private": true,
+  "type": "module",
+  "author": "Lykinzlj",
+  "scripts": { "build": "node scripts/build.mjs", "test": "node --test tests/*.test.mjs" }
+}

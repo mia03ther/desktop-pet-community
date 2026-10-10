@@ -1,0 +1,9 @@
+{
+  "name": "desktop-pet-community-host",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "Lykinzlj",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": { "start": "node server/start.mjs", "test": "node --test tests/*.test.mjs" }
+}

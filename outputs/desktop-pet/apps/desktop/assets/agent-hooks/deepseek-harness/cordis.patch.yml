@@ -1,0 +1,5 @@
+- insert:
+    - id: desktop-pet-dsh
+      name: desktop-pet-dsh
+      config:
+        enabled: true

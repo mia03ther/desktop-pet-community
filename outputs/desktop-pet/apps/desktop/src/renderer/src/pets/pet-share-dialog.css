@@ -1,0 +1,31 @@
+.pet-share-dialog .pet-share-panel { width: min(660px, calc(100vw - 3rem)); gap: 16px; }
+.pet-share-dialog:focus { outline: none; }
+.pet-share-dialog .error { overflow-wrap: anywhere; }
+.pet-share-dialog .plugin-inspector-head { justify-content: space-between; align-items: flex-start; }
+.pet-share-heading { min-width: 0; }
+.pet-share-name { margin: 6px 0 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.pet-share-copy { margin: 0; opacity: .8; font-size: 13px; line-height: 1.65; }
+.pet-share-formats { margin: 0; padding: 0; border: 0; }
+.pet-share-formats legend { margin-bottom: 9px; font-size: 13px; font-weight: 600; }
+.pet-share-format-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pet-share-format { display: flex; align-items: flex-start; gap: 9px; padding: 14px 12px; border: 1px solid rgba(107, 126, 157, .3); border-radius: 14px; background: rgba(127, 153, 190, .06); cursor: pointer; }
+.pet-share-format.selected { border-color: #4f80e2; background: rgba(79, 128, 226, .1); }
+.pet-share-format input { margin: 3px 0 0; accent-color: #4f80e2; }
+.pet-share-format span { display: grid; gap: 5px; min-width: 0; }
+.pet-share-format strong { font-size: 14px; }
+.pet-share-format small { opacity: .75; font-size: 12px; line-height: 1.5; }
+.pet-share-recommended { margin-left: auto; flex-shrink: 0; padding: 2px 6px; border-radius: 6px; background: rgba(79, 128, 226, .12); color: #346bc5; font-size: 11px; }
+.pet-share-fields { display: grid; gap: 14px; margin-top: 20px; }
+.pet-share-fields label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+.pet-share-fields input { width: 100%; padding: 9px 11px; border: 1px solid rgba(107, 126, 157, .45); border-radius: 10px; background: rgba(127, 153, 190, .08); color: inherit; font: inherit; font-weight: 400; }
+.pet-share-fields input::placeholder { color: inherit; opacity: .5; }
+.pet-share-fields input:focus-visible, .pet-share-format input:focus-visible { outline: 2px solid #4f80e2; outline-offset: 2px; }
+.pet-share-rights { margin: 14px 0; padding-top: 12px; border-top: 1px solid rgba(107, 126, 157, .2); }
+.pet-share-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.pet-share-formats:disabled { opacity: .65; }
+.pet-share-formats:disabled .pet-share-format { cursor: default; }
+.pet-share-fields input:disabled { opacity: .65; }
+body.theme-dark .pet-share-format.selected { border-color: rgba(124, 199, 255, .65); background: rgba(37, 99, 235, .18); }
+body.theme-dark .pet-share-recommended { color: #7cc7ff; background: rgba(59, 130, 246, .2); }
+@media (max-width: 540px) { .pet-share-format-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .pet-share-dialog, .pet-share-dialog .plugin-inspector { animation: none; } }

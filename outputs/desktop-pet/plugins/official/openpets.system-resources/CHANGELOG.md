@@ -1,0 +1,103 @@
+# Changelog
+
+## 2.1.0
+
+- Added host-backed battery percentage/charging and aggregate network
+  download/upload reporting through status, speech, and `resources.get`; both
+  remain outside the four-item percentage HUD.
+- Added independent Battery and Network presentation settings with on defaults,
+  and made passive resource HUD refreshes yield to the normal-priority Virtual
+  Pet pin while explicit Show remains available.
+- GPU sustained alerts now require distinct host extended-metric samples rather
+  than counting repeated cached values.
+- Added independent CPU, RAM, GPU, and Disk HUD switches with on defaults and host-config persistence.
+- Added independent alert switches. CPU and GPU alerts require two consecutive fresh threshold readings from scheduled monitoring polls; assistant and UI requests do not advance the streak.
+- Kept RAM alerts explicit about usage rather than memory pressure, and kept Disk alerts about used system-volume capacity.
+- Older OpenPets hosts may omit optional battery and network fields; the plugin
+  keeps CPU/RAM and any host-provided GPU/Disk compatibility intact.
+
+## 2.0.0
+
+- Replaced the satellite pet with the host-rendered pinned HUD on the existing default pet.
+- Removed satellite-only movement, animation, pet-management, and pet-list permissions.
+- Made Show and Hide visibility durable across polling, configuration changes, and restarts.
+- Serialized metric polling, guarded late asynchronous work, and made shutdown cancel cleanly.
+- Display GPU and disk independently, preserve genuine zero values, and mark cached readings stale after collection failures.
+- Renamed the user-facing SSD label to Disk or its locale equivalent while preserving `resources.get` response field names.
+
+## 1.5.0
+
+- Read optional aggregate GPU and system-volume usage directly from OpenPets `system:metrics` when the host supports them.
+- Removed the loopback sidecar, persistent installers, and the network permissions they required. Catalog installs now use the same bounded host capability as unpacked plugins.
+
+## 1.4.1
+
+- README plus `docs/gpu-ssd.md`: what to install (Node.js, this repo) and what to run (`npm run install-sidecar`) so GPU and SSD show on catalog or unpacked installs.
+
+## 1.4.0
+
+- Catalog package is CPU/RAM-only: HUD, copy, and Configure no longer advertise an uninstallable GPU/SSD sidecar.
+- GPU and SSD still appear when a sidecar is already running on loopback; OS is taken from the host, not from a config field.
+- `npm run package:catalog` writes a catalog ZIP with only the manifest, entry, declared assets, locales, and license.
+
+## 1.3.6
+
+- README preview uses real OpenPets screenshots of the satellite HUD and the main pet.
+
+## 1.3.5
+
+- GitHub-facing docs are English: README, changelog, package description, and installer messages.
+- Added a development preview of the satellite HUD next to the pet.
+
+## 1.3.4
+
+- MIT license: free to use, modify, and redistribute.
+
+## 1.3.3
+
+- Configure shows a GPU/SSD hint at the top: one-time `npm run install-sidecar` (copyable field), with per-OS notes and that it starts again at login.
+
+## 1.3.2
+
+- First install: `npm run install-sidecar` detects macOS, Linux, or Windows and sets up the persistent sidecar (LaunchAgent / systemd --user / Scheduled Task).
+- Linux restarts after login via `Restart=always` and tries `loginctl enable-linger`. Windows task starts at `AtLogOn`.
+
+## 1.3.1
+
+- GPU and SSD were missing because the metrics sidecar was not running. LaunchAgent install sets PATH for `ioreg`/`df`, 4s cache, plugin fetch 2.5s.
+- macOS GPU also reads `Renderer Utilization %` when `Device Utilization %` is absent.
+- Status line reports `sidecar offline` when GPU/SSD do not arrive.
+
+## 1.3.0
+
+- Resource HUD no longer takes the Virtual Pet pin slot. Meters live on a satellite pet to the left of the main pet (own pin slot).
+- Food, energy, play, and bond stay on the pet; CPU/RAM/GPU/SSD follow when you drag.
+- Extra permissions: `pets:read`, `pets:manage`, `pet:move`, `pet:animate`. After update, re-approve in Control Center and Refresh.
+
+## 1.2.2
+
+- Plugin is a single entry file again: no relative ESM imports, because the sandbox cannot resolve `./i18n.js`.
+
+## 1.2.1
+
+- Catalog icon changed to `plugin`; `activity` is not an allowed host icon.
+
+## 1.2.0
+
+- Sidecar works on macOS, Windows, and Linux with per-OS GPU and SSD sources.
+- Plugin config has an OS choice (automatic / macOS / Windows / Linux) sent to the sidecar as `platform`.
+- Windows: `nvidia-smi` or GPU Engine counters, disk via WMIC/CIM. Linux: `nvidia-smi` or sysfs `gpu_busy_percent`, `df` for `/`.
+- Install scripts for systemd (Linux) and Scheduled Task (Windows).
+
+## 1.1.0
+
+- French and German translations (`locales/fr.json`, `locales/de.json`).
+- Language is selectable in plugin config: automatic, Nederlands, English, Français, Deutsch.
+- HUD, status line, and pet speech follow the chosen language, not only the OpenPets host locale.
+
+## 1.0.0
+
+- First OpenPets plugin with a pinned HUD for CPU, RAM, GPU, and SSD.
+- CPU and RAM from `ctx.system.metrics`; GPU and SSD via a local sidecar on port 37647.
+- Commands to show, hide, or read the meters.
+- High-load warning, assistant capability `resources.get`, and LaunchAgent install for the sidecar.

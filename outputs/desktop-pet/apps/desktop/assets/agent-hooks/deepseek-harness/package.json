@@ -1,0 +1,14 @@
+{
+  "name": "desktop-pet-dsh",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "author": "Lykinzlj",
+  "main": "index.mjs",
+  "files": ["index.mjs", "runtime.mjs", "settings.json", "cordis.patch.yml"],
+  "exports": {
+    ".": "./index.mjs",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}

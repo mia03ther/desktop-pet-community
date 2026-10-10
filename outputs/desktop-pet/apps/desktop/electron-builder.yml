@@ -1,0 +1,81 @@
+appId: local.desktop-pet.studio
+productName: desktop pet
+executableName: desktop-pet
+copyright: Copyright © 2026 desktop pet contributors
+
+extraMetadata:
+  name: desktop-pet
+  description: desktop pet 桌面伙伴
+  author: Lykinzlj
+  repository: null
+
+directories:
+  output: dist-electron
+
+artifactName: desktop-pet-${version}-${os}-${arch}.${ext}
+
+files:
+  - dist/**
+  - control-center-preload.cjs
+  - pet-tts-helper.cjs
+  - plugin-sdk-preload.cjs
+  - plugin-command-form-preload.cjs
+  - panel-preload.cjs
+  - voice-realtime-preload.cjs
+  - assets/**
+  - package.json
+  # 云盘上传标记可能在打包读取前消失，不属于运行资源。
+  - '!**/*.baiduyun.uploading.cfg'
+
+extraResources:
+  - from: ../community-web/dist
+    to: community-web
+  - from: ../../LICENSE
+    to: legal/THIRD-PARTY-LICENSE.txt
+
+asar: true
+asarUnpack:
+  - node_modules/**
+  - assets/companion/**
+  - assets/agent-hooks/**
+npmRebuild: false
+publish: null
+
+toolsets:
+  appimage: 1.0.3
+
+mac:
+  icon: assets/app-icon.icns
+  category: public.app-category.utilities
+  extendInfo:
+    NSMicrophoneUsageDescription: desktop pet 仅在你发起语音输入或实时语音对话时使用麦克风。
+  target:
+    - dmg
+    - zip
+  # Ad-hoc sign macOS bundles when a Developer ID certificate is unavailable.
+  # Leaving the app bundle fully unsigned can produce Gatekeeper's misleading
+  # "damaged and can't be opened" dialog on Apple Silicon releases.
+  identity: "-"
+  hardenedRuntime: false
+  gatekeeperAssess: false
+
+win:
+  icon: assets/app-icon.ico
+  target:
+    - nsis
+  verifyUpdateCodeSignature: false
+
+nsis:
+  artifactName: desktop-pet-${version}-win-${arch}-setup.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+linux:
+  icon: assets/app-icon.png
+  target:
+    - AppImage
+    - deb
+    - rpm
+    - tar.gz
+  category: Utility
+  maintainer: Lykinzlj

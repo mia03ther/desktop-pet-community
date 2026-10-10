@@ -1,0 +1,12 @@
+{
+  "manifestVersion": 3,
+  "id": "lingyin.computer-care",
+  "name": "电脑守护",
+  "description": "可选本机工具：内存、磁盘与自启诊断建议，下载风险提醒，EXE/MSI 只读检查及卸载目录核对。功能由桌宠工作室宿主提供，不自动卸载或删除文件。",
+  "version": "1.0.0",
+  "runtime": "javascript",
+  "sdkVersion": "3.0.0",
+  "entry": "index.js",
+  "icon": "plugin",
+  "permissions": ["files", "system:metrics", "status"]
+}

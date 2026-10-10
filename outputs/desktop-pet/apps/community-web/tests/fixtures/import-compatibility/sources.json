@@ -1,0 +1,71 @@
+{
+  "description": "已收集的公开固定测试样本，原文件字节和原许可证保留；不包含原工作区的机器验收记录",
+  "files": [
+    {
+      "path": "codex-firefly/pet.json",
+      "bytes": 240,
+      "sha256": "b4c0f329c086f22876a8a6074c1468ba00a1593a4f4ccb9427744525f4bc90da",
+      "sourceUrl": "https://raw.githubusercontent.com/legeling/awesome-codex-pet/main/pets/firefly--lingxiaotian/pet.json"
+    },
+    {
+      "path": "codex-firefly/submission.json",
+      "bytes": 972,
+      "sha256": "1905ae7037cf8489eb9b6f01a80575789248250a3f6abb2b2541c2d548c61a83",
+      "sourceUrl": "https://raw.githubusercontent.com/legeling/awesome-codex-pet/main/pets/firefly--lingxiaotian/submission.json"
+    },
+    {
+      "path": "codex-firefly/spritesheet.webp",
+      "bytes": 2214516,
+      "sha256": "bd0a0deea6bfac69cfd6ebbec02e254536a6276a3958e5794a1b256aed074583",
+      "sourceUrl": "https://raw.githubusercontent.com/legeling/awesome-codex-pet/main/pets/firefly--lingxiaotian/spritesheet.webp"
+    },
+    {
+      "path": "codex-firefly/ASSETS-LICENSE.md",
+      "bytes": 578,
+      "sha256": "cd1c58a8ffbe9b938104d07d42079932422277c597b5cb31494a5cc65f6c302f",
+      "sourceUrl": "https://raw.githubusercontent.com/legeling/awesome-codex-pet/main/ASSETS-LICENSE.md"
+    },
+    {
+      "path": "codex-firefly/LICENSE.txt",
+      "bytes": 1069,
+      "sha256": "c9cd135bd3777540377ac8ed3acfc1ae678a2c7670f163e5facbb5c4937f3ddb",
+      "sourceUrl": "https://raw.githubusercontent.com/legeling/awesome-codex-pet/main/LICENSE"
+    },
+    {
+      "path": "raycast-brew/package.json",
+      "bytes": 8956,
+      "sha256": "c399bdb3d9e855885eac7b6616af17d9ecc2d45021b260520a90884eb46c3325",
+      "sourceUrl": "https://raw.githubusercontent.com/raycast/extensions/main/extensions/brew/package.json"
+    },
+    {
+      "path": "raycast-brew/LICENSE.txt",
+      "bytes": 1064,
+      "sha256": "7f727f8b20cdd0e65f84e70b9cac2fce337dcecee4dc88955eb012ea27f02755",
+      "sourceUrl": "https://raw.githubusercontent.com/raycast/extensions/main/LICENSE"
+    },
+    {
+      "path": "shimeji-default/conf/actions.xml",
+      "bytes": 44384,
+      "sha256": "95efae1dbdbe7b48dd7f05fc8b0163ca01eba2369847e0414284ca001644fbbf",
+      "sourceUrl": "https://raw.githubusercontent.com/DalekCraft2/Shimeji-Desktop/main/conf/actions.xml"
+    },
+    {
+      "path": "shimeji-default/conf/behaviors.xml",
+      "bytes": 10142,
+      "sha256": "652e786999afa5894ba0ae5a0ba34cea5559084f5cf81fd180875d986d22a47d",
+      "sourceUrl": "https://raw.githubusercontent.com/DalekCraft2/Shimeji-Desktop/main/conf/behaviors.xml"
+    },
+    {
+      "path": "shimeji-default/img/Shimeji/shime1.png",
+      "bytes": 3248,
+      "sha256": "4faf15a83d78f444cf919d7470729ea5df543d6d3e3bb55ce1a72f687c631785",
+      "sourceUrl": "https://raw.githubusercontent.com/DalekCraft2/Shimeji-Desktop/main/img/Shimeji/shime1.png"
+    },
+    {
+      "path": "shimeji-default/LICENSE.txt",
+      "bytes": 3862,
+      "sha256": "b2ed8078ace6bff178a46e8214175b1b9cb650431c184c2fa901f7ca3e277579",
+      "sourceUrl": "https://raw.githubusercontent.com/DalekCraft2/Shimeji-Desktop/main/LICENSE.txt"
+    }
+  ]
+}

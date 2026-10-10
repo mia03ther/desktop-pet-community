@@ -1,0 +1,27 @@
+// 插件卡片、详情与排行榜使用同一套封面。
+export const pluginCovers = Object.freeze({
+  "openpets.reminders": "assets/plugin-covers/quick-reminder.webp",
+  "openpets.simple-timer": "assets/plugin-covers/simple-timer.webp",
+  "openpets.anxiety-aid-tools": "assets/plugin-covers/calm-practice.webp",
+  "openpets.focus-buddy": "assets/plugin-covers/focus-buddy.webp",
+  "openpets.launch-buddy": "assets/plugin-covers/launch-greeting.webp",
+  "openpets.fortune-cookie": "assets/plugin-covers/fortune-cookie.webp",
+  "openpets.virtual-pet": "assets/plugin-covers/virtual-pet.webp",
+  "openpets.life-companion": "assets/plugin-covers/life-companion.webp",
+  "openpets.water-reminder": "assets/plugin-covers/water-reminder.webp",
+  "openpets.system-resources": "assets/plugin-covers/system-resources.webp",
+  "openpets.calendar-airmail": "assets/plugin-covers/calendar-airmail.webp",
+  "openpets.day-routine": "assets/plugin-covers/day-routine.webp",
+  "openpets.magic-8-ball": "assets/plugin-covers/magic-ball.webp",
+  "openpets.mood-check-in": "assets/plugin-covers/mood-check.webp",
+  "regis.usage-buddy": "assets/plugin-covers/ai-allowance.webp",
+  "openpets.higgsfield-watch": "assets/plugin-covers/generation-progress.webp",
+  "openpets.drag-vocab": "assets/plugin-covers/drag-vocabulary.webp",
+  "openpets.spotify-buddy": "assets/plugin-covers/music-buddy.webp",
+  "openpets.walkabout": "assets/plugin-covers/desktop-walk.webp",
+  "lingyin.file-assistant": "assets/plugin-covers/file-assistant.webp",
+  "lingyin.computer-care": "assets/plugin-covers/computer-care.webp",
+  "community.water-break": "assets/plugin-covers/water-break.webp",
+  "community.eye-break": "assets/plugin-covers/eye-break.webp",
+  "community.focus-break": "assets/plugin-covers/focus-break.webp"
+});

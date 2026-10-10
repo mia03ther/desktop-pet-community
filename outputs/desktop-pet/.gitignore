@@ -1,0 +1,31 @@
+v1
+node_modules
+/dist/
+apps/desktop/dist/
+packages/*/dist/
+.blume
+web
+remotion
+dist-electron
+.test-dist
+apps/desktop/dist-electron
+apps/desktop/.release-state/
+*.tsbuildinfo
+.DS_Store
+local/
+.slim/deepwork/
+opencode.json
+.slim/worktrees/
+.slim/worktrees.json
+third-parties/
+/teams/
+.env
+/infra/
+
+# BEGIN oh-my-opencode-slim clonedeps
+.slim/clonedeps/repos/
+# END oh-my-opencode-slim clonedeps
+.capture/
+
+# 本地桌宠数据和验收截图
+/userdata/

@@ -1,0 +1,16 @@
+name = "desktoppet"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-09"
+
+[vars]
+COMMUNITY_ORIGIN = "https://desktoppet-e9e.pages.dev"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "desktop-pet-community"
+database_id = "请填写你自己的标识"
+migrations_dir = "deployment-migrations"
+
+# HASH_SALT 只在 Cloudflare 控制台设置秘密，不写入源码或 dist。
+# 只执行 0000、0001、0011；0010 是未启用密码方案的本机备用记录。
+# R2 的 BUCKET 尚待用户开通，不登记不存在的资源或假 ID。

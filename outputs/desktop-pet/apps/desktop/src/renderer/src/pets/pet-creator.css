@@ -1,0 +1,17 @@
+.pet-creator .pet-creator-panel { gap: 16px; }
+.pet-creator .plugin-inspector-head { justify-content: space-between; }
+.pet-creator .pet-creator-copy { margin: 0; color: inherit; opacity: .8; font-size: 13px; line-height: 1.65; }
+.pet-creator-fields { display: grid; gap: 14px; }
+.pet-creator-fields label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+.pet-creator-fields small { font-weight: 400; opacity: .75; }
+.pet-creator-fields input, .pet-creator-fields textarea { width: 100%; padding: 9px 11px; border: 1px solid rgba(107, 126, 157, .45); border-radius: 10px; background: rgba(127, 153, 190, .08); color: inherit; font: inherit; }
+.pet-creator-fields textarea { resize: vertical; }
+.pet-creator-fields input:focus-visible, .pet-creator-fields textarea:focus-visible { outline: 2px solid #4f80e2; outline-offset: 2px; }
+.pet-creator-source { display: grid; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(107, 126, 157, .2); }
+.pet-creator-file { margin: 0; overflow-wrap: anywhere; font-size: 13px; font-weight: 600; }
+.pet-creator-previews { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.pet-creator-previews article { display: grid; justify-items: center; gap: 7px; padding: 12px 8px; border: 1px solid rgba(107, 126, 157, .2); border-radius: 12px; }
+.pet-creator-previews span { font-size: 12px; }
+.pet-creator-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+@media (max-width: 540px) { .pet-creator-previews { grid-template-columns: repeat(2, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .pet-creator, .pet-creator .plugin-inspector { animation: none; } }

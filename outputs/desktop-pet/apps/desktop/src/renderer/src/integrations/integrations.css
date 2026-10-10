@@ -1,0 +1,477 @@
+.studio-integrations {
+  --integration-ink: var(--studio-ink, #2e2e2a);
+  --integration-muted: var(--studio-muted, #7c7c70);
+  --integration-line: var(--studio-line, #d9d8d0);
+  --integration-accent: var(--studio-gold, #b4a265);
+  --integration-surface: var(--studio-paper, #efefed);
+  --integration-card: var(--studio-card, #fafaf8);
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+  container: integrations / inline-size;
+  color: var(--integration-ink);
+}
+
+.integration-loading {
+  display: flex;
+  min-height: 180px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+}
+
+.integration-introduction {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.integration-introduction h2 {
+  margin: 0 0 7px;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.integration-introduction p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--integration-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.integration-introduction > .btn {
+  flex-shrink: 0;
+}
+
+.integration-catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.integration-setup-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--integration-line);
+  border-radius: 4px;
+  background: var(--integration-card);
+  transition: border-color 140ms ease;
+}
+
+.integration-setup-card:hover,
+.integration-setup-card[data-selected="true"] {
+  border-color: var(--integration-accent);
+}
+
+.integration-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+}
+
+.integration-card-icon,
+.integration-inspector-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--integration-line);
+  border-radius: 4px;
+  background: var(--integration-surface);
+  color: var(--integration-ink);
+}
+
+.studio-integrations .integration-logo {
+  display: block;
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.integration-card-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.integration-card-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.integration-card-heading > strong {
+  font-size: 15px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.integration-card-content > small {
+  display: block;
+  min-height: 40px;
+  color: var(--integration-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.integration-card-content > .integration-readiness {
+  min-height: 0;
+}
+
+.integration-card-footer {
+  margin-top: auto;
+  padding: 12px 18px;
+  border-top: 1px solid var(--integration-line);
+  background: var(--integration-surface);
+}
+
+.integration-card-actions,
+.integration-management-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.studio-integrations .btn {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.studio-integrations .btn-compact {
+  min-height: 33px;
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.studio-integrations .btn-warning {
+  color: #8a5c18;
+  border-color: #ead5ae;
+  background: #fff7e9;
+}
+
+.studio-integrations .btn-warning:not(:disabled):hover {
+  background: #ffefd1;
+}
+
+.studio-integrations .pill {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.studio-integrations .pill-blue { color: #776634; background: #ece9db; }
+.studio-integrations .pill-green { color: #386b63; background: #eaf3f1; }
+.studio-integrations .pill-yellow,
+.studio-integrations .pill-orange { color: #885d1e; background: #fff4df; }
+.studio-integrations .pill-red { color: #aa3545; background: #fff0f2; }
+.studio-integrations .pill-slate { color: #606056; background: #e8e8e2; }
+
+.integration-upcoming h3 {
+  margin: 0 0 12px;
+  color: var(--integration-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.integration-unavailable {
+  border-style: dashed;
+  background: var(--integration-surface);
+}
+
+.integration-unavailable .integration-card-icon {
+  filter: grayscale(1);
+}
+
+.integration-unavailable .integration-card-footer {
+  background: transparent;
+}
+
+.integration-notice {
+  padding: 12px 14px;
+  border: 1px solid #b8d8d7;
+  border-radius: 3px;
+  background: #eaf3f1;
+  color: #386b63;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.integration-notice-success { color: #386b63; border-color: #83cbd0; background: #eaf3f1; }
+.integration-notice-error { color: #aa3545; border-color: #f0ccd3; background: #fff1f3; }
+.integration-notice-warning { color: #885d1e; border-color: #ead5ae; background: #fff7e9; }
+
+.studio-integrations.integration-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  container: none;
+}
+
+.studio-integrations .integration-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #30302e70;
+  cursor: default;
+}
+
+.studio-integrations .integration-backdrop:hover {
+  background: #30302e70;
+}
+
+.studio-integrations.integration-dialog .integration-inspector {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(740px, 100%);
+  max-height: calc(100vh - 48px);
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--integration-accent);
+  border-radius: 4px;
+  background: var(--integration-card);
+  box-shadow: 0 16px 48px #30302e26;
+  container: integration-dialog / inline-size;
+}
+
+.studio-integrations .integration-inspector-head {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--integration-line);
+  background: var(--integration-surface);
+}
+
+.integration-inspector-head .eyebrow {
+  margin: 0 0 3px;
+  color: var(--integration-muted);
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.studio-integrations .integration-inspector-head h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.integration-inspector-body {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  gap: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px 24px 24px;
+  scrollbar-gutter: stable;
+}
+
+.integration-section {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--integration-line);
+  border-radius: 4px;
+  background: var(--integration-card);
+}
+
+.integration-section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+
+.integration-section-title small {
+  color: var(--integration-muted);
+  font-size: 11px;
+}
+
+.integration-section-title strong {
+  color: var(--integration-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.integration-select {
+  width: 100%;
+  min-width: 0;
+  color: var(--integration-ink);
+}
+
+.integration-connection-state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 3px;
+  background: var(--integration-surface);
+}
+
+.integration-connection-state > div {
+  min-width: 0;
+  flex: 1 1 240px;
+  gap: 5px;
+}
+
+.integration-connection-state small {
+  color: var(--integration-muted);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.integration-option-grid,
+.integration-metadata-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.integration-metadata-grid {
+  margin-top: 12px;
+}
+
+.integration-metadata-grid > div {
+  min-width: 0;
+  gap: 4px;
+  overflow-wrap: anywhere;
+}
+
+.integration-inspector .plugin-input {
+  width: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.integration-advanced-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.integration-advanced-summary::-webkit-details-marker {
+  display: none;
+}
+
+.integration-advanced-summary .integration-section-title {
+  margin-bottom: 0;
+}
+
+.integration-chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #776634;
+}
+
+.integration-advanced[open] .integration-chevron {
+  transform: rotate(90deg);
+}
+
+.integration-code-preview,
+.integration-command {
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--integration-line);
+  border-radius: 3px;
+  background: var(--integration-surface);
+  color: var(--integration-ink);
+  font-family: Consolas, "Cascadia Code", monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.integration-code-preview {
+  max-height: 300px;
+  margin: 14px 0 0;
+  overflow: auto;
+}
+
+.integration-file-path {
+  display: block;
+  margin-top: 8px;
+  color: var(--integration-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.integration-command-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.integration-command {
+  display: block;
+}
+
+.studio-integrations :is(button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #776634;
+  outline-offset: 3px;
+}
+
+@container integrations (max-width: 600px) {
+  .integration-catalog { grid-template-columns: minmax(0, 1fr); }
+  .integration-introduction { flex-wrap: wrap; gap: 12px; }
+}
+
+@container integration-dialog (max-width: 540px) {
+  .integration-option-grid,
+  .integration-metadata-grid { grid-template-columns: minmax(0, 1fr); }
+  .integration-inspector-body { padding: 16px; }
+  .studio-integrations .integration-inspector-head { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .integration-setup-card { transition: none; }
+}
+.integration-setup-steps {
+  margin: 0 0 18px;
+  padding-left: 24px;
+  color: var(--integration-muted);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.integration-setup-steps li + li {
+  margin-top: 8px;
+}
