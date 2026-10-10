@@ -51,8 +51,14 @@ for (const pet of pets) {
     if (!['media', 'standalone'].includes(pet.distribution)) throw new Error(`桌宠分发类型缺失：${pet.id}`);
     files.push({ path: pet.thumbnail, mime: 'image/webp' });
     if (pet.distribution === 'media') {
-      if (!pet.download.startsWith('assets/') || !pet.mediaActions?.idle) throw new Error(`动作包公开文件不完整：${pet.id}`);
-      files.push({ path: pet.download, mime: 'application/zip' });
+      if (!pet.mediaActions?.idle) throw new Error(`动作包公开文件不完整：${pet.id}`);
+      if (pet.download.startsWith('assets/')) {
+        files.push({ path: pet.download, mime: 'application/zip' });
+      } else {
+        const url = new URL(pet.download);
+        if (url.protocol !== 'https:' || url.username || url.password || !pet.packageManifest || !pet.packageLicense) throw new Error(`外部完整动作包登记无效：${pet.id}`);
+        files.push({ path: pet.packageManifest, mime: 'application/json' }, { path: pet.packageLicense, mime: 'text/plain; charset=utf-8' });
+      }
       for (const entry of Object.values(pet.mediaActions)) files.push({ path: entry.url, mime: entry.type });
     } else {
       // 两张 BongoCat 封面沿用原模型画稿，随公开图片保留完整 MIT 声明。

@@ -1,0 +1,4 @@
+作者：Lykinzlj
+创作者填写的许可字段原文：CC Lykinzlj-NC 4.0
+此字段不是标准 Creative Commons 许可证名称；保留原声明，不替换为其他授权。角色及第三方权利独立。
+完整发行包保留 WORK-INFO.json 与 SHARE.md。

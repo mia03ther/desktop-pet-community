@@ -4777,6 +4777,161 @@ export const pets = [
       "独立运行",
       "原应用"
     ]
+  },
+  {
+    "id": "cloud-lykinzlj1",
+    "title": "真珠",
+    "author": "Lykinzlj",
+    "kind": "pet",
+    "category": "游戏角色",
+    "version": "1.0.1",
+    "description": "真珠的 12 个独立视频动作，包含待机、行走、挥手、思考、工作、睡觉和点击、拖拽回应；支持自定义动作名称与种类。",
+    "distribution": "media",
+    "thumbnail": "assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp",
+    "mediaActions": {
+      "idle": {
+        "displayName": "pearl-official-idle-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/33e436b9.mp4"
+      },
+      "action-5d628916": {
+        "displayName": "pearl-official-dragged-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/5d628916.mp4"
+      },
+      "action-82c84ef1": {
+        "displayName": "pearl-official-failed-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/82c84ef1.mp4"
+      },
+      "action-33e436b9": {
+        "displayName": "pearl-official-clicked-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/65733b1d.mp4"
+      },
+      "action-9fb12ac7": {
+        "displayName": "pearl-official-jumping-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/9fb12ac7.mp4"
+      },
+      "action-d2366c8d": {
+        "displayName": "pearl-official-review-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/d2366c8d.mp4"
+      },
+      "action-da836117": {
+        "displayName": "pearl-official-running-left-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/da836117.mp4"
+      },
+      "action-e904a850": {
+        "displayName": "pearl-official-running-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/e904a850.mp4"
+      },
+      "action-327f461c": {
+        "displayName": "pearl-official-running-right-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/327f461c.mp4"
+      },
+      "action-5f6dea1c": {
+        "displayName": "pearl-official-sleeping-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/5f6dea1c.mp4"
+      },
+      "action-856878f8": {
+        "displayName": "pearl-official-waiting-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/856878f8.mp4"
+      },
+      "action-358100d6": {
+        "displayName": "pearl-official-waving-personality-01-原件",
+        "type": "video/mp4",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/358100d6.mp4"
+      }
+    },
+    "download": "https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/pets-20261010/cloud-lykinzlj1.zip",
+    "downloadLabel": "下载完整桌宠 ZIP（196 MB）",
+    "hostNotice": "下载完整 ZIP 后，在控制中心「我的桌宠」导入并设为当前桌宠。12 个状态已与对应动作绑定，动作名称、种类和绑定可继续自定义；视频在本地按包内设置抠除纯色背景。",
+    "packageManifest": "assets/pets/user-projects-20261010/cloud-lykinzlj1/pet.json",
+    "packageLicense": "assets/pets/user-projects-20261010/cloud-lykinzlj1/LICENSE.txt",
+    "archiveBytes": 205169901,
+    "archiveSha256": "4ab46c7eac9c60c63b81b57a8f5099e43ecb041e912718b0007c2998e551f870",
+    "license": "CC Lykinzlj-NC 4.0",
+    "source": "https://github.com/xunguangzlj-cloud/desktop-pet-community/issues/1",
+    "importedAt": "2026-10-10",
+    "tags": [
+      "真珠",
+      "视频动作",
+      "自定义动作"
+    ],
+    "collections": []
+  },
+  {
+    "id": "danya-pet-windows",
+    "title": "达妮娅 · 三形态",
+    "name": "达妮娅 · 三形态",
+    "displayName": "达妮娅 · 三形态",
+    "author": "Lykinzlj",
+    "source": "https://github.com/xunguangzlj-cloud/danya-pet",
+    "version": "0.3.1",
+    "description": "达妮娅的原服装、缠布条与星空三种形态，83 条透明视频动作；支持点击回应、拖拽抛物线反弹、安静或随机模式、大小调整与可选 AI 联动。",
+    "license": "代码 MIT；角色、视频及第三方素材权利独立，随原项目发行说明保留。",
+    "thumbnail": "assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp",
+    "thumbnailLicense": "用户本人既有项目角色预览；角色及视频权利说明保留于原发行 NOTICE.md。",
+    "download": "https://pan.baidu.com/s/1oERgVsV16X-_CLaKoicwLA?pwd=tqjh",
+    "downloadUrl": "https://pan.baidu.com/s/1oERgVsV16X-_CLaKoicwLA?pwd=tqjh",
+    "downloadLabel": "网盘下载完整安装包（4.15 GB）",
+    "hostNotice": "完整包自带运行环境与 83 条视频，网盘提取码 tqjh。下载整个 ZIP 并解压，保持安装程序与角色素材.dat 在同一文件夹，再双击安装程序。安装完成后从桌面启动；需由控制中心独立运行时，选择安装目录内的“启动达妮娅桌宠.exe”。现有三形态、键鼠互动、托盘与可选 AI 联动沿用此应用；不要把安装器作为独立运行入口。下方 GitHub 备用文件需安装器、合并工具与三个素材分卷全部下载到同一目录后合并安装。",
+    "runtime": "original-application",
+    "native": false,
+    "downloadKind": "complete-installer-zip-share",
+    "release": "https://github.com/xunguangzlj-cloud/danya-pet/releases/tag/v0.3.1",
+    "commit": "826260b",
+    "officialSha256": "06df72dc7c8cf65c7db1b08ec368460bf074a98b5002140dd074f963240ac304",
+    "officialBytes": 4148506708,
+    "secondaryDownloads": [
+      {
+        "label": "danya-assets.dat.001",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/danya-assets.dat.001"
+      },
+      {
+        "label": "danya-assets.dat.002",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/danya-assets.dat.002"
+      },
+      {
+        "label": "danya-assets.dat.003",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/danya-assets.dat.003"
+      },
+      {
+        "label": "DanyaPet-Setup.exe",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/DanyaPet-Setup.exe"
+      },
+      {
+        "label": "INSTALL.zh-CN.md",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/INSTALL.zh-CN.md"
+      },
+      {
+        "label": "MergeAssets.exe",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/MergeAssets.exe"
+      },
+      {
+        "label": "SHA256SUMS.txt",
+        "url": "https://github.com/xunguangzlj-cloud/danya-pet/releases/download/v0.3.1/SHA256SUMS.txt"
+      }
+    ],
+    "kind": "pet",
+    "category": "游戏角色",
+    "distribution": "standalone",
+    "importedAt": "2026-10-10",
+    "collections": [],
+    "tags": [
+      "达妮娅",
+      "三形态",
+      "独立运行",
+      "透明视频",
+      "Windows"
+    ]
   }
 ];
 export function petCredit(work) {

@@ -86,8 +86,20 @@ for (const pet of pets) {
     assert.ok(pet.downloadLabel);
     continue;
   }
-  const archiveFiles = await readLocalPackageFiles(fileURLToPath(new URL(`./dist/${pet.download}`, import.meta.url)), { maxBytes: 200 * 1024 * 1024, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 });
-  const packageFiles = Object.fromEntries(selectLocalPackageRoot(archiveFiles, ['pet.json']).files);
+  let packageFiles;
+  if (pet.distribution === 'media' && pet.download.startsWith('https://')) {
+    const url = new URL(pet.download);
+    assert.equal(url.username + url.password, '');
+    assert.ok(pet.archiveSha256?.match(/^[a-f0-9]{64}$/));
+    assert.ok(Number.isSafeInteger(pet.archiveBytes) && pet.archiveBytes > 0);
+    const manifestBytes = await readFile(new URL(`./dist/${pet.packageManifest}`, import.meta.url));
+    const metadata = validateInstalledPetMetadata(JSON.parse(manifestBytes), pet.id);
+    packageFiles = { 'pet.json': manifestBytes, 'LICENSE.txt': await readFile(new URL(`./dist/${pet.packageLicense}`, import.meta.url)) };
+    for (const [id, file] of Object.entries(metadata.actions)) packageFiles[file] = await readFile(new URL(`./dist/${pet.mediaActions[id].url}`, import.meta.url));
+  } else {
+    const archiveFiles = await readLocalPackageFiles(fileURLToPath(new URL(`./dist/${pet.download}`, import.meta.url)), { maxBytes: 200 * 1024 * 1024, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 });
+    packageFiles = Object.fromEntries(selectLocalPackageRoot(archiveFiles, ['pet.json']).files);
+  }
   if (pet.distribution === 'media') {
     const metadata = validateInstalledPetMetadata(JSON.parse(packageFiles['pet.json']), pet.id);
     assert.equal(metadata.mediaVersion, 1);
@@ -143,7 +155,10 @@ for (const file of gallery.files) {
   assert.equal(bytes.length, file.bytes);
   assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256);
 }
-for (const pet of pets) for (const path of [pet.atlas, pet.thumbnail, pet.distribution === 'standalone' ? null : pet.download, ...Object.values(pet.mediaActions || {}).map(entry => entry.url)].filter(Boolean)) assert.ok(gallery.files.some(file => file.path === path));
+for (const pet of pets) {
+  const paths = [pet.atlas, pet.thumbnail, pet.download.startsWith('assets/') ? pet.download : null, pet.packageManifest, pet.packageLicense, ...Object.values(pet.mediaActions || {}).map(entry => entry.url)].filter(Boolean);
+  for (const path of paths) assert.ok(gallery.files.some(file => file.path === path));
+}
 assert.ok(!gallery.files.some(file => file.path === 'assets/hoodie.webp' || file.path === 'assets/deepseek-girl--legeling.zip'));
 
 for (const template of templates) {

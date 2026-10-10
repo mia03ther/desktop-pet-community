@@ -1,0 +1,89 @@
+{
+  "id": "cloud-lykinzlj1",
+  "displayName": "真珠",
+  "description": "zhen'chu",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/33e436b9.mp4",
+    "action-5d628916": "actions/5d628916.mp4",
+    "action-82c84ef1": "actions/82c84ef1.mp4",
+    "action-33e436b9": "actions/65733b1d.mp4",
+    "action-9fb12ac7": "actions/9fb12ac7.mp4",
+    "action-d2366c8d": "actions/d2366c8d.mp4",
+    "action-da836117": "actions/da836117.mp4",
+    "action-e904a850": "actions/e904a850.mp4",
+    "action-327f461c": "actions/327f461c.mp4",
+    "action-5f6dea1c": "actions/5f6dea1c.mp4",
+    "action-856878f8": "actions/856878f8.mp4",
+    "action-358100d6": "actions/358100d6.mp4"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "pearl-official-idle-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-5d628916": {
+      "displayName": "pearl-official-dragged-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-82c84ef1": {
+      "displayName": "pearl-official-failed-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-33e436b9": {
+      "displayName": "pearl-official-clicked-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-9fb12ac7": {
+      "displayName": "pearl-official-jumping-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-d2366c8d": {
+      "displayName": "pearl-official-review-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-da836117": {
+      "displayName": "pearl-official-running-left-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-e904a850": {
+      "displayName": "pearl-official-running-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-327f461c": {
+      "displayName": "pearl-official-running-right-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-5f6dea1c": {
+      "displayName": "pearl-official-sleeping-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-856878f8": {
+      "displayName": "pearl-official-waiting-personality-01-原件",
+      "category": "陪伴"
+    },
+    "action-358100d6": {
+      "displayName": "pearl-official-waving-personality-01-原件",
+      "category": "陪伴"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "action-327f461c",
+    "running-left": "action-da836117",
+    "waving": "action-358100d6",
+    "jumping": "action-9fb12ac7",
+    "failed": "action-82c84ef1",
+    "waiting": "action-856878f8",
+    "running": "action-e904a850",
+    "review": "action-d2366c8d",
+    "sleeping": "action-5f6dea1c",
+    "clicked": "action-33e436b9",
+    "dragged": "action-5d628916"
+  },
+  "background": {
+    "mode": "chroma",
+    "color": "#13ba2d",
+    "tolerance": 70
+  }
+}

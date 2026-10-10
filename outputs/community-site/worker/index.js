@@ -250,7 +250,7 @@ export default {
       if (original && ['GET', 'HEAD'].includes(request.method)) {
         const work = builtins.get(original[1]); if (!work) return json({ error: '文件不存在。' }, 404);
         const asset = new URL(work.download, url.origin + '/');
-        if (work.distribution === 'standalone') {
+        if (work.distribution === 'standalone' || (work.distribution === 'media' && asset.protocol === 'https:' && asset.origin !== url.origin)) {
           // 地址只取维护者构建的固定目录，不接受请求参数作为重定向目标。
           if (asset.protocol !== 'https:' || asset.username || asset.password) return json({ error: '作品地址无效。' }, 404);
           const response = new Response(null, { status: 302, headers: { location: asset.href, 'cache-control': 'no-store' } });
