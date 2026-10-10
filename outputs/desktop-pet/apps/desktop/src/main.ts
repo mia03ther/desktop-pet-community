@@ -52,6 +52,8 @@ import { bindDesktopPetMessageSink, clearDesktopPetMessageSink } from "./desktop
 import { bindAgentSetupActivitySource, getCodexQuotaCommandContext } from "./agent-setup.js";
 
 // 工作室自行组合生命周期；迁入模块继续使用原来的档案和本机协议以兼容已有数据。
+// windows/lifecycle/插件宿主等多模块都会注册 before-quit，默认 10 上限会误报内存泄漏警告。
+app.setMaxListeners(50);
 app.commandLine.appendSwitch("use-mock-keychain");
 const kde = (process.env.XDG_CURRENT_DESKTOP ?? "").toLowerCase().includes("kde");
 app.commandLine.appendSwitch("password-store", process.platform === "linux" ? kde ? "kwallet6" : "gnome-libsecret" : "basic");
