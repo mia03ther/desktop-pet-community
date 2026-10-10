@@ -115,66 +115,7 @@ node outputs/community-cloudflare/scripts/build.mjs
 <!-- CONTRIBUTORS_START -->
 <p>
   <a href="https://github.com/xunguangzlj-cloud"><img src="assets/contributors/xunguangzlj-cloud.svg" width="64" height="64" alt="Lykinzlj" title="Lykinzlj"></a>
-  <a href="https://github.com/legeling"><img src="assets/contributors/legeling.svg" width="64" height="64" alt="legeling" title="legeling"></a>
-  <a href="https://github.com/cuNuo"><img src="assets/contributors/cuNuo.svg" width="64" height="64" alt="cuNuo" title="cuNuo"></a>
-  <a href="https://github.com/xchangee"><img src="assets/contributors/xchangee.svg" width="64" height="64" alt="tal" title="tal"></a>
-  <a href="https://github.com/NateWanggg"><img src="assets/contributors/NateWanggg.svg" width="64" height="64" alt="NateWanggg" title="NateWanggg"></a>
-  <a href="https://github.com/gbn666"><img src="assets/contributors/gbn666.svg" width="64" height="64" alt="Guo Beining" title="Guo Beining"></a>
-  <a href="https://github.com/Jorge-Cuevas90003"><img src="assets/contributors/Jorge-Cuevas90003.svg" width="64" height="64" alt="Jorge" title="Jorge"></a>
-  <a href="https://github.com/ZaytsevZY"><img src="assets/contributors/ZaytsevZY.svg" width="64" height="64" alt="ZaytsevZY" title="ZaytsevZY"></a>
-  <a href="https://github.com/xiangking"><img src="assets/contributors/xiangking.svg" width="64" height="64" alt="XiangWang" title="XiangWang"></a>
-  <a href="https://github.com/z19t"><img src="assets/contributors/z19t.svg" width="64" height="64" alt="z19t" title="z19t"></a>
-  <a href="https://github.com/cxian0928-afk"><img src="assets/contributors/cxian0928-afk.svg" width="64" height="64" alt="cxian0928-afk" title="cxian0928-afk"></a>
-  <a href="https://github.com/zihualiu1997"><img src="assets/contributors/zihualiu1997.svg" width="64" height="64" alt="zihualiu1997" title="zihualiu1997"></a>
-  <a href="https://github.com/LLLucasXU"><img src="assets/contributors/LLLucasXU.svg" width="64" height="64" alt="LLLucasXU" title="LLLucasXU"></a>
-  <a href="https://github.com/D1a0y1bb"><img src="assets/contributors/D1a0y1bb.svg" width="64" height="64" alt="D1a0y1bb" title="D1a0y1bb"></a>
-  <a href="https://github.com/Jasdfgh"><img src="assets/contributors/Jasdfgh.svg" width="64" height="64" alt="Jasdfgh" title="Jasdfgh"></a>
-  <a href="https://github.com/AygunVarol"><img src="assets/contributors/AygunVarol.svg" width="64" height="64" alt="Aygun Varol" title="Aygun Varol"></a>
-  <a href="https://github.com/initiatione"><img src="assets/contributors/initiatione.svg" width="64" height="64" alt="initiatione" title="initiatione"></a>
-  <a href="https://github.com/Yau-427"><img src="assets/contributors/Yau-427.svg" width="64" height="64" alt="Yau-427" title="Yau-427"></a>
-  <a href="https://github.com/SiIverAsh"><img src="assets/contributors/SiIverAsh.svg" width="64" height="64" alt="SiIverAsh" title="SiIverAsh"></a>
-  <a href="https://github.com/Thankyou-Cheems"><img src="assets/contributors/Thankyou-Cheems.svg" width="64" height="64" alt="Thankyou-Cheems" title="Thankyou-Cheems"></a>
-  <a href="https://github.com/untko"><img src="assets/contributors/untko.svg" width="64" height="64" alt="untko" title="untko"></a>
-  <a href="https://github.com/gg0805"><img src="assets/contributors/gg0805.svg" width="64" height="64" alt="gg0805" title="gg0805"></a>
-  <a href="https://github.com/YoGazz"><img src="assets/contributors/YoGazz.svg" width="64" height="64" alt="YoGazz" title="YoGazz"></a>
-  <a href="https://github.com/DwDestiny"><img src="assets/contributors/DwDestiny.svg" width="64" height="64" alt="DwDestiny" title="DwDestiny"></a>
-  <a href="https://github.com/Hyoni1129"><img src="assets/contributors/Hyoni1129.svg" width="64" height="64" alt="Jeonghan Lee (@Hyoni1129)" title="Jeonghan Lee (@Hyoni1129)"></a>
-  <a href="https://github.com/ROTl24"><img src="assets/contributors/ROTl24.svg" width="64" height="64" alt="ROTl24" title="ROTl24"></a>
-  <a href="https://github.com/Spacebody"><img src="assets/contributors/Spacebody.svg" width="64" height="64" alt="Jerry" title="Jerry"></a>
-  <a href="https://github.com/Somnusochi"><img src="assets/contributors/Somnusochi.svg" width="64" height="64" alt="Somnusochi" title="Somnusochi"></a>
-  <a href="https://github.com/ldl1234"><img src="assets/contributors/ldl1234.svg" width="64" height="64" alt="LyuDonglian" title="LyuDonglian"></a>
-  <a href="https://github.com/zpzjzj"><img src="assets/contributors/zpzjzj.svg" width="64" height="64" alt="Ping" title="Ping"></a>
-  <a href="https://github.com/zhou-jianwen"><img src="assets/contributors/zhou-jianwen.svg" width="64" height="64" alt="zhou-jianwen" title="zhou-jianwen"></a>
-  <a href="https://github.com/netizenXuan"><img src="assets/contributors/netizenXuan.svg" width="64" height="64" alt="netizenXuan" title="netizenXuan"></a>
-  <a href="https://github.com/Jason-Bai"><img src="assets/contributors/Jason-Bai.svg" width="64" height="64" alt="Jason Bai" title="Jason Bai"></a>
-  <a href="https://github.com/FlamurMaliqi"><img src="assets/contributors/FlamurMaliqi.svg" width="64" height="64" alt="Flamur Maliqi" title="Flamur Maliqi"></a>
-  <a href="https://github.com/ltmcliao-cmyk"><img src="assets/contributors/ltmcliao-cmyk.svg" width="64" height="64" alt="ltmcliao-cmyk" title="ltmcliao-cmyk"></a>
-  <a href="https://github.com/rookie-09"><img src="assets/contributors/rookie-09.svg" width="64" height="64" alt="rookie-09" title="rookie-09"></a>
-  <a href="https://github.com/mistyShen"><img src="assets/contributors/mistyShen.svg" width="64" height="64" alt="mistyShen" title="mistyShen"></a>
-  <a href="https://github.com/Carl-312"><img src="assets/contributors/Carl-312.svg" width="64" height="64" alt="Carl-312" title="Carl-312"></a>
-  <a href="https://github.com/wally025"><img src="assets/contributors/wally025.svg" width="64" height="64" alt="Wally Pet Contributors" title="Wally Pet Contributors"></a>
-  <a href="https://github.com/qingyunAGI"><img src="assets/contributors/qingyunAGI.svg" width="64" height="64" alt="qingyunAGI" title="qingyunAGI"></a>
-  <a href="https://github.com/Keseras34938976"><img src="assets/contributors/Keseras34938976.svg" width="64" height="64" alt="Keseras34938976" title="Keseras34938976"></a>
-  <a href="https://github.com/Ricardo-2005"><img src="assets/contributors/Ricardo-2005.svg" width="64" height="64" alt="Ricardo-2005" title="Ricardo-2005"></a>
-  <a href="https://github.com/JbBom"><img src="assets/contributors/JbBom.svg" width="64" height="64" alt="JbBom" title="JbBom"></a>
-  <a href="https://github.com/QunBoo"><img src="assets/contributors/QunBoo.svg" width="64" height="64" alt="QunBoo" title="QunBoo"></a>
-  <a href="https://github.com/sandytruant"><img src="assets/contributors/sandytruant.svg" width="64" height="64" alt="Yitian Sun" title="Yitian Sun"></a>
-  <a href="https://github.com/xxhh0822"><img src="assets/contributors/xxhh0822.svg" width="64" height="64" alt="xxhh0822" title="xxhh0822"></a>
-  <a href="https://github.com/Octane0411"><img src="assets/contributors/Octane0411.svg" width="64" height="64" alt="Octane0411" title="Octane0411"></a>
-  <a href="https://github.com/amiaverse"><img src="assets/contributors/amiaverse.svg" width="64" height="64" alt="Amiaね" title="Amiaね"></a>
-  <a href="https://github.com/regisbsb"><img src="assets/contributors/regisbsb.svg" width="64" height="64" alt="Regis Benedito dos Santos Bittencourt" title="Regis Benedito dos Santos Bittencourt"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/wxy"><img src="assets/contributors/author-50.svg" width="64" height="64" alt="wxy" title="wxy"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/zeyu.wang"><img src="assets/contributors/author-51.svg" width="64" height="64" alt="zeyu.wang" title="zeyu.wang"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/oYTYo"><img src="assets/contributors/author-52.svg" width="64" height="64" alt="oYTYo" title="oYTYo"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/MingDong"><img src="assets/contributors/author-53.svg" width="64" height="64" alt="MingDong" title="MingDong"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/wynn"><img src="assets/contributors/author-54.svg" width="64" height="64" alt="wynn" title="wynn"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/Alter"><img src="assets/contributors/author-55.svg" width="64" height="64" alt="Alter" title="Alter"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/Gaming33"><img src="assets/contributors/author-56.svg" width="64" height="64" alt="Gaming33" title="Gaming33"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/Rank"><img src="assets/contributors/author-57.svg" width="64" height="64" alt="Rank" title="Rank"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/hoody"><img src="assets/contributors/author-58.svg" width="64" height="64" alt="hoody" title="hoody"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/korn"><img src="assets/contributors/author-59.svg" width="64" height="64" alt="korn" title="korn"></a>
-  <a href="https://desktoppet-e9e.pages.dev/#contributors/pets/Shawnzhou"><img src="assets/contributors/author-60.svg" width="64" height="64" alt="Shawnzhou" title="Shawnzhou"></a>
-</p>
+ 
 <!-- CONTRIBUTORS_END -->
 
 感谢每一位贡献桌宠、插件、代码、文档、评审和创意的伙伴。
