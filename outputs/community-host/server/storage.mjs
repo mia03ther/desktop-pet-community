@@ -55,7 +55,8 @@ export async function publicAssets(publicDirectory) {
   const files = new Map();
   async function collect(directory, prefix = '') {
     for (const entry of await readdir(directory, { withFileTypes: true })) {
-      if (!/^[a-zA-Z0-9_-][a-zA-Z0-9._-]*$/.test(entry.name)) throw new Error('公开文件名无效。');
+      const validName = entry.isDirectory() ? /^[a-zA-Z0-9_-][a-zA-Z0-9._-]*$/ : /^[\p{L}\p{N}_-][\p{L}\p{N}._-]*$/u;
+      if (!validName.test(entry.name)) throw new Error('公开文件名无效。');
       const name = prefix + entry.name, path = join(directory, entry.name);
       if (entry.isSymbolicLink()) throw new Error('公开目录不能包含符号链接。');
       if (entry.isDirectory()) await collect(path, name + '/');
@@ -65,7 +66,10 @@ export async function publicAssets(publicDirectory) {
   await collect(publicDirectory); files.set('/', files.get('/index.html'));
   return { async fetch(request) {
     if (!['GET', 'HEAD'].includes(request.method)) return new Response(null, { status: 405 });
-    const url = new URL(request.url), file = files.get(url.pathname);
+    const url = new URL(request.url);
+    let pathname;
+    try { pathname = decodeURI(url.pathname); } catch { return new Response(null, { status: 404 }); }
+    const file = files.get(pathname);
     if (!file) return new Response(null, { status: 404 });
     const info = await stat(file.path);
     const headers = { 'content-type': file.type, 'content-length': String(info.size), 'x-content-type-options': 'nosniff', 'cache-control': file.type === 'application/zip' ? 'no-store' : 'public, max-age=300' };

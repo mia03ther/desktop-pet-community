@@ -1,4 +1,4 @@
-import { createSiteLocale } from './locale.js';
+import { createSiteLocale, builtinCategoryNames } from './locale.js';
 import { attribution, petManifest, zipPackage, safePackagePath, readZipPackage, normalizePackageFiles, inspectImportPackage, videoPetManifest, coverImageType, prepareWorkPackage, creationImageChecks, packageWorkFields, petStateIds, packageImportLimits } from './package-core.js';
 import { actions, templates, templateCredit, pets, petDisplayAuthor, toolPlugins, projectAuthor, projectAuthorUrl } from './catalog.js';
 import { contributorHref, compareWorkPopularity } from './community-core.js';
@@ -21,6 +21,8 @@ let sharedContributorFollowers = null;
 let activitySnapshotAt = new Date().toISOString();
 const likePending = new Set();
 const galleryCategories = ['游戏角色', '动漫角色', '吉祥物', '其他', '机器人', '原创角色', '人物头像', '动物伙伴', '幻想生物', '网络梗图', '物件与道具'];
+const builtinCategoryLabels = new Set([...galleryCategories, ...builtinCategoryNames]);
+const builtinWorkIds = new Set(works.map(item => item.id));
 const galleryPageSize = 18;
 const activityKey = 'pet-community-gallery-activity-v1';
 const themeKey = 'pet-community-theme';
@@ -161,6 +163,7 @@ function renderCard(item, previewOnly = false) {
   const pet = item.kind === 'pet';
   const entry = activityFor(item.id);
   const author = escapeHtml(pet ? petDisplayAuthor(item) : item.author);
+  const categoryAttribute = !previewOnly && builtinWorkIds.has(item.id) && builtinCategoryLabels.has(item.category) ? 'data-i18n-ui-parameters="category"' : 'data-i18n-preserve';
   const preview = pet
     ? `<a href="#pets/${item.id}" class="card-preview" data-preview="${item.id}" aria-label="查看 ${escapeHtml(item.title)}"><img src="${escapeHtml(item.thumbnail)}" alt="${escapeHtml(item.title)} 预览" loading="lazy" width="192" height="208"></a>`
     : item.cover || item.presentation?.cover ? `<img class="plugin-cover" src="${escapeHtml(item.cover || item.presentation.cover)}" alt="${escapeHtml(item.title)} 封面" loading="lazy">` : `<span class="plugin-symbol" aria-hidden="true">${escapeHtml(item.symbol || '✦')}</span>`;
@@ -171,7 +174,7 @@ function renderCard(item, previewOnly = false) {
       ${previewOnly ? '' : `<button type="button" class="stat-pill like-button" data-like="${item.id}" aria-pressed="${entry.liked}" aria-label="${entry.liked ? '取消点赞' : '点赞'}">${icon('heart')}<span>${entry.likes ?? Number(entry.liked)}</span></button><span class="stat-pill download-count" data-download-count="${item.id}" title="${entry.scope === 'site' ? '全站下载，每日去重' : '此浏览器发起下载'}">${icon('download')}<span>${entry.downloads}</span></span>`}
     </div>
     <div class="card-body">
-      <div class="card-title-row"><h2>${previewOnly ? escapeHtml(item.title) : `<a href="${previewHref}" data-preview="${item.id}">${escapeHtml(item.title)}</a>`}</h2><span class="category-pill">${escapeHtml(item.category)}</span></div>
+      <div class="card-title-row"><h2>${previewOnly ? escapeHtml(item.title) : `<a href="${previewHref}" data-preview="${item.id}">${escapeHtml(item.title)}</a>`}</h2><span class="category-pill" ${categoryAttribute}>${escapeHtml(item.category)}</span></div>
       <p class="byline">${item.authorRole === 'maintainer' ? '维护者' : '作者'} <a href="${escapeHtml(contributorHref(item.author, pet ? 'pets' : 'plugins'))}">${author}</a></p>
       <p class="description" title="${escapeHtml(item.description)}">${escapeHtml(item.description)}</p>
       ${previewOnly ? '<p class="hint">卡片预览，发布结果以下方反馈为准</p>' : `<div class="card-actions">
@@ -286,7 +289,8 @@ function renderGallery() {
   const categories = ['全部', ...(kind === 'pet' ? galleryCategories : new Set(all.map(item => item.category)))];
   $('.category-bar').innerHTML = categories.map(item => {
     const count = all.filter(work => item === '全部' || work.category === item).length;
-    return `<button type="button" aria-pressed="${item === category}" data-category="${escapeHtml(item)}">${item === '全部' ? '全部分类' : escapeHtml(item)}${item === '全部' ? '' : `<span>${count}</span>`}</button>`;
+    const builtin = item === '全部' || builtinCategoryLabels.has(item) && (kind === 'pet' || all.some(work => builtinWorkIds.has(work.id) && work.category === item));
+    return `<button type="button" aria-pressed="${item === category}" data-category="${escapeHtml(item)}" ${builtin ? 'data-i18n-ui-parameters="category"' : 'data-i18n-preserve'}>${item === '全部' ? '全部分类' : escapeHtml(item)}${item === '全部' ? '' : `<span>${count}</span>`}</button>`;
   }).join('');
   $('#result-count').textContent = `已展示 ${displayed.length}${kind === 'pet' ? ' 只宠物' : ' 个插件'}${matches.length === all.length ? '' : ` · 匹配 ${matches.length} 个作品`}`;
   $('#cards').innerHTML = displayed.map(item => renderCard(item)).join('');
@@ -365,6 +369,7 @@ function openPetDetail(work) {
   detailWork = work;
   $('#detail-title').textContent = `${work.title} · 动作预览`;
   $('#detail-description').textContent = `${work.description} 许可：${work.license || '见包内声明'}。`;
+  if (builtinWorkIds.has(work.id) && builtinCategoryLabels.has(work.category)) $('#detail-author').setAttribute('data-i18n-ui-parameters', 'category'); else $('#detail-author').removeAttribute('data-i18n-ui-parameters');
   $('#detail-author').textContent = `作者：${petDisplayAuthor(work)} · V${work.version} · ${work.category}`;
   $('#detail-download').href = work.download;
   $('#detail-download').download = `${work.id}.zip`;

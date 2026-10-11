@@ -15,6 +15,25 @@ assert.ok(video, '公开清单应包含本轮发布的视频。');
 const url = origin + '/' + video.path;
 const ASSETS = await publicAssets(resolve(root, '../community-host/public'));
 
+test('本轮Clawa与PC中文说明经真实公开目录返回GET和HEAD原字节', async () => {
+  for (const name of ['README-导入与授权说明.md', '使用说明.md']) {
+    const file = manifest.files.find(entry => entry.path.split('/').at(-1) === name);
+    assert.ok(file, '新构建公开清单应包含中文说明：' + name);
+    const original = await readFile(resolve(root, '../community-host/public', file.path));
+    assert.equal(original.length, file.bytes);
+    const requestUrl = origin + '/' + encodeURI(file.path);
+    const response = await worker.fetch(new Request(requestUrl), { ASSETS });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type'), 'text/plain; charset=utf-8');
+    assert.equal(response.headers.get('content-length'), String(original.length));
+    assert.deepEqual(Buffer.from(await response.arrayBuffer()), original);
+    const head = await worker.fetch(new Request(requestUrl, { method: 'HEAD' }), { ASSETS });
+    assert.equal(head.status, 200);
+    assert.equal(head.headers.get('content-length'), String(original.length));
+    assert.equal((await head.arrayBuffer()).byteLength, 0);
+  }
+});
+
 test('真实登记视频的 HEAD 有完整大小，首段、中段和尾段精确返回原字节', async () => {
   const original = await readFile(resolve(root, '../community-host/public', video.path));
   assert.equal(original.length, video.bytes);

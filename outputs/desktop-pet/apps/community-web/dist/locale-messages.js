@@ -663,3 +663,20 @@ const completeTemplates = `
 uiTemplates.push(...completeTemplates.trim().split('\n').map(line => { const [key, ...values] = line.split('|'); return [key, values]; }));
 for (const category of ['原创角色', '游戏角色', '动漫角色', '吉祥物', '其他', '机器人', '人物头像', '动物伙伴', '幻想生物', '网络梗图', '物件与道具']) for (const version of [1, 2]) uiMessages[`${category} · V${version}`] = uiMessages[category].map(value => `${value} · V${version}`);
 uiTemplates.push(['未确认发布：{0}。分享 ZIP 已生成，可先下载保留。', ['Publication not confirmed: {0}. Sharing ZIP created; download it to keep a copy.', '公開未確認：{0}。共有ZIPを作成しました。ダウンロードして保存できます。', '게시 미확인: {0}. 공유 ZIP을 생성했습니다. 다운로드하여 보관하세요.']]);
+
+export const builtinCategoryNames = ['机器人伙伴', '原创伙伴', '可选工具', '健康提醒', '专注陪伴', '提醒与计时', '身心陪伴', '生活陪伴', '资源与工具', '学习与效率'];
+const builtinCategoryMessages = `
+机器人伙伴|Robot companions|ロボットの仲間|로봇 동반자
+原创伙伴|Original companions|オリジナルの仲間|오리지널 동반자
+可选工具|Optional tools|任意ツール|선택 도구
+健康提醒|Health reminders|健康リマインダー|건강 알림
+专注陪伴|Focus companion|集中の付き添い|집중 동반
+提醒与计时|Reminders and timers|リマインダーとタイマー|알림과 타이머
+身心陪伴|Wellbeing companion|心身の付き添い|심신 동반
+生活陪伴|Everyday companion|日常の付き添い|일상 동반
+资源与工具|Resources and tools|リソースとツール|자료와 도구
+学习与效率|Learning and productivity|学習と効率化|학습과 생산성
+下载 桌宠 ZIP|Download pet ZIP|ペットZIPをダウンロード|펫 ZIP 다운로드
+下载 插件 ZIP|Download plugin ZIP|プラグインZIPをダウンロード|플러그인 ZIP 다운로드
+`;
+Object.assign(uiMessages, Object.fromEntries(builtinCategoryMessages.trim().split('\n').map(line => { const [key, ...values] = line.split('|'); if (values.length !== 3) throw new Error('界面词典列数无效：'+key); return [key, values]; })));

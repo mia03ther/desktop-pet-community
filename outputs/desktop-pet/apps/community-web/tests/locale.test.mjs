@@ -9,10 +9,10 @@ import { uiMessages, uiTemplates } from '../dist/locale-messages.js';
 // 最小 DOM 夹具只提供浏览器节点、事件及变更通知；直接调用生产语言控制器。
 function pageFixture() {
   const root = { nodeType: 1, tagName: 'MAIN', childNodes: [], matches: () => false, hasAttribute: () => false, closest: () => null };
-  function element(text, { preserve = false, option = false, builtin = false } = {}) {
+  function element(text, { preserve = false, option = false, builtin = false, tag = 'P' } = {}) {
     const attributes = new Map(), listeners = new Map();
-    const node = { nodeType: 1, tagName: option ? 'OPTION' : 'P', childNodes: [], parentElement: root, value: '',
-      matches: () => preserve, closest: selector => builtin && selector === '[data-i18n-ui-parameters]' ? node : null,
+    const node = { nodeType: 1, tagName: option ? 'OPTION' : tag, childNodes: [], parentElement: root, value: '',
+      matches: selector => preserve || tag === 'TEXTAREA' && selector.includes('textarea'), closest: selector => builtin && selector === '[data-i18n-ui-parameters]' ? node : null,
       hasAttribute: name => attributes.has(name), getAttribute: name => attributes.get(name), setAttribute: (name, value) => attributes.set(name, value),
       addEventListener: (name, callback) => listeners.set(name, callback), removeEventListener: (name, callback) => { if (listeners.get(name) === callback) listeners.delete(name); },
       fire: name => listeners.get(name)?.(),
@@ -106,6 +106,73 @@ test('真实插件兼容标题翻译内置声明式格式，未知宿主及原�
     controller.setLocale(locale);assert.equal(heading.textContent,expected);
     assert.equal(unknown.textContent,`${translateUI('需原宿主',locale)} · ${unknownFormat}`);
     heading.textContent=`原生兼容 · ${report.format}`;await page.notify();assert.equal(heading.textContent,expected);
+  }
+  controller.dispose();
+});
+
+
+test('四入口表单已知属性四语翻译，文本框正文和所有输入值及未知提示保持原文', async () => {
+  const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8'),page=pageFixture(),fields=[];
+  const body='安装 · 社区排行榜 · 用户自己的署名与工作';
+  for(const match of html.matchAll(/<(input|textarea)\b([^>]+)>/g)){
+    const attrs=[...match[2].matchAll(/(placeholder|title|aria-label)="([^"]*)"/g)];if(!attrs.length)continue;
+    const tag=match[1].toUpperCase(),node=page.append(tag==='TEXTAREA'?body:'',{tag});node.value=body;
+    for(const [,name,value] of attrs)node.setAttribute(name,value);
+    fields.push({node,attrs,tag});
+  }
+  const ariaField=page.append(body,{tag:'TEXTAREA'});ariaField.value=body;const ariaAttrs=[['','title','安装指南'],['','aria-label','作品类型']];for(const [,name,value] of ariaAttrs)ariaField.setAttribute(name,value);fields.push({node:ariaField,attrs:ariaAttrs,tag:'TEXTAREA'});
+  assert.ok(fields.some(field=>field.tag==='TEXTAREA'));assert.ok(fields.some(field=>field.tag==='INPUT'));
+  const unknown=page.append(body,{tag:'TEXTAREA'}),protectedArea=page.append(body,{tag:'TEXTAREA',preserve:true});
+  for(const node of [unknown,protectedArea])node.setAttribute('placeholder',node===unknown?'原项目的提示：安装':'它是什么样的伙伴？');
+  const controller=createSiteLocale({document:page.document,Observer:page.Observer,storage:{getItem:()=>null}});
+  for(const locale of siteLocales){
+    controller.setLocale(locale);
+    for(const {node,attrs,tag} of fields){
+      for(const [,name,value] of attrs){assert.equal(node.getAttribute(name),translateUI(value,locale),`${tag} ${name}: ${value}`);if(locale!=='zh-CN'&&/[\u4e00-\u9fff]/.test(value))assert.notEqual(node.getAttribute(name),value,value);}
+      assert.equal(node.value,body);if(tag==='TEXTAREA')assert.equal(node.textContent,body);
+    }
+    assert.equal(unknown.getAttribute('placeholder'),'原项目的提示：安装');assert.equal(unknown.textContent,body);
+    assert.equal(protectedArea.getAttribute('placeholder'),'它是什么样的伙伴？');assert.equal(protectedArea.textContent,body);
+    const textarea=fields.find(field=>field.tag==='TEXTAREA').node;textarea.textContent='用户后来写的安装和社区排行榜';textarea.value=textarea.textContent;await page.notify();
+    assert.equal(textarea.textContent,'用户后来写的安装和社区排行榜');assert.equal(textarea.value,'用户后来写的安装和社区排行榜');textarea.textContent=body;textarea.value=body;
+  }
+  controller.dispose();
+});
+
+
+test('图片读屏只翻译已知界面整句，捕获原标题和自定义媒体保留原文', async () => {
+  const page=pageFixture(),preview=page.append('',{tag:'IMG'}),cover=page.append('',{tag:'IMG'}),unknown=page.append('',{tag:'IMG'}),custom=page.append('',{tag:'IMG',preserve:true});
+  preview.setAttribute('alt','安装 预览');cover.setAttribute('alt','工作 封面');unknown.setAttribute('alt','原作者的下载画作');custom.setAttribute('alt','工作 封面');
+  const staticAlt=page.append('',{tag:'IMG',builtin:true}),unmarkedAlt=page.append('',{tag:'IMG'});staticAlt.setAttribute('alt','参考外观');unmarkedAlt.setAttribute('alt','参考外观');
+  const controller=createSiteLocale({document:page.document,Observer:page.Observer,storage:{getItem:()=>null}});
+  for(const [locale,previewText,coverText] of [['zh-CN','安装 预览','工作 封面'],['en','安装 preview','工作 cover'],['ja','安装 のプレビュー','工作 の表紙'],['ko','安装 미리 보기','工作 표지']]){
+    controller.setLocale(locale);assert.equal(preview.getAttribute('alt'),previewText);assert.equal(cover.getAttribute('alt'),coverText);
+    assert.equal(unknown.getAttribute('alt'),'原作者的下载画作');assert.equal(custom.getAttribute('alt'),'工作 封面');
+    assert.equal(staticAlt.getAttribute('alt'),translateUI('参考外观',locale));assert.equal(unmarkedAlt.getAttribute('alt'),'参考外观');
+    preview.setAttribute('alt','社区排行榜 预览');await page.notify();assert.equal(preview.getAttribute('alt'),translateUI('社区排行榜 预览',locale,false,'alt'));
+    assert.ok(preview.getAttribute('alt').includes('社区排行榜'));preview.setAttribute('alt','安装 预览');await page.notify();
+  }
+  controller.dispose();
+});
+
+
+test('实际带空格下载菜单四语完整翻译，不改变指定作品名称', () => {
+  const page=pageFixture(),pet=page.append('下载 桌宠 ZIP'),plugin=page.append('下载 插件 ZIP'),custom=page.append('下载 桌宠 ZIP',{preserve:true});
+  const controller=createSiteLocale({document:page.document,Observer:page.Observer,storage:{getItem:()=>null}});
+  for(const [locale,petText,pluginText] of [['zh-CN','下载 桌宠 ZIP','下载 插件 ZIP'],['en','Download pet ZIP','Download plugin ZIP'],['ja','ペットZIPをダウンロード','プラグインZIPをダウンロード'],['ko','펫 ZIP 다운로드','플러그인 ZIP 다운로드']]){
+    controller.setLocale(locale);assert.equal(pet.textContent,petText);assert.equal(plugin.textContent,pluginText);assert.equal(custom.textContent,'下载 桌宠 ZIP');
+  }
+  controller.dispose();
+});
+
+test('内置分类以标记翻译，原始分类值及同名用户自定义分类保持原文', async () => {
+  const page=pageFixture(),names=['机器人伙伴','原创伙伴','可选工具','健康提醒','专注陪伴','提醒与计时','身心陪伴','生活陪伴','资源与工具','学习与效率'];
+  const fields=names.map(name=>{const builtin=page.append(name,{builtin:true}),custom=page.append(name);builtin.setAttribute('data-category',name);return{name,builtin,custom};});
+  const controller=createSiteLocale({document:page.document,Observer:page.Observer,storage:{getItem:()=>null}});
+  for(const locale of siteLocales){
+    controller.setLocale(locale);
+    for(const{name,builtin,custom}of fields){assert.equal(custom.textContent,name);assert.equal(builtin.getAttribute('data-category'),name);if(locale!=='zh-CN'){assert.notEqual(builtin.textContent,name);assert.equal(builtin.textContent,translateUI(name,locale,true));}else assert.equal(builtin.textContent,name);builtin.textContent=name;}
+    await page.notify();for(const{name,builtin}of fields)assert.equal(builtin.textContent,translateUI(name,locale,true));
   }
   controller.dispose();
 });

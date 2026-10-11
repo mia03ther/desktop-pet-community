@@ -77,7 +77,7 @@ export function createCommunityPages({ pets, plugins, activityFor, escapeHtml, i
     const supported = requestState.supported.includes(item.id);
     const following = requestState.following.includes(item.id);
     const local = item.id.startsWith('local-');
-    const image = item.thumbnail ? `<img src="${escapeHtml(item.thumbnail)}" alt="参考外观" loading="lazy" width="192" height="208">` : '<span aria-hidden="true">✧</span><small>你的角色创意</small>';
+    const image = item.thumbnail ? `<img src="${escapeHtml(item.thumbnail)}" alt="参考外观" data-i18n-ui-parameters="static-alt" loading="lazy" width="192" height="208">` : '<span aria-hidden="true">✧</span><small>你的角色创意</small>';
     const date = item.createdAtISO || item.updatedAt;
     const reference = local ? '我的制作需求' : item.public ? '社区制作需求' : '创作提案示例';
     return `<article class="community-request-card" id="request-${item.id}"><div class="community-request-visual">${image}</div><div class="community-request-body"><div class="community-request-meta"><span>待制作</span><small>${escapeHtml(item.category)} · V${item.version}</small></div><h3 class="community-request-title">${escapeHtml(item.title)}</h3><p class="community-request-description">${escapeHtml(item.description)}</p><div class="community-request-footnote"><span>${reference}</span><span>${date ? escapeHtml(String(date).slice(0, 10)) : '等你开始'}</span></div><div class="community-request-actions"><button class="primary" type="button" data-request-support="${item.id}" aria-pressed="${supported}">${icon('heart')} ${supported ? '已支持' : '我也想要'} <span>${supported ? 1 : 0}</span></button><button class="secondary" type="button" data-request-follow="${item.id}" aria-pressed="${following}">${following ? '已关注' : '关注进度'}</button></div></div></article>`;
