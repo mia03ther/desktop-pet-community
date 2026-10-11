@@ -32,3 +32,6 @@ outputs/community-host/.build/
 outputs/community-host/public/
 outputs/community-cloudflare/wrangler.toml
 # 网页维护源在 apps/community-web/dist，不能笼统忽略所有 dist。
+
+# 会话运行记录不属于公开作品素材。
+outputs/desktop-pet/apps/community-web/dist/assets/**/.mimosa/

@@ -518,7 +518,7 @@ owns safe uninstall path resolution.
 
 ### Local development
 
-本地控制中心“导入插件”现在可选 ZIP、JSON 清单或文件夹，支持下载包中的唯一嵌套作品根目录。入口清单接受 `desktop-pet.plugin.json`、`plugin.json` 以及原有 `openpets.plugin.json`。归一化后的运行清单仍必须通过原 manifest v1 declarative 或 v2/v3 JavaScript SDK 校验；权限、网络白名单、入口大小、资产清理及沙箱没有放宽。未知顶层扩展字段与原始清单留存在 `import-source-原清单名`，附属文件和包装层许可保留；标准运行入口写为原宿主识别的文件名，因此导出目录可以再次导入。插件包总大小最多 32 MiB、1000 文件，每附属文件最多 5 MiB，JavaScript 入口最多 1 MiB。网页可归档更大或其他宿主的插件，归档不代表桌面可运行。
+本地控制中心“导入插件”现在可选 ZIP、JSON 清单或文件夹，支持下载包中的唯一嵌套作品根目录。入口清单接受 `desktop-pet.plugin.json`、`plugin.json` 以及原有 `openpets.plugin.json`。归一化后的运行清单仍必须通过原 manifest v1 declarative 或 v2/v3 JavaScript SDK 校验；权限、网络白名单、入口大小、资产清理及沙箱没有放宽。未知顶层扩展字段与原始清单留存在 `import-source-原清单名`，附属文件和包装层许可保留；标准运行入口写为原宿主识别的文件名，因此导出目录可以再次导入。完整插件包最多 1 GiB、10000 文件，每附属文件最多 512 MiB，网页与本机使用同一边界。JavaScript 入口仍最多 1 MiB，运行清单仍最多 64 KiB；明确声明的图标、音频、面板等资源继续使用各自限额和安全校验。其他宿主的插件可以保留原件，归档不代表桌面可运行。
 
 控制中心导入先展示静态兼容性报告，不将静态清单检查称为运行测试。确认后所有原件由 `original-projects.ts` 单独按原路径、原字节托管；只有原生清单及声明资源通过边界的包，才调用原插件服务并由用户确认新增权限。取消权限不会消费本次检测凭证。插件封面、预览或 UI 图片属于附属资料，不因为存在图片就自动生成可执行面板。
 

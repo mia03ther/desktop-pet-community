@@ -182,7 +182,7 @@ test('四共创入口使用本站精确YAML表单字段预填，不误用body或
   }
 });
 
-test('表单记录实际完整ZIP字节与SHA，大包保留原件并引导PR而非假上传', async () => {
+test('表单记录实际完整ZIP字节与SHA，大包保留原件并引导Release完整链接而非假上传', async () => {
   const zip = zipPackage({ 'LICENSE.txt': new TextEncoder().encode('保留作者原许可') });
   const digest = await crypto.subtle.digest('SHA-256', await zip.arrayBuffer());
   const sha256 = Buffer.from(digest).toString('hex');
@@ -190,7 +190,7 @@ test('表单记录实际完整ZIP字节与SHA，大包保留原件并引导PR而
   assert.match(url.searchParams.get('files'), new RegExp(`包大小：${zip.size} 字节`));
   assert.match(url.searchParams.get('files'), new RegExp(sha256));
   assert.match(url.searchParams.get('files'), /拖入此处/);
-  const large = new URL(githubSubmissionUrl(repository, submissionMetadata, { ...archiveDetails, bytes: 26 * 1024 * 1024 }));
+  const large = new URL(githubSubmissionUrl(repository, submissionMetadata, { ...archiveDetails, bytes: 25 * 1000 * 1000 + 1 }));
   assert.match(large.searchParams.get('files'), /超过.*附件上限/);
   assert.doesNotMatch(large.searchParams.get('files'), /拖入此处/);
   for (const patch of [{ bytes: 0 }, { bytes: Number.NaN }, { sha256: '伪摘要' }]) assert.throws(() => githubSubmissionUrl(repository, submissionMetadata, { ...archiveDetails, ...patch }));

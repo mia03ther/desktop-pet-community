@@ -1,3 +1,4 @@
+import { packageImportLimits } from "./package-import-limits.js";
 import { createWriteStream, type Stats } from "node:fs";
 import { lstat, mkdir, mkdtemp, realpath, rm, writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, resolve } from "node:path";
@@ -66,7 +67,7 @@ export async function exportPetPackageFromDirectory(
   await canonicalDirectory(source, "宠物来源目录");
   signal?.throwIfAborted();
   await readPetPackageAssets(source, metadata);
-  const assets = await readLocalPackageFiles(source, { maxBytes: maxPetShareArchiveBytes, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 });
+  const assets = await readLocalPackageFiles(source, packageImportLimits);
   assets.delete("pet.json");
   const attachedNames = new Set([...assets.keys()].map((name) => name.toLowerCase()));
   let readmeName = "SHARE.md";

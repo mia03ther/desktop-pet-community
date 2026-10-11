@@ -261,6 +261,11 @@ export default {
         const assetRequest = new Request(asset, { method: request.method });
         const result = await fixedAsset(assetRequest, env);
         const response = new Response(result.body, result); response.headers.set('cache-control', 'no-store');
+        if (result.ok) {
+          response.headers.set('content-type', 'application/zip');
+          response.headers.set('content-disposition', `attachment; filename="${work.id}.zip"`);
+          response.headers.set('x-content-type-options', 'nosniff');
+        }
         if (result.ok && request.method === 'GET') { const identity = visitor(request); await downloadActivity(request, env, work.id, identity); if (identity.cookie) response.headers.set('set-cookie', identity.cookie); }
         return response;
       }

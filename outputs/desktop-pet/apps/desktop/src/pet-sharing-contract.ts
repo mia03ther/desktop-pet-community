@@ -1,3 +1,4 @@
+import { packageImportLimits } from "./package-import-limits.js";
 /** 分享选项仅包含填写者的公开说明，不保存账号或运行状态。 */
 export interface PetPackageExportOptions {
   readonly format: "folder" | "zip";
@@ -14,7 +15,7 @@ export interface PetPackageExportResult {
 }
 
 export const petShareFieldLimits = { author: 120, source: 1000, license: 200 } as const;
-export const maxPetShareArchiveBytes = 200 * 1024 * 1024;
+export const maxPetShareArchiveBytes = packageImportLimits.maxBytes;
 export const maxPetShareReadmeBytes = 16 * 1024;
 
 /** 主进程在打开原生选择器之前验证分享参数；省略选项保持文件夹导出。 */

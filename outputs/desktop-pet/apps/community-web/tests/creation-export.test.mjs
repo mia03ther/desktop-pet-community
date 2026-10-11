@@ -49,12 +49,10 @@ test('制作入口拒绝不符合真实SDK的版本、权限和入口，导入�
   assert.deepEqual(prepareWorkPackage(external, input, 'plugin', 'plugin-import')['index.tsx'], external['index.tsx']);
 });
 
-test('制作插件对齐宿主清单64KiB、入口1MiB、文件5MiB与总量32MiB限制', () => {
+test('扩大完整包容量后，制作插件仍拒绝超过宿主边界的清单和入口', () => {
   const oversized = [
     { ...nativeFiles, 'plugin.json': encode({ ...manifest, creatorNotes: '大'.repeat(24 * 1024) }) },
     { ...nativeFiles, 'index.js': new Uint8Array(1024 * 1024 + 1) },
-    { ...nativeFiles, 'extra.bin': new Uint8Array(5 * 1024 * 1024 + 1) },
-    { ...nativeFiles, ...Object.fromEntries(Array.from({ length: 7 }, (_, index) => [`data-${index}.bin`, new Uint8Array(5 * 1024 * 1024)])) },
   ];
   for (const files of oversized) {
     assert.throws(() => prepareWorkPackage(files, input, 'plugin', 'plugin-make'));

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-11T02:19:55.854Z",
+  "builtAt": "2026-10-11T05:13:33.529Z",
   "mode": "anonymous-interactions",
   "migrations": [
     "0000_first_deathstrike.sql",
@@ -9,8 +9,8 @@
   "files": [
     {
       "path": "app.js",
-      "bytes": 83811,
-      "sha256": "5362c201681b6c1ae8cc267863e17860be87e4e7b59884ed340b7399d2119df7"
+      "bytes": 84451,
+      "sha256": "e2b3883030418549462de1678a0b0d90e5bd3026e24fba2121be292033e6ea00"
     },
     {
       "path": "assets/brand-logo.png",
@@ -2609,13 +2609,13 @@
     },
     {
       "path": "native-package-contract.js",
-      "bytes": 21992,
-      "sha256": "04453cca6a4dfa02a6b8538b865122a957b3fabad1f541ced5817cf6c4a4f7b9"
+      "bytes": 22113,
+      "sha256": "346b119b520c613948228610b9147d8b533bd08778fd8467d11fed268daf9061"
     },
     {
       "path": "package-core.js",
-      "bytes": 33470,
-      "sha256": "c4f2eb411c5ead076d4a5e2cca6fce200c0d648d393246071e86d2f4130a4e2b"
+      "bytes": 33918,
+      "sha256": "950bbf32626fd27c9fd2d93b6f2ec1e244ee85f8a3f7cf39d8e3f323afab8089"
     },
     {
       "path": "plugin-catalog.js",
@@ -2629,8 +2629,8 @@
     },
     {
       "path": "publication-client.js",
-      "bytes": 14751,
-      "sha256": "6b09d23f5c74db2a14de1dad72cb819856fa30a736afeaef011889cb7a3cb4f9"
+      "bytes": 14857,
+      "sha256": "4c6d9e7b7674eaff9c8e35c03949531d6b0d3290efed964327b75740407cc538"
     },
     {
       "path": "publication-config.js",
@@ -2654,9 +2654,9 @@
     },
     {
       "path": "_worker.js",
-      "bytes": 1244216,
-      "sha256": "0dcc16379e35d49c82b2072b4e4723d023b872b3b786e8635ec1dca72f779074"
+      "bytes": 1246154,
+      "sha256": "110ebf112399980c99b12195ec46d5f670717bf321df6ba3d04fc64d1bff7e61"
     }
   ],
-  "totalBytes": 679596520
+  "totalBytes": 679599773
 }

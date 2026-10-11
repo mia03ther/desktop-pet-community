@@ -39,11 +39,11 @@
 
 ### コミュニティペット紹介
 
-プラットフォームには 117 体のペットと 24 個のプラグインが収録されています。以下の作品は[共创平台](https://desktoppet-e9e.pages.dev)でプレビュー・ダウンロード・インポートできます：
+プラットフォームには 117 体のペットと 24 個のプラグインが収録されています。コミュニティの作品は[共创平台](https://desktoppet-e9e.pages.dev)で探せます。dsh-pet のカードはそのプロジェクトを開きます：
 
-| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="派蒙"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
+| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/lulu--yogazz"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/lulu--yogazz-thumb.webp" width="150" alt="Lulu"></a> | <a href="https://github.com/PC2005-cloud/dsh-pet"><img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="150" alt="dsh-pet"></a> |
 |:---:|:---:|:---:|
-| **流萤** | **派蒙** | **Aemeath Mini** |
+| **流萤** | **Lulu** | **[dsh-pet](https://github.com/PC2005-cloud/dsh-pet)** |
 | <a href="https://desktoppet-e9e.pages.dev/#pets/bongocat-vladelaina"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp" width="150" alt="BongoCat"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/cloud-lykinzlj1"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp" width="150" alt="真珠"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/danya-pet-windows"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp" width="150" alt="达妮娅 · 三形态"></a> |
 | **BongoCat** | **真珠** | **达妮娅 · 三形态** |
 

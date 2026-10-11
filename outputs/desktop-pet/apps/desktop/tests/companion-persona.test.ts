@@ -127,11 +127,11 @@ try {
   await fs.writeFile(invalidUnicode, JSON.stringify({ version: 1, persona: { enabled: true, format: "character-markdown", content: "\ud800", importedAt: new Date().toISOString() } }));
   assert.ok(new CompanionPersonaService({ statePath: invalidUnicode }).getSnapshot().lastError, "有效 JSON 也不能夹带无效 Unicode 人物正文");
 
-  // 两种编辑方式共用一份存档；读取正文是独立操作，保存不自动启用。
+  // 两种编辑方式共用一份存档；编辑保存保留开关，初次编写不自动启用。
   const edited = "# 小岚\n称呼用户同学，说明信息不足。";
   service.saveText({ mode: "global-md", content: edited });
   assert.equal(service.getSnapshot().mode, "global-md");
-  assert.equal(service.getSnapshot().enabled, false);
+  assert.equal(service.getSnapshot().enabled, true);
   const document = service.getDocument();
   assert.ok(document);
   assert.equal(document.content, edited);
@@ -146,8 +146,15 @@ try {
   service.saveText({ mode: "distilled-md", content: edited });
   const restoredDocument = new CompanionPersonaService({ statePath }).getDocument();
   assert.equal(restoredDocument?.mode, "distilled-md");
-  assert.equal(restoredDocument?.enabled, false);
+  assert.equal(restoredDocument?.enabled, true);
   assert.equal(restoredDocument?.content, edited);
+  const initiallyWritten = new CompanionPersonaService({ statePath: path.join(fixture, "freshly-written.json") });
+  initiallyWritten.saveText({ mode: "global-md", content: edited });
+  assert.equal(initiallyWritten.getSnapshot().enabled, false, "初次编写保存不自动启用");
+  initiallyWritten.setEnabled(true);
+  initiallyWritten.setEnabled(false);
+  initiallyWritten.saveText({ mode: "distilled-md", content: edited });
+  assert.equal(initiallyWritten.getSnapshot().enabled, false, "用户明确停用后编辑仍保持停用");
   const legacyPath = path.join(fixture, "legacy.json");
   const distilledTextPath = path.join(fixture, "已蒸馏人设.txt");
   await fs.writeFile(distilledTextPath, edited, "utf8");

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { deflateRawSync, inflateRawSync } from 'node:zlib';
-import { inspectPackage, normalizePackageFiles, readZipPackage, safePackagePath, videoPetManifest, zipPackage } from '../dist/package-core.js';
+import { inspectPackage, inspectImportPackage, normalizePackageFiles, readZipPackage, safePackagePath, videoPetManifest, zipPackage } from '../dist/package-core.js';
 import { templates, toolPlugins } from '../dist/catalog.js';
 import { sourcePlugins } from '../dist/plugin-catalog.js';
 
@@ -79,10 +79,11 @@ test('SDK插件清单别名识别，未知宿主仅分享，缺少JS入口明确
   assert.match(inspectPackage({ 'plugin.dll': new Uint8Array([1, 2]) }, 'plugin').compatibility, /仅归档分享/);
 });
 
-test('插件可归档200MB以内作品，但超过32MB明确提示不能直接运行导入', () => {
+test('超过旧32MiB的附属原件仍能作为原生插件导入', () => {
   const files = { 'plugin.json': encode({ manifestVersion: 3, runtime: 'javascript', sdkVersion: '3.0.0', version: '1.0.0', permissions: [], entry: 'index.js', id: 'author.large', name: '大插件' }), 'index.js': encode('export default {}'), 'assets/data.bin': new Uint8Array(32 * 1024 * 1024) };
   const normalized = normalizePackageFiles(files);
-  assert.match(inspectPackage(normalized, 'plugin').runtimeWarning, /32 MB/);
+  assert.equal(inspectPackage(normalized, 'plugin').runtimeWarning, '');
+  assert.equal(inspectImportPackage(normalized, 'plugin').report.level, 'native');
   assert.equal(Object.keys(normalized).length, 3);
 });
 

@@ -1,3 +1,4 @@
+import { packageImportLimits } from "./package-import-limits.js";
 import { createHash, randomUUID } from "node:crypto";
 import { lstat, mkdir, readdir, realpath, rename, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, isAbsolute, join, relative, resolve } from "node:path";
@@ -14,7 +15,7 @@ import { localPluginManifestNames } from "./plugin-local-loader.js";
 import { validateImportedPluginManifest } from "./plugin-manifest.js";
 import type { OriginalProject, OriginalProjectCapability, OriginalProjectCompatibilityReport, OriginalProjectKind, OriginalProjectOperation, OriginalProjectStandalone } from "./original-project-types.js";
 
-const packageLimits = { maxBytes: 200 * 1024 * 1024, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 };
+const packageLimits = packageImportLimits;
 const projectIdPattern = /^project-[a-f0-9]{24}$/;
 
 export interface InspectedOriginalProject {
@@ -82,7 +83,6 @@ async function inspectCompatibility(files: ReadonlyMap<string, Buffer>, kind: Or
   }
   if (kind === "plugin" && names.some((name) => (localPluginManifestNames as readonly string[]).includes(basename(name)))) {
     try {
-      if (files.size > 1000 || [...files.values()].some((bytes) => bytes.length > 5 * 1024 * 1024) || [...files.values()].reduce((total, bytes) => total + bytes.length, 0) > 32 * 1024 * 1024) throw new Error("本机插件安装只接受 32 MiB 总量、5 MiB 单文件以内的包。");
       const selected = selectLocalPackageRoot(files, localPluginManifestNames);
       const result = validateImportedPluginManifest(readJson(selected.files.get(selected.manifestName)!, defaultMaxPluginManifestBytes));
       if (!result.ok) throw new Error(result.errors.map((issue) => `${issue.path}: ${issue.message}`).join("；"));

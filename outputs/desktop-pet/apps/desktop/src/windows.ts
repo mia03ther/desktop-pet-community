@@ -500,7 +500,7 @@ export function installInternalUiHandlers(): void {
       const options: Electron.OpenDialogOptions = {
         title: kind === "directory" ? "导入完整人物 Skill 文件夹" : "导入已蒸馏 Skill 或人物资料",
         properties: [kind === "directory" ? "openDirectory" : "openFile"],
-        ...(kind === "directory" ? {} : { filters: [{ name: "已蒸馏 Skill、Markdown 或文本", extensions: ["md", "markdown", "txt"] }] }),
+        ...(kind === "directory" ? {} : { filters: [{ name: "人物资料、角色卡或 Skill", extensions: ["md", "markdown", "txt", "json", "png"] }] }),
       };
       const result = controlCenterWindow ? await dialog.showOpenDialog(controlCenterWindow, options) : await dialog.showOpenDialog(options);
       return result.canceled ? null : result.filePaths[0] ?? null;
@@ -513,7 +513,7 @@ export function installInternalUiHandlers(): void {
       const options: Electron.SaveDialogOptions = {
         title: "导出人物风格资料",
         defaultPath: "桌宠人物.md",
-        filters: [{ name: "人物 Markdown", extensions: ["md", "markdown"] }],
+        filters: [{ name: "人物 Markdown", extensions: ["md", "markdown"] }, { name: "完整角色卡 JSON", extensions: ["json"] }],
       };
       const result = controlCenterWindow ? await dialog.showSaveDialog(controlCenterWindow, options) : await dialog.showSaveDialog(options);
       return result.canceled ? null : result.filePath ?? null;

@@ -86,3 +86,18 @@ test('D1 绑定存在但互动迁移缺失时不冒充已就绪，短盐与缺�
   assert.equal(created, 1);
   assert.equal((await active.fetch(new Request('https://untrusted.test/api/session'), { ASSETS, COMMUNITY_ORIGIN: 'https://untrusted.test' })).status, 403);
 });
+
+
+test('插件下载接口提供真实 ZIP 文件名，使控制中心 ZIP 过滤器可见；HEAD 不下载正文', async () => {
+  const id = 'openpets.water-reminder';
+  const bytes = new Uint8Array([80, 75, 3, 4, 7, 9]);
+  const assets = { fetch: async request => new Response(request.method === 'HEAD' ? null : bytes, { headers: { 'content-type': 'application/octet-stream' } }) };
+  const DB = { prepare: () => ({ bind: () => ({ run: async () => ({ success: true }) }) }) };
+  for (const method of ['GET', 'HEAD']) {
+    const response = await worker.fetch(new Request(origin + '/api/download/' + id, { method }), { ASSETS: assets, DB });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type'), 'application/zip');
+    assert.equal(response.headers.get('content-disposition'), 'attachment; filename="openpets.water-reminder.zip"');
+    assert.deepEqual(new Uint8Array(await response.arrayBuffer()), method === 'HEAD' ? new Uint8Array() : bytes);
+  }
+});

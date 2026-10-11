@@ -1,4 +1,4 @@
-import { attribution, petManifest, zipPackage, safePackagePath, readZipPackage, normalizePackageFiles, inspectImportPackage, videoPetManifest, coverImageType, prepareWorkPackage, creationImageChecks, packageWorkFields, petStateIds } from './package-core.js';
+import { attribution, petManifest, zipPackage, safePackagePath, readZipPackage, normalizePackageFiles, inspectImportPackage, videoPetManifest, coverImageType, prepareWorkPackage, creationImageChecks, packageWorkFields, petStateIds, packageImportLimits } from './package-core.js';
 import { actions, templates, templateCredit, pets, petDisplayAuthor, toolPlugins, projectAuthor, projectAuthorUrl } from './catalog.js';
 import { contributorHref } from './community-core.js';
 import { sourcePlugins } from './plugin-catalog.js';
@@ -169,7 +169,7 @@ function renderCard(item, previewOnly = false) {
       ${previewOnly ? '<p class="hint">卡片预览，发布结果以下方反馈为准</p>' : `<div class="card-actions">
         <a class="button secondary" href="${previewHref}" data-preview="${item.id}">${pet ? '查看' : '查看功能'}</a>
         <details class="install-menu"><summary aria-label="安装 ${escapeHtml(item.title)}">${icon('download')}安装 ${icon('chevron')}</summary><div class="card-menu">
-          <a href="${escapeHtml(item.download)}" download data-download="${item.id}">${escapeHtml(item.downloadLabel || `下载 ${pet ? '桌宠' : '插件'} ZIP`)}</a>
+          <a href="${escapeHtml(item.download)}" download="${item.distribution === 'standalone' ? '' : escapeHtml(item.id) + '.zip'}" data-download="${item.id}">${escapeHtml(item.downloadLabel || `下载 ${pet ? '桌宠' : '插件'} ZIP`)}</a>
           <button type="button" data-install-help="${item.id}">复制给 AI 的安装说明</button>
           <a href="#guide">阅读安装指南</a>
         </div></details>
@@ -344,7 +344,7 @@ function openToolDetail(tool) {
     ${tool.features.length ? `<h3>提供的功能</h3><ul>${tool.features.map(feature => `<li>${escapeHtml(feature)}</li>`).join('')}</ul>` : ''}
     ${tool.hostNotice ? `<p>${escapeHtml(tool.hostNotice)}</p>` : ''}
     <p>作者：${escapeHtml(tool.author)}${tool.version ? ` · V${escapeHtml(tool.version)}` : ''}<br>许可：${escapeHtml(tool.license)}</p>
-    <div class="dialog-actions"><a class="button primary" href="${escapeHtml(tool.download)}" download data-download="${tool.id}">下载插件 ZIP</a><a href="#guide">查看安装指南</a></div>`;
+    <div class="dialog-actions"><a class="button primary" href="${escapeHtml(tool.download)}" download="${escapeHtml(tool.id)}.zip" data-download="${tool.id}">下载插件 ZIP</a><a href="#guide">查看安装指南</a></div>`;
   dialog.querySelector('button').addEventListener('click', () => dialog.close());
   dialog.querySelector('a[href="#guide"]').addEventListener('click', () => dialog.close());
   if (!dialog.open) dialog.showModal();
@@ -357,6 +357,7 @@ function openPetDetail(work) {
   $('#detail-description').textContent = work.description;
   $('#detail-author').textContent = `作者：${petDisplayAuthor(work)} · V${work.version} · ${work.category}`;
   $('#detail-download').href = work.download;
+  $('#detail-download').download = `${work.id}.zip`;
   $('#detail-download').dataset.download = work.id;
   $('#detail-sprite').style.backgroundImage = `url("${work.atlas}")`;
   $('#detail-look-section').hidden = work.version !== 2;
@@ -369,7 +370,7 @@ function openPublicMediaPet(work) {
   if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'public-pet-detail'; dialog.setAttribute('aria-labelledby', 'public-pet-title'); dialog.addEventListener('close', () => { if (location.hash.startsWith('#pets/')) history.replaceState(null, '', '#pets'); }); document.body.append(dialog); }
   dialog.querySelectorAll('video').forEach(video => video.pause());
   const entries = Object.entries(work.mediaActions || {});
-  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
+  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download="${work.distribution === 'standalone' ? '' : escapeHtml(work.id) + '.zip'}" data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
   const preview = () => {
     const entry = work.mediaActions?.[dialog.querySelector('select')?.value];
     const stage = dialog.querySelector('[data-public-media]'); stage.replaceChildren();
@@ -727,7 +728,7 @@ $('#clip-input').addEventListener('change', async event => {
       if (next.length >= 100) throw new Error('最多添加 100 个动作。');
       const extension = file.name.split('.').pop().toLowerCase();
       if (!['mp4', 'webm', 'webp'].includes(extension)) throw new Error('请选择 MP4、WebM 或动画 WebP。');
-      if (file.size > 100 * 1024 * 1024 || next.reduce((sum, clip) => sum + clip.bytes.length, file.size) > 200 * 1024 * 1024) throw new Error('单文件最大 100 MB，动作总量最大 200 MB。');
+      if (file.size > packageImportLimits.maxFileBytes || next.reduce((sum, clip) => sum + clip.bytes.length, file.size) > packageImportLimits.maxBytes) throw new Error('单文件最大 512 MiB，动作总量最大 1 GiB。');
       const sequence = crypto.randomUUID().slice(0, 8);
       const bytes = new Uint8Array(await file.arrayBuffer());
       if (generation !== clipGeneration) { createdUrls.forEach(url => URL.revokeObjectURL(url)); return; }
@@ -900,16 +901,19 @@ for (const kind of ['pet', 'plugin']) for (const mode of ['zip', 'folder', 'file
       }
       $(`#${kind}-package-status`).textContent = '正在读取作品文件…';
       let files;
-      if (mode === 'zip') files = await readZipPackage(new Uint8Array(await event.target.files[0].arrayBuffer()), inflateZip);
+      if (mode === 'zip') {
+        if (event.target.files[0].size > packageImportLimits.maxBytes) throw new Error('ZIP 最大 1 GiB；更大的作品请按投稿指南提交完整包链接。');
+        files = await readZipPackage(new Uint8Array(await event.target.files[0].arrayBuffer()), inflateZip);
+      }
       else {
         files = Object.create(null);
         let total = 0;
-        if (event.target.files.length > 1000) throw new Error('最多导入 1000 个文件。');
+        if (event.target.files.length > packageImportLimits.maxFiles) throw new Error('最多导入 10000 个文件。');
         for (const file of event.target.files) {
           const name = file.webkitRelativePath || file.name;
           safePackagePath(name);
           total += file.size;
-          if (file.size > 100 * 1024 * 1024 || total > 200 * 1024 * 1024) throw new Error('单文件最大 100 MB，总量最大 200 MB。');
+          if (file.size > packageImportLimits.maxFileBytes || total > packageImportLimits.maxBytes) throw new Error('单文件最大 512 MiB，总量最大 1 GiB。');
           if (Object.hasOwn(files, name)) throw new Error('存在同名文件，请使用文件夹或 ZIP 保留子目录。');
           files[name] = new Uint8Array(await file.arrayBuffer());
         }
@@ -1008,7 +1012,7 @@ function updatePublicationUI() {
   try { const value = new URL(publicSiteUrl); if (value.protocol === 'https:') { value.hash = 'create'; publicUrl = value.href; } } catch { /* 部署前没有公开地址，不展示占位链接。 */ }
   $('#plugin-public-site').hidden = canSubmit || !publicUrl;
   if (publicUrl) $('#plugin-public-site').href = publicUrl;
-  $('#plugin-publication-help').textContent = repository ? 'GitHub Issue 的 ZIP 附件上限为 25 MB；较大的包请按仓库投稿指南提交 PR。' : available ? '公开 ZIP 最大 32 MB；保存草稿与下载 ZIP 不会发布。' : '';
+  $('#plugin-publication-help').textContent = repository ? '网页导入与打包最大 1 GiB，单文件 512 MiB，最多 10000 文件。ZIP 超过 Issue 附件上限时，可上传到自己的 GitHub Release（每个文件小于 2 GiB）并在投稿中填写下载链接。' : available ? '公开 ZIP 最大 32 MB；保存草稿与下载 ZIP 不会发布。' : '';
   $('#creator-publishing-note').textContent = repository ? '提交投稿后待审核收录，不会自动在广场上线。' : available ? '发布结果以服务器确认为准。' : '';
   $('#request-publish').disabled = !canSubmit;
   $('#request-public-site').hidden = canSubmit || !publicUrl;

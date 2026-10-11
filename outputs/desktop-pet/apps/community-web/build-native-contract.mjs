@@ -8,7 +8,7 @@ const { build } = viteRequire('esbuild');
 const output = fileURLToPath(new URL('./dist/native-package-contract.js', import.meta.url));
 const result = await build({
   stdin: {
-    contents: 'export { validateImportedPluginManifest, pluginAssetMaxBytes, pluginPanelMaxBytes } from "../desktop/src/plugin-manifest.ts"; export { validateMediaPetMetadata, petMediaActions, petMediaOptionalActions } from "../desktop/src/pet-media-contract.ts"; export { validateCodexPetMetadata } from "../desktop/src/codex-pets-core.ts";',
+    contents: 'export { validateImportedPluginManifest, pluginAssetMaxBytes, pluginPanelMaxBytes } from "../desktop/src/plugin-manifest.ts"; export { validateMediaPetMetadata, petMediaActions, petMediaOptionalActions } from "../desktop/src/pet-media-contract.ts"; export { validateCodexPetMetadata } from "../desktop/src/codex-pets-core.ts"; export { packageImportLimits } from "../desktop/src/package-import-limits.ts";',
     resolveDir: fileURLToPath(new URL('.', import.meta.url)),
     sourcefile: 'native-contract-entry.js',
   },

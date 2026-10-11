@@ -12,6 +12,8 @@
 
 - **原项目独立程序启动**：`original-project-execution.ts` 唯一持有 Windows PE／架构检查、有界 EXE／JAR 候选发现、Main-Class／基线字节码最低版本与本地依赖检查、Java／.NET 环境检查及无 shell 的独立启动。JAR 复用 `local-package-files.ts`，原 Java 的 `-version` 只在明确选择和运行时探测，固定 `-jar` 参数，不执行清单脚本。`original-projects.ts` 保留项目入口、原应用与选定 Java，动态计算 `standalone`／`runStandalone`／`chooseJava`；窄 IPC 只接收项目 ID。多入口需选择，缺环境置灰，用户点击时重新检查。原应用启动不等于原项目已加载；不自动安装、执行脚本或改写原逻辑。
 
+- **完整包容量所有者**：`package-import-limits.ts` 统一网页、本机原件托管、原生插件与桌宠安装导出的 1 GiB／单文件 512 MiB／10000 文件边界；不放宽执行入口、清单、声明资源或原宿主运行授权。
+
 - **开放本地包导入**：`local-package-files.ts` 唯一持有本地 ZIP／文件夹的有界读取、嵌套根选择、原包装层附件归档及路径隔离。宠物仍由 `pet-installation.ts` 和原事务安装，插件由 `plugin-local-loader.ts` 归一化三种清单名并保留原清单与附件，原 manifest／权限／SDK 校验保持不变。`shimeji-pet-import.ts` 仅将无条件 XML/Pose PNG 序列转换到媒体契约，不执行 Java／条件表达式／原行为引擎。
 
 - **Modular Controllers**: Separate controllers for default pet vs agent pets (lease-based)
@@ -59,7 +61,7 @@ token 计数，无工具时不发送空工具字段。`provider-contract.ts` 的
 `companion-ai-tasks.ts` 拥有 1 至 3 来源分析、指定来源汇总、取消和最近十条结果；
 它不拥有工具执行能力。`companion-ai-monitor.ts` 聚合真实回合、任务、有效租约
 事件，保存手动额度，官方余额与 key 上限由宿主临时缓存并单独显示。
-`companion-persona.ts` 拥有人物 Markdown、托管 skills 目录与 v3 存档；`companion-persona-skill.ts` 有界保留完整文件夹，只展开明确引用的目录内文本。主动导入自动启用，每轮注入原 composition，无需触发词；可见扫描保留已有选择。`CompanionAiHost.getPersonaEnvironment()` 区分宿主提示词/目录加载能力与模型效果、外部原生 Skill 未检测状态。
+`companion-persona.ts` 拥有人物 Markdown、标准角色卡、托管 skills 目录与 v3 存档；`companion-character-card.ts` 纯解析 Tavern V1/V2/V3 与 LobeChat agent 核心字段、宏和保留扩展的编辑；`companion-character-card-png.ts` 有界提取 PNG 角色元数据；`companion-persona-skill.ts` 有界保留完整文件夹，只展开明确引用的目录内文本。主动导入自动启用，每轮注入原 composition，无需触发词；可见扫描保留已有选择。`CompanionAiHost.getPersonaEnvironment()` 区分宿主提示词/目录加载能力与模型效果、外部原生 Skill 未检测状态。
 `control-center-ai-ipc.ts` 绑定发送方、一次性预览、取消与迟到结果；电脑诊断预览与派发要求电脑守护真实运行，停用撤销预览并取消分析任务，重新启用不恢复旧预览。对应
 `companion-ai-types.ts`、`companion-ai-monitor-types.ts`、`companion-persona-types.ts`
 为界面共享契约。生命周期由 `main.ts` 注入，窗口 adapter 在关闭时撤销授权。

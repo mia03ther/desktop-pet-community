@@ -1,17 +1,20 @@
 export const COMPANION_PERSONA_IMPORT_LIMIT_BYTES = 64 * 1024;
+export const COMPANION_PERSONA_CARD_LIMIT_BYTES = 256 * 1024;
+export const COMPANION_PERSONA_PNG_LIMIT_BYTES = 32 * 1024 * 1024;
 export const COMPANION_PERSONA_STYLE_LIMIT_BYTES = 8 * 1024;
 export const COMPANION_PERSONA_SKILL_STYLE_LIMIT_BYTES = 48 * 1024;
 
-export type CompanionPersonaFormat = "skill-markdown" | "character-markdown";
+export type CompanionPersonaFormat = "skill-markdown" | "character-markdown" | "character-card";
 export type CompanionPersonaMode = "global-md" | "distilled-md";
 
 export interface CompanionPersonaTextInput {
   mode: CompanionPersonaMode;
   content: string;
+  format?: "character-markdown" | "character-card";
 }
 
 /** 仅在用户打开人设编辑器时返回正文，普通监测快照不包含正文。 */
-export interface CompanionPersonaDocument extends CompanionPersonaTextInput {
+export interface CompanionPersonaDocument extends Omit<CompanionPersonaTextInput, "format"> {
   format: CompanionPersonaFormat;
   enabled: boolean;
   importedAt: string;

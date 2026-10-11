@@ -1,7 +1,8 @@
-import { validateImportedPluginManifest, validateMediaPetMetadata, validateCodexPetMetadata, petMediaActions, petMediaOptionalActions, pluginAssetMaxBytes, pluginPanelMaxBytes } from './native-package-contract.js';
+import { validateImportedPluginManifest, validateMediaPetMetadata, validateCodexPetMetadata, petMediaActions, petMediaOptionalActions, pluginAssetMaxBytes, pluginPanelMaxBytes, packageImportLimits } from './native-package-contract.js';
 
 const encoder = new TextEncoder();
 const reservedId = /^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i;
+export { packageImportLimits };
 export const petStateIds = [...petMediaActions, ...petMediaOptionalActions];
 
 function field(value, label, max, required = true) {
@@ -79,7 +80,7 @@ function crc32(bytes) {
 
 // 小型无压缩 ZIP 写入器；浏览器图集已压缩，不再引入额外压缩依赖。
 export function zipPackage(files) {
-  if (Object.keys(files).length > 1000) throw new Error('素材包最多包含 1000 个文件。');
+  if (Object.keys(files).length > packageImportLimits.maxFiles) throw new Error('素材包最多包含 10000 个文件。');
   const local = [];
   const central = [];
   let offset = 0;
@@ -88,6 +89,7 @@ export function zipPackage(files) {
     const filename = encoder.encode(name);
     const bytes = typeof value === 'string' ? encoder.encode(value) : value;
     if (!(bytes instanceof Uint8Array)) throw new Error('包文件内容无效。');
+    if (bytes.length > packageImportLimits.maxFileBytes) throw new Error('单文件超过 512 MiB。');
     const checksum = crc32(bytes);
     const header = new Uint8Array(30 + filename.length);
     const view = new DataView(header.buffer);
@@ -118,7 +120,7 @@ export function zipPackage(files) {
     offset += header.length + bytes.length;
   }
   const centralLength = central.reduce((total, bytes) => total + bytes.length, 0);
-  if (offset + centralLength + 22 > 200 * 1024 * 1024) throw new Error('素材包超过 200 MB。');
+  if (offset + centralLength + 22 > packageImportLimits.maxBytes) throw new Error('素材包超过 1 GiB；请按投稿指南使用完整包链接。');
   const end = new Uint8Array(22);
   const view = new DataView(end.buffer);
   view.setUint32(0, 0x06054b50, true);
@@ -137,9 +139,9 @@ export function safePackagePath(value) {
   return value;
 }
 
-export async function readZipPackage(input, inflate, { maxTotalBytes = 200 * 1024 * 1024, maxFileBytes = 100 * 1024 * 1024 } = {}) {
+export async function readZipPackage(input, inflate, { maxTotalBytes = packageImportLimits.maxBytes, maxFileBytes = packageImportLimits.maxFileBytes } = {}) {
   const bytes = input instanceof Uint8Array ? input : new Uint8Array(input);
-  if (bytes.length > 200 * 1024 * 1024) throw new Error('ZIP 超过 200 MB，请分开整理素材。');
+  if (bytes.length > packageImportLimits.maxBytes) throw new Error('ZIP 超过 1 GiB；请按投稿指南使用完整包链接。');
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   let end = -1;
   for (let at = bytes.length - 22; at >= Math.max(0, bytes.length - 65557); at--) {
@@ -147,7 +149,7 @@ export async function readZipPackage(input, inflate, { maxTotalBytes = 200 * 102
   }
   if (end < 0) throw new Error('ZIP 目录损坏或不是受支持的 ZIP。');
   const count = view.getUint16(end + 10, true);
-  if (view.getUint16(end + 4, true) || view.getUint16(end + 6, true) || count !== view.getUint16(end + 8, true) || count > 1000) throw new Error('不支持分卷 ZIP，或文件数量超过 1000。');
+  if (view.getUint16(end + 4, true) || view.getUint16(end + 6, true) || count !== view.getUint16(end + 8, true) || count > packageImportLimits.maxFiles) throw new Error('不支持分卷 ZIP，或文件数量超过 10000。');
   const files = Object.create(null);
   const names = new Set();
   let at = view.getUint32(end + 16, true);
@@ -187,14 +189,14 @@ export async function readZipPackage(input, inflate, { maxTotalBytes = 200 * 102
 export function normalizePackageFiles(input) {
   const files = Object.create(null);
   const entries = Object.entries(input);
-  if (!entries.length || entries.length > 1000) throw new Error('请选择 1 至 1000 个文件。');
+  if (!entries.length || entries.length > packageImportLimits.maxFiles) throw new Error('请选择 1 至 10000 个文件。');
   let total = 0;
   const names = new Set();
   for (const [name, value] of entries) {
     safePackagePath(name);
     if (!(value instanceof Uint8Array)) throw new Error('文件内容无效。');
     total += value.length;
-    if (value.length > 100 * 1024 * 1024 || total > 200 * 1024 * 1024) throw new Error('单文件超过 100 MB 或文件总量超过 200 MB。');
+    if (value.length > packageImportLimits.maxFileBytes || total > packageImportLimits.maxBytes) throw new Error('单文件超过 512 MiB 或文件总量超过 1 GiB。');
     if (names.has(name.toLocaleLowerCase())) throw new Error('存在大小写冲突的同名文件。');
     names.add(name.toLocaleLowerCase());
   }
@@ -310,7 +312,7 @@ export function inspectPackage(files, kind) {
   }
   const workInfo = { id: readable(manifest.id), title: readable(manifest.displayName || manifest.title || manifest.name), description: readable(manifest.description || submission.description), author: readable(manifest.author || submission.author), source: readable(manifest.sourceUrl || submission.source_url), license: readable(manifest.license || submission.license) };
   const bytes = Object.values(files).reduce((sum, value) => sum + value.length, 0);
-  const runtimeWarning = kind === 'plugin' && bytes > 32 * 1024 * 1024 ? '超过本地插件 32 MB 运行导入上限；可完整归档分享，运行前需精简作品文件。' : '';
+  const runtimeWarning = bytes > packageImportLimits.maxBytes ? '超过 1 GiB 完整包导入上限；请保留原件并使用原宿主，不能直接运行导入。' : '';
   return { manifestName, manifest, workInfo, compatibility, runtimeWarning, fileCount: Object.keys(files).length, bytes };
 }
 
@@ -395,12 +397,12 @@ export function inspectImportPackage(files, kind) {
   const vpet = names.some(name => /(^|\/)(VPet.*\.dll|info\.lps)$/i.test(name));
   const external = shimeji || raycast || live2d || vpet;
   const bytes = Object.values(files).reduce((sum, value) => sum + value.length, 0);
-  const oversizedFile = kind === 'plugin' && names.find(name => files[name].length > 5 * 1024 * 1024);
-  const oversized = kind === 'plugin' && (bytes > 32 * 1024 * 1024 || oversizedFile);
+  const oversizedFile = names.find(name => files[name].length > packageImportLimits.maxFileBytes);
+  const oversized = bytes > packageImportLimits.maxBytes || names.length > packageImportLimits.maxFiles || oversizedFile;
   const level = failure ? 'invalid' : native ? oversized ? 'partial' : 'native' : shimeji ? 'partial' : external ? 'external' : 'invalid';
-  const capabilities = { archive: true, preview: native && kind === 'pet', actions: native && kind === 'pet', aiBindings: native && kind === 'pet', configuration: native && kind === 'plugin' && !oversized, originalLogic: native && !oversized };
+  const capabilities = { archive: true, preview: native && kind === 'pet' && !oversized, actions: native && kind === 'pet' && !oversized, aiBindings: native && kind === 'pet' && !oversized, configuration: native && kind === 'plugin' && !oversized, originalLogic: native && !oversized };
   const format = shimeji ? 'Shimeji' : raycast ? 'Raycast' : live2d ? 'Live2D' : vpet ? 'VPet' : native ? info.compatibility : '未识别格式';
-  const reasons = [failure, oversized ? oversizedFile ? `文件超过插件 5 MB 上限：${oversizedFile}。` : '超过插件 32 MB 上限。' : '', shimeji ? '原逻辑仍需专用引擎。' : '', external && !shimeji ? '需要原宿主。' : '', !native && !external && !failure ? '未识别运行格式。' : ''].filter(Boolean);
+  const reasons = [failure, oversized ? oversizedFile ? `文件超过 512 MiB 上限：${oversizedFile}。` : '超过 1 GiB 或 10000 文件上限。' : '', shimeji ? '原逻辑仍需专用引擎。' : '', external && !shimeji ? '需要原宿主。' : '', !native && !external && !failure ? '未识别运行格式。' : ''].filter(Boolean);
   const report = { inspection: 'static', level, format, capabilities, supported: ['完整原包归档与下载', ...(native ? [kind === 'pet' ? '已知桌宠清单与声明动作素材' : 'SDK 清单、入口与声明附件'] : [])], unsupported: native ? oversized ? ['直接运行导入'] : [] : ['本系统动作控制', 'AI 状态绑定', '本系统运行配置', '自动执行原项目逻辑'], reasons };
   const saved = savedWorkInformation(files);
   const workInfo = { ...info.workInfo };
@@ -451,7 +453,7 @@ export function prepareWorkPackage(files, input, kind, workflow, cover = null) {
 
 // 制作出口检查真实文件头与 WebP 帧声明；导入归档不改写原件。
 export function mediaFileInfo(bytes, path, needsAlpha = false) {
-  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > 100 * 1024 * 1024) throw new Error(`动作素材缺失或超过 100 MB：${path}。`);
+  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > packageImportLimits.maxFileBytes) throw new Error(`动作素材缺失或超过 512 MiB：${path}。`);
   const ascii = (start, end) => new TextDecoder('ascii').decode(bytes.subarray(start, end));
   if (/\.mp4$/i.test(path)) {
     if (bytes.length < 24 || ascii(4, 8) !== 'ftyp') throw new Error(`MP4 文件头无效：${path}。`);

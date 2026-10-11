@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { CHARACTER_CARD_FIELD_LABELS, parseCharacterCard, updateCharacterCardField, type CharacterCard } from "../../../companion-character-card.js";
 import type { CompanionAiApi, CompanionAiSnapshot } from "../../../companion-ai-types.js";
 import type { CompanionPersonaDocument, CompanionPersonaMode, CompanionPersonaEnvironment, CompanionPersonaSkillScan } from "../../../companion-persona-types.js";
 
@@ -10,6 +11,7 @@ export function PersonaStudioView({ api, onOpenProviders }: {
   const [document, setDocument] = useState<CompanionPersonaDocument | null>(null);
   const [mode, setMode] = useState<CompanionPersonaMode>("global-md");
   const [content, setContent] = useState("");
+  const [format, setFormat] = useState<"character-markdown" | "character-card">("character-markdown");
   const [profileId, setProfileId] = useState("");
   const [name, setName] = useState("我的桌宠");
   const [focus, setFocus] = useState("");
@@ -34,6 +36,7 @@ export function PersonaStudioView({ api, onOpenProviders }: {
       setDocument(nextDocument);
       setMode(nextDocument?.mode ?? "global-md");
       setContent(nextDocument?.content ?? "");
+      setFormat(nextDocument?.format === "character-card" ? "character-card" : "character-markdown");
       setEnvironment(nextEnvironment);
       setBusy("");
     }).catch((failure: unknown) => {
@@ -76,13 +79,21 @@ export function PersonaStudioView({ api, onOpenProviders }: {
     setDocument(nextDocument);
     setMode(nextDocument?.mode ?? "global-md");
     setContent(nextDocument?.content ?? "");
+    setFormat(nextDocument?.format === "character-card" ? "character-card" : "character-markdown");
     setEnvironment(nextEnvironment);
   }
 
   const profiles = snapshot?.monitor.profiles.filter((profile) =>
     ["openai-compatible-text", "openai-realtime", "anthropic-text"].includes(profile.adapter)) ?? [];
-  const changed = content !== (document?.content ?? "") || mode !== (document?.mode ?? "global-md");
+  const changed = content !== (document?.content ?? "") || mode !== (document?.mode ?? "global-md") || format !== (document?.format === "character-card" ? "character-card" : "character-markdown");
   const generating = busy === "生成草稿";
+  let card: CharacterCard | null = null;
+  let cardError = "";
+  if (format === "character-card") {
+    try { card = parseCharacterCard(content, true); }
+    catch (failure) { cardError = failure instanceof Error ? failure.message : "角色卡格式无效。"; }
+  }
+  const promptLimit = format === "character-card" ? 48 * 1024 : 8 * 1024;
 
   return <section className="studio-section" aria-labelledby="persona-studio-title">
     <div className="studio-heading">
@@ -107,16 +118,26 @@ export function PersonaStudioView({ api, onOpenProviders }: {
           await refreshDocument();
           if (mounted.current) setNotice(`完整 Skill 已导入并自动启用，保留 ${result.skillFileCount ?? 0} 个文件，加载 ${result.loadedReferenceCount ?? 0} 份明确引用的文本。后续对话无需触发词。`);
         })}>导入完整 Skill 文件夹</button>
+        <button className="secondary" disabled={!!busy} onClick={() => {
+          setFormat("character-card");
+          setMode("global-md");
+          setContent(JSON.stringify({ spec: "chara_card_v2", spec_version: "2.0", data: {
+            name: "我的桌宠", description: "", personality: "", scenario: "", first_mes: "", mes_example: "",
+            system_prompt: "", post_history_instructions: "", creator_notes: "", alternate_greetings: [],
+            tags: [], creator: "", character_version: "", extensions: {},
+          } }, null, 2));
+          setNotice("角色卡草稿已创建，填写人物信息后保存并启用。");
+        }}>按字段编写角色卡</button>
       </div>
-      <p>单文件选择 SKILL.md、Markdown 或 UTF-8 纯文本。完整文件夹须含 SKILL.md，可保留 manifest.json、references/ 和其他素材。</p>
+      <p>支持 Markdown、TXT、Skill 文件夹、Tavern V1/V2/V3 角色卡 JSON／PNG，以及 LobeChat agent JSON；AIRI 标准角色卡可按 V3 导入。导入后每轮自动应用，无需触发词。PNG 只读取人物资料，桌宠外观单独管理。</p>
     </div>
     {error && <div className="studio-error" role="alert">{error}</div>}
     {notice && <div className="studio-notice" role="status">{notice}</div>}
     <div className="studio-panel studio-fields">
-      <h3>人物 Skill 环境</h3>
+      <h3>人设与 Skill 环境</h3>
       <p>本应用支持人设提示词与目录 Skill 加载，已启用人物每轮自动应用。模型实际扮演效果需通过对话确认；外部 AI 平台是否原生支持 SKILL.md 尚未检测。</p>
       <p>当前文字 AI：{environment?.selectedProfile ? `${environment.selectedProfile.label} · ${environment.selectedProfile.model}（${environment.conversationReady ? "已配置，可进行桌宠对话" : "尚未就绪"}）` : "尚未配置"}。</p>
-      <p>当前人物 Skill：{environment?.activeSkillName ?? "未选择目录 Skill"}{document?.enabled ? "（已启用）" : "（未启用）"}。</p>
+      <p>当前人物：{document?.format === "character-card" ? "角色卡" : environment?.activeSkillName ?? (document ? "人物文档" : "尚未配置")}{document ? document.enabled ? "（已启用）" : "（未启用）" : ""}。</p>
       <p>本应用托管 skills 目录：<code style={{ overflowWrap: "anywhere" }}>{environment?.skillsDirectory ?? "正在读取…"}</code></p>
       <p>可将整个 Denia-skill 等人物文件夹复制到此目录，再点击扫描。只有一个且尚未选择人设时会自动启用；存在多个时由你选择，现有人设保留。此目录不会修改系统或 Codex 的全局 skills。</p>
       <div className="studio-actions">
@@ -149,10 +170,10 @@ export function PersonaStudioView({ api, onOpenProviders }: {
     <div className="studio-panel">
       <fieldset className="studio-fields" disabled={!!busy}>
         <legend>选择编写方式</legend>
-        <label><input type="radio" name="persona-mode" value="global-md" checked={mode === "global-md"} onChange={() => setMode("global-md")} />全局 Markdown：自己编写或导入</label>
+        <label><input type="radio" name="persona-mode" value="global-md" checked={mode === "global-md"} onChange={() => setMode("global-md")} />直接编写或导入人物资料</label>
         <label><input type="radio" name="persona-mode" value="distilled-md" checked={mode === "distilled-md"} onChange={() => setMode("distilled-md")} />蒸馏人设：导入已有结果或由 AI 帮助提炼</label>
       </fieldset>
-      <p>切换方式和编辑正文均不会改变已保存的人设。保存后默认停用，核对后再启用。</p>
+      <p>切换方式和编辑正文均不会改变已保存的人设。保存会保留当前启用状态；初次编写并保存的人设默认停用，核对后再启用。</p>
       {mode === "distilled-md" && <div className="studio-fields">
         <h3>从提供的资料生成草稿</h3>
         <p>从文章、对话或自述中提炼人物特征，不训练模型。点击生成会将下面的名称、侧重点和素材发送给所选 AI 来源，可能消耗其额度；不会读取文档引用或自动抓取网址。</p>
@@ -169,6 +190,7 @@ export function PersonaStudioView({ api, onOpenProviders }: {
             if (!mounted.current) return;
             setMode("distilled-md");
             setContent(draft.content);
+            setFormat("character-markdown");
             setNotice(`草稿已生成，尚未保存或启用。请核对证据、删改后保存。${draft.usage?.totalTokens !== null && draft.usage?.totalTokens !== undefined ? `本次提供方返回 ${draft.usage.totalTokens} token。` : "提供方未返回总 token 用量。"}`);
           })}>{generating ? "正在提炼…" : "生成可编辑草稿"}</button>
           {generating && <button onClick={() => {
@@ -189,16 +211,28 @@ export function PersonaStudioView({ api, onOpenProviders }: {
       </div>}
     </div>
     <div className="studio-panel studio-fields">
-      <h3>{mode === "global-md" ? "全局人设 Markdown" : "蒸馏人设 Markdown"}</h3>
-      <label>可编辑正文<textarea value={content} disabled={!!busy} rows={16} placeholder={mode === "global-md" ? "写下桌宠的身份、语气、称呼、互动偏好和表达边界。" : "粘贴自己蒸馏好的 Markdown，或审阅上方 AI 生成的草稿。"} onChange={(event) => setContent(event.target.value)} /></label>
-      <p>普通 Markdown 提示词最多 8 KiB，完整 Skill 与明确引用的资料最多 48 KiB，超限会明确拒绝。脚本和工具声明不会执行。保存此编辑正文会按普通 Markdown 保存；原完整 Skill 仍保留在托管目录，可重新扫描启用。</p>
+      <h3>{format === "character-card" ? "人物角色卡" : mode === "global-md" ? "全局人设 Markdown" : "蒸馏人设 Markdown"}</h3>
+      {card && <>
+        <p>已识别格式：{card.family}。人物与当前文字 AI 分开配置，切换模型后继续使用此人设。</p>
+        {card.editableFields.map((field) => <label key={field}>{CHARACTER_CARD_FIELD_LABELS[field]}
+          {field === "name" ? <input value={card.fields[field]} disabled={!!busy} onChange={(event) => setContent(updateCharacterCardField(content, field, event.target.value))} />
+            : <textarea rows={field === "examples" ? 5 : 3} value={card.fields[field]} disabled={!!busy} onChange={(event) => setContent(updateCharacterCardField(content, field, event.target.value))} />}
+        </label>)}
+        {card.creatorNotes && <details><summary>作者备注（不加入对话）</summary><p style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{card.creatorNotes}</p></details>}
+        {card.warnings.map((warning) => <p key={warning} role="status">{warning}</p>)}
+      </>}
+      {cardError && <p className="studio-error" role="alert">{cardError}</p>}
+      {format === "character-card" ? <details><summary>完整角色卡 JSON（保留扩展字段）</summary>
+        <label>角色卡 JSON<textarea value={content} disabled={!!busy} rows={16} onChange={(event) => setContent(event.target.value)} /></label>
+      </details> : <label>可编辑正文<textarea value={content} disabled={!!busy} rows={16} placeholder={mode === "global-md" ? "写下桌宠的身份、语气、称呼、互动偏好和表达边界。" : "粘贴自己蒸馏好的 Markdown，或审阅上方 AI 生成的草稿。"} onChange={(event) => setContent(event.target.value)} /></label>}
+      <p>正文 {new TextEncoder().encode(content).length.toLocaleString()} 字节；{format === "character-card" ? "人物字段转换后的提示词" : "普通 Markdown 提示词"}上限 {promptLimit / 1024} KiB，超限不会截断。角色卡 JSON 可完整导出；Markdown 导出仅含已适配的表达字段。脚本、工具与卡片指定的模型配置不会执行。</p>
       <div className="studio-actions">
-        <button disabled={!!busy || !content.trim()} onClick={() => void run("保存人设", async () => {
-          const next = await api.savePersonaDocument({ mode, content });
+        <button disabled={!!busy || !content.trim() || !!cardError || format === "character-card" && !card?.fields.name.trim()} onClick={() => void run("保存人设", async () => {
+          const next = await api.savePersonaDocument({ mode, content, format });
           if (!mounted.current) return;
-          setDocument({ mode, content, enabled: false, format: "character-markdown", importedAt: next.importedAt ?? new Date().toISOString() });
+          setDocument({ mode, content, enabled: next.enabled, format, importedAt: next.importedAt ?? new Date().toISOString() });
           if (snapshot) setSnapshot({ ...snapshot, persona: next });
-          setNotice("人设已保存，默认停用；核对后点击启用已保存人设。");
+          setNotice("人设已保存，保留当前启用状态；初次编写的人设请核对后启用。");
         })}>保存人设{changed ? "（有未保存修改）" : ""}</button>
         <button className="secondary" disabled={!!busy} onClick={() => void run("导入文档", async () => {
           const result = await api.importPersona(mode);
@@ -208,7 +242,7 @@ export function PersonaStudioView({ api, onOpenProviders }: {
           }
           await refreshDocument();
           if (mounted.current) setNotice("文档已导入并自动启用，后续每轮对话自动应用，无需触发词。");
-        })}>导入人设文档</button>
+        })}>导入人物文档／角色卡</button>
         <button className="secondary" disabled={!!busy || !document} onClick={() => void run("导出人设", async () => {
           const result = await api.exportPersona();
           if (mounted.current) setNotice(result.exported ? "已导出已保存的人设文档。" : "已取消导出。");

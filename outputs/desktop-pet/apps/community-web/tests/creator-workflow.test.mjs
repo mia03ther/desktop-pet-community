@@ -47,15 +47,15 @@ test('封面只允许有界图片格式，拒绝脚本、伪装后缀、路径�
   assert.throws(() => addWorkInformation({ ...files, 'cover.png': encode('原附件') }, input, 'plugin', credit, { bytes: image, path: 'cover.png' }));
 });
 
-test('缺附件不假报原生，仍可保留原格式归档；超出运行上限为部分支持', () => {
+test('缺附件不假报原生，仍可保留原格式归档；附属文件不再受旧 32 MiB 安装上限限制', () => {
   const missing = inspectImportPackage({ 'plugin.json': encode(manifest) }, 'plugin');
   assert.equal(missing.report.level, 'invalid');
   assert.equal(missing.report.capabilities.archive, true);
   assert.equal(missing.report.capabilities.originalLogic, false);
   assert.match(missing.report.reasons[0], /index.js/);
   const large = inspectImportPackage({ ...files, 'data.bin': new Uint8Array(32 * 1024 * 1024) }, 'plugin');
-  assert.equal(large.report.level, 'partial');
-  assert.equal(large.report.capabilities.configuration, false);
+  assert.equal(large.report.level, 'native');
+  assert.equal(large.report.capabilities.configuration, true);
 });
 
 test('实际Raycast与Shimeji仅静态判断，原宿主逻辑不可执行或绑定，原文件可归档', async () => {

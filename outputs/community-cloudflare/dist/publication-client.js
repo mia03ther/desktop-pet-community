@@ -41,7 +41,7 @@ export function githubSubmissionUrl(repository, metadata, archive, details = {})
   url.searchParams.set('author', author);
   url.searchParams.set('description', description);
   url.searchParams.set('license', license);
-  const attachment = archive.bytes > 25 * 1024 * 1024 ? `已生成的 ${file} 超过 GitHub Issue 附件上限，请按仓库投稿指南通过 PR 提交完整包后粘贴链接。` : `请将已生成的 ${file} 拖入此处，或按仓库投稿指南提交 PR 后粘贴链接。`;
+  const attachment = archive.bytes > 25 * 1000 * 1000 ? `已生成的 ${file} 超过 GitHub Issue 附件上限，请上传到你自己的 GitHub Release（每个文件小于 2 GiB）或其他可公开下载的位置，再粘贴完整 ZIP 的下载链接；无需拆分或压缩画质。` : `请将已生成的 ${file} 拖入此处，或按仓库投稿指南提交 PR 后粘贴链接。`;
   url.searchParams.set('files', `${attachment}\n\n作品ID：${id}\n共创入口：${metadata.workflow.endsWith('make') ? '制作' : '导入'}${pet ? '桌宠' : '插件'}\n包大小：${archive.bytes} 字节\nSHA-256：${archive.sha256}\n\n投稿等待审核收录；提交不代表自动上线。`);
   if (pet) {
     url.searchParams.set('actions', text(details.actions || '动作与名称以所附完整清单和素材为准。', '动作说明', 3000));

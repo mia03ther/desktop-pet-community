@@ -46,7 +46,7 @@ describe("人设资料提炼", () => {
       assert.deepEqual(JSON.parse(userMessage.content), { name: input.name, focus: input.focus, material: input.material });
       assert.deepEqual(persona.getDocument(), previous, "生成不能提交人设存档");
       persona.saveText({ mode: draft.mode, content: draft.content });
-      assert.equal(persona.getSnapshot().enabled, false, "明确保存草稿也不自动启用");
+      assert.equal(persona.getSnapshot().enabled, true, "明确保存审阅草稿保留原启用状态");
       persona.setEnabled(true);
       assert.equal(persona.getSnapshot().mode, "distilled-md");
     } finally {

@@ -39,6 +39,7 @@ export async function readLocalPackageFiles(sourcePath: string, limits: LocalPac
       } else {
         if (!entry.isFile()) throw new Error("素材包不能包含特殊文件。");
         const fileStat = await lstat(fullPath);
+        if (fileStat.size > limits.maxFileBytes || files.size >= limits.maxFiles || total + fileStat.size > limits.maxBytes) throw new Error("素材包的文件数量或大小超过上限。");
         if (fileStat.size === 0) {
           files.set(name, Buffer.alloc(0));
         } else {

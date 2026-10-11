@@ -1,3 +1,4 @@
+import { packageImportLimits } from "./package-import-limits.js";
 import { promises as fs } from "node:fs";
 import { basename, dirname, join } from "node:path";
 
@@ -21,7 +22,7 @@ export async function readLocalPluginSourceManifest(options: { readonly sourceFo
   const pathStat = await fs.lstat(options.sourceFolder);
   const explicitManifest = pathStat.isFile() && (localPluginManifestNames as readonly string[]).includes(basename(options.sourceFolder));
   const sourcePath = explicitManifest ? dirname(options.sourceFolder) : options.sourceFolder;
-  const files = await readLocalPackageFiles(sourcePath, { maxBytes: 32 * 1024 * 1024, maxFileBytes: 5 * 1024 * 1024, maxFiles: 1000 });
+  const files = await readLocalPackageFiles(sourcePath, packageImportLimits);
   const selected = explicitManifest ? { files, manifestName: basename(options.sourceFolder) } : selectLocalPackageRoot(files, localPluginManifestNames);
   const bytes = selected.files.get(selected.manifestName)!;
   if (bytes.length > maxBytes) throw new Error("插件清单超过大小上限。");
