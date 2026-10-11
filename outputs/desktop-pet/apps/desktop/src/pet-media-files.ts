@@ -1,7 +1,7 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
-import { maxCodexPetJsonBytes, validateCodexPetMetadata, validateCodexPetSpritesheet, type CodexPetMetadata } from "./codex-pets-core.js";
+import { maxCodexPetJsonBytes, maxCodexSpritesheetBytes, validateCodexPetMetadata, validateCodexPetSpritesheet, type CodexPetMetadata } from "./codex-pets-core.js";
 import { readBoundedRegularFile } from "./pet-file-safety.js";
 import { isMediaPetMetadata, maxPetMediaFileBytes, maxPetMediaTotalBytes, uniquePetMediaFiles, validateMediaPetMetadata, type MediaPetMetadata, type PetMediaFile } from "./pet-media-contract.js";
 
@@ -23,7 +23,7 @@ export async function readInstalledPetMetadata(directory: string, petId: string)
 export async function readPetPackageAssets(directory: string, metadata: InstalledPetMetadata): Promise<ReadonlyMap<string, Buffer>> {
   const assets = new Map<string, Buffer>();
   if (!isMediaPetMetadata(metadata)) {
-    const bytes = await readBoundedRegularFile(join(directory, metadata.spritesheetPath), maxPetMediaFileBytes, "spritesheet.webp");
+    const bytes = await readBoundedRegularFile(join(directory, metadata.spritesheetPath), maxCodexSpritesheetBytes, "spritesheet.webp");
     await validateCodexPetSpritesheet(bytes, metadata);
     assets.set("spritesheet.webp", bytes);
     return assets;

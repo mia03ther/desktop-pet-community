@@ -143,7 +143,7 @@ async function writeArchive(path: string, petJson: string, assets: ReadonlyMap<s
   const counter = new Transform({
     transform(chunk: Buffer, _encoding, callback) {
       total += chunk.byteLength;
-      callback(total > maxPetShareArchiveBytes ? new Error("ZIP 超过 200 MiB，请缩小素材包。") : null, chunk);
+      callback(total > maxPetShareArchiveBytes ? new Error(`ZIP 超过 ${Math.round(maxPetShareArchiveBytes / 1024 / 1024)} MiB，请缩小素材包。`) : null, chunk);
     },
   });
   try {
