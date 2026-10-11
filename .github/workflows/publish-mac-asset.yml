@@ -1,0 +1,64 @@
+name: 发布已验收的 Mac 下载包
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 已创建的正式版本草稿标签
+        required: true
+        type: string
+      mac_run:
+        description: 本仓库成功的 macOS 构建运行编号
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: publish-mac-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      MAC_RUN: ${{ inputs.mac_run }}
+    steps:
+      - name: 核对版本与真实验收运行
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$MAC_RUN" =~ ^[0-9]+$ ]]
+          gh release view "$RELEASE_TAG" --json tagName,isDraft,isPrerelease,targetCommitish > release.json
+          jq -e '.isDraft == true and .isPrerelease == false' release.json
+          gh api "repos/$GH_REPO/actions/runs/$MAC_RUN" > run.json
+          jq -e --arg repo "$GH_REPO" '.conclusion == "success" and .head_repository.full_name == $repo and .path == ".github/workflows/macos.yml"' run.json
+          [[ "$(jq -r '.head_sha' run.json)" == "$(jq -r '.targetCommitish' release.json)" ]]
+      - name: 下载云端原始产物并核对 SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh run download "$MAC_RUN" --name desktop-pet-macos-arm64 --dir artifacts
+          mapfile -t packages < <(find artifacts -type f -name "desktop-pet-${RELEASE_TAG#v}-mac-arm64.zip")
+          mapfile -t sums < <(find artifacts -type f -name SHA256SUMS-macos-arm64.txt)
+          mapfile -t results < <(find artifacts -type f -name result.json)
+          [[ ${#packages[@]} == 1 && ${#sums[@]} == 1 && ${#results[@]} == 1 ]]
+          jq -e '.passed == true and .expectedPlatform == "darwin" and .expectedArch == "arm64" and .originalProfileAccessed == false' "${results[0]}"
+          (
+            cd "$(dirname "${sums[0]}")"
+            sha256sum --check "$(basename "${sums[0]}")"
+          )
+          printf '%s\n' "${packages[0]}" > package-path.txt
+          printf '%s\n' "${sums[0]}" > checksum-path.txt
+      - name: 上传到既有草稿，不自动公开
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release upload "$RELEASE_TAG" "$(cat package-path.txt)" "$(cat checksum-path.txt)"
