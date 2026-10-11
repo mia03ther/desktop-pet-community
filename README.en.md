@@ -84,7 +84,7 @@ pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish n
 node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
 ```
 
-Outputs are in `apps/desktop/dist-electron/`. Keep the complete `desktop pet.app` from the ZIP, or drag it from the DMG into Applications. Mac builds use ad-hoc signing without Apple Developer ID signing or notarization. If Gatekeeper prompts, follow System Settings → Privacy & Security to approve a download you trust. CI validates the actual arm64 package, native dependencies, control center, visible pet, and graceful exit; see [macOS builds](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml) for current results and downloadable artifacts. CI validation does not cover every Mac model or external host.
+Outputs are in `apps/desktop/dist-electron/`. Keep the complete `desktop-pet.app` from the ZIP, or drag it from the DMG into Applications. Mac builds use ad-hoc signing without Apple Developer ID signing or notarization. If Gatekeeper prompts, follow System Settings → Privacy & Security to approve a download you trust. CI validates the actual arm64 package, native dependencies, control center, visible pet, and graceful exit; see [macOS builds](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml) for current results and downloadable artifacts. CI validation does not cover every Mac model or external host.
 
 ### Development and builds from source
 

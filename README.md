@@ -81,7 +81,7 @@ pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish n
 node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
 ```
 
-输出位于 `apps/desktop/dist-electron/`，ZIP 内为完整的 `desktop pet.app`，DMG 可拖入“应用程序”。Mac 构建采用 ad-hoc 本机签名，尚未取得 Apple Developer ID 签名与公证；遇 Gatekeeper 提示时，可按系统“隐私与安全性”中的提示批准自己信任的下载。CI 在 macOS arm64 上检查实际包、原生依赖、控制中心、桌宠显示与正常退出；最新结果和可下载构建见 [macOS 构建](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)。CI 验收不代表所有 Mac 型号与第三方宿主均已实测。
+输出位于 `apps/desktop/dist-electron/`，ZIP 内为完整的 `desktop-pet.app`，DMG 可拖入“应用程序”。Mac 构建采用 ad-hoc 本机签名，尚未取得 Apple Developer ID 签名与公证；遇 Gatekeeper 提示时，可按系统“隐私与安全性”中的提示批准自己信任的下载。CI 在 macOS arm64 上检查实际包、原生依赖、控制中心、桌宠显示与正常退出；最新结果和可下载构建见 [macOS 构建](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)。CI 验收不代表所有 Mac 型号与第三方宿主均已实测。
 
 ### 从源码开发与构建
 

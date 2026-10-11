@@ -82,7 +82,7 @@ pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish n
 node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
 ```
 
-出力先は `apps/desktop/dist-electron/` です。ZIP 内の完全な `desktop pet.app` を保持するか、DMG からアプリケーションへドラッグしてください。Mac ビルドは ad-hoc 署名を使用し、Apple Developer ID 署名と公証はまだありません。Gatekeeper が表示された場合は、信頼するダウンロードについてシステム設定の「プライバシーとセキュリティ」の案内に従って承認できます。CI は実際の arm64 パッケージ、ネイティブ依存関係、コントロールセンター、ペット表示、正常終了を確認します。最新結果とダウンロードは [macOS ビルド](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)を参照してください。すべての Mac モデルや外部ホストを検証したわけではありません。
+出力先は `apps/desktop/dist-electron/` です。ZIP 内の完全な `desktop-pet.app` を保持するか、DMG からアプリケーションへドラッグしてください。Mac ビルドは ad-hoc 署名を使用し、Apple Developer ID 署名と公証はまだありません。Gatekeeper が表示された場合は、信頼するダウンロードについてシステム設定の「プライバシーとセキュリティ」の案内に従って承認できます。CI は実際の arm64 パッケージ、ネイティブ依存関係、コントロールセンター、ペット表示、正常終了を確認します。最新結果とダウンロードは [macOS ビルド](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)を参照してください。すべての Mac モデルや外部ホストを検証したわけではありません。
 
 ### ソースコードからの開発とビルド
 

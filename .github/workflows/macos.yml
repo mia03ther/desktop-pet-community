@@ -53,7 +53,7 @@ jobs:
       - name: 校验实际包与原生依赖
         run: node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
       - name: 隔离档案实际运行
-        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/mac-arm64/desktop pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch arm64
+        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/mac-arm64/desktop-pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch arm64
       - name: 生成下载校验值
         run: |
           cd apps/desktop/dist-electron
