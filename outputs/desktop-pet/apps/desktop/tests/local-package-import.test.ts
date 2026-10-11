@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import yazl from "yazl";
 import { assertLocalPackagePath, readLocalPackageFiles, selectLocalPackageRoot } from "../src/local-package-files.js";
+import { packageImportLimits } from "../src/package-import-limits.js";
 import { loadLocalPluginSnapshot, readLocalPluginSourceManifest } from "../src/plugin-local-loader.js";
 import { validateInstalledPetMetadata } from "../src/pet-media-files.js";
 import { validatePluginManifest } from "../src/plugin-manifest.js";
@@ -93,7 +94,7 @@ try {
     const installed = await loadLocalPluginSnapshot({ sourceFolder, userDataPath: join(root, `actual-plugin-${index}`) });
     const roundTrip = await loadLocalPluginSnapshot({ sourceFolder: installed.installPath, userDataPath: join(root, `actual-plugin-roundtrip-${index}`) });
     assert.deepEqual(roundTrip.manifest, installed.manifest);
-    const copied = await readLocalPackageFiles(roundTrip.installPath, { maxBytes: 32 * 1024 * 1024, maxFileBytes: 5 * 1024 * 1024, maxFiles: 1000 });
+    const copied = await readLocalPackageFiles(roundTrip.installPath, packageImportLimits);
     reports.push({ sourceFolder, id: installed.manifest.id, manifestVersion: installed.manifest.manifestVersion, runtime: installed.manifest.runtime, files: [...copied.keys()], roundTrip: true, pluginCodeExecuted: false });
   }
   if (process.env.DESKTOP_PET_PLUGIN_IMPORT_REPORT) await writeFile(process.env.DESKTOP_PET_PLUGIN_IMPORT_REPORT, `${JSON.stringify(reports, null, 2)}\n`);

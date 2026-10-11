@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdir, mkdtemp, readFile, readdir, realpath, rm, symlink, truncate, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, realpath, rm, stat, symlink, truncate, writeFile } from "node:fs/promises";
 import { register } from "node:module";
 import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
@@ -14,6 +14,7 @@ import { maxCodexSpritesheetBytes, validateCodexPetMetadata, validateCodexPetSpr
 import { maxPetShareArchiveBytes, maxPetShareReadmeBytes, type PetPackageExportOptions } from "../src/pet-sharing-contract.js";
 import { petMediaActions } from "../src/pet-media-contract.js";
 import { readLocalPackageFiles } from "../src/local-package-files.js";
+import { packageImportLimits } from "../src/package-import-limits.js";
 
 const fixture = await realpath(await mkdtemp(join(tmpdir(), "openpets-share-test-")));
 const source = join(fixture, "source");
@@ -250,12 +251,32 @@ try {
   assert.deepEqual(await parentEntries(), [basename(existing)]);
   assert.equal(await readFile(join(existing, "keep.txt"), "utf8"), "已有文件保持原样");
 
-  // 可解码图像的额外尾部仍受压缩包实际输出上限约束，不改变源文件。
-  const largeAtlas = Buffer.concat([atlas, Buffer.alloc(maxPetShareArchiveBytes)]);
-  await writeFile(join(source, "spritesheet.webp"), largeAtlas);
+  // 图集使用专用上限；扩大完整包容量不会放宽图集限制，也不修改原件。
+  await truncate(join(source, "spritesheet.webp"), maxCodexSpritesheetBytes + 1);
   await assert.rejects(() => exportPetPackageFromDirectory(source, metadata.id, parent, undefined, { format: "zip" }));
-  assert.deepEqual(await readFile(join(source, "spritesheet.webp")), largeAtlas);
+  assert.equal((await stat(join(source, "spritesheet.webp"))).size, maxCodexSpritesheetBytes + 1);
   await writeFile(join(source, "spritesheet.webp"), atlas);
+  assert.deepEqual(await parentEntries(), [basename(existing)]);
+
+  // 真实 ZIP 导出覆盖旧总包 200 MiB、单附件 100 MiB 边界；回读使用统一容量规则。
+  const attachment = Buffer.alloc(104 * 1024 * 1024, 93);
+  const expectedAttachmentHash = createHash("sha256").update(attachment).digest("hex");
+  await writeFile(join(source, "large-first.dat"), attachment);
+  await writeFile(join(source, "large-second.dat"), attachment);
+  const expandedExport = await exportPetPackageFromDirectory(source, metadata.id, parent, undefined, { format: "zip" });
+  assert.ok(expandedExport.archivePath);
+  assert.ok((await stat(expandedExport.archivePath)).size > 200 * 1024 * 1024);
+  const expandedFiles = await readLocalPackageFiles(expandedExport.archivePath, packageImportLimits);
+  for (const name of ["large-first.dat", "large-second.dat"]) {
+    assert.equal(expandedFiles.get(name)?.byteLength, attachment.byteLength);
+    assert.equal(createHash("sha256").update(expandedFiles.get(name)!).digest("hex"), expectedAttachmentHash);
+  }
+  await rm(expandedExport.directoryPath, { recursive: true });
+  await rm(join(source, "large-second.dat"));
+  await truncate(join(source, "large-first.dat"), packageImportLimits.maxFileBytes + 1);
+  await assert.rejects(() => exportPetPackageFromDirectory(source, metadata.id, parent, undefined, { format: "zip" }));
+  assert.equal((await stat(join(source, "large-first.dat"))).size, packageImportLimits.maxFileBytes + 1);
+  await rm(join(source, "large-first.dat"));
   assert.deepEqual(await parentEntries(), [basename(existing)]);
 
   // 内置、团队、损坏或未安装项不能通过导出入口分享。
@@ -313,7 +334,7 @@ try {
   await writeFile(join(source, "share.md"), "保持小写原始说明");
   for (const format of ["folder", "zip"] as const) {
     const result = await exportPetPackageFromDirectory(source, metadata.id, parent, undefined, { format });
-    const files = await readLocalPackageFiles(result.archivePath ?? result.directoryPath, { maxBytes: maxPetShareArchiveBytes, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 });
+    const files = await readLocalPackageFiles(result.archivePath ?? result.directoryPath, packageImportLimits);
     assert.equal(files.get("share.md")?.toString(), "保持小写原始说明");
     assert.ok(files.has("DESKTOP-PET-SHARE-1.md"));
     await rm(result.directoryPath, { recursive: true });
@@ -514,7 +535,7 @@ try {
   assert.ok(Array.isArray(externalFixtures) && externalFixtures.every((path) => typeof path === "string"));
   const reports: Array<Record<string, unknown>> = [];
   for (const externalPath of externalFixtures as string[]) {
-    const files = await readLocalPackageFiles(externalPath, { maxBytes: 200 * 1024 * 1024, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 });
+    const files = await readLocalPackageFiles(externalPath, packageImportLimits);
     const shimeji = ![...files.keys()].some((name) => basename(name) === "pet.json") && [...files.keys()].some((name) => name === "conf/actions.xml" || name.endsWith("/conf/actions.xml"));
     let imported;
     if (shimeji) {

@@ -5,12 +5,13 @@ import { join, win32 } from "node:path";
 import sharp from "sharp";
 import { inspectOriginalProject, isOriginalProjectPathInside, OriginalProjectStore } from "../src/original-projects.js";
 import { readLocalPackageFiles } from "../src/local-package-files.js";
+import { packageImportLimits } from "../src/package-import-limits.js";
 import { installControlCenterOriginalProjectIpcHandlers, type OriginalProjectIpcDependencies } from "../src/control-center-original-project-ipc.js";
 import { assertOriginalProjectExecutable } from "../src/original-project-execution.js";
 
 const root = await realpath(await mkdtemp(join(tmpdir(), "desktop-pet-original-projects-")));
 const store = new OriginalProjectStore(join(root, "profile"));
-const limits = { maxBytes: 200 * 1024 * 1024, maxFileBytes: 100 * 1024 * 1024, maxFiles: 1000 };
+const limits = packageImportLimits;
 // 仅验证 PE 识别和 IPC 选择边界；该合成头不是可运行程序，测试从不执行它。
 const executableHeader = Buffer.alloc(128);
 executableHeader.write("MZ");
