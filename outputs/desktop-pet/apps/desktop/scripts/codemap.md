@@ -61,6 +61,7 @@ Check preload syntax → Compile tests to .test-dist → Run behavior tests → 
 - `package-artifact.mjs`: Extracts DMG/ZIP/AppImage/DEB/RPM/tar.gz payloads for release validation
 - `release-checkpoint.mjs`: Records and verifies checkpoint output sizes plus content digests
 - `release-checkpoint.test.mjs`: Same-size mutation and unchanged-resume checkpoint regression
+- `smoke-packaged-app.mjs`：实际启动指定的打包程序，使用全新隔离档案验证目标 OS／架构、原生 Sharp、IPC、控制中心预加载、桌宠渲染和正常退出；为 macOS CI 保存截图与 JSON 证据，不读原用户档案。
 - `run-tests.mjs`: Desktop test runner for preload syntax checks, `.test-dist` behavior/contract tests, and remaining runtime checks
 
 ## Build Plan (release-local.mjs)

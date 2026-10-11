@@ -22,6 +22,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?include_prereleases&label=Version" alt="Release version">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=Downloads" alt="Release asset downloads">
   <img src="https://img.shields.io/badge/Platform-Windows%20x64-60bba0" alt="Windows x64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub stars">
 </p>
 
@@ -67,6 +68,23 @@ Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.1-preview.1-windows-x64-portabl
 ```
 
 Compare the result with `SHA256SUMS.txt` from the same release. A matching hash confirms file consistency; it does not replace a security audit.
+
+### macOS (Apple Silicon / arm64)
+
+macOS arm64 source builds are supported, and PR #2's Mac packaging changes have been merged. The pet, control center, persona editor, and native plugins share the same code as Windows. Windows-only diagnostics, original Windows executables, and external-host features retain their platform requirements.
+
+On an Apple Silicon Mac, install Node.js 24, pnpm 11.0.8, and Xcode Command Line Tools, then run:
+
+```bash
+git clone https://github.com/xunguangzlj-cloud/desktop-pet-community.git
+cd desktop-pet-community/outputs/desktop-pet
+pnpm install --frozen-lockfile
+pnpm build
+pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish never
+node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
+```
+
+Outputs are in `apps/desktop/dist-electron/`. Keep the complete `desktop pet.app` from the ZIP, or drag it from the DMG into Applications. Mac builds use ad-hoc signing without Apple Developer ID signing or notarization. If Gatekeeper prompts, follow System Settings → Privacy & Security to approve a download you trust. CI validates the actual arm64 package, native dependencies, control center, visible pet, and graceful exit; see [macOS builds](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml) for current results and downloadable artifacts. CI validation does not cover every Mac model or external host.
 
 ### Development and builds from source
 

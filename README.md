@@ -18,6 +18,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?include_prereleases&label=%E7%89%88%E6%9C%AC" alt="发布版本">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=%E4%B8%8B%E8%BD%BD" alt="发布文件下载数">
   <img src="https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Windows%20x64-60bba0" alt="Windows x64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub Star">
 </p>
 
@@ -64,6 +65,23 @@ Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.1-preview.1-windows-x64-portabl
 ```
 
 将结果与同一 Release 的 `SHA256SUMS.txt` 对照；核对哈希只能确认文件一致，不能代替安全审计。
+
+### macOS（Apple Silicon／arm64）
+
+支持 macOS arm64 源码构建；PR #2 的 Mac 打包改动已合并。与 Windows 一样，桌宠、控制中心、人设和本系统插件使用同一套代码；Windows 专用诊断、原 Windows EXE 与依赖原宿主的功能仍按平台能力限制。
+
+在 Apple Silicon Mac 上安装 Node.js 24、pnpm 11.0.8 与 Xcode Command Line Tools，然后执行：
+
+```bash
+git clone https://github.com/xunguangzlj-cloud/desktop-pet-community.git
+cd desktop-pet-community/outputs/desktop-pet
+pnpm install --frozen-lockfile
+pnpm build
+pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish never
+node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
+```
+
+输出位于 `apps/desktop/dist-electron/`，ZIP 内为完整的 `desktop pet.app`，DMG 可拖入“应用程序”。Mac 构建采用 ad-hoc 本机签名，尚未取得 Apple Developer ID 签名与公证；遇 Gatekeeper 提示时，可按系统“隐私与安全性”中的提示批准自己信任的下载。CI 在 macOS arm64 上检查实际包、原生依赖、控制中心、桌宠显示与正常退出；最新结果和可下载构建见 [macOS 构建](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)。CI 验收不代表所有 Mac 型号与第三方宿主均已实测。
 
 ### 从源码开发与构建
 

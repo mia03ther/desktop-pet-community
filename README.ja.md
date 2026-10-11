@@ -20,6 +20,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?include_prereleases&label=%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" alt="公開バージョン">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89" alt="リリースファイルのダウンロード数">
   <img src="https://img.shields.io/badge/%E5%AF%BE%E5%BF%9C%E7%92%B0%E5%A2%83-Windows%20x64-60bba0" alt="Windows x64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub Star">
 </p>
 
@@ -65,6 +66,23 @@ Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.1-preview.1-windows-x64-portabl
 ```
 
 結果を同じリリースの `SHA256SUMS.txt` と照合してください。ハッシュの照合で確認できるのはファイルの一致であり、セキュリティ監査の代わりにはなりません。
+
+### macOS（Apple Silicon／arm64）
+
+macOS arm64 のソースビルドに対応し、PR #2 の Mac 向けパッケージ変更は統合済みです。ペット、コントロールセンター、キャラクター設定、本システムのプラグインは Windows と同じコードを使用します。Windows 専用の診断、元の Windows EXE、外部ホストを必要とする機能には、それぞれの環境が必要です。
+
+Apple Silicon Mac に Node.js 24、pnpm 11.0.8、Xcode Command Line Tools をインストールし、次を実行します。
+
+```bash
+git clone https://github.com/xunguangzlj-cloud/desktop-pet-community.git
+cd desktop-pet-community/outputs/desktop-pet
+pnpm install --frozen-lockfile
+pnpm build
+pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish never
+node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
+```
+
+出力先は `apps/desktop/dist-electron/` です。ZIP 内の完全な `desktop pet.app` を保持するか、DMG からアプリケーションへドラッグしてください。Mac ビルドは ad-hoc 署名を使用し、Apple Developer ID 署名と公証はまだありません。Gatekeeper が表示された場合は、信頼するダウンロードについてシステム設定の「プライバシーとセキュリティ」の案内に従って承認できます。CI は実際の arm64 パッケージ、ネイティブ依存関係、コントロールセンター、ペット表示、正常終了を確認します。最新結果とダウンロードは [macOS ビルド](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)を参照してください。すべての Mac モデルや外部ホストを検証したわけではありません。
 
 ### ソースコードからの開発とビルド
 

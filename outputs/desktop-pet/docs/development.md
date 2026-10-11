@@ -162,6 +162,23 @@ provider responses. Cancellation records use the available reason (`user`,
 `session`, or `capture`) so a stopped Talk attempt is distinguishable from a
 provider or capture failure without exposing content.
 
+## 当前项目的 macOS arm64 构建
+
+在 Apple Silicon Mac 使用 Node.js 24、pnpm 11.0.8 与 Xcode Command Line Tools：
+
+```bash
+pnpm install --frozen-lockfile
+pnpm build
+pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish never
+node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
+```
+
+目录产物与 ZIP／DMG 位于 `apps/desktop/dist-electron/`。Mac 的 `afterPack` 保留 darwin arm64／x64、libvips、colour 与 wasm 依赖，剔除其他平台的 Sharp 二进制和仅用于构建的 node-gyp；Windows 不执行这项裁剪。配置使用 ad-hoc 本机签名，不等于 Apple Developer ID 签名、公证或系统安全审查。
+
+根仓库 `.github/workflows/macos.yml` 使用 GitHub 公共仓库的免费标准 `macos-14` arm64 runner，明确校验运行架构，构建 ZIP 并调用现有打包契约检查。`apps/desktop/scripts/smoke-packaged-app.mjs` 仅启动该包、创建全新隔离档案，实际验证原生 Sharp 编解码、IPC、控制中心预加载、桌宠窗口与正常退出，保存截图和结果。CI 不访问维护者配置，不启动远程 AI，也不冒称所有 AI 平台和外部宿主都能在 Mac 工作；Windows 专用诊断与原 Windows EXE 仍有平台限制。
+
+以下上游发布流程属于保留的开发资料；本项目的 Mac 构建无需 SignPath、Apple 开发者凭据或自动发布权限。
+
 ## Release flows
 
 ### npm packages
