@@ -132,7 +132,7 @@ Windows 日常入口使用直接指向 EXE 的桌宠与工作室快捷方式，�
 - `reaction-animation-mapping.ts`: Reaction-to-animation state mapping with user overrides and the bundled V2 Hoodie Cat atlas metadata
 - `reaction-messages.ts`: Message pools for each reaction type
 - `control-center-preload.cjs` / `pet-preload.cjs` / `plugin-sdk-preload.cjs`：工作室、桌宠聊天与交互、插件 SDK 的窄桥接；不提供团队和签到操作
-- `electron-builder.yml`: Packaging configuration
+- `electron-builder.yml`: Packaging configuration with a darwin-only `afterPack` trim (`scripts/mac-trim-sharp.cjs`) of non-darwin sharp binaries
 - `scripts/release-local.mjs`: macOS-local release automation as resumable checkpointed stages, with target-aware temporary and actual-artifact payload validation, SHA-256 checkpoint output digests, and GitHub draft creation
 - `contracts/catalog-fixture.contract.ts`: Catalog V2 validation contract tests against fixture data
 - `contracts/local-ipc-protocol.contract.ts`: IPC protocol validation contract tests for request/response parsing
