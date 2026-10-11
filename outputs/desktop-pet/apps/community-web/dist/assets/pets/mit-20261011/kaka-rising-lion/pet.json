@@ -1,0 +1,120 @@
+{
+  "id": "kaka-rising-lion",
+  "displayName": "瑞星小狮子 · Kaka",
+  "author": "HsiangHo",
+  "description": "按原58毫秒节拍保留20套完整动作，包含29段原动画。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "arrogance": "actions/arrogance.webp",
+    "bomb": "actions/bomb.webp",
+    "bye": "actions/bye.webp",
+    "drag-start": "actions/drag-start.webp",
+    "drag-loop": "actions/drag-loop.webp",
+    "drag-end": "actions/drag-end.webp",
+    "eat-watermelon": "actions/eat-watermelon.webp",
+    "grimace": "actions/grimace.webp",
+    "happy": "actions/happy.webp",
+    "hidden-right": "actions/hidden-right.webp",
+    "hidden-left": "actions/hidden-left.webp",
+    "emerge": "actions/emerge.webp",
+    "knife": "actions/knife.webp",
+    "scan": "actions/scan.webp",
+    "scissor": "actions/scissor.webp",
+    "scratch-head": "actions/scratch-head.webp",
+    "show-tip": "actions/show-tip.webp",
+    "sleeping": "actions/sleeping.webp",
+    "smog": "actions/smog.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "站立",
+      "category": "原项目动作"
+    },
+    "arrogance": {
+      "displayName": "傲娇",
+      "category": "原项目动作"
+    },
+    "bomb": {
+      "displayName": "爆炸惊讶",
+      "category": "原项目动作"
+    },
+    "bye": {
+      "displayName": "告别",
+      "category": "原项目动作"
+    },
+    "drag-start": {
+      "displayName": "拖拽进入",
+      "category": "原项目动作"
+    },
+    "drag-loop": {
+      "displayName": "拖拽保持",
+      "category": "原项目动作"
+    },
+    "drag-end": {
+      "displayName": "拖拽结束",
+      "category": "原项目动作"
+    },
+    "eat-watermelon": {
+      "displayName": "吃西瓜",
+      "category": "原项目动作"
+    },
+    "grimace": {
+      "displayName": "鬼脸",
+      "category": "原项目动作"
+    },
+    "happy": {
+      "displayName": "开心",
+      "category": "原项目动作"
+    },
+    "hidden-right": {
+      "displayName": "右侧藏身",
+      "category": "原项目动作"
+    },
+    "hidden-left": {
+      "displayName": "左侧藏身",
+      "category": "原项目动作"
+    },
+    "emerge": {
+      "displayName": "现身",
+      "category": "原项目动作"
+    },
+    "knife": {
+      "displayName": "舞刀",
+      "category": "原项目动作"
+    },
+    "scan": {
+      "displayName": "扫描",
+      "category": "原项目动作"
+    },
+    "scissor": {
+      "displayName": "剪刀",
+      "category": "原项目动作"
+    },
+    "scratch-head": {
+      "displayName": "挠头",
+      "category": "原项目动作"
+    },
+    "show-tip": {
+      "displayName": "提示",
+      "category": "原项目动作"
+    },
+    "sleeping": {
+      "displayName": "睡觉",
+      "category": "原项目动作"
+    },
+    "smog": {
+      "displayName": "烟雾",
+      "category": "原项目动作"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "sleeping": "sleeping",
+    "dragged": "drag-loop",
+    "clicked": "grimace"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}

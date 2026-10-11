@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "upstreamCommit": "0d0f06bb1721aef4ddbc7f893276f235ed8458ec",
-  "publicPets": 156,
+  "publicPets": 158,
   "publicPlugins": 24,
   "files": [
     {
@@ -1343,6 +1343,150 @@
       "sha256": "22b015469cd1de488ddcd176d31ad4232506765ffdaaac468b6c5a8004f02054"
     },
     {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/arrogance.webp",
+      "mime": "image/webp",
+      "bytes": 142714,
+      "sha256": "0c989ec46453c27f61f8df423cc061d6e682f878519238d29e89c24d57fc6a28"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/bomb.webp",
+      "mime": "image/webp",
+      "bytes": 132504,
+      "sha256": "a0329b8bd7d6c4741ade71d364ca4edb09d057285320d6eb7fd2fa4767617488"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/bye.webp",
+      "mime": "image/webp",
+      "bytes": 39160,
+      "sha256": "57962f79ab41a4185d1da5220e03fc8c8d449891094d789380173520cd8e2951"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/drag-end.webp",
+      "mime": "image/webp",
+      "bytes": 62762,
+      "sha256": "6194c7f45076c2b968da2f6d8d6683b9f912a16d402a152bb55673c471ce6109"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/drag-loop.webp",
+      "mime": "image/webp",
+      "bytes": 50476,
+      "sha256": "a8f03a399d140a4bae781f6729182cedfda6058478d0b3d022cf16b660dc6be9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/drag-start.webp",
+      "mime": "image/webp",
+      "bytes": 115730,
+      "sha256": "e5a8ee316592408af74eb744869583759faf77736ef3e7b37bea1956ab44699e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/eat-watermelon.webp",
+      "mime": "image/webp",
+      "bytes": 353232,
+      "sha256": "f72abf24516fb399d1896139ebd3e6ffef6018095eff67b12bf64416b91fdc8d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/emerge.webp",
+      "mime": "image/webp",
+      "bytes": 120226,
+      "sha256": "df1b689a34c2ef65e624d996989112ebbd06bc0779b849420c71e1480b4f77a8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/grimace.webp",
+      "mime": "image/webp",
+      "bytes": 109912,
+      "sha256": "c8a0ebd11039b73d614f591c55a6c7e3c375af7d0b491c47de981022651129d3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/happy.webp",
+      "mime": "image/webp",
+      "bytes": 118004,
+      "sha256": "eec7627a3569c7c17bd3d5f8c3e2a9c26dd3a6367af66418e7b894e157af3aed"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/hidden-left.webp",
+      "mime": "image/webp",
+      "bytes": 162728,
+      "sha256": "c54a9c3b5087f34999fa9a25ffe9c16483e787f342935b6da2e98a1fa40b3c25"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/hidden-right.webp",
+      "mime": "image/webp",
+      "bytes": 212510,
+      "sha256": "44627572f53e1928fc6d32d6ea009cefa0f67c6e8496d138f2ea435505e4b61c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/idle.webp",
+      "mime": "image/webp",
+      "bytes": 278550,
+      "sha256": "403a44f4ae11e6de6da484797f905abdb4798595cd31f6a00cb1bc9323c7612e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/knife.webp",
+      "mime": "image/webp",
+      "bytes": 473504,
+      "sha256": "9e695edbcb3a4b0c1f02822b3c1a5acf9cf5da6258aed578b91ecd3b182721af"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/scan.webp",
+      "mime": "image/webp",
+      "bytes": 179268,
+      "sha256": "1351e69d543a46cb0dec4fa87cf6ed3ad3a1ce3febc02e65aed382b8e3021e4d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/scissor.webp",
+      "mime": "image/webp",
+      "bytes": 289556,
+      "sha256": "e2d340bcfc501e2c78a27b4ca35f0a71c7e5d7c3d7f37d8977ecbd2828e208ff"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/scratch-head.webp",
+      "mime": "image/webp",
+      "bytes": 276274,
+      "sha256": "b4f273185d315d604c84ffaaf329902b5685b97298b72cf63a644b4712764a5b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/show-tip.webp",
+      "mime": "image/webp",
+      "bytes": 89126,
+      "sha256": "2531ab08e3592030df3e529e4b58fa2928dd66594a6890474d9a94cd66273b05"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/sleeping.webp",
+      "mime": "image/webp",
+      "bytes": 288636,
+      "sha256": "3bf80b90b9fe327cfc95e085dd3a360ce49b9c17a6da0dd2938aaccb2dcee570"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/smog.webp",
+      "mime": "image/webp",
+      "bytes": 314318,
+      "sha256": "f216177399a9d2835b86e5d7d4aa2a24afab48dfde784d86bb609013c8bb1019"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/LICENSE-CODE-MIT.txt",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1065,
+      "sha256": "8e0b8f56173c2661da3cff5f209771e5e3b6af45b0bc1abbeba23b6d8c4496fe"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/package.zip",
+      "mime": "application/zip",
+      "bytes": 10157611,
+      "sha256": "e2a4f1befcb1c44174eccbd53470f6abf52c1a97ba66b21d6611e116c71c448e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/pet.json",
+      "mime": "application/json",
+      "bytes": 3097,
+      "sha256": "ea10e92115b6668ef54d2b14dbf2a11c38a284876b65d121d5b16129ec366c5a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/kaka-rising-lion/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 6938,
+      "sha256": "1c957a3e18ea72b8f1c7f858991dd0aab57285a6144cfd86a8bd3ae6ea53712d"
+    },
+    {
       "path": "assets/pets/mit-20261011/memmy-companion/actions/blush.webp",
       "mime": "image/webp",
       "bytes": 93820,
@@ -1869,6 +2013,36 @@
       "mime": "image/webp",
       "bytes": 35474,
       "sha256": "d62f0166de47812aab1a616aedaed83c8121a9d78287b0c378017b0c366d177f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/seele-xier-idle/actions/idle.webp",
+      "mime": "image/webp",
+      "bytes": 226702,
+      "sha256": "90bb9a62a9400657b363080bb94be3e8b363550f52e01f9512b7b1d0c7bb9e02"
+    },
+    {
+      "path": "assets/pets/mit-20261011/seele-xier-idle/LICENSE",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1063,
+      "sha256": "88a9c2a441c0d03a712de73fd13bfe981714fec329f73e8d3d1332ea5c46c33a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/seele-xier-idle/package.zip",
+      "mime": "application/zip",
+      "bytes": 567930,
+      "sha256": "9bb2b85f8d7fd7fd407d4fd88e1e20b3634996ac03a5aa2eca4a0543c5da914f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/seele-xier-idle/pet.json",
+      "mime": "application/json",
+      "bytes": 902,
+      "sha256": "312b6ed80c57654d7d476f56373deb1f0a93fec0061ceb1dcb61006f457f35ad"
+    },
+    {
+      "path": "assets/pets/mit-20261011/seele-xier-idle/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 26194,
+      "sha256": "6cf449ba77d8f1709f4db0e6154809cb996dbdc780fc6b40e91931eaf02bb170"
     },
     {
       "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/celebrate.webp",

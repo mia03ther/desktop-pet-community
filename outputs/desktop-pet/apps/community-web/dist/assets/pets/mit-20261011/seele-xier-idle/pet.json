@@ -1,0 +1,35 @@
+{
+  "id": "seele-xier-idle",
+  "displayName": "希儿 · 原待机",
+  "description": "Seele 项目原有透明待机 GIF 的无损素材适配，保留原画布与视觉时间线；仅有一个真实动作。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "待机",
+      "category": "原素材"
+    }
+  },
+  "background": {
+    "mode": "alpha"
+  },
+  "author": "xinna2001（项目维护者；原代码版权 PYmili）",
+  "license": "代码 MIT；角色与美术未见独立授权声明",
+  "sourceRepository": "https://github.com/xinna2001/Seele",
+  "sourceCommit": "49089a444a5bd3045898009094d15f0f49742e96",
+  "missingActions": [
+    "running",
+    "waiting",
+    "running-right",
+    "running-left",
+    "waving",
+    "jumping",
+    "failed",
+    "review",
+    "sleeping",
+    "clicked",
+    "dragged"
+  ]
+}

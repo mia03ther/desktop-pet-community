@@ -127,6 +127,169 @@ export const cat = {
 };
 export const pets = [
   {
+    "id": "seele-xier-idle",
+    "title": "希儿 · 原待机",
+    "description": "沿用 Seele 项目的原透明待机，保留原 GIF、无损动画与时序；此包只有待机动作。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "xinna2001（项目维护者；原代码版权 PYmili）",
+    "authorUrl": "",
+    "source": "https://github.com/xinna2001/Seele/tree/49089a444a5bd3045898009094d15f0f49742e96",
+    "license": "代码 MIT；角色与美术未见独立授权声明",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/mit-20261011/seele-xier-idle/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/seele-xier-idle/thumbnail.webp",
+    "packageManifest": "assets/pets/mit-20261011/seele-xier-idle/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/seele-xier-idle/LICENSE",
+    "tags": [
+      "可导入",
+      "原动作"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 567930,
+    "archiveSha256": "9bb2b85f8d7fd7fd407d4fd88e1e20b3634996ac03a5aa2eca4a0543c5da914f",
+    "upstreamCommit": "49089a444a5bd3045898009094d15f0f49742e96",
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入。当前仅提供一个真实待机动作，其他状态没有独立动作；未迁移原 PyQt 工作监测和养成逻辑。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/seele-xier-idle/actions/idle.webp"
+      }
+    }
+  },
+  {
+    "id": "kaka-rising-lion",
+    "title": "瑞星小狮子 · Kaka",
+    "description": "瑞星小狮子的20套原动作，包含傲娇、吃西瓜、舞刀、睡觉和拖拽反应；保留原画面与58毫秒节拍。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "HsiangHo",
+    "authorUrl": "",
+    "source": "https://github.com/HsiangHo/Kaka/tree/7d052090582511b0d6e8bcd87458174e88c4eea8",
+    "license": "代码 MIT；瑞星角色、美术及商标权利另计",
+    "version": 1,
+    "distribution": "media",
+    "download": "assets/pets/mit-20261011/kaka-rising-lion/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/kaka-rising-lion/thumbnail.webp",
+    "packageManifest": "assets/pets/mit-20261011/kaka-rising-lion/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/kaka-rising-lion/LICENSE-CODE-MIT.txt",
+    "tags": [
+      "可导入",
+      "原动作"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 10157611,
+    "archiveSha256": "e2a4f1befcb1c44174eccbd53470f6abf52c1a97ba66b21d6611e116c71c448e",
+    "upstreamCommit": "7d052090582511b0d6e8bcd87458174e88c4eea8",
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入。20个原动作可预览，待机、睡觉、点击与拖拽已绑定；未提供向左／向右行走等九核心动作全集，也未移植原 macOS 行为引擎。",
+    "mediaActions": {
+      "idle": {
+        "displayName": "站立",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/idle.webp"
+      },
+      "arrogance": {
+        "displayName": "傲娇",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/arrogance.webp"
+      },
+      "bomb": {
+        "displayName": "爆炸惊讶",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/bomb.webp"
+      },
+      "bye": {
+        "displayName": "告别",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/bye.webp"
+      },
+      "drag-start": {
+        "displayName": "拖拽进入",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/drag-start.webp"
+      },
+      "drag-loop": {
+        "displayName": "拖拽保持",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/drag-loop.webp"
+      },
+      "drag-end": {
+        "displayName": "拖拽结束",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/drag-end.webp"
+      },
+      "eat-watermelon": {
+        "displayName": "吃西瓜",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/eat-watermelon.webp"
+      },
+      "grimace": {
+        "displayName": "鬼脸",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/grimace.webp"
+      },
+      "happy": {
+        "displayName": "开心",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/happy.webp"
+      },
+      "hidden-right": {
+        "displayName": "右侧藏身",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/hidden-right.webp"
+      },
+      "hidden-left": {
+        "displayName": "左侧藏身",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/hidden-left.webp"
+      },
+      "emerge": {
+        "displayName": "现身",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/emerge.webp"
+      },
+      "knife": {
+        "displayName": "舞刀",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/knife.webp"
+      },
+      "scan": {
+        "displayName": "扫描",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/scan.webp"
+      },
+      "scissor": {
+        "displayName": "剪刀",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/scissor.webp"
+      },
+      "scratch-head": {
+        "displayName": "挠头",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/scratch-head.webp"
+      },
+      "show-tip": {
+        "displayName": "提示",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/show-tip.webp"
+      },
+      "sleeping": {
+        "displayName": "睡觉",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/sleeping.webp"
+      },
+      "smog": {
+        "displayName": "烟雾",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/kaka-rising-lion/actions/smog.webp"
+      }
+    }
+  },
+  {
     "id": "codachi-blue-monster",
     "title": "Codachi 蓝色怪物",
     "description": "Codachi 官方供 Codex/ChatGPT 使用的原创像素角色图集，含九类状态和视线素材；适配版补充静止中性格。",
