@@ -459,7 +459,8 @@ export async function loadDefaultPetContent(window: BrowserWindow, paused: boole
   const hasBubble = Boolean(bubbleHtml.trim());
   applyLinuxPetWindowShape(window, getAppStateSnapshot().preferences.petScale as PetScaleValue, hasBubble, hasPinned);
   if (tryUpdateLoadedPetContent(window, render, "default", sequence)) return;
-  await loadPetHtmlFile(window, render.html, "default", sequence).then(() => {
+  await loadPetHtmlFile(window, render.html, "default", sequence).then((loaded) => {
+    if (!loaded || !isLatestPetRenderSequence(windowLoadSequences.get(window), sequence)) return;
     petWindowRenderCache.set(window, render.cacheKey);
     if (windowLoadSequences.get(window) === sequence) updatePetGazeConfiguration(window, render, render.flipped);
   }).catch((error: unknown) => {
@@ -502,7 +503,8 @@ export async function loadExplicitPetContent(window: BrowserWindow, petId: strin
     const hasBubble = Boolean(bubbleHtml.trim());
     applyLinuxPetWindowShape(window, scale, hasBubble, hasPinned);
     if (tryUpdateLoadedPetContent(window, render, `explicit-${pet.id}`, sequence)) return;
-    await loadPetHtmlFile(window, render.html, `explicit-${pet.id}`, sequence);
+    const loaded = await loadPetHtmlFile(window, render.html, `explicit-${pet.id}`, sequence);
+    if (!loaded || !isLatestPetRenderSequence(windowLoadSequences.get(window), sequence)) return;
     petWindowRenderCache.set(window, render.cacheKey);
     if (windowLoadSequences.get(window) === sequence) updatePetGazeConfiguration(window, render, render.flipped);
   } catch (error: unknown) {
@@ -572,7 +574,7 @@ export function stopPetWindowTts(window: BrowserWindow, requestId?: string): voi
 }
 
 function tryUpdateLoadedPetContent(window: BrowserWindow, render: PetContentRender, name: string, sequence: number): boolean {
-  if (window.isDestroyed() || window.webContents.isDestroyed()) return false;
+  if (window.isDestroyed() || window.webContents.isDestroyed() || window.webContents.isLoading()) return false;
   if (!isLatestPetRenderSequence(windowLoadSequences.get(window), sequence)) {
     debug("pet.window", "content update skipped", { windowId: window.id, name, sequence, latestSequence: windowLoadSequences.get(window), reason: "superseded" });
     return false;
@@ -782,9 +784,10 @@ function allocateWindowLoadSequence(window: BrowserWindow): number {
   return sequence;
 }
 
-async function loadPetHtmlFile(window: BrowserWindow, html: string, name: string, sequence: number): Promise<void> {
+async function loadPetHtmlFile(window: BrowserWindow, html: string, name: string, sequence: number): Promise<boolean> {
   const safeName = name.replace(/[^a-z0-9_-]/gi, "-").slice(0, 80) || "pet";
 
+  let loaded = false;
   const previous = windowLoadChains.get(window) ?? Promise.resolve();
   const next = previous.catch(() => {}).then(async () => {
     if (window.isDestroyed()) {
@@ -805,11 +808,18 @@ async function loadPetHtmlFile(window: BrowserWindow, html: string, name: string
       debug("pet.window", "load skipped", { windowId: window.id, name: safeName, sequence, reason: "destroyed-after-write" });
       return;
     }
+    if (!isLatestPetRenderSequence(windowLoadSequences.get(window), sequence)) {
+      debug("pet.window", "load skipped", { windowId: window.id, name: safeName, sequence, latestSequence: windowLoadSequences.get(window), reason: "superseded-after-write" });
+      return;
+    }
+    // 导航完成前不能沿用旧文档的样式与 CSP 缓存。
+    petWindowRenderCache.delete(window);
     debug("pet.window", "load file begin", { windowId: window.id, name: safeName, sequence, filePath });
     window.setIgnoreMouseEvents(false);
     try {
       await window.loadFile(filePath);
       await applyPetChatAppearance(window);
+      loaded = true;
       debug("pet.window", "load file complete", { windowId: window.id, name: safeName, sequence, url: window.webContents.getURL() });
     } catch (error) {
       if (!window.isDestroyed()) {
@@ -826,7 +836,8 @@ async function loadPetHtmlFile(window: BrowserWindow, html: string, name: string
     if (windowLoadChains.get(window) === next) windowLoadChains.delete(window);
   });
 
-  return next;
+  await next;
+  return loaded;
 }
 
 function debounce(callback: () => void, delayMs: number): () => void {

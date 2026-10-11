@@ -1,0 +1,151 @@
+{
+  "id": "memmy-companion",
+  "displayName": "Memmy · 记忆伙伴",
+  "description": "原透明 WebM 待机与出场素材，19 个官方静态表情明确按静态状态保留。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webm",
+    "blush": "actions/blush.webp",
+    "box": "actions/box.webp",
+    "brain": "actions/brain.webp",
+    "celebrate": "actions/celebrate.webp",
+    "chat": "actions/chat.webp",
+    "connect": "actions/connect.webp",
+    "hum": "actions/hum.webp",
+    "peek": "actions/peek.webp",
+    "plead": "actions/plead.webp",
+    "point": "actions/point.webp",
+    "read": "actions/read.webp",
+    "neutral": "actions/neutral.webp",
+    "sad": "actions/sad.webp",
+    "shield": "actions/shield.webp",
+    "sleep": "actions/sleep.webp",
+    "think": "actions/think.webp",
+    "wave": "actions/wave.webp",
+    "work": "actions/work.webp",
+    "wrench": "actions/wrench.webp",
+    "entrance": "actions/entrance.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "视频待机",
+      "category": "原作动画"
+    },
+    "blush": {
+      "displayName": "害羞姿态",
+      "category": "静态表情"
+    },
+    "box": {
+      "displayName": "盒子姿态",
+      "category": "静态表情"
+    },
+    "brain": {
+      "displayName": "大脑姿态",
+      "category": "静态表情"
+    },
+    "celebrate": {
+      "displayName": "庆祝姿态",
+      "category": "静态表情"
+    },
+    "chat": {
+      "displayName": "对话姿态",
+      "category": "静态表情"
+    },
+    "connect": {
+      "displayName": "连接姿态",
+      "category": "静态表情"
+    },
+    "hum": {
+      "displayName": "哼唱姿态",
+      "category": "静态表情"
+    },
+    "peek": {
+      "displayName": "探头姿态",
+      "category": "静态表情"
+    },
+    "plead": {
+      "displayName": "请求姿态",
+      "category": "静态表情"
+    },
+    "point": {
+      "displayName": "指向姿态",
+      "category": "静态表情"
+    },
+    "read": {
+      "displayName": "阅读姿态",
+      "category": "静态表情"
+    },
+    "neutral": {
+      "displayName": "默认姿态",
+      "category": "静态表情"
+    },
+    "sad": {
+      "displayName": "低落姿态",
+      "category": "静态表情"
+    },
+    "shield": {
+      "displayName": "守护姿态",
+      "category": "静态表情"
+    },
+    "sleep": {
+      "displayName": "睡觉姿态",
+      "category": "静态表情"
+    },
+    "think": {
+      "displayName": "思考姿态",
+      "category": "静态表情"
+    },
+    "wave": {
+      "displayName": "挥手姿态",
+      "category": "静态表情"
+    },
+    "work": {
+      "displayName": "工作姿态",
+      "category": "静态表情"
+    },
+    "wrench": {
+      "displayName": "扳手姿态",
+      "category": "静态表情"
+    },
+    "entrance": {
+      "displayName": "出场",
+      "category": "原作动画"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "waving": "wave",
+    "jumping": "celebrate",
+    "failed": "sad",
+    "waiting": "peek",
+    "running": "work",
+    "review": "think",
+    "sleeping": "sleep",
+    "clicked": "chat",
+    "dragged": "idle"
+  },
+  "staticActions": [
+    "blush",
+    "box",
+    "brain",
+    "celebrate",
+    "chat",
+    "connect",
+    "hum",
+    "peek",
+    "plead",
+    "point",
+    "read",
+    "neutral",
+    "sad",
+    "shield",
+    "sleep",
+    "think",
+    "wave",
+    "work",
+    "wrench"
+  ],
+  "background": {
+    "mode": "alpha"
+  }
+}

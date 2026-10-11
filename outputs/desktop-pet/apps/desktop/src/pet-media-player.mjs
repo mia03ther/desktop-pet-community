@@ -100,14 +100,20 @@ export function createPetMediaPlayer(canvas, metadata, urlForFile) {
             const drawnHeight = height * ratio;
             context.drawImage(isImage ? imageFrame : video, (canvas.width - drawnWidth) / 2, canvas.height - drawnHeight, drawnWidth, drawnHeight);
             if (metadata.background.mode === "alpha" && !canvas.dataset.mediaReady) {
-                // 透明包首帧需在素材本身的边角留下透明区域，拒绝假透明矩形。
+                // 只检查素材矩形内的透明像素，不能把画布留白当作素材透明。
                 try {
                     const left = Math.ceil((canvas.width - drawnWidth) / 2);
                     const top = Math.ceil(canvas.height - drawnHeight);
-                    const right = Math.max(left, Math.floor(left + drawnWidth - 1));
-                    const bottom = canvas.height - 1;
-                    const corners = [[left, top], [right, top], [left, bottom], [right, bottom]];
-                    if (!corners.some(([x, y]) => context.getImageData(x, y, 1, 1).data[3] < 10)) {
+                    const right = Math.floor((canvas.width + drawnWidth) / 2);
+                    const pixels = context.getImageData(left, top, right - left, canvas.height - top).data;
+                    let hasTransparentPixel = false;
+                    for (let offset = 3; offset < pixels.length; offset += 4) {
+                        if (pixels[offset] < 10) {
+                            hasTransparentPixel = true;
+                            break;
+                        }
+                    }
+                    if (!hasTransparentPixel) {
                         context.clearRect(0, 0, canvas.width, canvas.height);
                         reportError();
                         return;

@@ -13,13 +13,13 @@
 <p align="center"><strong>A desktop companion you can help create: custom actions, character personas, optional plugins, and connections to multiple AI tools.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1">Download</a> ·
+  <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest">Download</a> ·
   <a href="https://desktoppet-e9e.pages.dev">Community platform</a> ·
   <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/issues">Report an issue</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?include_prereleases&label=Version" alt="Release version">
+  <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=Version" alt="Release version">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=Downloads" alt="Release asset downloads">
   <img src="https://img.shields.io/badge/Platform-Windows%20x64-60bba0" alt="Windows x64">
   <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
@@ -54,22 +54,24 @@ The platform hosts 132 pet entries and 24 plugins. Explore community works on th
 
 ### Windows portable version
 
-1. Open the [v4.0.1-preview.1 release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1) and download the Windows x64 portable ZIP and `SHA256SUMS.txt`. GitHub's automatically generated `Source code` ZIP contains source code.
+1. Open the [v4.0.2 release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest) and download the Windows x64 portable ZIP and `SHA256SUMS.txt`. GitHub's automatically generated `Source code` ZIP contains source code.
 2. **Extract the entire portable ZIP** to a writable directory, such as `D:\Apps\desktop-pet`. Keep `resources`, runtime libraries, and all other files together. Do not move the EXE on its own or launch it inside the ZIP.
 3. Double-click `desktop-pet.exe` in the extracted directory. The runtime is included, so Node.js and Python do not need to be installed. The first launch creates a local profile; the author's AI accounts and personal settings are not included.
 4. Open this EXE for everyday use, or create a desktop shortcut. The basic pet does not require AI configuration. Download and import plugins from the community platform as needed.
 
-This release targets **Windows x64** and is a preview without code signing. Validated macOS, Linux, and Windows ARM packages are currently unavailable. To update, exit the old application and extract the entire new version into a separate directory. A release package is not a backup of your personal configuration.
+Packages are available for **Windows x64** and **macOS arm64 (Apple Silicon)**. Windows builds are not code signed; validated Linux and Windows ARM packages are not yet available. Check GitHub updates from Settings in the control center; updates preserve local personas, plugins, conversations, and AI settings.
 
 To check download integrity, run this in PowerShell:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.1-preview.1-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.2-windows-x64-portable.zip
 ```
 
 Compare the result with `SHA256SUMS.txt` from the same release. A matching hash confirms file consistency; it does not replace a security audit.
 
 ### macOS (Apple Silicon / arm64)
+
+[Download Windows](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-windows-x64-portable.zip) · [Download Mac](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-mac-arm64.zip). Extract the Mac ZIP and move `desktop-pet.app` to Applications.
 
 macOS arm64 source builds are supported, and PR #2's Mac packaging changes have been merged. The pet, control center, persona editor, and native plugins share the same code as Windows. Windows-only diagnostics, original Windows executables, and external-host features retain their platform requirements.
 
@@ -138,7 +140,7 @@ See [pet brain](outputs/desktop-pet/docs/companion-ai.md), [character personas](
 
 Open the [community platform](https://desktoppet-e9e.pages.dev), download a work package, then import its ZIP or folder through “My pets” (我的桌宠) or “Plugin manager” (插件管理) in the control center. Review compatibility and permissions before confirming and enabling it. A new profile does not come with every plugin installed; the file assistant, computer care, and health reminders must also be installed separately.
 
-Website and local pet imports are limited to **200 MiB** total, **100 MiB** per file, and **1,000 entries**. Local native plugins are limited to **32 MiB** total and **5 MiB** per file, with a separate **1 MiB** limit for entry code. ZIP contents are also checked after extraction. For large works, compress media, remove caches, or split independent characters into separate packages. Multipart archive imports are currently unsupported.
+Website imports and local pet packages allow **1 GiB** total, **512 MiB** per file, and **10,000 entries**; Codex atlas files retain a **100 MiB** limit. Local native SDK plugins allow **32 MiB** total, **5 MiB** per file, and **1 MiB** for entry code. ZIP contents are checked after extraction. Split independent characters, remove caches, or submit a complete package link for larger works. Multipart archive imports are unsupported.
 
 To submit a work, package it and fill in its information on the website, then open this project's GitHub form. The submitter attaches the package and submits it using their own GitHub identity; a maintainer reviews it for inclusion. Successful packaging does not mean the work is public. See [pets and import](outputs/desktop-pet/docs/pets.md) for the supported scope of original-project preservation and independent execution.
 

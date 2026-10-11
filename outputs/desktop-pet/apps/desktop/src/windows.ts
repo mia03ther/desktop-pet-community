@@ -50,6 +50,8 @@ import { captureCompanionWindowUnderCursor } from "./companion-diagnostics.js";
 import { installControlCenterAiIpcHandlers, type CompanionAiIpcLifecycle } from "./control-center-ai-ipc.js";
 import { getCompanionAiHost } from "./companion-ai-host.js";
 import { installControlCenterAgentSetupIpcHandlers } from "./control-center-agent-setup-ipc.js";
+import { installControlCenterUpdateIpcHandlers } from "./control-center-update-ipc.js";
+import { getUpdateStatus, checkForGitHubReleaseUpdate, downloadAppUpdate, installAppUpdate, openUpdateReleasePage } from "./update-checker.js";
 import { installControlCenterRemoteIpcHandlers } from "./control-center-remote-ipc.js";
 import { getPetAssistantConversationController, getPetAssistantModalityCoordinator } from "./pet-assistant-host.js";
 import { clearConversationHistory, deleteConversationHistoryMessage, getConversationHistory } from "./pet-assistant-history-ipc.js";
@@ -546,6 +548,12 @@ export function installInternalUiHandlers(): void {
     registerHandle: (channel, handler) => ipcMain.handle(channel, handler),
     authorizeSender: (event) => assertAllowedSender(event, ["control-center"]),
     getRemoteControlService,
+  });
+
+  installControlCenterUpdateIpcHandlers({
+    registerHandle: (channel, handler) => ipcMain.handle(channel, handler),
+    authorizeSender: (event) => assertAllowedSender(event, ["control-center"]),
+    actions: { getUpdateStatus, checkForGitHubReleaseUpdate, downloadAppUpdate, installAppUpdate, openUpdateReleasePage },
   });
 
   controlCenterProviderIpc = installControlCenterProviderIpcHandlers({

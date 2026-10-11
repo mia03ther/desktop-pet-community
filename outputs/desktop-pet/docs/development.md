@@ -177,6 +177,12 @@ node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --
 
 根仓库 `.github/workflows/macos.yml` 使用 GitHub 公共仓库的免费标准 `macos-14` arm64 runner，明确校验运行架构，构建 ZIP 并调用现有打包契约检查，确保根项目许可、第三方版权声明与桌宠子项目许可随包原样保留。`apps/desktop/scripts/smoke-packaged-app.mjs` 仅启动该包、创建全新隔离档案，实际验证原生 Sharp 编解码、IPC、控制中心预加载、桌宠窗口、右键中文对话、共创站喝水提醒 ZIP 导入和正常退出，保存截图和结果。原生菜单弹出、文件选择和权限确认由验收截获，实际输入事件、预加载 IPC、插件安装、权限拒绝／批准、提醒写入会话与停用仍走正式程序链路；不代表人工操作所有原生对话框已验收。CI 不访问维护者配置，不启动远程 AI，也不冒称所有 AI 平台和外部宿主都能在 Mac 工作；Windows 专用诊断与原 Windows EXE 仍有平台限制。
 
+## 正式程序更新
+
+控制中心「设置 → 程序更新」检查 `xunguangzlj-cloud/desktop-pet-community` 最新正式 Release。下载必须匹配当前 OS／架构的完整程序 ZIP 和同次发布的 `SHA256SUMS.txt`，也接受 CI 的对应平台校验文件；校验失败不安装。公网共创入口自动查看最新作品，不覆盖本地配置。
+
+Windows 自动更新只支持可写、没有链接的便携程序目录，且用户档案不能位于将替换的程序目录内。下载后流式解压到同盘新目录，逐文件摘要确认，点击安装后辅助程序发出就绪握手，桌宠才优雅退出；辅助程序等待退出、备份原目录、替换并以原用户档案和启动意图重启。失败回退原目录，备份保留在程序旁的 `.desktop-pet-update-*` 内。既有指向同路径 EXE 的快捷方式继续有效。目录不可写、档案位置冲突或辅助程序未就绪时，桌宠继续运行并提供已核验 ZIP 的手动安装入口；不执行任意仓库或包内声明脚本。Mac 下载校验后打开 ZIP，由用户替换 `.app`，不声明静默签名安装。
+
 以下上游发布流程属于保留的开发资料；本项目的 Mac 构建无需 SignPath、Apple 开发者凭据或自动发布权限。
 
 ## Release flows

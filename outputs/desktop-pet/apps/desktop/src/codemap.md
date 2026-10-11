@@ -525,7 +525,7 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
 - `agent-setup-doubao.ts`：拥有本档案 `integrations/doubao/doubao-pet-bridge.mjs` 的生成、冲突检查、移除和本机测试；兼容六种简短状态，另接收有界的正式应用会话／工具事件，`remote: false`，不读豆包登录状态，不建立 HTTP 服务，不传聊天文本或额度。聚合卡片明确禁用 PC／网页自动连接，开发桥不算其客户端已连接。
 - `external-ai-setup-types.ts` / `external-command-runner.ts`：前者定义渲染器可消费的窄卡片、动作与白名单；后者单独管理新增外部工具的命令运行、16 KiB 输出流和超时后自有进程树清理，不替代既有 runner。
 - `claude-memory.ts`: Claude instructions file management (`~/.claude/openpets.md`)
-- `update-checker.ts`: GitHub release polling, update status
+- `update-checker.ts`：只读取本仓库正式 Release，拥有目标平台包的流式 SHA-256 下载、状态和用户点击后的安装；不接收界面 URL 或路径。`update-release.ts` 持有固定仓库、平台资产、校验清单和 HTTPS 跳转白名单；`update-types.ts` 为无 Node 的窄快照。`update-package.ts` 在全新同盘目录中安全解压并生成逐文件摘要，拒绝程序目录内的个人档案；解包的 `assets/companion/windows-portable-update.ps1` 复核清单、确认就绪、等本次程序退出后替换并保留原程序备份，失败回退，以原档案和启动意图重启。只支持可写普通便携目录，不满足条件则保留已核验 ZIP 手动更新；Mac 只打开已核验 ZIP。`control-center-update-ipc.ts` 对所有更新操作验证控制中心发送方。
 - `update-version.ts`: Version parsing and comparison
 
 **Tests** (excluded from detailed codemap coverage per repository conventions):

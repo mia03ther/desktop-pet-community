@@ -9,13 +9,13 @@
 <p align="center"><strong>可共创的桌面伙伴：自定义动作、人物人设、可选插件与多 AI 工作联动。</strong></p>
 
 <p align="center">
-  <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1">下载安装包</a> ·
+  <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest">下载安装包</a> ·
   <a href="https://desktoppet-e9e.pages.dev">共创平台</a> ·
   <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/issues">问题反馈</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?include_prereleases&label=%E7%89%88%E6%9C%AC" alt="发布版本">
+  <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=%E7%89%88%E6%9C%AC" alt="发布版本">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=%E4%B8%8B%E8%BD%BD" alt="发布文件下载数">
   <img src="https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Windows%20x64-60bba0" alt="Windows x64">
   <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
@@ -27,7 +27,7 @@
 - **桌面陪伴**：可拖拽、调整大小和隐藏。默认安静待机，点击随机回应；关闭安静模式后随机播放动作，真实 AI 工作状态优先联动。
 - **自由定义动作**：支持图集、动画 WebP 和视频动作，可修改动作名称、类别、随机候选与 AI／点击／拖拽等状态绑定。
 - **和桌宠对话**：为宠物大脑配置自己的云端或本机 AI，支持多个来源和自定义兼容接口。输入与回答的字体、气泡样式可调整，控制中心显示带时间的历史。
-- **人物人设**：自行编写全局 Markdown，导入已蒸馏的人物 Skill，或用已配置的 AI 从资料提炼人设。已启用的完整 Skill 人设随桌宠对话使用，无需触发词；不自动执行其中的任意脚本。
+- **人物人设**：自行编写全局 Markdown，导入人物 Skill、Tavern V1／V2／V3 JSON 或 PNG 角色卡，或用已配置的 AI 从资料提炼人设。已启用的完整 Skill 人设随桌宠对话使用，无需触发词；不自动执行其中的任意脚本。
 - **多个 AI 工作联动**：一个桌宠可展示多个已接入会话的工作状态、具体工具和成功编辑文件数。Codex、ZCode 提供 Hook 接入，其他工具按各自桥接能力配置；工作监测与桌宠对话的 AI 分开管理。
 - **按支持情况查看额度**：Codex 支持官方只读订阅额度窗口；DeepSeek 对话来源支持官方余额查询，OpenRouter 支持官方密钥额度适配。未接通的来源显示未知，桌宠对话的 token 用量不冒充其他 AI 工具的剩余额度。
 - **按需安装插件**：喝水、久坐、眼睛休息、番茄钟等提醒，以及文件助手、电脑守护均为可选插件。提醒进入同一桌宠对话；文件助手提供本地定位与虚拟分类库，实际整理先查看计划，电脑守护提供监测和建议。
@@ -46,27 +46,31 @@ https://desktoppet-e9e.pages.dev/#pets
 | **BongoCat** | **真珠** | **达妮娅 · 三形态** |
 
 ## 2. 安装方法
-### 若不熟悉GitHub下载流程
-1.直接把网址复制给AI，让AI帮你安装
-2.https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.1-preview.1/desktop-pet-4.0.1-preview.1-windows-x64-portable.zip 一键下载，（打开“使用说明.md"可看到安装方法）,找到“desktop-pet.exe”解压缩后打开，点击“desktop-pet.exe”即可运行。（若windows系统拦截，点“更多信息”，再点“仍要运行”）
+
+### 若不熟悉 GitHub 下载流程
+
+1. 直接把网址复制给 AI，让 AI 帮你安装。
+2. [Windows 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-windows-x64-portable.zip)，完整解压后双击 `desktop-pet.exe`。macOS 用户可下载下方对应的 Mac 包。
 ### Windows
 
-1. 打开 [v4.0.1-preview.1 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
+1. 打开 [v4.0.2 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
 2. 将便携 ZIP **完整解压**到一个可写目录，例如 `D:\Apps\desktop-pet`。保留同目录的 `resources`、运行库与其他文件，不单独移动 EXE，也不直接在 ZIP 内启动。
 3. 双击解压目录中的 `desktop-pet.exe`。自带运行环境，无需安装 Node.js 或 Python；首次启动创建本机档案，不附带作者的 AI 账号或个人设置。
 4. 平时直接打开此 EXE；也可为它创建桌面快捷方式。基础桌宠无需配置 AI，插件从共创平台按需下载后导入。
 
-此版本面向 **Windows x64**；当前未提供已验收的 macOS、Linux 或 Windows ARM 安装包。更新时先退出旧程序，再将新版完整解压到单独目录；不要把发布包当作个人配置备份。
+提供 **Windows x64** 与 **macOS arm64（Apple Silicon）** 包。Windows 程序尚未进行代码签名；Linux 与 Windows ARM 暂无本项目已验收的安装包。控制中心「设置」可检查 GitHub 更新；更新保留本机人设、插件、对话与 AI 配置。
 
 核对下载文件完整性可在 PowerShell 执行：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.1-preview.1-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.2-windows-x64-portable.zip
 ```
 
 将结果与同一 Release 的 `SHA256SUMS.txt` 对照；核对哈希只能确认文件一致，不能代替安全审计。
 
 ### macOS（Apple Silicon／arm64）
+
+[Mac 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-mac-arm64.zip)：完整解压，将 `desktop-pet.app` 放入“应用程序”后打开。
 
 支持 macOS arm64 源码构建；PR #2 的 Mac 打包改动已合并。与 Windows 一样，桌宠、控制中心、人设和本系统插件使用同一套代码；Windows 专用诊断、原 Windows EXE 与依赖原宿主的功能仍按平台能力限制。
 
@@ -137,7 +141,7 @@ node outputs/community-cloudflare/scripts/build.mjs
 https://desktoppet-e9e.pages.dev/#pets
 下载作品包，再到控制中心“我的桌宠”或“插件管理”导入 ZIP／文件夹；查看兼容性及权限，确认后启用。新档案不预装全部插件，文件助手、电脑守护和健康提醒也需要自行安装。
 
-网站制作与导入上限为 **200 MiB**、单文件 **100 MiB**、最多 **1,000 条目**；本机桌宠导入总量上限 **1 GiB**、单文件 **256 MiB**（随下一版桌面端生效）；本机原生插件为 **32 MiB**、单文件 **5 MiB**，入口代码另限 **1 MiB**。ZIP 解压后也检查体积；大作品可压缩媒体、删除缓存，或按独立角色拆包，当前不支持分卷导入。
+网站制作与导入、本机桌宠完整包的总量上限为 **1 GiB**、单文件 **512 MiB**、最多 **10,000 条目**；Codex 图集文件另限 **100 MiB**。本机原生 SDK 插件仍为 **32 MiB**、单文件 **5 MiB**，入口代码另限 **1 MiB**。ZIP 会检查压缩包与解压后的体积；大作品可清理缓存、按独立角色拆包，或按投稿指南提供完整作品包链接。当前不支持分卷导入。
 
 共创投稿在网站打包填写信息后，打开本站 GitHub 表单，由投稿者使用自己的 GitHub 身份附包提交，维护者审核收录；打包成功不表示已经公开。保留原项目导入及独立运行的具体范围见[桌宠与导入](outputs/desktop-pet/docs/pets.md)。
 

@@ -354,7 +354,7 @@ function openPetDetail(work) {
   if (!work.atlas) { openPublicMediaPet(work); return; }
   detailWork = work;
   $('#detail-title').textContent = `${work.title} · 动作预览`;
-  $('#detail-description').textContent = work.description;
+  $('#detail-description').textContent = `${work.description} 许可：${work.license || '见包内声明'}。`;
   $('#detail-author').textContent = `作者：${petDisplayAuthor(work)} · V${work.version} · ${work.category}`;
   $('#detail-download').href = work.download;
   $('#detail-download').download = `${work.id}.zip`;
@@ -370,7 +370,7 @@ function openPublicMediaPet(work) {
   if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'public-pet-detail'; dialog.setAttribute('aria-labelledby', 'public-pet-title'); dialog.addEventListener('close', () => { if (location.hash.startsWith('#pets/')) history.replaceState(null, '', '#pets'); }); document.body.append(dialog); }
   dialog.querySelectorAll('video').forEach(video => video.pause());
   const entries = Object.entries(work.mediaActions || {});
-  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download="${work.distribution === 'standalone' ? '' : escapeHtml(work.id) + '.zip'}" data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
+  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><p>许可：${escapeHtml(work.license || '见包内声明')}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download="${work.distribution === 'standalone' ? '' : escapeHtml(work.id) + '.zip'}" data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
   const preview = () => {
     const entry = work.mediaActions?.[dialog.querySelector('select')?.value];
     const stage = dialog.querySelector('[data-public-media]'); stage.replaceChildren();

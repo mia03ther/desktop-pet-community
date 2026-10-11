@@ -51,6 +51,19 @@ export function isVersionNewer(candidate: string, current: string): boolean {
     if (nextParts[index] > currentParts[index]) return true;
     if (nextParts[index] < currentParts[index]) return false;
   }
+  const prerelease = (value: string) => /^v?\d+\.\d+\.\d+(-[^+]+)?/.exec(value)?.[1]?.slice(1).split(".");
+  const next = prerelease(candidate);
+  const previous = prerelease(current);
+  if (!next || !previous) return !next && Boolean(previous);
+  for (let index = 0; index < Math.max(next.length, previous.length); index++) {
+    if (next[index] === previous[index]) continue;
+    if (next[index] === undefined || previous[index] === undefined) return previous[index] === undefined;
+    const left = next[index]!; const right = previous[index]!;
+    const leftNumeric = /^\d+$/.test(left); const rightNumeric = /^\d+$/.test(right);
+    if (leftNumeric && rightNumeric) return Number(left) > Number(right);
+    if (leftNumeric !== rightNumeric) return !leftNumeric;
+    return left > right;
+  }
   return false;
 }
 

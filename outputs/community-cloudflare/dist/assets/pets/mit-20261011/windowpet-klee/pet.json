@@ -1,0 +1,79 @@
+{
+  "id": "windowpet-klee",
+  "displayName": "可莉 · WindowPet",
+  "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "walk": "actions/walk.webp",
+    "sit": "actions/sit.webp",
+    "greet": "actions/greet.webp",
+    "crawl": "actions/crawl.webp",
+    "climb": "actions/climb.webp",
+    "jump": "actions/jump.webp",
+    "fall": "actions/fall.webp",
+    "drag": "actions/drag.webp",
+    "walk-left": "actions/walk-left.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "站立待机",
+      "category": "原作静态姿态"
+    },
+    "walk": {
+      "displayName": "向右行走",
+      "category": "原作动画"
+    },
+    "sit": {
+      "displayName": "坐下",
+      "category": "原作静态姿态"
+    },
+    "greet": {
+      "displayName": "问候",
+      "category": "原作动画"
+    },
+    "crawl": {
+      "displayName": "爬行",
+      "category": "原作动画"
+    },
+    "climb": {
+      "displayName": "攀爬",
+      "category": "原作动画"
+    },
+    "jump": {
+      "displayName": "跳跃姿态",
+      "category": "原作静态姿态"
+    },
+    "fall": {
+      "displayName": "落下",
+      "category": "原作动画"
+    },
+    "drag": {
+      "displayName": "被拿起姿态",
+      "category": "原作静态姿态"
+    },
+    "walk-left": {
+      "displayName": "向左行走（原行走镜像）",
+      "category": "原作方向变体"
+    }
+  },
+  "staticActions": [
+    "idle",
+    "sit",
+    "jump",
+    "drag"
+  ],
+  "background": {
+    "mode": "alpha"
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "walk",
+    "running-left": "walk-left",
+    "waving": "greet",
+    "jumping": "jump",
+    "waiting": "sit",
+    "clicked": "greet",
+    "dragged": "drag"
+  }
+}

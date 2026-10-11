@@ -1,3 +1,4 @@
+import type { UpdateStatus } from "../../../update-types.js";
 import type { CompanionAiApi } from "../../../companion-ai-types.js";
 import type { CompanionToolsApi } from "../../../companion-tools-types.js";
 import type { ControlCenterRouteTarget } from "../../../control-center-route.js";
@@ -31,6 +32,11 @@ export interface StudioApi extends PetStudioApi, ProvidersSectionApi, Integratio
   getI18n(): Promise<I18nSnapshot>;
   getProviderProfiles(): Promise<ProviderControlCenterSnapshot>;
   updatePreferences(patch: Partial<StudioPreferences>): Promise<unknown>;
+  getAppUpdateStatus(): Promise<UpdateStatus>;
+  checkAppUpdate(): Promise<UpdateStatus>;
+  downloadAppUpdate(): Promise<UpdateStatus>;
+  installAppUpdate(): Promise<UpdateStatus>;
+  openAppUpdateRelease(): Promise<void>;
   getLaunchAtLogin(): Promise<{ supported: boolean; enabled: boolean }>;
   setLaunchAtLogin(enabled: boolean): Promise<{ supported: boolean; enabled: boolean }>;
   resetDefaultPetPosition(): Promise<void>;

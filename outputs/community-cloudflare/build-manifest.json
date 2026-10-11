@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-11T05:26:45.152Z",
+  "builtAt": "2026-10-11T07:40:43.080Z",
   "mode": "anonymous-interactions",
   "migrations": [
     "0000_first_deathstrike.sql",
@@ -9,8 +9,8 @@
   "files": [
     {
       "path": "app.js",
-      "bytes": 84451,
-      "sha256": "e2b3883030418549462de1678a0b0d90e5bd3026e24fba2121be292033e6ea00"
+      "bytes": 84569,
+      "sha256": "869d7d09be3e64bfa7f3acde04d25c31895a28c55ac103ddf6dc8346f9ad2cd7"
     },
     {
       "path": "assets/brand-logo.png",
@@ -616,6 +616,1191 @@
       "path": "assets/pets/adapted-20261010/vscode-snake-green/with-ball.webp",
       "bytes": 1060,
       "sha256": "d2959c94724806ac0f5256a38e6aa5518002dd84808f92d03c7d2af9a3b23407"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/busy.webp",
+      "bytes": 69772,
+      "sha256": "11d6e65a013272c8e8b616412d61b7d2764d26ecc911358d662979edda486b15"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/celebrate.webp",
+      "bytes": 67270,
+      "sha256": "e5e5319d9efc411440e47bad19f175c6f211e22f5e990a9618bf898664b13109"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/dozing.webp",
+      "bytes": 66358,
+      "sha256": "bef6361dac195a3d417d0cf088bccd84642546332fed6b8303eef629c18b29f7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/drag.webp",
+      "bytes": 67302,
+      "sha256": "99c9fbcc8124c805bc46fe6e9b94984c1eee3aa87dec19c6a3c21b9d54c8ec28"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/exhausted.webp",
+      "bytes": 61624,
+      "sha256": "24636ed821eb111012f36ffb6871d98cb4bff480f0cdb2569d9f7fe862c72a15"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/happy.webp",
+      "bytes": 61926,
+      "sha256": "12ae5289db46cbb80a96dcbbb1ae97ef0ddd1b2acf914756a969572d5cb867dc"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/money-pain.webp",
+      "bytes": 63396,
+      "sha256": "0f63399530221c5457ce487ba0848afbc53f38f44abbedcd96b828a18dfacd40"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/thinking.webp",
+      "bytes": 63730,
+      "sha256": "1721ecb8a5cc3f657130fa03eb38e0196c5715f4dddbf13af7e13e833843fbd4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/waiting.webp",
+      "bytes": 65484,
+      "sha256": "bc7cf8521d0fa101851562fe361cc88230e403bf4de60d1649206c73d4f69687"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/wave.webp",
+      "bytes": 65108,
+      "sha256": "a69167eeced4a84514b8c08fd97cb2273e42e18838091e012fb9c7158b6f952c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/idle/happy.webp",
+      "bytes": 10708,
+      "sha256": "5dd3133c8723fae08d35e4e123a935da3e3f4a243f32aa8336822c4bbfad5bb2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/LICENSE.txt",
+      "bytes": 1064,
+      "sha256": "8f0d3535cb8e31e61cf6ebf0d9d4f0aa9509659c3ff43d8d77e1f6c5f6972cbb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/package.zip",
+      "bytes": 706059,
+      "sha256": "76c67a00134a77260265ae7f23657038d8bd5feffbb38ddfe87bb0e6e7fddcc7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/pet.json",
+      "bytes": 1994,
+      "sha256": "19da0d697728ac4a05f612d24fa3608a29575a731ca613e7de9fb8c1f14a23df"
+    },
+    {
+      "path": "assets/pets/mit-20261011/black-whale-personal-center/thumbnail.webp",
+      "bytes": 18526,
+      "sha256": "fc7d006771312ed1f83818e42a3fa673a08c538364e9ee313286cd44d2b15496"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/busy.webp",
+      "bytes": 97638,
+      "sha256": "cbef2ddea01f1be57ecb5e00cefdbcf005716d148b066c10ece81552fb3a9688"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/celebrate.webp",
+      "bytes": 78616,
+      "sha256": "46ea5eb28a7e496af3bcba4c3628671ceec8740fd053ef6000157b4fcbd60a49"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/dozing.webp",
+      "bytes": 88930,
+      "sha256": "7815bd43210b89319a75260524da0b459e0dfe5e58df17dfefd70c1838868b0b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/drag.webp",
+      "bytes": 77806,
+      "sha256": "963030fdfe4c512c346c68cf7be5882c8b503740cd8ab2e2e9f6107ae173ea48"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/exhausted.webp",
+      "bytes": 95474,
+      "sha256": "f2badafec551560a176284669e85ab33640ec68dc48de596e9325bd6994a5671"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/happy.webp",
+      "bytes": 94420,
+      "sha256": "3e203487460ca53a0f903a2e29517edaffd548b7b24638d72b61d4a3eb37a650"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/money-pain.webp",
+      "bytes": 97826,
+      "sha256": "f30c87f9812031a2497adf5e072beedd5b2d01ab7b51a42525280396f3144572"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/thinking.webp",
+      "bytes": 77260,
+      "sha256": "eb2a7ea728463f962e5c4fbc88a20c8321426ed8d904fa03162dc9f4e338372c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/waiting.webp",
+      "bytes": 76946,
+      "sha256": "ce87d8dea21a4fe963a94328a031075ed832e2de52b5faab83f6ee82aea4bb67"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/actions/wave.webp",
+      "bytes": 77592,
+      "sha256": "efd97fc044382e3c37508b4e1be47e10ff35b5f0d2f7388811cc07381f892ff6"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/idle/happy.webp",
+      "bytes": 16224,
+      "sha256": "f4d9ab8375c97f5e337c2cd8c80e3b5f87935ac895a53bd844c52c4f1ddd26ff"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/LICENSE.txt",
+      "bytes": 1064,
+      "sha256": "8f0d3535cb8e31e61cf6ebf0d9d4f0aa9509659c3ff43d8d77e1f6c5f6972cbb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/package.zip",
+      "bytes": 940583,
+      "sha256": "ecf62fe1e41fa4638adc2aaca4d0de5141588ce8b6d647bf7734f39d599f211d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/pet.json",
+      "bytes": 1993,
+      "sha256": "7f26c0c4778a99041f4a0d0a158b6f84333ad405778e21ce9c212c43ef2e436a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/blue-whale-personal-center/thumbnail.webp",
+      "bytes": 25452,
+      "sha256": "0cf80ea1a91af27a8edb0f6cada460014615d47eb175bf7a7e1ac152ec3e3384"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-bubu-fix/package.zip",
+      "bytes": 1839938,
+      "sha256": "34a7276a68a98d2dab01b4fb84c8f766e8c2e3494a4a89f95a477c68666c27a8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-bubu-fix/spritesheet.webp",
+      "bytes": 1814108,
+      "sha256": "281a742e436b6c3b2bc7342d72d5d87ff9ea1b7bed6425d2480f4e09116de025"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-bubu-fix/thumbnail.webp",
+      "bytes": 29510,
+      "sha256": "021b9a608ff37052454f3552f8b905e8f43d4f81357c5febc73cd194dc0197a6"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-dada-code/package.zip",
+      "bytes": 1313589,
+      "sha256": "19bd901704fd22544ba3c148cf86cc02d118b6a4fadeb6ff743b48293a81f531"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-dada-code/spritesheet.webp",
+      "bytes": 1291072,
+      "sha256": "3a003d4c036a1cbefd36999450fb12db7b9eab989e22323b545789eba70e6972"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-dada-code/thumbnail.webp",
+      "bytes": 24668,
+      "sha256": "016ccae1fcfa665c97d72a78e97b8b56397e880d6f07dc0aabeb49d2a2337d72"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-huhu-plan/package.zip",
+      "bytes": 1628303,
+      "sha256": "4c407e46ff40e7e3f5e80c9936a06f02e4306b3f8e2cdcca7911d2fb16aed704"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-huhu-plan/spritesheet.webp",
+      "bytes": 1594848,
+      "sha256": "3edbfeef58e9190e98789b494e17fedb6432b49335521e37c7ebdef8c4f93178"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-huhu-plan/thumbnail.webp",
+      "bytes": 28418,
+      "sha256": "e4b35663aa632c52540a7fd07961e3d4f8e81fe4f31f94096919e137aa41eee2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-huihui-build/package.zip",
+      "bytes": 1448327,
+      "sha256": "74f257bab22efe2e8aab3ae75cc99864c679bd4e0e32c270a380c6a62d272637"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-huihui-build/spritesheet.webp",
+      "bytes": 1416826,
+      "sha256": "bb7cdab06474774a634a50e5a87bd9c3e70129476d5caabb6b45f48ad5beac95"
+    },
+    {
+      "path": "assets/pets/mit-20261011/cc-haha-huihui-build/thumbnail.webp",
+      "bytes": 26558,
+      "sha256": "ae9a74bd31ea22a7d4255ce910867949c32b099127da7761998ce3acda40d0eb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/idle.webp",
+      "bytes": 714,
+      "sha256": "c646ebf5ecd146f92e83c71d57f416a1dc3edd96b24e52cf2d2333e19bcdec46"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/running-left.webp",
+      "bytes": 1302,
+      "sha256": "83e91af2b84c368635d4de45248c21d44195588254bb5fea62347bbdc0e1ce14"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/running-right.webp",
+      "bytes": 1322,
+      "sha256": "dffb00462cae8ba62531a5af7146a3a0d5590f20647af2c04d8f4d894fe9b8d9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/sleep-enter.webp",
+      "bytes": 1586,
+      "sha256": "e0cbe8f743caec0fd92f07df74bf46dfc13ba5201de5c042c74f7fe54619a7f1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/sleep-exit.webp",
+      "bytes": 1566,
+      "sha256": "5c5961dbd646190d281ea7f6ebc61ed26de085d0deec72d236b109a93585a611"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/sleeping.webp",
+      "bytes": 534,
+      "sha256": "164c8c81c9cdeba66a8fed1130cb526bc88d249ddd123505ca4e65939e03e0fd"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/LICENSE.txt",
+      "bytes": 1060,
+      "sha256": "7e834d563532957116670e21aa5329aa369d54017fb368b263a4b4764f17f65b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/package.zip",
+      "bytes": 13641,
+      "sha256": "64ca90b351ca8717552381dc8326aadbe0395e1ef36ac9621722e5002c1d3097"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/pet.json",
+      "bytes": 1124,
+      "sha256": "f711385b040cf40e3d5fe7b2249fc235e2680500775c1a8ce4c4b0105fa1e984"
+    },
+    {
+      "path": "assets/pets/mit-20261011/desktop-cat-1ilit/thumbnail.webp",
+      "bytes": 380,
+      "sha256": "261f87d8e94f26073f83987828c5928a2df6fab5ffafcee71b0b03b773c3207d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/blush.webp",
+      "bytes": 93820,
+      "sha256": "459427d2dc95794055d20602daa93957d58429e0b4582cefe3ef2d0705ffcf98"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/box.webp",
+      "bytes": 91284,
+      "sha256": "b9105edd3d108838aed7c43959a166c9afa45e34a3de0423253af434120b2f44"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/brain.webp",
+      "bytes": 80868,
+      "sha256": "0e9a4f0186495ac0c44fdd86b9d49048fe0e6a73d6474119df5a42f966b68c06"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/celebrate.webp",
+      "bytes": 91610,
+      "sha256": "21336577f1313bd6f8f4ca93d5fc6e15a4c70c09d0a8b38acad2a0e69d19e506"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/chat.webp",
+      "bytes": 78662,
+      "sha256": "6fa48ccc6e1d54afe21d9e4547d8cd96f9e8228d43f8d1630dc92664e8002298"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/connect.webp",
+      "bytes": 76140,
+      "sha256": "c34215a864d1d1ee7aabbb3c9bf773f7111f40e52f386366327668aa0ead0c30"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/entrance.webp",
+      "bytes": 1033210,
+      "sha256": "19fc1529c5f8641e93f528027ad2ea4ba88cad0cab4323a73f3879905c32d100"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/hum.webp",
+      "bytes": 78076,
+      "sha256": "8d78554a938b7fa014bdb34ca4bcf6677c3ed5c9cf5f439579697cad1d8f7d57"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/idle.webm",
+      "bytes": 4127708,
+      "sha256": "d83cf4bcca364753f747cbe242d37938f1b4169798121cdb0bbdc59bda623516"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/neutral.webp",
+      "bytes": 77678,
+      "sha256": "e4ecd62245d7d2d9744b4536db2d85af42d1c3e987f032c7166c27eb09bc7886"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/peek.webp",
+      "bytes": 74510,
+      "sha256": "16d71199b5d1463e025b53e5e4e0dafb123d54096c632199eb800acb03f38c42"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/plead.webp",
+      "bytes": 64204,
+      "sha256": "f16d9adfec90589afe20039d2e4f75bce28dac1c9d415ff5cfb0021333d03623"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/point.webp",
+      "bytes": 74986,
+      "sha256": "b5ea5cb5a2a0ea365243a7e41afd80173c6a868f2590f66e32f479843acd117c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/read.webp",
+      "bytes": 134636,
+      "sha256": "f59ebabc6dfc9ac5e7e94d1803e27bb2857fb26a0410c33421e03bf09117d770"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/sad.webp",
+      "bytes": 95960,
+      "sha256": "863b81293c443ed7cc536dedeba59e41880d7ca9a98def4bc24ad6caa63f7028"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/shield.webp",
+      "bytes": 130094,
+      "sha256": "2f798d64210c1b1e09c55e939c9096d6fedb6ab57117bf79d13b3b2213c53adc"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/sleep.webp",
+      "bytes": 76814,
+      "sha256": "39107264db44abdd31088575a32cfff2ec404618b92f568c20afee8ee91c34ed"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/think.webp",
+      "bytes": 106362,
+      "sha256": "ddb4bd653c410505fbfdc4e87dbc6df54d51f105a5e5ae4c21de60aed82a3892"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/wave.webp",
+      "bytes": 98950,
+      "sha256": "311db179e820bc3d1d1ca86705d9e4a1c7c8fa15d43fd5109a2f7c5247bce6a9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/work.webp",
+      "bytes": 152164,
+      "sha256": "381ba93fee528eb55b2c2af5b97a06241b71f5653ae0296f7250d7bc37be04f9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/actions/wrench.webp",
+      "bytes": 99880,
+      "sha256": "08fc79b2438a68266af118500fc5e64814450ec2146d505c99b7d2fddc9ac98a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/LICENSE.txt",
+      "bytes": 1074,
+      "sha256": "ceb48e6ad5a86bba427604fcd42bb539b6fe6b4d63de0744af1f739258f68a7f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/package.zip",
+      "bytes": 9653980,
+      "sha256": "524a1d7ad93b1562713fea8ad6ccbb409c467af0d5131aa295e6798f2f352ab1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/pet.json",
+      "bytes": 3488,
+      "sha256": "89335f4c8b9c17703e9d9199a27c027453e747b7f5e1a909890767e9da3a6693"
+    },
+    {
+      "path": "assets/pets/mit-20261011/memmy-companion/thumbnail.webp",
+      "bytes": 17192,
+      "sha256": "5c984668d6cae18a8bb79b67dc3cfac789b3f19eca2eaac9d885d1c5bc49ab68"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/agent_intro.webp",
+      "bytes": 4868,
+      "sha256": "3a5bb6104bd6d819eacf8a1ccce39b3d429f7bedabaf33d74b5e50504266c025"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/agent_loop.webp",
+      "bytes": 13674,
+      "sha256": "95c53b8ddaa0e105f0d5b04df85a1a8e3d2db5ce1bdda4aae4f47f91d37531c2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/agent_outro.webp",
+      "bytes": 3400,
+      "sha256": "3a99ea381d9ce7399e3ac907b6d38ab77c8d3ea296b002e48ae33f89fa165a8d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/blink.webp",
+      "bytes": 3864,
+      "sha256": "f097c9085af96aa6e03ea6d69eaf6aefca8fa72e1df41b084794b6f7f9791a7d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/bounce.webp",
+      "bytes": 4232,
+      "sha256": "d97f48fa1ca5cad89e5c73d62343160c80270906723b2cab89302662457dc7cd"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/coffee.webp",
+      "bytes": 13674,
+      "sha256": "021a897d80514d0f31b7cd462a7f767962c14da95c87cfa0b16656ac17d7f464"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/computer.webp",
+      "bytes": 9718,
+      "sha256": "788533bcc0818eafd4e9e63062557a57ad151259ac53737f0d9f66fefeb699eb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/dance.webp",
+      "bytes": 6240,
+      "sha256": "75519970efd46f67b15df15acacab112b729a24d9624fbe4afc9df457f60a647"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/default.webp",
+      "bytes": 13662,
+      "sha256": "82d0439ef0c4adbb318673bac1c8cfd0464b79f477315a4ffb1a120a29098265"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/dragged.webp",
+      "bytes": 6628,
+      "sha256": "69329e5aa21e1413217260c837df2e3f87201a303772cc2e827b501726ddec33"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/drop.webp",
+      "bytes": 3806,
+      "sha256": "099d2c3b1ef376eecd641532896821cf9351fcb5b39de1889c807d60fb7a6aaf"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/eat.webp",
+      "bytes": 9280,
+      "sha256": "86fafdc3f5f4021453044129fb4c551d553b43b069192c61cc797ffe6a2f9fe5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/fedora_intro.webp",
+      "bytes": 13104,
+      "sha256": "05474af29d708d4412ac91de641d9939cb02d6a73cadc0ca671f471081384dcf"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/fedora_loop.webp",
+      "bytes": 1574,
+      "sha256": "bf6d736d88f9c4a41b111f2cd87492c1ed56720e98bc8970a18bc3caac706f02"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/fedora_outro.webp",
+      "bytes": 10698,
+      "sha256": "5cb9db1a1d870416db99d6651cd31187ad875fec02e39210184a3db177136c53"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/focus_loop.webp",
+      "bytes": 14946,
+      "sha256": "d12c096ced88d83b0d3039809336ae64d6683a42a238474a4af66af7cd7d2375"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/focus_start.webp",
+      "bytes": 2668,
+      "sha256": "b2a3ef34e216d59e85de2445a52f9177de6d3fcadd5aa76596f83d37739d3ff3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/focus_stop.webp",
+      "bytes": 2662,
+      "sha256": "b6af41f2f4f42b417bdd2f4c9f9cfbff6ac759ec4c2695eb161b4a2b05e1fa05"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/focus_thinking_end.webp",
+      "bytes": 3486,
+      "sha256": "3db2783eed4557580babb6315ae7d855cda471356cdbcd1a0d75a4f30156a846"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/focus_thinking_loop.webp",
+      "bytes": 4900,
+      "sha256": "db6f6a5372e370d5b68dc7088c4de2250a5237b6e936494e2744b5cabcfbba38"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/focus_thinking_start.webp",
+      "bytes": 3482,
+      "sha256": "7748164f9ec69eb34d61e83ea98a3e19af44f52db6c3dcff83e53555450357ce"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/heart.webp",
+      "bytes": 9974,
+      "sha256": "e742047ae431711026a0db0eb56c8afa85c78ded4936b154207531dc57287f28"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/idle.webp",
+      "bytes": 3584,
+      "sha256": "c31eef1bdbd3c115f658b3ead27d3246843e722b9a265d199ea141550c9dabf8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/level_up_default.webp",
+      "bytes": 10048,
+      "sha256": "b19a3ace126782f3bf8f88fa6be13f171b11686bc3b6d6a9cc8915b1dba01c9f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/look.webp",
+      "bytes": 4490,
+      "sha256": "dbe2b47f48cbd8782fc4a9e025e4f9f79d68746d13bf32bb0a55b0bf744274ba"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/mochi_exe.webp",
+      "bytes": 4292,
+      "sha256": "04dca1d96cb9403aeb9091c9c505e674469e76a9d886188bd94061bd9b80c8d8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/pickup.webp",
+      "bytes": 3734,
+      "sha256": "f3c1bffcc70fecbc8480082b8c8bc7df85bf298fbe132283032c261e028ef95a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/pocket_grab.webp",
+      "bytes": 5644,
+      "sha256": "204a74d9558fca0613e088805a96defef994081d6ada318c9075675c9ed928d1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/reading.webp",
+      "bytes": 9252,
+      "sha256": "6277e07f3609175a71a7c1840ac5d3c5534c841c82fcb35f198c76f56df768f9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/sad_idle.webp",
+      "bytes": 3306,
+      "sha256": "ddc32e6f87c6cbc95e42fd39e3a7c6a83341f8c5dd3d45adc8d7371759b41081"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/searching.webp",
+      "bytes": 10192,
+      "sha256": "3c20a5e6cfb8ba31ebcb74d95e794becf9d23819a41b49af61e8dfe37c9af1b9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/side_eye.webp",
+      "bytes": 3708,
+      "sha256": "651a6dc3108549e96ed8f933fbec74f59974d12315049581a601626eab177cb1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/sleep.webp",
+      "bytes": 75546,
+      "sha256": "9c84e6a394473593c7edb56ef728200f5a16c6badaea13c2357a11fc9d061ad0"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/sleeping.webp",
+      "bytes": 38086,
+      "sha256": "88de0416b062927ebf27a479d80970fa01f5fadbb6c38e5be429c6db2879c946"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/squish.webp",
+      "bytes": 75490,
+      "sha256": "8f45fa0d6d923eabf719d54e5d57f8bd91c6a93633f92858953da263b452a1ee"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/sway_idle.webp",
+      "bytes": 6194,
+      "sha256": "f226576fa027ae680d2dece92065ab99f49731c0f2d6f16f3a9975fe741c685f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/table_flip.webp",
+      "bytes": 12198,
+      "sha256": "8b287cc9a207cf6b1f64689d0da9cbc91c76f5180b1f54f24b5f1875ddc0ba3d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/terminal_intro.webp",
+      "bytes": 4930,
+      "sha256": "db3807002d3c23f1dc37c908c9de60532060f239704e39006b63206f67a38912"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/terminal_loop.webp",
+      "bytes": 5862,
+      "sha256": "10c66c8e6628f4860420a72fc62acabd160bc1433138ecdbcb42f75f2c5fc890"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/terminal_outro.webp",
+      "bytes": 3908,
+      "sha256": "8ec35b4bf2defb9a524a989a46a536b931f413132106185e65597cde6696d9c5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/this_is_fine.webp",
+      "bytes": 12948,
+      "sha256": "5c4fc60a6d5bdbe3fe6aa27719c8226966e8608052551183decb3c3820b6c9e2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/typing_intro.webp",
+      "bytes": 3086,
+      "sha256": "ba30b33ad505224ab72b208300af90e63b8d402e7bab6778e9c349fab82f39d7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/typing_loop.webp",
+      "bytes": 4890,
+      "sha256": "1aeb87971497c8142d1209f443d3dd07190471d9aeb6d2806338ea7d1998b7d8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/typing_outro.webp",
+      "bytes": 1894,
+      "sha256": "e74dd99f173ac4b3fbf5a5dbbb09748e2cc5ded22fbaae20160cbfb1419d431d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/vs_code.webp",
+      "bytes": 11440,
+      "sha256": "c0d2e4af6a1c55d7edebf2b105869a21f5e733c53fdb85616e596f28b86d12e6"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/wake.webp",
+      "bytes": 75134,
+      "sha256": "0a533d07273e7e7afe68ceb581cf524842b420c6b9de0f27160fd647767cb028"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/walk.webp",
+      "bytes": 104140,
+      "sha256": "48ca2f6e5a50d2400570fb64cc51364a0756c423431b65c026c81e37b91aa691"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/walk_left.webp",
+      "bytes": 104102,
+      "sha256": "16048b9c12c371d1937f6e46b7e6e46dd318abc08f2759e32362071e87eee282"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/watch.webp",
+      "bytes": 2190,
+      "sha256": "23da0a194720362ea1727d521d9e23b0027c18009c642a5476689ffb6e69ef3d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/actions/wave.webp",
+      "bytes": 5010,
+      "sha256": "2f1c4807bd0c0c2a5299088ebb16c06d3791a5722dfba2f7854110e78d59e200"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/LICENSE.txt",
+      "bytes": 1075,
+      "sha256": "618c75e06586f090729f75a1c66cfd5325ce5b724ccf8de33a5b88978b46a5a7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/package.zip",
+      "bytes": 2139783,
+      "sha256": "8909edbc8f817fd6ea18296790b8c7dd4135ad028743835fd600c51c4d1edade"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/pet.json",
+      "bytes": 7517,
+      "sha256": "5afce45f68c2ea6fd0bdcbd1a1c6ebddb45bdc3efc7540ad2ae7f4e0307ba44c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/mochi-desktop/thumbnail.webp",
+      "bytes": 812,
+      "sha256": "54e4f3de2a2bd17206dc66c57dc98d7b45ae55cd8f328e2af184a080628d9351"
+    },
+    {
+      "path": "assets/pets/mit-20261011/nori-hope-agent/package.zip",
+      "bytes": 1426615,
+      "sha256": "c7cc9b855a9455a06f5b3a9794785d4830423aaa0a6b1dc2372e9f6935e2831a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/nori-hope-agent/spritesheet.webp",
+      "bytes": 1389566,
+      "sha256": "6c6c83bcaf4e401f19108c847c01352494b12b69e1b44b6ac33c5684e7e182bb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/nori-hope-agent/thumbnail.webp",
+      "bytes": 19286,
+      "sha256": "aa5915725cfd73aef5610081f990257f0486950c6d13d36a29ab023616399d47"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/celebrate.webp",
+      "bytes": 146630,
+      "sha256": "437f8cb25d0a9ae69f5a4fb1355ebe2c8a17498dab004fdefca82a57167b2655"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/disappointed.webp",
+      "bytes": 93400,
+      "sha256": "af1f0ffcc00974661c23fe232572022106c4f5447a81fa45843850c0bbf293b9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/drag.webp",
+      "bytes": 41218,
+      "sha256": "98c4047e55f641eefe20ec9f7d9c8debf50958164dc91bdb4cf18411d1237224"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/eat.webp",
+      "bytes": 141192,
+      "sha256": "8fa119c16fbb2a117363dfa9fa202c94c6b9a3a79cf3fe717df6cbcd5e9349b9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/error.webp",
+      "bytes": 92474,
+      "sha256": "5aac44dc2078745739d14af0b40b3ff5aa99d4e704aeae1d4913842754f08baf"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/idle.webp",
+      "bytes": 145620,
+      "sha256": "e37644465a652e7891cd83c505646a2c32ba781fdb794cbe19965b7e4f9c9dcd"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/joy.webp",
+      "bytes": 96278,
+      "sha256": "b9d3d4d1718018f745eebab1e55fe94a9ac766e82b5a18bf9f424f4696c3577b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/play.webp",
+      "bytes": 136626,
+      "sha256": "ee7cb70806608e25a8107a702cd6048460200a69f96f026be36123e96eddb1d6"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/sleep.webp",
+      "bytes": 89388,
+      "sha256": "aa0f6a733a461a6c419706c22edb4a96362710b04651fcc26f3f1ebb91d96895"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/think.webp",
+      "bytes": 53726,
+      "sha256": "df719a93bf35ecab98f9e1241302f8f6c29a15b566a4a96460966c8950f98f83"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/wait.webp",
+      "bytes": 50830,
+      "sha256": "55dbf57499e749d46014f821024bcb016147be24722c0e2cbc49311b126bda17"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/wake.webp",
+      "bytes": 90074,
+      "sha256": "672a9603a3d1dc65cf5c11af403a100a0ab993aedb673d693251a9516022aa0f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/walk.webp",
+      "bytes": 99384,
+      "sha256": "6a4504cc0750b1a14e40e3759ab97e5a1ab53ea65b6b8bad60d93e5755409268"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/welcome.webp",
+      "bytes": 85346,
+      "sha256": "839f14204ad49fda2153776547e559404cfe34c43aea92bea58930712c22f8cd"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/working.webp",
+      "bytes": 149498,
+      "sha256": "248420780b0bcfd990ae0cab483c2f2b9e9210e0330a024e18db1722b8338388"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/LICENSE.txt",
+      "bytes": 1071,
+      "sha256": "c54724c121bf852962c289ad21462be8148e16d47ded3e39051dcb21c268598d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/package.zip",
+      "bytes": 3942617,
+      "sha256": "31430efccc0fbc5a0b9f96b0b2edfec0209ed3192f78d152436b89b2a526ec6b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/pet.json",
+      "bytes": 2485,
+      "sha256": "41ec4c8ed470bc0dbe43bd8d354d8915521cfe6fef302448d16f68ba9b1947a5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/whale-girl-vlln/thumbnail.webp",
+      "bytes": 29352,
+      "sha256": "55ffdec58d7501c792df03ea3ca358577f0b129a622d66c6eb8c12c8728d70f5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/climb.webp",
+      "bytes": 46204,
+      "sha256": "7e651fc8008058af0074154dbce1d6ca4f7c716ec9ca20cd654750700e5af9c0"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/crawl.webp",
+      "bytes": 46200,
+      "sha256": "df1e8c045bd7b662dd8c36d0bb855206a25a6c3b3340ca3998990987f21b49ba"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/drag.webp",
+      "bytes": 15278,
+      "sha256": "81e72a573336ba6ca0ab3cce2d4ad3ea6eb49d2a8976e69990183bef67d691a4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/fall.webp",
+      "bytes": 41952,
+      "sha256": "512c32ce3dc0602bfda60de2571a9358d90350521e8c63a82e3e3060061b55ec"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/greet.webp",
+      "bytes": 44226,
+      "sha256": "613bf680650f57679358eb74daf93de4bde4de961d79a9c6763acefabe382184"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/idle.webp",
+      "bytes": 14374,
+      "sha256": "6db13e9a126cfc83d6878ee1ef577e1ed3aa6168dffd41d4413843cd6fa4132b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/jump.webp",
+      "bytes": 16326,
+      "sha256": "a449008033759177a0136be6cc1945f26a613e4d99ef6e49715be0709b93e092"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/sit.webp",
+      "bytes": 13198,
+      "sha256": "611958bba29f18b5c3c44895eb4bfa89ad1b3e955e9f519a91a965be9696e5f9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/walk-left.webp",
+      "bytes": 52526,
+      "sha256": "525c7c79beb1fad510ac02b8128f1fed398a363dbb30a8be6924c81b53548bdb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/actions/walk.webp",
+      "bytes": 52192,
+      "sha256": "446c450f78aa3ff0ea651d9153d81610736461e05370f117b0acb5cf4340e05c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/LICENSE.txt",
+      "bytes": 1065,
+      "sha256": "20f7c5da94ac110b0e4fd1dfcd1255a6c50d895f42e6a0d91cfe6832d9fbfa99"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/package.zip",
+      "bytes": 637518,
+      "sha256": "80de0bdcf8c65f7340aa58438afbdefb8a5b1623e7ba5be89a687798f5139602"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/pet.json",
+      "bytes": 1957,
+      "sha256": "343b145aa630b4331ff080c1e70385ca320dc788634431cf51aec24727d72538"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ayaka/thumbnail.webp",
+      "bytes": 27930,
+      "sha256": "9987da66743892bbb1f5d025307e987c8f0b33d079166e9cb0234b674d5e02a0"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/climb.webp",
+      "bytes": 38412,
+      "sha256": "333d162b1ee5896b258477d7ce340edeab0848e899029a555dd65916f6dd9898"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/crawl.webp",
+      "bytes": 38374,
+      "sha256": "7bcf53db3aac35bec902e63c0e5cbd7718da5bd30ab0c3836555be60165a9bee"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/drag.webp",
+      "bytes": 12730,
+      "sha256": "745fc9b3d2b30c8aca04419e19fa412a605f52c18da1c0830b343b06ba0bcdce"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/fall.webp",
+      "bytes": 36612,
+      "sha256": "42d66819b591a4cd3690f6cd2bd0fadc3e64df5ec00f14030e3653d7225602c3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/greet.webp",
+      "bytes": 73904,
+      "sha256": "a68242e0f2c97bfd23f50b2d1363e8a0deb30206f0fb227878a34cd5ea7fdb05"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/idle.webp",
+      "bytes": 12504,
+      "sha256": "ec76cc19e0220b72d9c4e01ead01b6647389f522a309b0d354df1a2bf5ef2b3a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/jump.webp",
+      "bytes": 12156,
+      "sha256": "62981cc24ae2d889ca3cf66aa1e31bcbf681e53314a9fdff8ac42f4c6ed92b90"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/sit.webp",
+      "bytes": 215964,
+      "sha256": "04e7e951c7f82affb193405e71206026ce96b9a2dbf201e599a8dc2e505ab5a2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/walk-left.webp",
+      "bytes": 49688,
+      "sha256": "3538cee63eb5220c9630a112ee9c7c0a0b6672e72fc1945559966827496ed2f6"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/actions/walk.webp",
+      "bytes": 49600,
+      "sha256": "4087adee4737408d44730a82c95c8e95439f03789d40cc1bc5821ec2844b2281"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/LICENSE.txt",
+      "bytes": 1065,
+      "sha256": "20f7c5da94ac110b0e4fd1dfcd1255a6c50d895f42e6a0d91cfe6832d9fbfa99"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/package.zip",
+      "bytes": 878447,
+      "sha256": "be301a399e673fe0d60dbb148b0b86c4ab2db58ca885e946529949474898b7e8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/pet.json",
+      "bytes": 1934,
+      "sha256": "9a7a8917acd3bc1203e1d846be06d2602be6795d95d7aa7bccd475070d69dca5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-ganyu/thumbnail.webp",
+      "bytes": 24176,
+      "sha256": "be9a5b013a08fedecc9ad3b98eb5970faf1339c4ba4de39dbf5aae171c64af63"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/climb.webp",
+      "bytes": 20732,
+      "sha256": "dc34a2f40d11c9361f394f1f137c165054f9ba2440f4d560403e949e4d29ecd4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/crawl.webp",
+      "bytes": 30588,
+      "sha256": "47a9869376f49d86c4898b91624f346061d2fb19fc30bec6dbdfb21179f2b074"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/drag.webp",
+      "bytes": 17354,
+      "sha256": "e69c64c4afa34750d7583fc00e24eda67896dadb92beee895f826c38defb7035"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/fall.webp",
+      "bytes": 47014,
+      "sha256": "34a1b48eada5c3f40343c5e9915323474bca30b47c5fd6a2e418925154b04178"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/greet.webp",
+      "bytes": 49458,
+      "sha256": "849891d8e59d94a1bb7477301299927d372786d0a8239a8a467f5040346bab94"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/idle.webp",
+      "bytes": 16778,
+      "sha256": "9423676589d3e59574ea5a115c0bd610855b8cbb95141f0888aad2e787a77017"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/jump.webp",
+      "bytes": 16022,
+      "sha256": "5a23c2203e5fc1d5da7d2dc55511686dc0712628f46c8a0bf894cdeff94787fd"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/sit.webp",
+      "bytes": 15546,
+      "sha256": "a475f5d412403264b74312609e550241a18bb277df1bf47f13c129122094d0a8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/walk-left.webp",
+      "bytes": 49456,
+      "sha256": "0e10533c830d10609db86305ba311d602b9d04661a963e8b339e41f554affbce"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/actions/walk.webp",
+      "bytes": 49306,
+      "sha256": "603fe8d2e4e5514eb9f8701f683ba98be974bd2d1170ce663a146d6db7c72465"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/LICENSE.txt",
+      "bytes": 1065,
+      "sha256": "20f7c5da94ac110b0e4fd1dfcd1255a6c50d895f42e6a0d91cfe6832d9fbfa99"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/package.zip",
+      "bytes": 604020,
+      "sha256": "0231c6253c349d7aa2f1c65b4733e02b57476dc4c890a0ba70dc802602ccb449"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/pet.json",
+      "bytes": 1951,
+      "sha256": "a76327f0906288d84a2020187102fffc5c8ead5cc30f8e4a19a35d4644f37a73"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-hutao/thumbnail.webp",
+      "bytes": 31664,
+      "sha256": "34e9a593d70346e586f510d8c098f70ce89b0dff496357335c7791e2ee0dd04b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/climb.webp",
+      "bytes": 18948,
+      "sha256": "3a786f74839065d780ee22f9c86632b0148cdc36b97322e98c2ea7d800d2f358"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/crawl.webp",
+      "bytes": 18304,
+      "sha256": "4ddb99111de6f73f69e403141f7cb7ad48d3bcca04451357fd3147d8c8d8ce2d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/drag.webp",
+      "bytes": 10144,
+      "sha256": "c90fd3235e9b8402b31ce5780cce3f643f102162e267e31b6fbba09da3ac38bb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/fall.webp",
+      "bytes": 26808,
+      "sha256": "91be59bee8ed158c64c75089c7b35b7d5728083c3e7d8b2d5a3316b28babb382"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/greet.webp",
+      "bytes": 7364,
+      "sha256": "4e12115089d31802ddeabba368d45cdc1682827d25aec07ac1b4b2ab67e302a6"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/idle.webp",
+      "bytes": 7238,
+      "sha256": "0fe4054725003aa1aeaa0632add8b9453a75a40466ecc9ae56e8b50e637d1839"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/jump.webp",
+      "bytes": 9710,
+      "sha256": "15bb8108ca7c45016759f2962688c661adbdae3188fad6adc3234a0b5ae23dd2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/sit.webp",
+      "bytes": 7396,
+      "sha256": "2cef2dcafb8f7240e71efb99f0775d8287a24775033aaa4022098b0142239829"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/walk-left.webp",
+      "bytes": 22746,
+      "sha256": "a5a10f4db8cf50785ffdec569333fd8343a19d8268d852692390e1a6c1ee3716"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/actions/walk.webp",
+      "bytes": 22842,
+      "sha256": "257a56692812622c7f00735564771ff7f0185653b84786188fa49834597899a3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/LICENSE.txt",
+      "bytes": 1065,
+      "sha256": "20f7c5da94ac110b0e4fd1dfcd1255a6c50d895f42e6a0d91cfe6832d9fbfa99"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/package.zip",
+      "bytes": 313417,
+      "sha256": "806633fec23248e6ac4fd11a735057ba71bd3229333cf03da41a74cf4572cffb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/pet.json",
+      "bytes": 1961,
+      "sha256": "919094f823b4b06a50b30fe082040e4dbcd50e931883f54a49f93fd260344cab"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-jotaro/thumbnail.webp",
+      "bytes": 15716,
+      "sha256": "57f0ef88317a034b4a9e172f4a9a2d4e872551d51015de5ced927a76bc14ea92"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/climb.webp",
+      "bytes": 19238,
+      "sha256": "8d65c19b134bc849bdb7c31576434f9a2c9af6e7b57e1beef42590b4c848e0ea"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/crawl.webp",
+      "bytes": 27928,
+      "sha256": "0e1cf60b3671d7e47333107f7a9e5af898eb601cfa98888d31e7f677a79eb7f8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/drag.webp",
+      "bytes": 16690,
+      "sha256": "6081529bad38286b6f4ebaade5b77d978d6d46518f2ba9dab28723627456e700"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/fall.webp",
+      "bytes": 44588,
+      "sha256": "fddc51dd468b2674de8b59e7257197d1744dcd983ae3194fa05aeef064e01a54"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/greet.webp",
+      "bytes": 36130,
+      "sha256": "c833a5337ff8f0832d770a29a4b5b8a554bde668ac39ff0e589f8ed6bd640862"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/idle.webp",
+      "bytes": 16922,
+      "sha256": "12da1f4e94c88bbaefe149bda121835f435693d08e661032c143ce1d1680ef9e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/jump.webp",
+      "bytes": 16880,
+      "sha256": "51de37f69edbcd94719801dcf45d7f01031750dcbbca8b87987227788c338823"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/sit.webp",
+      "bytes": 16118,
+      "sha256": "36950350588469d03479c81bd3ac340a5390831d27b47b80a2f18da21b855d85"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/walk-left.webp",
+      "bytes": 65380,
+      "sha256": "264849ffe9728a65e0b969f6f22f35bfb891a4e3ab8f46090355bbc925f25d73"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/actions/walk.webp",
+      "bytes": 65150,
+      "sha256": "eb23276a95c5fef40e50233d248249005b100034d814276ab54dba2d34e44c0a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/LICENSE.txt",
+      "bytes": 1065,
+      "sha256": "20f7c5da94ac110b0e4fd1dfcd1255a6c50d895f42e6a0d91cfe6832d9fbfa99"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/package.zip",
+      "bytes": 645390,
+      "sha256": "7969f5f789538bcc5e256d9c1e14258eaa237a58f85d0a0b22dcb599e07cfe28"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/pet.json",
+      "bytes": 1950,
+      "sha256": "dcf3d963ace9d75609ff906260c3a0e89fe9fb7dd3799b095688d67964126576"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-klee/thumbnail.webp",
+      "bytes": 31682,
+      "sha256": "34b0a2adbc5e7195235dfd57586ef4c2311900bbc1f5a8479a92b0facd0f1632"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/climb.webp",
+      "bytes": 16560,
+      "sha256": "2719035b2edd81c1fa14ce848f839411d58a24a78e240316112ca169b60203ff"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/crawl.webp",
+      "bytes": 16628,
+      "sha256": "74279cb97faf95ad1170e507b2da325c01179894b4ff34c1cc4d8b48a10b9251"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/drag.webp",
+      "bytes": 10964,
+      "sha256": "b13d6650152719847ba0d21906b2bac60fa548cbf18d7f3d58892d07c3882a8f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/fall.webp",
+      "bytes": 20818,
+      "sha256": "bddb4852699f50a4eeeadc869ca00619fb57f159897d04d91073218fa2604bc9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/greet.webp",
+      "bytes": 122710,
+      "sha256": "9d85e49c1b1d24c6e7236b1c37da67de00b2653e3721928295913fe982ee7002"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/idle.webp",
+      "bytes": 11656,
+      "sha256": "1c2cb0ea8be0fb86080bd07bb9dd9be9c7f1664670db441b55cab4d7b2e71fbe"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/jump.webp",
+      "bytes": 10912,
+      "sha256": "0894cd0284e72511101ea0a01609cdae61c846a833c6d529fddc3e96fd0a793c"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/sit.webp",
+      "bytes": 146796,
+      "sha256": "f29f210678e965009866f0c4d539bf56beefcc0c616c43a6e8327c7646cdfda4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/walk-left.webp",
+      "bytes": 46160,
+      "sha256": "545c4feed8b64d51b5402b10eb34392da9a606f841bc234e4e1edca5bb5d2068"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/actions/walk.webp",
+      "bytes": 46052,
+      "sha256": "9ba936b136ce2504e9561ed4b927f37328592ca3655b6fb6fe1b48d6cebf02f0"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/LICENSE.txt",
+      "bytes": 1065,
+      "sha256": "20f7c5da94ac110b0e4fd1dfcd1255a6c50d895f42e6a0d91cfe6832d9fbfa99"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/package.zip",
+      "bytes": 753620,
+      "sha256": "9f5a4f1272550312394bc2d4abe53680ae685e0984439c3fe3fa2a548c1e48e0"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/pet.json",
+      "bytes": 1944,
+      "sha256": "e244e2a4f7e8b1cefd56e75c6442ffd2fcce8bb0664e10f1f06de86362bf37b7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/windowpet-nezuko/thumbnail.webp",
+      "bytes": 22190,
+      "sha256": "8d924ae588a77120377dbaebdfbd8b0e9b7cc71ad804e8a1f57e7e0e7975f951"
     },
     {
       "path": "assets/pets/upstream-20261009/acheron--lingxiaotian-thumb.webp",
@@ -2949,8 +4134,8 @@
     },
     {
       "path": "catalog.js",
-      "bytes": 235283,
-      "sha256": "991792d5dcdd1fdac102e14cd2db37862a37b1a07eb25a4b5f1aa56a4a1fed72"
+      "bytes": 287154,
+      "sha256": "0c76fd794c8669015377f59f3fe1e824f0263d239c3b0045041646d2ed630e9f"
     },
     {
       "path": "community-core.js",
@@ -2969,13 +4154,13 @@
     },
     {
       "path": "gallery-files.json",
-      "bytes": 135824,
-      "sha256": "434ca40f1401a30c99c66182a1516b253d60c997459d43a43e33c37272283de6"
+      "bytes": 190555,
+      "sha256": "1b1a658604d4e8bee0e13f943b5563b785750f3e1b53328895922b4fad041a0a"
     },
     {
       "path": "index.html",
-      "bytes": 27810,
-      "sha256": "30818e2eafebac68631d0c9691d07918658827dd9349a33685153536159e67fa"
+      "bytes": 27864,
+      "sha256": "f6e5f6e877edfb4c7aef67e0ca5ec64bccecb29b2fdaf98ed2d46722ea1a4531"
     },
     {
       "path": "native-package-contract.js",
@@ -3019,14 +4204,14 @@
     },
     {
       "path": "_routes.json",
-      "bytes": 6071,
-      "sha256": "0ef488c7faed005d8f86a0914ec428909c17c7c8f56bca4c121dda4fafd2fc5a"
+      "bytes": 6133,
+      "sha256": "9a6488002039e024e160ec81f954c914e1958ea01ea30f1ed31cfc8b03fb121d"
     },
     {
       "path": "_worker.js",
-      "bytes": 1303333,
-      "sha256": "ce668a107ab8f75a1c226953c7a6ab1c9622c41c1b3735d32eee0438a85ce543"
+      "bytes": 1491445,
+      "sha256": "c7826d19445b51fcdc5f7918fe46c2d0c041b98d60982add70af8ae23c7a2d8a"
     }
   ],
-  "totalBytes": 1300091143
+  "totalBytes": 1350078992
 }

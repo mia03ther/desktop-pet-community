@@ -1,0 +1,280 @@
+{
+  "id": "mochi-desktop",
+  "displayName": "Mochi · 像素伙伴",
+  "description": "保留原作完整 50 项动画清单、帧序与节奏，透明像素风伙伴。",
+  "mediaVersion": 1,
+  "actions": {
+    "dance": "actions/dance.webp",
+    "default": "actions/default.webp",
+    "idle": "actions/idle.webp",
+    "sad_idle": "actions/sad_idle.webp",
+    "look": "actions/look.webp",
+    "blink": "actions/blink.webp",
+    "dragged": "actions/dragged.webp",
+    "walk": "actions/walk.webp",
+    "walk_left": "actions/walk_left.webp",
+    "bounce": "actions/bounce.webp",
+    "squish": "actions/squish.webp",
+    "sleep": "actions/sleep.webp",
+    "sleeping": "actions/sleeping.webp",
+    "wake": "actions/wake.webp",
+    "pickup": "actions/pickup.webp",
+    "heart": "actions/heart.webp",
+    "eat": "actions/eat.webp",
+    "pocket_grab": "actions/pocket_grab.webp",
+    "computer": "actions/computer.webp",
+    "focus_start": "actions/focus_start.webp",
+    "focus_loop": "actions/focus_loop.webp",
+    "focus_stop": "actions/focus_stop.webp",
+    "focus_thinking_start": "actions/focus_thinking_start.webp",
+    "focus_thinking_loop": "actions/focus_thinking_loop.webp",
+    "focus_thinking_end": "actions/focus_thinking_end.webp",
+    "typing_loop": "actions/typing_loop.webp",
+    "typing_intro": "actions/typing_intro.webp",
+    "typing_outro": "actions/typing_outro.webp",
+    "watch": "actions/watch.webp",
+    "reading": "actions/reading.webp",
+    "searching": "actions/searching.webp",
+    "sway_idle": "actions/sway_idle.webp",
+    "drop": "actions/drop.webp",
+    "terminal_intro": "actions/terminal_intro.webp",
+    "terminal_loop": "actions/terminal_loop.webp",
+    "terminal_outro": "actions/terminal_outro.webp",
+    "agent_intro": "actions/agent_intro.webp",
+    "agent_loop": "actions/agent_loop.webp",
+    "agent_outro": "actions/agent_outro.webp",
+    "fedora_intro": "actions/fedora_intro.webp",
+    "fedora_loop": "actions/fedora_loop.webp",
+    "fedora_outro": "actions/fedora_outro.webp",
+    "side_eye": "actions/side_eye.webp",
+    "table_flip": "actions/table_flip.webp",
+    "this_is_fine": "actions/this_is_fine.webp",
+    "level_up_default": "actions/level_up_default.webp",
+    "wave": "actions/wave.webp",
+    "vs_code": "actions/vs_code.webp",
+    "mochi_exe": "actions/mochi_exe.webp",
+    "coffee": "actions/coffee.webp"
+  },
+  "actionDefinitions": {
+    "dance": {
+      "displayName": "跳舞",
+      "category": "持续状态"
+    },
+    "default": {
+      "displayName": "默认静态姿态",
+      "category": "持续状态"
+    },
+    "idle": {
+      "displayName": "待机",
+      "category": "持续状态"
+    },
+    "sad_idle": {
+      "displayName": "低落待机",
+      "category": "持续状态"
+    },
+    "look": {
+      "displayName": "观察",
+      "category": "交互表情"
+    },
+    "blink": {
+      "displayName": "眨眼",
+      "category": "交互表情"
+    },
+    "dragged": {
+      "displayName": "被拖动",
+      "category": "持续状态"
+    },
+    "walk": {
+      "displayName": "向右行走",
+      "category": "持续状态"
+    },
+    "walk_left": {
+      "displayName": "向左行走",
+      "category": "持续状态"
+    },
+    "bounce": {
+      "displayName": "弹跳回应",
+      "category": "交互表情"
+    },
+    "squish": {
+      "displayName": "按压回应",
+      "category": "交互表情"
+    },
+    "sleep": {
+      "displayName": "入睡",
+      "category": "交互表情"
+    },
+    "sleeping": {
+      "displayName": "睡觉",
+      "category": "持续状态"
+    },
+    "wake": {
+      "displayName": "醒来",
+      "category": "交互表情"
+    },
+    "pickup": {
+      "displayName": "被拿起",
+      "category": "交互表情"
+    },
+    "heart": {
+      "displayName": "爱心",
+      "category": "交互表情"
+    },
+    "eat": {
+      "displayName": "进食",
+      "category": "交互表情"
+    },
+    "pocket_grab": {
+      "displayName": "取出口袋物品",
+      "category": "交互表情"
+    },
+    "computer": {
+      "displayName": "使用电脑",
+      "category": "交互表情"
+    },
+    "focus_start": {
+      "displayName": "开始专注",
+      "category": "交互表情"
+    },
+    "focus_loop": {
+      "displayName": "专注",
+      "category": "持续状态"
+    },
+    "focus_stop": {
+      "displayName": "结束专注",
+      "category": "交互表情"
+    },
+    "focus_thinking_start": {
+      "displayName": "开始思考",
+      "category": "交互表情"
+    },
+    "focus_thinking_loop": {
+      "displayName": "思考",
+      "category": "持续状态"
+    },
+    "focus_thinking_end": {
+      "displayName": "结束思考",
+      "category": "交互表情"
+    },
+    "typing_loop": {
+      "displayName": "打字",
+      "category": "持续状态"
+    },
+    "typing_intro": {
+      "displayName": "开始打字",
+      "category": "交互表情"
+    },
+    "typing_outro": {
+      "displayName": "结束打字",
+      "category": "交互表情"
+    },
+    "watch": {
+      "displayName": "观看",
+      "category": "持续状态"
+    },
+    "reading": {
+      "displayName": "阅读",
+      "category": "持续状态"
+    },
+    "searching": {
+      "displayName": "搜索",
+      "category": "持续状态"
+    },
+    "sway_idle": {
+      "displayName": "轻晃",
+      "category": "持续状态"
+    },
+    "drop": {
+      "displayName": "放下",
+      "category": "交互表情"
+    },
+    "terminal_intro": {
+      "displayName": "打开终端",
+      "category": "交互表情"
+    },
+    "terminal_loop": {
+      "displayName": "终端工作",
+      "category": "持续状态"
+    },
+    "terminal_outro": {
+      "displayName": "合上终端",
+      "category": "交互表情"
+    },
+    "agent_intro": {
+      "displayName": "开始工作",
+      "category": "交互表情"
+    },
+    "agent_loop": {
+      "displayName": "工作陪伴",
+      "category": "持续状态"
+    },
+    "agent_outro": {
+      "displayName": "结束工作",
+      "category": "交互表情"
+    },
+    "fedora_intro": {
+      "displayName": "戴上帽子",
+      "category": "交互表情"
+    },
+    "fedora_loop": {
+      "displayName": "帽子待机",
+      "category": "持续状态"
+    },
+    "fedora_outro": {
+      "displayName": "摘下帽子",
+      "category": "交互表情"
+    },
+    "side_eye": {
+      "displayName": "侧目",
+      "category": "交互表情"
+    },
+    "table_flip": {
+      "displayName": "掀桌反应",
+      "category": "交互表情"
+    },
+    "this_is_fine": {
+      "displayName": "淡定喝茶",
+      "category": "交互表情"
+    },
+    "level_up_default": {
+      "displayName": "升级",
+      "category": "交互表情"
+    },
+    "wave": {
+      "displayName": "挥手",
+      "category": "交互表情"
+    },
+    "vs_code": {
+      "displayName": "编辑代码",
+      "category": "交互表情"
+    },
+    "mochi_exe": {
+      "displayName": "高级代码特效",
+      "category": "交互表情"
+    },
+    "coffee": {
+      "displayName": "喝咖啡",
+      "category": "交互表情"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "walk",
+    "running-left": "walk_left",
+    "waving": "wave",
+    "jumping": "bounce",
+    "failed": "sad_idle",
+    "waiting": "idle",
+    "running": "agent_loop",
+    "review": "focus_thinking_loop",
+    "sleeping": "sleeping",
+    "clicked": "squish",
+    "dragged": "dragged"
+  },
+  "staticActions": [
+    "default"
+  ],
+  "background": {
+    "mode": "alpha"
+  }
+}

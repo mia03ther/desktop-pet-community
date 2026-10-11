@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { StudioApi, StudioPreferences } from "./studio-api.js";
+import { AppUpdateSettings } from "./AppUpdateSettings.js";
 import { PetChatAppearanceSettings } from "./PetChatAppearanceSettings.js";
 
 export function StudioSettingsView({ api, onChanged }: { api: StudioApi; onChanged: () => void }) {
@@ -41,6 +42,7 @@ export function StudioSettingsView({ api, onChanged }: { api: StudioApi; onChang
       </div>}
       {login && <label className="studio-toggle"><span>{login.supported ? "开机自动启动" : "当前运行方式不支持开机设置"}</span><input type="checkbox" checked={login.enabled} disabled={busy || !login.supported} onChange={(event) => { const value = event.target.checked; void run(async () => setLogin(await api.setLaunchAtLogin(value))); }} /></label>}
     </div>
+    <AppUpdateSettings api={api} />
     {preferences && <PetChatAppearanceSettings api={api} initialValue={preferences.petChatAppearance} onSaved={(petChatAppearance) => {
       setPreferences((current) => current ? { ...current, petChatAppearance } : current);
       onChanged();

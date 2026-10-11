@@ -1,0 +1,45 @@
+{
+  "id": "desktop-cat-1ilit",
+  "displayName": "像素小猫",
+  "description": "会待机、左右走动和睡觉的像素小猫，保留入睡与醒来两种原始过渡动作。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "running-left": "actions/running-left.webp",
+    "running-right": "actions/running-right.webp",
+    "sleeping": "actions/sleeping.webp",
+    "sleep-enter": "actions/sleep-enter.webp",
+    "sleep-exit": "actions/sleep-exit.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "待机",
+      "category": "生活"
+    },
+    "running-left": {
+      "displayName": "向左行走",
+      "category": "生活"
+    },
+    "running-right": {
+      "displayName": "向右行走",
+      "category": "生活"
+    },
+    "sleeping": {
+      "displayName": "睡觉",
+      "category": "睡眠"
+    },
+    "sleep-enter": {
+      "displayName": "入睡",
+      "category": "睡眠"
+    },
+    "sleep-exit": {
+      "displayName": "醒来",
+      "category": "睡眠"
+    }
+  },
+  "background": {
+    "mode": "alpha"
+  },
+  "author": "1ilit",
+  "license": "MIT"
+}

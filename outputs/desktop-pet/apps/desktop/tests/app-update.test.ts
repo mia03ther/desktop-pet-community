@@ -1,0 +1,93 @@
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import { mkdir, mkdtemp, readFile, rm, writeFile, access } from "node:fs/promises";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import yazl from "yazl";
+import { preparePortableUpdate, extractUpdateZip } from "../src/update-package.js";
+import { assertUpdateRedirect, readUpdateChecksum, selectUpdateDownload, updateRepository } from "../src/update-release.js";
+import { installControlCenterUpdateIpcHandlers, type AppUpdateActions } from "../src/control-center-update-ipc.js";
+
+const checksum = "a".repeat(64);
+const filename = "desktop-pet-4.0.2-windows-x64-portable.zip";
+const asset = (name: string) => ({ name, size: 123, browser_download_url: `https://github.com/${updateRepository}/releases/download/v4.0.2/${name}` });
+const release = { tag_name: "v4.0.2", assets: [asset(filename), asset("SHA256SUMS.txt")] };
+assert.equal(selectUpdateDownload(release, "win32", "x64")?.asset.name, filename);
+assert.equal(selectUpdateDownload(release, "darwin", "arm64"), null);
+assert.throws(() => selectUpdateDownload({ ...release, prerelease: true }, "win32", "x64"));
+assert.throws(() => selectUpdateDownload({ ...release, assets: [{ ...asset(filename), browser_download_url: "https://github.com/other/repo/releases/download/v4.0.2/a.zip" }, asset("SHA256SUMS.txt")] }, "win32", "x64"));
+assert.equal(readUpdateChecksum(`${checksum}  ${filename}\n`, filename), checksum);
+assert.throws(() => readUpdateChecksum(`${checksum} other.zip`, filename));
+assert.throws(() => readUpdateChecksum(`${checksum} ${filename}\n${checksum} ${filename}`, filename));
+for (const url of ["http://github.com/a", "https://example.com/a", "https://github.com/other/repo/releases/download/a", "https://user:pass@release-assets.githubusercontent.com/a"]) assert.throws(() => assertUpdateRedirect(url));
+assert.doesNotThrow(() => assertUpdateRedirect("https://release-assets.githubusercontent.com/a?token=fixture"));
+let called = 0;
+const actions: AppUpdateActions = { getUpdateStatus: () => { called++; return { state: "idle", currentVersion: "4.0.2" }; }, checkForGitHubReleaseUpdate: async () => { called++; return { state: "current", currentVersion: "4.0.2" }; }, downloadAppUpdate: async () => { called++; return { state: "ready", currentVersion: "4.0.2" }; }, installAppUpdate: async () => { called++; return { state: "installing", currentVersion: "4.0.2" }; }, openUpdateReleasePage: async () => { called++; } };
+const handlers = new Map<string, (event: { sender: { id: number } }) => Promise<unknown>>();
+installControlCenterUpdateIpcHandlers({ registerHandle: (channel, handler) => handlers.set(channel, handler), authorizeSender: event => { if (event.sender.id !== 7) throw Error("拒绝非控制中心调用"); }, actions });
+for (const handler of handlers.values()) await assert.rejects(handler({ sender: { id: 8 } }));
+assert.equal(called, 0);
+await handlers.get("openpets:app-update-check")!({ sender: { id: 7 } });
+assert.equal(called, 1);
+
+const testParent = resolve(".test-dist/update-fixtures");
+await mkdir(testParent, { recursive: true });
+const root = await mkdtemp(join(testParent, "case-"));
+async function createZip(path: string, files: Record<string, string>): Promise<void> {
+  const zip = new yazl.ZipFile();
+  const chunks: Buffer[] = [];
+  const done = new Promise<void>((complete, reject) => { zip.outputStream.on("data", chunk => chunks.push(chunk)); zip.outputStream.on("end", () => complete()); zip.outputStream.on("error", reject); });
+  for (const [name, bytes] of Object.entries(files)) zip.addBuffer(Buffer.from(bytes), name);
+  zip.end(); await done; await writeFile(path, Buffer.concat(chunks));
+}
+try {
+  const zip = join(root, "update.zip");
+  const longName = (`dependency-${"x".repeat(48)}/`).repeat(3) + "long-path.txt";
+  await createZip(zip, { "app/desktop-pet.exe": "new program", "app/resources/app.asar": "new asar", "app/LICENSE": "MIT fixture", "app/THIRD-PARTY-NOTICES.md": "fixture notices", [`app/${longName}`]: "long path update" });
+  const install = join(root, "installed"); const profile = join(root, "profile");
+  await mkdir(join(install, "resources"), { recursive: true }); await mkdir(profile);
+  await writeFile(join(install, "desktop-pet.exe"), "old program"); await writeFile(join(install, "resources/app.asar"), "old asar"); await writeFile(join(profile, "settings.json"), "keep personal settings");
+  await assert.rejects(preparePortableUpdate(zip, install, join(install, "profile"), 123456789));
+  const fixture = await preparePortableUpdate(zip, install, profile, 123456789);
+  assert.ok(fixture.plan.files.some(file => file.name === "resources/app.asar"));
+  if (process.platform === "win32") assert.ok(join(fixture.plan.stagedDir, longName).length > 260, "回归必须覆盖 WinPS 传统路径上限");
+  const empty = join(root, "empty.zip"); await createZip(empty, { "readme.txt": "incomplete" });
+  await assert.rejects(extractUpdateZip(empty, join(root, "empty-expanded")), /唯一 desktop-pet.exe/);
+  const traversal = join(root, "traversal.zip");
+  await createZip(traversal, { "out.txt": "fixture" });
+  const traversalBytes = await readFile(traversal);
+  for (let offset = traversalBytes.indexOf("out.txt"); offset !== -1; offset = traversalBytes.indexOf("out.txt", offset + 7)) traversalBytes.write("../evil", offset);
+  await writeFile(traversal, traversalBytes);
+  await assert.rejects(extractUpdateZip(traversal, join(root, "traversal-expanded")));
+  await assert.rejects(access(join(root, "evil")));
+  const collision = join(root, "collision.zip");
+  await createZip(collision, { "app/Case.txt": "one", "app/case.txt": "two" });
+  await assert.rejects(extractUpdateZip(collision, join(root, "collision-expanded")), /冲突/);
+  if (process.platform === "win32") {
+    const helper = resolve(dirname(fileURLToPath(import.meta.url)), "../../assets/companion/windows-portable-update.ps1");
+    const powershell = join(process.env.SystemRoot || "C:\\Windows", "System32/WindowsPowerShell/v1.0/powershell.exe");
+    const command = "$helper = $env:DESKTOP_PET_HELPER_TEST; . $helper; $plan = Get-Content -LiteralPath $env:DESKTOP_PET_PLAN_TEST -Raw -Encoding UTF8 | ConvertFrom-Json; Invoke-DesktopPetUpdate $plan $false";
+    const invoke = (manifestPath: string, script = command) => spawnSync(powershell, ["-NoProfile", "-NonInteractive", "-Command", script], { encoding: "utf8", windowsHide: true, env: { ...process.env, DESKTOP_PET_HELPER_TEST: helper, DESKTOP_PET_PLAN_TEST: manifestPath }, timeout: 30000 });
+    const replaced = invoke(fixture.manifestPath);
+    assert.equal(replaced.status, 0, replaced.stderr);
+    const ready = JSON.parse((await readFile(join(fixture.plan.workDir, "ready.json"), "utf8")).replace(/^\uFEFF/, ""));
+    assert.equal(ready.ready, true);
+    assert.equal(ready.parentProcessId, fixture.plan.parentProcessId);
+    assert.equal(await readFile(join(install, "desktop-pet.exe"), "utf8"), "new program");
+    assert.equal(await readFile(join(fixture.plan.backupDir, "desktop-pet.exe"), "utf8"), "old program");
+    assert.equal(await readFile(join(profile, "settings.json"), "utf8"), "keep personal settings");
+    const rollback = await preparePortableUpdate(zip, install, profile, 123456789);
+    const failMove = command.replace("Invoke-DesktopPetUpdate $plan $false", "function Move-Item { param($LiteralPath, $Destination); if ($LiteralPath -eq $plan.stagedDir) { throw 'fixture move failure' }; Microsoft.PowerShell.Management\\Move-Item -LiteralPath $LiteralPath -Destination $Destination }; Invoke-DesktopPetUpdate $plan $false");
+    const failed = invoke(rollback.manifestPath, failMove);
+    assert.notEqual(failed.status, 0);
+    assert.equal(await readFile(join(install, "desktop-pet.exe"), "utf8"), "new program");
+    const rolled = JSON.parse((await readFile(join(rollback.plan.workDir, "result.json"), "utf8")).replace(/^\uFEFF/, ""));
+    assert.equal(rolled.rolledBack, true);
+    const tampered = await preparePortableUpdate(zip, install, profile, 123456789);
+    await writeFile(join(tampered.plan.stagedDir, "desktop-pet.exe"), "changed after staging");
+    assert.notEqual(invoke(tampered.manifestPath).status, 0);
+    await assert.rejects(access(tampered.plan.backupDir));
+    assert.equal(await readFile(join(profile, "settings.json"), "utf8"), "keep personal settings");
+  }
+} finally { await rm(root, { recursive: true, force: true }); }
+console.error("正式资产边界、窗口授权、流式 ZIP、Windows 事务替换／失败回退和档案保留验收通过。");

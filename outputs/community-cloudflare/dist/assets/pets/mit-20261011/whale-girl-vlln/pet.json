@@ -1,0 +1,105 @@
+{
+  "id": "whale-girl-vlln",
+  "displayName": "鲸鱼娘 · 互动动作",
+  "description": "保留 15 项原作状态帧，将 PNG 原帧无损转为透明 WebP，单帧状态明确声明为静态动作。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "working": "actions/working.webp",
+    "celebrate": "actions/celebrate.webp",
+    "error": "actions/error.webp",
+    "disappointed": "actions/disappointed.webp",
+    "joy": "actions/joy.webp",
+    "eat": "actions/eat.webp",
+    "play": "actions/play.webp",
+    "drag": "actions/drag.webp",
+    "walk": "actions/walk.webp",
+    "sleep": "actions/sleep.webp",
+    "wake": "actions/wake.webp",
+    "welcome": "actions/welcome.webp",
+    "think": "actions/think.webp",
+    "wait": "actions/wait.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "待机",
+      "category": "原作动作"
+    },
+    "working": {
+      "displayName": "工作",
+      "category": "原作动作"
+    },
+    "celebrate": {
+      "displayName": "庆祝",
+      "category": "原作动作"
+    },
+    "error": {
+      "displayName": "出错",
+      "category": "原作动作"
+    },
+    "disappointed": {
+      "displayName": "失落",
+      "category": "原作动作"
+    },
+    "joy": {
+      "displayName": "开心",
+      "category": "原作动作"
+    },
+    "eat": {
+      "displayName": "进食",
+      "category": "原作动作"
+    },
+    "play": {
+      "displayName": "玩耍",
+      "category": "原作动作"
+    },
+    "drag": {
+      "displayName": "拖拽",
+      "category": "静态原动作"
+    },
+    "walk": {
+      "displayName": "行走",
+      "category": "原作动作"
+    },
+    "sleep": {
+      "displayName": "睡觉",
+      "category": "原作动作"
+    },
+    "wake": {
+      "displayName": "醒来",
+      "category": "原作动作"
+    },
+    "welcome": {
+      "displayName": "欢迎",
+      "category": "原作动作"
+    },
+    "think": {
+      "displayName": "思考",
+      "category": "静态原动作"
+    },
+    "wait": {
+      "displayName": "等待",
+      "category": "静态原动作"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "waving": "welcome",
+    "jumping": "celebrate",
+    "failed": "error",
+    "waiting": "wait",
+    "running": "working",
+    "review": "think",
+    "sleeping": "sleep",
+    "clicked": "joy",
+    "dragged": "drag"
+  },
+  "staticActions": [
+    "drag",
+    "think",
+    "wait"
+  ],
+  "background": {
+    "mode": "alpha"
+  }
+}

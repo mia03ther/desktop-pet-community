@@ -11,13 +11,13 @@
 <p align="center"><strong>みんなで育てるデスクトップの仲間。自由なアクション、キャラクター設定、選べるプラグイン、複数の AI ツールとの作業連携。</strong></p>
 
 <p align="center">
-  <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1">アプリをダウンロード</a> ·
+  <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest">アプリをダウンロード</a> ·
   <a href="https://desktoppet-e9e.pages.dev">共創プラットフォーム</a> ·
   <a href="https://github.com/xunguangzlj-cloud/desktop-pet-community/issues">問題を報告</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?include_prereleases&label=%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" alt="公開バージョン">
+  <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" alt="公開バージョン">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89" alt="リリースファイルのダウンロード数">
   <img src="https://img.shields.io/badge/%E5%AF%BE%E5%BF%9C%E7%92%B0%E5%A2%83-Windows%20x64-60bba0" alt="Windows x64">
   <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
@@ -52,22 +52,24 @@
 
 ### Windows ポータブル版
 
-1. [v4.0.1-preview.1 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.1-preview.1)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
+1. [v4.0.2 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
 2. ポータブル ZIP を、`D:\Apps\desktop-pet` などの書き込み可能なフォルダーに**すべて展開**します。同じフォルダー内の `resources`、ランタイム、その他のファイルを保持してください。EXE だけを移動したり、ZIP の中から直接起動したりしないでください。
 3. 展開先の `desktop-pet.exe` をダブルクリックします。実行環境は同梱されているため、Node.js や Python のインストールは不要です。初回起動時にローカルプロファイルを作成します。作者の AI アカウントや個人設定は含まれていません。
 4. 通常はこの EXE を直接開きます。デスクトップにショートカットを作成することもできます。基本のペット機能に AI の設定は不要です。プラグインは共創プラットフォームから必要なものをダウンロードしてインポートします。
 
-このバージョンは **Windows x64** 向けのプレビュー版で、コード署名はまだ行っていません。現在、検証済みの macOS、Linux、Windows ARM 用パッケージは提供していません。更新時は古いアプリを終了し、新しいバージョンを別のフォルダーにすべて展開してください。リリースパッケージを個人設定のバックアップとして扱わないでください。
+**Windows x64** と **macOS arm64（Apple Silicon）** 用パッケージを提供します。Windows のコード署名は未取得です。Linux、Windows ARM の検証済みパッケージはまだありません。コントロールセンターの「設定」から GitHub の更新を確認できます。更新時はローカルのキャラクター設定、プラグイン、会話、AI 設定を保持します。
 
 ダウンロードしたファイルの整合性は、PowerShell で次のコマンドを実行して確認できます。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.1-preview.1-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.2-windows-x64-portable.zip
 ```
 
 結果を同じリリースの `SHA256SUMS.txt` と照合してください。ハッシュの照合で確認できるのはファイルの一致であり、セキュリティ監査の代わりにはなりません。
 
 ### macOS（Apple Silicon／arm64）
+
+[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-windows-x64-portable.zip) · [Mac をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-mac-arm64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
 
 macOS arm64 のソースビルドに対応し、PR #2 の Mac 向けパッケージ変更は統合済みです。ペット、コントロールセンター、キャラクター設定、本システムのプラグインは Windows と同じコードを使用します。Windows 専用の診断、元の Windows EXE、外部ホストを必要とする機能には、それぞれの環境が必要です。
 
@@ -136,7 +138,7 @@ node outputs/community-cloudflare/scripts/build.mjs
 
 [共創プラットフォーム](https://desktoppet-e9e.pages.dev)を開いて作品パッケージをダウンロードし、コントロールセンターのペット管理またはプラグイン管理から ZIP／フォルダーをインポートします。互換性と権限を確認してから有効にしてください。新しいプロファイルにすべてのプラグインがプリインストールされるわけではありません。ファイルアシスタント、PC ケア、健康リマインダーも自分でインストールする必要があります。
 
-ウェブサイトおよびローカルのペットのインポート上限は、合計 **200 MiB**、1 ファイル **100 MiB**、最大 **1,000 エントリー**です。ローカルのネイティブプラグインは、合計 **32 MiB**、1 ファイル **5 MiB**、エントリーポイントのコードは別途 **1 MiB** が上限です。ZIP は展開後のサイズも確認します。大きな作品はメディアを圧縮する、キャッシュを削除する、独立したキャラクターごとに分けるなどで調整してください。現在、分割アーカイブのインポートには対応していません。
+ウェブサイトおよびローカルのペットパッケージは合計 **1 GiB**、1 ファイル **512 MiB**、最大 **10,000 エントリー**に対応します。Codex アトラスは別途 **100 MiB** までです。ローカルのネイティブ SDK プラグインは合計 **32 MiB**、1 ファイル **5 MiB**、入口コード **1 MiB**までです。ZIP は展開後のサイズも確認します。大きな作品はキャラクターごとに分割、キャッシュ削除、または投稿ガイドに従って完全な作品ファイルへのリンクを提供してください。分割アーカイブには未対応です。
 
 共創作品を投稿する場合は、ウェブサイトでパッケージを作成して情報を入力した後、このサイトの GitHub フォームを開きます。投稿者自身の GitHub アカウントでパッケージを添付して送信し、メンテナーの審査後に掲載します。パッケージの作成成功は、公開済みであることを意味しません。元のプロジェクトを保持したインポートと独立実行の具体的な範囲は[ペットとインポート](outputs/desktop-pet/docs/pets.md)を参照してください。
 

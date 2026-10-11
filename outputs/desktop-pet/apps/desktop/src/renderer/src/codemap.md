@@ -10,6 +10,7 @@
 
 - studio/StudioApp.tsx：贯穿全宽的深灰顶栏使用用户选定的D 款透明头像标识与 desktop pet 名称，由 Vite 导入 assets/brand-logo.png 并展示当前分区；侧栏保留三组六个页面（陪伴与创作／助手与工具／工作室）、直接功能标题、当前桌宠陪伴席与宿主路由事件。标识不改变默认桌宠。dashboard 兼容映射我的桌宠，integrations 映射 AI 接入，旧 computer 路由映射插件管理。gallery 和 persona 为独立页面，teams 为无效路由；电脑与文件不再是独立内置页。
 - studio/studio.css：参考[鸣潮 WIKI](https://wiki.kurobbs.com/mc/home)的深灰顶栏、浅灰纸色工作区、白灰分区卡、细金色边线与选中下划线，青色用于轻提示；主操作使用深灰白字，次操作与危险样式保留清楚层级。工作区和提供方弹窗使用容器宽度响应表单、卡片与工具条，窗口断点收紧侧栏；键盘可见焦点和减少动态效果继续保留。Tailwind 仅提供公共工具类，暗色变体以显式 class 控制，不随系统暗色将白底正文变白。
+- studio/AppUpdateSettings.tsx：设置页的程序更新入口，展示正式版本、流式下载进度、已核验包准备结果及安装动作；Windows 安装后原路径与档案保持，Mac 提供 ZIP 安装指引；下载期间只轮询窄状态，离页停止读取。最新作品通过公网共创入口打开，不覆盖本地已安装作品或配置。
 - studio/studio-api.ts：界面所用的窄类型；保留旧桥接名称用于档案和功能兼容，不表示复用原控制中心整体结构。
 - studio/PetStudioView.tsx 与 pet-studio-types.ts：只管理已安装桌宠，保留检索、动作、切换、显示、手动导入和移除；隐藏及网站按钮已移至桌宠/网站入口，产品页面不展示迁入来源；不读取远程目录，不再挂制作或分享表单。实际个人图使用安装图集，内置图使用打包资源。
 - studio/OriginalProjectsPanel.tsx：桌宠与插件共用的检测、确认导入和原项目管理界面，直接消费 `original-project-types.ts` 窄接口。兼容原项目使用下方真实安装列表；不兼容项目不混入 SDK 运行列表，显示原宿主环境、具体限制及灰色不可用操作。独立运行由主进程的 `runOriginalProjectStandalone` 执行；缺环境时可原生选择包内 EXE／JAR 入口、已安装 Java 或原应用，按钮遵循实际能力。JAR 显示最低 Java 版本与实际检测结果；Java 选择仅调用主进程检测接口，不在渲染器拼装运行命令。外部应用启动返回 `projectStarted: false` 时明确提示手动导入原项目，不宣称作品已运行。可打开目录和移除保存副本，不展示来源字段。Shimeji 另建素材转换副本为二次确认可选操作，用 `convertedCopyInstalled` 单独记录。页面离开清理待确认选择，异步读取用代次阻止迟到结果。

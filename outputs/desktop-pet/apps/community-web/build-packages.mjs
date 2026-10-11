@@ -46,6 +46,13 @@ const configurationNotes = {
 
 const files = [];
 for (const pet of pets) {
+  // 已确认的完整图集包保留原始许可及附件，不能重新生成简化包。
+  if (pet.atlas && pet.archiveSha256) {
+    const archiveBytes = await readFile(new URL(`./dist/${pet.download}`, import.meta.url));
+    if (createHash('sha256').update(archiveBytes).digest('hex') !== pet.archiveSha256 || archiveBytes.length !== pet.archiveBytes) throw new Error(`完整桌宠包与登记摘要不一致：${pet.id}`);
+    files.push({ path: pet.atlas, mime: 'image/webp' }, { path: pet.thumbnail, mime: 'image/webp' }, { path: pet.download, mime: 'application/zip' });
+    continue;
+  }
   if (!pet.atlas) {
     // 独立动作包保留已经验收的原ZIP；原应用使用固定官方完整发行地址。
     if (!['media', 'standalone'].includes(pet.distribution)) throw new Error(`桌宠分发类型缺失：${pet.id}`);
@@ -59,6 +66,8 @@ for (const pet of pets) {
         if (url.protocol !== 'https:' || url.username || url.password || !pet.packageManifest || !pet.packageLicense) throw new Error(`外部完整动作包登记无效：${pet.id}`);
         files.push({ path: pet.packageManifest, mime: 'application/json' }, { path: pet.packageLicense, mime: 'text/plain; charset=utf-8' });
       }
+      if (pet.packageManifest) files.push({ path: pet.packageManifest, mime: 'application/json' });
+      if (pet.packageLicense) files.push({ path: pet.packageLicense, mime: 'text/plain; charset=utf-8' });
       for (const entry of Object.values(pet.mediaActions)) files.push({ path: entry.url, mime: entry.type });
     } else {
       // 两张 BongoCat 封面沿用原模型画稿，随公开图片保留完整 MIT 声明。

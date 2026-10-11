@@ -127,6 +127,1349 @@ export const cat = {
 };
 export const pets = [
   {
+    "id": "windowpet-ganyu",
+    "title": "甘雨 · WindowPet",
+    "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "SeakMengs",
+    "authorUrl": "",
+    "source": "https://github.com/SeakMengs/WindowPet/tree/aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "license": "代码 MIT；角色美术依原作者声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/windowpet-ganyu/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/windowpet-ganyu/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 878447,
+    "archiveSha256": "be301a399e673fe0d60dbb148b0b86c4ab2db58ca885e946529949474898b7e8",
+    "upstreamCommit": "aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "climb": {
+        "displayName": "攀爬",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/climb.webp"
+      },
+      "crawl": {
+        "displayName": "爬行",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/crawl.webp"
+      },
+      "drag": {
+        "displayName": "被拿起姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/drag.webp"
+      },
+      "fall": {
+        "displayName": "落下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/fall.webp"
+      },
+      "greet": {
+        "displayName": "问候",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/greet.webp"
+      },
+      "idle": {
+        "displayName": "站立待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/idle.webp"
+      },
+      "jump": {
+        "displayName": "跳跃姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/jump.webp"
+      },
+      "sit": {
+        "displayName": "坐下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/sit.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/walk.webp"
+      },
+      "walk-left": {
+        "displayName": "向左行走（原行走镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ganyu/actions/walk-left.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/windowpet-ganyu/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/windowpet-ganyu/LICENSE.txt"
+  },
+  {
+    "id": "windowpet-ayaka",
+    "title": "神里绫华 · WindowPet",
+    "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "SeakMengs",
+    "authorUrl": "",
+    "source": "https://github.com/SeakMengs/WindowPet/tree/aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "license": "代码 MIT；角色美术依原作者声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/windowpet-ayaka/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/windowpet-ayaka/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 637518,
+    "archiveSha256": "80de0bdcf8c65f7340aa58438afbdefb8a5b1623e7ba5be89a687798f5139602",
+    "upstreamCommit": "aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "climb": {
+        "displayName": "攀爬",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/climb.webp"
+      },
+      "crawl": {
+        "displayName": "爬行",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/crawl.webp"
+      },
+      "drag": {
+        "displayName": "被拿起姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/drag.webp"
+      },
+      "fall": {
+        "displayName": "落下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/fall.webp"
+      },
+      "greet": {
+        "displayName": "问候",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/greet.webp"
+      },
+      "jump": {
+        "displayName": "跳跃姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/jump.webp"
+      },
+      "sit": {
+        "displayName": "坐下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/sit.webp"
+      },
+      "idle": {
+        "displayName": "站立待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/idle.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/walk.webp"
+      },
+      "walk-left": {
+        "displayName": "向左行走（原行走镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-ayaka/actions/walk-left.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/windowpet-ayaka/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/windowpet-ayaka/LICENSE.txt"
+  },
+  {
+    "id": "windowpet-klee",
+    "title": "可莉 · WindowPet",
+    "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "SeakMengs",
+    "authorUrl": "",
+    "source": "https://github.com/SeakMengs/WindowPet/tree/aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "license": "代码 MIT；角色美术依原作者声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/windowpet-klee/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/windowpet-klee/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 645390,
+    "archiveSha256": "7969f5f789538bcc5e256d9c1e14258eaa237a58f85d0a0b22dcb599e07cfe28",
+    "upstreamCommit": "aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "站立待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/idle.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/walk.webp"
+      },
+      "sit": {
+        "displayName": "坐下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/sit.webp"
+      },
+      "greet": {
+        "displayName": "问候",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/greet.webp"
+      },
+      "crawl": {
+        "displayName": "爬行",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/crawl.webp"
+      },
+      "climb": {
+        "displayName": "攀爬",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/climb.webp"
+      },
+      "jump": {
+        "displayName": "跳跃姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/jump.webp"
+      },
+      "fall": {
+        "displayName": "落下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/fall.webp"
+      },
+      "drag": {
+        "displayName": "被拿起姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/drag.webp"
+      },
+      "walk-left": {
+        "displayName": "向左行走（原行走镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-klee/actions/walk-left.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/windowpet-klee/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/windowpet-klee/LICENSE.txt"
+  },
+  {
+    "id": "windowpet-hutao",
+    "title": "胡桃 · WindowPet",
+    "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "SeakMengs",
+    "authorUrl": "",
+    "source": "https://github.com/SeakMengs/WindowPet/tree/aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "license": "代码 MIT；角色美术依原作者声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/windowpet-hutao/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/windowpet-hutao/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 604020,
+    "archiveSha256": "0231c6253c349d7aa2f1c65b4733e02b57476dc4c890a0ba70dc802602ccb449",
+    "upstreamCommit": "aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "站立待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/idle.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/walk.webp"
+      },
+      "sit": {
+        "displayName": "坐下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/sit.webp"
+      },
+      "greet": {
+        "displayName": "问候",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/greet.webp"
+      },
+      "crawl": {
+        "displayName": "爬行",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/crawl.webp"
+      },
+      "climb": {
+        "displayName": "攀爬",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/climb.webp"
+      },
+      "jump": {
+        "displayName": "跳跃姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/jump.webp"
+      },
+      "fall": {
+        "displayName": "落下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/fall.webp"
+      },
+      "drag": {
+        "displayName": "被拿起姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/drag.webp"
+      },
+      "walk-left": {
+        "displayName": "向左行走（原行走镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-hutao/actions/walk-left.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/windowpet-hutao/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/windowpet-hutao/LICENSE.txt"
+  },
+  {
+    "id": "windowpet-nezuko",
+    "title": "灶门祢豆子 · WindowPet",
+    "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "SeakMengs",
+    "authorUrl": "",
+    "source": "https://github.com/SeakMengs/WindowPet/tree/aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "license": "代码 MIT；角色美术依原作者声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/windowpet-nezuko/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/windowpet-nezuko/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 753620,
+    "archiveSha256": "9f5a4f1272550312394bc2d4abe53680ae685e0984439c3fe3fa2a548c1e48e0",
+    "upstreamCommit": "aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "站立待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/idle.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/walk.webp"
+      },
+      "sit": {
+        "displayName": "坐下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/sit.webp"
+      },
+      "greet": {
+        "displayName": "问候",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/greet.webp"
+      },
+      "crawl": {
+        "displayName": "爬行",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/crawl.webp"
+      },
+      "climb": {
+        "displayName": "攀爬",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/climb.webp"
+      },
+      "jump": {
+        "displayName": "跳跃姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/jump.webp"
+      },
+      "fall": {
+        "displayName": "落下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/fall.webp"
+      },
+      "drag": {
+        "displayName": "被拿起姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/drag.webp"
+      },
+      "walk-left": {
+        "displayName": "向左行走（原行走镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-nezuko/actions/walk-left.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/windowpet-nezuko/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/windowpet-nezuko/LICENSE.txt"
+  },
+  {
+    "id": "windowpet-jotaro",
+    "title": "空条承太郎 · WindowPet",
+    "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "SeakMengs",
+    "authorUrl": "",
+    "source": "https://github.com/SeakMengs/WindowPet/tree/aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "license": "代码 MIT；角色美术依原作者声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/windowpet-jotaro/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/windowpet-jotaro/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 313417,
+    "archiveSha256": "806633fec23248e6ac4fd11a735057ba71bd3229333cf03da41a74cf4572cffb",
+    "upstreamCommit": "aba8d3ab94d30f4f5abf92b3f3ec7dff50d3326b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "站立待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/idle.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/walk.webp"
+      },
+      "sit": {
+        "displayName": "坐下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/sit.webp"
+      },
+      "greet": {
+        "displayName": "问候",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/greet.webp"
+      },
+      "crawl": {
+        "displayName": "爬行",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/crawl.webp"
+      },
+      "climb": {
+        "displayName": "攀爬",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/climb.webp"
+      },
+      "jump": {
+        "displayName": "跳跃姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/jump.webp"
+      },
+      "fall": {
+        "displayName": "落下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/fall.webp"
+      },
+      "drag": {
+        "displayName": "被拿起姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/drag.webp"
+      },
+      "walk-left": {
+        "displayName": "向左行走（原行走镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/windowpet-jotaro/actions/walk-left.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/windowpet-jotaro/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/windowpet-jotaro/LICENSE.txt"
+  },
+  {
+    "id": "nori-hope-agent",
+    "title": "Nori · 白色海豹",
+    "description": "Hope Agent 的白色幼海豹，保留原作 V2 图集、九核心动作和十六方向视线。",
+    "kind": "pet",
+    "category": "机器人伙伴",
+    "author": "shiwenwen",
+    "authorUrl": "",
+    "source": "https://github.com/shiwenwen/hope-agent/tree/cd1d63fdbed9890bdccfe24f07c951fef638c810",
+    "license": "MIT",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/nori-hope-agent/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/nori-hope-agent/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 1426615,
+    "archiveSha256": "c7cc9b855a9455a06f5b3a9794785d4830423aaa0a6b1dc2372e9f6935e2831a",
+    "upstreamCommit": "cd1d63fdbed9890bdccfe24f07c951fef638c810",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/nori-hope-agent/spritesheet.webp"
+  },
+  {
+    "id": "mochi-desktop",
+    "title": "Mochi · 像素伙伴",
+    "description": "保留原作完整 50 项动画清单、帧序与节奏，透明像素风伙伴。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "miflow13",
+    "authorUrl": "",
+    "source": "https://github.com/miflow13/mochi-desktop/tree/471342631206c40d56bbba016578926e16ca8d0b",
+    "license": "MIT",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/mochi-desktop/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/mochi-desktop/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 2139783,
+    "archiveSha256": "8909edbc8f817fd6ea18296790b8c7dd4135ad028743835fd600c51c4d1edade",
+    "upstreamCommit": "471342631206c40d56bbba016578926e16ca8d0b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "dance": {
+        "displayName": "跳舞",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/dance.webp"
+      },
+      "default": {
+        "displayName": "默认静态姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/default.webp"
+      },
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/idle.webp"
+      },
+      "sad_idle": {
+        "displayName": "低落待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/sad_idle.webp"
+      },
+      "look": {
+        "displayName": "观察",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/look.webp"
+      },
+      "blink": {
+        "displayName": "眨眼",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/blink.webp"
+      },
+      "dragged": {
+        "displayName": "被拖动",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/dragged.webp"
+      },
+      "walk": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/walk.webp"
+      },
+      "walk_left": {
+        "displayName": "向左行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/walk_left.webp"
+      },
+      "bounce": {
+        "displayName": "弹跳回应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/bounce.webp"
+      },
+      "squish": {
+        "displayName": "按压回应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/squish.webp"
+      },
+      "sleep": {
+        "displayName": "入睡",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/sleep.webp"
+      },
+      "sleeping": {
+        "displayName": "睡觉",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/sleeping.webp"
+      },
+      "wake": {
+        "displayName": "醒来",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/wake.webp"
+      },
+      "pickup": {
+        "displayName": "被拿起",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/pickup.webp"
+      },
+      "heart": {
+        "displayName": "爱心",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/heart.webp"
+      },
+      "eat": {
+        "displayName": "进食",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/eat.webp"
+      },
+      "pocket_grab": {
+        "displayName": "取出口袋物品",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/pocket_grab.webp"
+      },
+      "computer": {
+        "displayName": "使用电脑",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/computer.webp"
+      },
+      "focus_start": {
+        "displayName": "开始专注",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/focus_start.webp"
+      },
+      "focus_loop": {
+        "displayName": "专注",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/focus_loop.webp"
+      },
+      "focus_stop": {
+        "displayName": "结束专注",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/focus_stop.webp"
+      },
+      "focus_thinking_start": {
+        "displayName": "开始思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/focus_thinking_start.webp"
+      },
+      "focus_thinking_loop": {
+        "displayName": "思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/focus_thinking_loop.webp"
+      },
+      "focus_thinking_end": {
+        "displayName": "结束思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/focus_thinking_end.webp"
+      },
+      "typing_loop": {
+        "displayName": "打字",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/typing_loop.webp"
+      },
+      "typing_intro": {
+        "displayName": "开始打字",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/typing_intro.webp"
+      },
+      "typing_outro": {
+        "displayName": "结束打字",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/typing_outro.webp"
+      },
+      "watch": {
+        "displayName": "观看",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/watch.webp"
+      },
+      "reading": {
+        "displayName": "阅读",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/reading.webp"
+      },
+      "searching": {
+        "displayName": "搜索",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/searching.webp"
+      },
+      "sway_idle": {
+        "displayName": "轻晃",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/sway_idle.webp"
+      },
+      "drop": {
+        "displayName": "放下",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/drop.webp"
+      },
+      "terminal_intro": {
+        "displayName": "打开终端",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/terminal_intro.webp"
+      },
+      "terminal_loop": {
+        "displayName": "终端工作",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/terminal_loop.webp"
+      },
+      "terminal_outro": {
+        "displayName": "合上终端",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/terminal_outro.webp"
+      },
+      "agent_intro": {
+        "displayName": "开始工作",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/agent_intro.webp"
+      },
+      "agent_loop": {
+        "displayName": "工作陪伴",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/agent_loop.webp"
+      },
+      "agent_outro": {
+        "displayName": "结束工作",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/agent_outro.webp"
+      },
+      "fedora_intro": {
+        "displayName": "戴上帽子",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/fedora_intro.webp"
+      },
+      "fedora_loop": {
+        "displayName": "帽子待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/fedora_loop.webp"
+      },
+      "fedora_outro": {
+        "displayName": "摘下帽子",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/fedora_outro.webp"
+      },
+      "side_eye": {
+        "displayName": "侧目",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/side_eye.webp"
+      },
+      "table_flip": {
+        "displayName": "掀桌反应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/table_flip.webp"
+      },
+      "this_is_fine": {
+        "displayName": "淡定喝茶",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/this_is_fine.webp"
+      },
+      "level_up_default": {
+        "displayName": "升级",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/level_up_default.webp"
+      },
+      "wave": {
+        "displayName": "挥手",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/wave.webp"
+      },
+      "vs_code": {
+        "displayName": "编辑代码",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/vs_code.webp"
+      },
+      "mochi_exe": {
+        "displayName": "高级代码特效",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/mochi_exe.webp"
+      },
+      "coffee": {
+        "displayName": "喝咖啡",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/mochi-desktop/actions/coffee.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/mochi-desktop/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/mochi-desktop/LICENSE.txt"
+  },
+  {
+    "id": "memmy-companion",
+    "title": "Memmy · 记忆伙伴",
+    "description": "原透明 WebM 待机与出场素材，19 个官方静态表情明确按静态状态保留。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "MemTensor",
+    "authorUrl": "",
+    "source": "https://github.com/MemTensor/memmy-agent/tree/e7868e8dcca6ec52424a6535a8dbac4215708e2d",
+    "license": "MIT",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/memmy-companion/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/memmy-companion/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 9653980,
+    "archiveSha256": "524a1d7ad93b1562713fea8ad6ccbb409c467af0d5131aa295e6798f2f352ab1",
+    "upstreamCommit": "e7868e8dcca6ec52424a6535a8dbac4215708e2d",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "视频待机",
+        "type": "video/webm",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/idle.webm"
+      },
+      "blush": {
+        "displayName": "害羞姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/blush.webp"
+      },
+      "box": {
+        "displayName": "盒子姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/box.webp"
+      },
+      "brain": {
+        "displayName": "大脑姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/brain.webp"
+      },
+      "celebrate": {
+        "displayName": "庆祝姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/celebrate.webp"
+      },
+      "chat": {
+        "displayName": "对话姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/chat.webp"
+      },
+      "connect": {
+        "displayName": "连接姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/connect.webp"
+      },
+      "hum": {
+        "displayName": "哼唱姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/hum.webp"
+      },
+      "peek": {
+        "displayName": "探头姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/peek.webp"
+      },
+      "plead": {
+        "displayName": "请求姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/plead.webp"
+      },
+      "point": {
+        "displayName": "指向姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/point.webp"
+      },
+      "read": {
+        "displayName": "阅读姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/read.webp"
+      },
+      "neutral": {
+        "displayName": "默认姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/neutral.webp"
+      },
+      "sad": {
+        "displayName": "低落姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/sad.webp"
+      },
+      "shield": {
+        "displayName": "守护姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/shield.webp"
+      },
+      "sleep": {
+        "displayName": "睡觉姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/sleep.webp"
+      },
+      "think": {
+        "displayName": "思考姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/think.webp"
+      },
+      "wave": {
+        "displayName": "挥手姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/wave.webp"
+      },
+      "work": {
+        "displayName": "工作姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/work.webp"
+      },
+      "wrench": {
+        "displayName": "扳手姿态",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/wrench.webp"
+      },
+      "entrance": {
+        "displayName": "出场",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/memmy-companion/actions/entrance.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/memmy-companion/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/memmy-companion/LICENSE.txt"
+  },
+  {
+    "id": "cc-haha-dada-code",
+    "title": "搭搭 Dada",
+    "description": "沉稳的协作机器人，陪你把想法一块块搭起来。",
+    "kind": "pet",
+    "category": "机器人伙伴",
+    "author": "NanmiCoder",
+    "authorUrl": "",
+    "source": "https://github.com/NanmiCoder/cc-haha/tree/1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "license": "MIT",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/cc-haha-dada-code/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/cc-haha-dada-code/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 1313589,
+    "archiveSha256": "19bd901704fd22544ba3c148cf86cc02d118b6a4fadeb6ff743b48293a81f531",
+    "upstreamCommit": "1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/cc-haha-dada-code/spritesheet.webp"
+  },
+  {
+    "id": "cc-haha-huhu-plan",
+    "title": "弧弧 Huhu",
+    "description": "拿着铅笔和计划本的路线机器人，复杂任务也能找到出口。",
+    "kind": "pet",
+    "category": "机器人伙伴",
+    "author": "NanmiCoder",
+    "authorUrl": "",
+    "source": "https://github.com/NanmiCoder/cc-haha/tree/1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "license": "MIT",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/cc-haha-huhu-plan/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/cc-haha-huhu-plan/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 1628303,
+    "archiveSha256": "4c407e46ff40e7e3f5e80c9936a06f02e4306b3f8e2cdcca7911d2fb16aed704",
+    "upstreamCommit": "1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/cc-haha-huhu-plan/spritesheet.webp"
+  },
+  {
+    "id": "cc-haha-bubu-fix",
+    "title": "补补 Bubu",
+    "description": "举着修补扳手的小机器人，最擅长发现并修好裂缝。",
+    "kind": "pet",
+    "category": "机器人伙伴",
+    "author": "NanmiCoder",
+    "authorUrl": "",
+    "source": "https://github.com/NanmiCoder/cc-haha/tree/1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "license": "MIT",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/cc-haha-bubu-fix/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/cc-haha-bubu-fix/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 1839938,
+    "archiveSha256": "34a7276a68a98d2dab01b4fb84c8f766e8c2e3494a4a89f95a477c68666c27a8",
+    "upstreamCommit": "1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/cc-haha-bubu-fix/spritesheet.webp"
+  },
+  {
+    "id": "cc-haha-huihui-build",
+    "title": "回回 Huihui",
+    "description": "抱着构建齿轮的小机器人，新回复一到就精神满满。",
+    "kind": "pet",
+    "category": "机器人伙伴",
+    "author": "NanmiCoder",
+    "authorUrl": "",
+    "source": "https://github.com/NanmiCoder/cc-haha/tree/1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "license": "MIT",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/cc-haha-huihui-build/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/cc-haha-huihui-build/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 1448327,
+    "archiveSha256": "74f257bab22efe2e8aab3ae75cc99864c679bd4e0e32c270a380c6a62d272637",
+    "upstreamCommit": "1443e22d4657ebe9b662d567cd51f6684ddddd03",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/cc-haha-huihui-build/spritesheet.webp"
+  },
+  {
+    "id": "desktop-cat-1ilit",
+    "title": "像素小猫",
+    "description": "会待机、左右走动和睡觉的像素小猫，保留入睡与醒来两种原始过渡动作。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "1ilit",
+    "authorUrl": "",
+    "source": "https://github.com/1ilit/Desktop-Cat/tree/d0054a041ec7b000b1390fcbb2434ab22b922772",
+    "license": "MIT",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/desktop-cat-1ilit/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/desktop-cat-1ilit/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 13641,
+    "archiveSha256": "64ca90b351ca8717552381dc8326aadbe0395e1ef36ac9621722e5002c1d3097",
+    "upstreamCommit": "d0054a041ec7b000b1390fcbb2434ab22b922772",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/idle.webp"
+      },
+      "running-left": {
+        "displayName": "向左行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/running-left.webp"
+      },
+      "running-right": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/running-right.webp"
+      },
+      "sleeping": {
+        "displayName": "睡觉",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/sleeping.webp"
+      },
+      "sleep-enter": {
+        "displayName": "入睡",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/sleep-enter.webp"
+      },
+      "sleep-exit": {
+        "displayName": "醒来",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/sleep-exit.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/desktop-cat-1ilit/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/desktop-cat-1ilit/LICENSE.txt"
+  },
+  {
+    "id": "black-whale-personal-center",
+    "title": "圆滚滚小黑鲸",
+    "description": "保留原作透明 WebP 的鲸鱼桌宠，包含 10 项真实动作和静态待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "PolinniZhong",
+    "authorUrl": "",
+    "source": "https://github.com/PolinniZhong/dsh-personal-center/tree/731a2593c2e32012781effd276a082b95d9b63fc",
+    "license": "MIT",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/black-whale-personal-center/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/black-whale-personal-center/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 706059,
+    "archiveSha256": "76c67a00134a77260265ae7f23657038d8bd5feffbb38ddfe87bb0e6e7fddcc7",
+    "upstreamCommit": "731a2593c2e32012781effd276a082b95d9b63fc",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "静态待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/idle/happy.webp"
+      },
+      "busy": {
+        "displayName": "忙碌",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/busy.webp"
+      },
+      "celebrate": {
+        "displayName": "庆祝",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/celebrate.webp"
+      },
+      "dozing": {
+        "displayName": "打瞌睡",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/dozing.webp"
+      },
+      "drag": {
+        "displayName": "拖拽回应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/drag.webp"
+      },
+      "exhausted": {
+        "displayName": "疲惫",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/exhausted.webp"
+      },
+      "happy": {
+        "displayName": "开心",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/happy.webp"
+      },
+      "money-pain": {
+        "displayName": "额度心疼",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/money-pain.webp"
+      },
+      "thinking": {
+        "displayName": "思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/thinking.webp"
+      },
+      "waiting": {
+        "displayName": "等待",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/waiting.webp"
+      },
+      "wave": {
+        "displayName": "挥手",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/black-whale-personal-center/actions/wave.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/black-whale-personal-center/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/black-whale-personal-center/LICENSE.txt"
+  },
+  {
+    "id": "blue-whale-personal-center",
+    "title": "圆滚滚小蓝鲸",
+    "description": "保留原作透明 WebP 的鲸鱼桌宠，包含 10 项真实动作和静态待机。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "PolinniZhong",
+    "authorUrl": "",
+    "source": "https://github.com/PolinniZhong/dsh-personal-center/tree/731a2593c2e32012781effd276a082b95d9b63fc",
+    "license": "MIT",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/blue-whale-personal-center/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/blue-whale-personal-center/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 940583,
+    "archiveSha256": "ecf62fe1e41fa4638adc2aaca4d0de5141588ce8b6d647bf7734f39d599f211d",
+    "upstreamCommit": "731a2593c2e32012781effd276a082b95d9b63fc",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "静态待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/idle/happy.webp"
+      },
+      "busy": {
+        "displayName": "忙碌",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/busy.webp"
+      },
+      "celebrate": {
+        "displayName": "庆祝",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/celebrate.webp"
+      },
+      "dozing": {
+        "displayName": "打瞌睡",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/dozing.webp"
+      },
+      "drag": {
+        "displayName": "拖拽回应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/drag.webp"
+      },
+      "exhausted": {
+        "displayName": "疲惫",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/exhausted.webp"
+      },
+      "happy": {
+        "displayName": "开心",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/happy.webp"
+      },
+      "money-pain": {
+        "displayName": "额度心疼",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/money-pain.webp"
+      },
+      "thinking": {
+        "displayName": "思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/thinking.webp"
+      },
+      "waiting": {
+        "displayName": "等待",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/waiting.webp"
+      },
+      "wave": {
+        "displayName": "挥手",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/blue-whale-personal-center/actions/wave.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/blue-whale-personal-center/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/blue-whale-personal-center/LICENSE.txt"
+  },
+  {
+    "id": "whale-girl-vlln",
+    "title": "鲸鱼娘 · 互动动作",
+    "description": "保留 15 项原作状态帧，将 PNG 原帧无损转为透明 WebP，单帧状态明确声明为静态动作。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "vlln",
+    "authorUrl": "",
+    "source": "https://github.com/vlln/whale-girl/tree/9c32d7a39a45148076f8ad2fdaad2dc2420eedb3",
+    "license": "MIT",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/whale-girl-vlln/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/whale-girl-vlln/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 3942617,
+    "archiveSha256": "31430efccc0fbc5a0b9f96b0b2edfec0209ed3192f78d152436b89b2a526ec6b",
+    "upstreamCommit": "9c32d7a39a45148076f8ad2fdaad2dc2420eedb3",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/idle.webp"
+      },
+      "working": {
+        "displayName": "工作",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/working.webp"
+      },
+      "celebrate": {
+        "displayName": "庆祝",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/celebrate.webp"
+      },
+      "error": {
+        "displayName": "出错",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/error.webp"
+      },
+      "disappointed": {
+        "displayName": "失落",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/disappointed.webp"
+      },
+      "joy": {
+        "displayName": "开心",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/joy.webp"
+      },
+      "eat": {
+        "displayName": "进食",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/eat.webp"
+      },
+      "play": {
+        "displayName": "玩耍",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/play.webp"
+      },
+      "drag": {
+        "displayName": "拖拽",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/drag.webp"
+      },
+      "walk": {
+        "displayName": "行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/walk.webp"
+      },
+      "sleep": {
+        "displayName": "睡觉",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/sleep.webp"
+      },
+      "wake": {
+        "displayName": "醒来",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/wake.webp"
+      },
+      "welcome": {
+        "displayName": "欢迎",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/welcome.webp"
+      },
+      "think": {
+        "displayName": "思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/think.webp"
+      },
+      "wait": {
+        "displayName": "等待",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/whale-girl-vlln/actions/wait.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/whale-girl-vlln/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/whale-girl-vlln/LICENSE.txt"
+  },
+  {
     "id": "firefly--lingxiaotian",
     "title": "流萤",
     "englishTitle": "Firefly",
@@ -5320,6 +6663,7 @@ export const pets = [
     "collections": []
   }
 ];
+
 export function petCredit(work) {
   return { author: work.author, source: work.source, license: work.license };
 }

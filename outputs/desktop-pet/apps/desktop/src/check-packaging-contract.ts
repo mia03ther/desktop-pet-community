@@ -142,6 +142,9 @@ function checkPackageOutput(outputDir: string, target: PackagingTarget): void {
   assertPackagedAgentBridges(appContents);
   assert.ok(existsSync(join(appContents, "assets", "companion", "windows-diagnostics.ps1")), "便携包必须解包固定的 Windows 诊断脚本。");
   assert.ok(existsSync(join(appContents, "assets", "companion", "windows-software-inspection.ps1")), "便携包必须解包固定的安装文件只读检查脚本。");
+  const updateHelper = join(appContents, "assets", "companion", "windows-portable-update.ps1");
+  assertRegularNonSymlink(updateHelper);
+  assert.ok(readFileSync(updateHelper).equals(readFileSync(join(appDir, "assets", "companion", "windows-portable-update.ps1"))), "正式程序更新辅助脚本须随包原样解包。");
   assertUnpackedIntegrationRuntimes(appContents, getRequiredUnpackedRuntimePackageNames(packageJson), join(repoRoot, "packages"));
   assert.ok(existsSync(join(appContents, "node_modules", "@modelcontextprotocol", "sdk")), "packaged MCP SDK runtime dependency is missing.");
   assert.ok(existsSync(join(appContents, "node_modules", "zod", "index.cjs")), "packaged zod runtime dependency is missing.");

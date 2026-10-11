@@ -2,3 +2,7 @@
 outputs/desktop-pet/apps/community-web/dist/assets/** -text
 outputs/community-cloudflare/dist/assets/** -text
 outputs/desktop-pet/apps/community-web/upstream-pets/** -text
+outputs/desktop-pet/apps/community-web/dist/catalog.js -text
+outputs/desktop-pet/apps/community-web/dist/gallery-files.json -text
+outputs/community-cloudflare/dist/catalog.js -text
+outputs/community-cloudflare/dist/gallery-files.json -text

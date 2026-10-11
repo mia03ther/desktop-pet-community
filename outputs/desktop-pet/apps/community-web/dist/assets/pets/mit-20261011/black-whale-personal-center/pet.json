@@ -1,0 +1,83 @@
+{
+  "id": "black-whale-personal-center",
+  "displayName": "圆滚滚小黑鲸",
+  "description": "保留原作透明 WebP 的鲸鱼桌宠，包含 10 项真实动作和静态待机。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "idle/happy.webp",
+    "busy": "actions/busy.webp",
+    "celebrate": "actions/celebrate.webp",
+    "dozing": "actions/dozing.webp",
+    "drag": "actions/drag.webp",
+    "exhausted": "actions/exhausted.webp",
+    "happy": "actions/happy.webp",
+    "money-pain": "actions/money-pain.webp",
+    "thinking": "actions/thinking.webp",
+    "waiting": "actions/waiting.webp",
+    "wave": "actions/wave.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "静态待机",
+      "category": "待机"
+    },
+    "busy": {
+      "displayName": "忙碌",
+      "category": "原作动作"
+    },
+    "celebrate": {
+      "displayName": "庆祝",
+      "category": "原作动作"
+    },
+    "dozing": {
+      "displayName": "打瞌睡",
+      "category": "原作动作"
+    },
+    "drag": {
+      "displayName": "拖拽回应",
+      "category": "原作动作"
+    },
+    "exhausted": {
+      "displayName": "疲惫",
+      "category": "原作动作"
+    },
+    "happy": {
+      "displayName": "开心",
+      "category": "原作动作"
+    },
+    "money-pain": {
+      "displayName": "额度心疼",
+      "category": "原作动作"
+    },
+    "thinking": {
+      "displayName": "思考",
+      "category": "原作动作"
+    },
+    "waiting": {
+      "displayName": "等待",
+      "category": "原作动作"
+    },
+    "wave": {
+      "displayName": "挥手",
+      "category": "原作动作"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "waving": "wave",
+    "jumping": "celebrate",
+    "failed": "exhausted",
+    "waiting": "waiting",
+    "running": "busy",
+    "review": "thinking",
+    "sleeping": "dozing",
+    "clicked": "happy",
+    "dragged": "drag"
+  },
+  "staticActions": [
+    "idle"
+  ],
+  "background": {
+    "mode": "alpha"
+  }
+}

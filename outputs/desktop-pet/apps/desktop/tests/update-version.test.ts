@@ -14,6 +14,10 @@ assert.equal(isVersionNewer("1.0.0", "1.0.0"), false);
 assert.equal(isVersionNewer("1.0.0", "1.0.1"), false);
 assert.equal(isVersionNewer("bad", "1.0.1"), false);
 
+assert.equal(isVersionNewer("4.0.2", "4.0.2-preview.4"), true);
+assert.equal(isVersionNewer("4.0.2-preview.4", "4.0.2"), false);
+assert.equal(isVersionNewer("4.0.2-preview.10", "4.0.2-preview.4"), true);
+assert.equal(isVersionNewer("4.0.2+build.1", "4.0.2+build.2"), false);
 const repo = "OpenPetsHQ/openpets";
 const releasesUrl = `https://github.com/${repo}/releases`;
 const available = createParsedUpdateStatus("1.0.0", { tag_name: "v1.0.1", html_url: "https://github.com/OpenPetsHQ/openpets/releases/tag/v1.0.1" }, 123, repo, releasesUrl);
