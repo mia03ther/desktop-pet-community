@@ -1,0 +1,75 @@
+name: macOS arm64 构建与运行
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "outputs/desktop-pet/**"
+      - ".github/workflows/macos.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "outputs/desktop-pet/**"
+      - ".github/workflows/macos.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-arm64-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: outputs/desktop-pet
+    steps:
+      - name: 获取代码
+        uses: actions/checkout@v4
+      - name: 确认 Apple Silicon 环境
+        run: test "$(uname -m)" = "arm64"
+      - name: 配置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: 配置 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "11.0.8"
+          run_install: false
+      - name: 安装固定版本依赖
+        run: pnpm install --frozen-lockfile
+      - name: 构建工作区并检查类型
+        run: |
+          pnpm build
+          pnpm --filter @open-pets/desktop typecheck
+          node apps/desktop/tests/mac-trim-sharp.test.mjs
+      - name: 构建 Mac ZIP
+        run: pnpm --filter @open-pets/desktop exec electron-builder --mac zip --arm64 --publish never
+      - name: 校验实际包与原生依赖
+        run: node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
+      - name: 隔离档案实际运行
+        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/mac-arm64/desktop pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch arm64
+      - name: 生成下载校验值
+        run: |
+          cd apps/desktop/dist-electron
+          shasum -a 256 desktop-pet-*-mac-arm64.zip > SHA256SUMS-macos-arm64.txt
+      - name: 保存构建与运行证据
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-pet-macos-arm64
+          retention-days: 1
+          if-no-files-found: warn
+          compression-level: 0
+          path: |
+            outputs/desktop-pet/apps/desktop/dist-electron/desktop-pet-*-mac-arm64.zip
+            outputs/desktop-pet/apps/desktop/dist-electron/SHA256SUMS-macos-arm64.txt
+            work/macos-ci/result.json
+            work/macos-ci/packaged-run.log
+            work/macos-ci/control-center.png
+            work/macos-ci/pet.png
