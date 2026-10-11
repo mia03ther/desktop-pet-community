@@ -34,6 +34,10 @@ try {
     ["community-pages.js", "export function refresh() {}"],
     ["locale.js", "export function createSiteLocale() {}"],
     ["locale-messages.js", "export const uiMessages = {};"],
+    ["catalog-management.js", "export function managedWorks(works) { return works; }"],
+    ["admin.html", "<!doctype html><title>作品管理</title>"],
+    ["admin.js", "export const admin = true;"],
+    ["admin.css", ".admin-main { display: block; }"],
     ["package-core.js", "export function inspectImport() {}"],
     ["native-package-contract.js", "export function validateMediaPetMetadata() {}"],
     ["plugin-covers.js", "export const pluginCovers = {};"],
@@ -97,11 +101,12 @@ try {
     const moduleUrl = new URL(filename, pets);
     const moduleResponse = await fetch(moduleUrl);
     assert.equal(moduleResponse.status, 200);
-    assert.equal(moduleResponse.headers.get("content-type"), "text/javascript; charset=utf-8");
+    const type = filename.endsWith(".html") ? "text/html" : filename.endsWith(".css") ? "text/css" : "text/javascript";
+    assert.equal(moduleResponse.headers.get("content-type"), `${type}; charset=utf-8`);
     assert.equal(await moduleResponse.text(), source);
     const moduleHead = await fetch(moduleUrl, { method: "HEAD" });
     assert.equal(moduleHead.status, 200);
-    assert.equal(moduleHead.headers.get("content-type"), "text/javascript; charset=utf-8");
+    assert.equal(moduleHead.headers.get("content-type"), `${type}; charset=utf-8`);
     assert.equal(moduleHead.headers.get("content-length"), String(Buffer.byteLength(source)));
     assert.equal((await moduleHead.arrayBuffer()).byteLength, 0);
   }

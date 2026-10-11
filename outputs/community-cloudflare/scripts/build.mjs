@@ -3,7 +3,6 @@ import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { build } from '../../community-site/node_modules/esbuild/lib/main.js';
-import { videoAssetPaths } from '../worker/media-assets.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = resolve(root, 'dist');
@@ -24,7 +23,8 @@ await writeFile(indexPath, (await readFile(indexPath, 'utf8')).replace('<script 
 await rm(resolve(dist, 'account-client.js'), { force: true });
 await build({ entryPoints: [resolve(root, 'worker/index.mjs')], bundle: true, format: 'esm', platform: 'browser', target: 'es2022', minify: true, outfile: resolve(dist, '_worker.js') });
 // 合并同父目录的视频路由；实际读取仍由媒体逐文件白名单控制。
-const routes = { version: 1, include: ['/api/*', ...new Set(videoAssetPaths.map(path => path.slice(0, path.lastIndexOf('/')) + '/*'))], exclude: [] };
+// 公开素材也经过下架检查；媒体仍由原逐文件白名单提供 Range 响应。
+const routes = { version: 1, include: ['/*'], exclude: [] };
 const routeRules = [...routes.include, ...routes.exclude];
 if (routeRules.length > 100) throw new Error('超过 Cloudflare Pages 包含和排除规则合计 100 条限制。');
 if (routeRules.some(rule => rule.length > 100)) throw new Error('超过 Cloudflare Pages 单条路由 100 字符限制。');

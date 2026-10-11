@@ -4,6 +4,8 @@ description: Reference the OpenPets pet and plugin catalogs, generated artifacts
 
 # Catalogs
 
+当前共创平台另有独立 `/admin.html` 入口，管理经本站审核的桌宠和插件下架及分类。`catalog-management.js` 在网站公开作品分组前应用 D1 覆盖状态；素材请求和下载在 Cloudflare Worker 中检查同一状态，不修改原包与署名。管理员只用私有密钥，不要求普通访客账号登录。部署和操作见仓库根 `docs/community-administration.md`；这项网站管理不替换以下桌面目录协议。
+
 The app discovers and installs pets and plugins from versioned JSON **catalogs**
 served at `openpets.dev`, with ZIPs hosted on R2 behind `zip.openpets.dev`. This
 doc describes those catalogs as **contracts** and how the desktop **consumes**

@@ -662,6 +662,50 @@ const completeTemplates = `
 `;
 uiTemplates.push(...completeTemplates.trim().split('\n').map(line => { const [key, ...values] = line.split('|'); return [key, values]; }));
 for (const category of ['原创角色', '游戏角色', '动漫角色', '吉祥物', '其他', '机器人', '人物头像', '动物伙伴', '幻想生物', '网络梗图', '物件与道具']) for (const version of [1, 2]) uiMessages[`${category} · V${version}`] = uiMessages[category].map(value => `${value} · V${version}`);
+
+const adminMessages = `
+语言|Language|言語|언어
+搜索|Search|検索|검색
+管理员|Administrator|管理者|관리자
+作品管理|Work management|作品管理|작품 관리
+作品管理 · desktop pet|Work management · desktop pet|作品管理 · desktop pet|작품 관리 · desktop pet
+返回广场|Back to community|広場に戻る|광장으로 돌아가기
+退出管理|Sign out|ログアウト|로그아웃
+管理员登录|Administrator sign-in|管理者ログイン|관리자 로그인
+管理员密钥|Administrator key|管理者キー|관리자 키
+登录管理|Sign in|ログイン|로그인
+密钥只用于本站验证，请勿分享。|The key is only for this site's verification. Do not share it.|キーはこのサイトの認証専用です。共有しないでください。|키는 이 사이트 인증에만 사용됩니다. 공유하지 마세요.
+正在连接管理服务…|Connecting to administration…|管理サービスに接続中…|관리 서비스 연결 중…
+作品管理列表|Managed works|管理作品一覧|관리 작품 목록
+作品类型|Work type|作品種類|작품 유형
+全部作品|All works|すべての作品|모든 작품
+上架状态|Listing status|公開状態|공개 상태
+全部状态|All statuses|すべての状態|모든 상태
+已上架|Published|公開中|공개 중
+已下架|Unlisted|非公開|비공개
+作品分类|Work category|作品カテゴリ|작품 분류
+搜索作品、作者或编号|Search works, authors or IDs|作品・作者・IDを検索|작품, 작가 또는 ID 검색
+刷新列表|Refresh list|一覧を更新|목록 새로고침
+保存分类|Save category|カテゴリを保存|분류 저장
+恢复上架|Restore listing|再公開|다시 공개
+下架作品|Unlist work|作品を非公開にする|작품 비공개
+已登录，修改后立即同步到全站。|Signed in. Changes are saved for the whole site.|ログインしました。変更はサイト全体に保存されます。|로그인했습니다. 변경 사항은 사이트 전체에 저장됩니다.
+已保存，访客刷新后可看到最新结果。|Saved. Visitors see the changes after refreshing.|保存しました。訪問者は再読み込みすると変更を確認できます。|저장했습니다. 방문자는 새로고침 후 변경 사항을 볼 수 있습니다.
+已退出管理。|Signed out.|ログアウトしました。|로그아웃했습니다.
+列表已刷新。|List refreshed.|一覧を更新しました。|목록을 새로고침했습니다.
+请输入本机保存的管理员密钥。|Enter the administrator key saved on your device.|端末に保存した管理者キーを入力してください。|기기에 저장된 관리자 키를 입력하세요.
+管理员密钥不正确。|Incorrect administrator key.|管理者キーが正しくありません。|관리자 키가 올바르지 않습니다.
+请先登录管理员。|Sign in as administrator first.|管理者としてログインしてください。|먼저 관리자로 로그인하세요.
+管理员服务尚未配置。|Administration is not configured yet.|管理サービスは未設定です。|관리 서비스가 아직 설정되지 않았습니다.
+请从本站管理页面操作。|Use this site's administration page.|このサイトの管理ページで操作してください。|이 사이트의 관리 페이지에서 작업하세요.
+登录尝试过多，请一小时后再试。|Too many sign-in attempts. Try again in one hour.|ログイン試行が多すぎます。1時間後に再試行してください。|로그인 시도가 너무 많습니다. 한 시간 후 다시 시도하세요.
+作品已在其他窗口修改，请刷新后再保存。|This work changed in another window. Refresh before saving.|別のウィンドウで変更されています。再読み込みしてから保存してください。|다른 창에서 변경되었습니다. 새로고침 후 저장하세요.
+分类须为 1 至 40 字，且不能含控制字符或 HTML。|Use 1–40 characters without control characters or HTML.|カテゴリは1〜40文字で、制御文字とHTMLは使用できません。|분류는 1~40자이며 제어 문자나 HTML을 사용할 수 없습니다.
+作品管理状态暂时无法读取，请刷新重试。|Cannot load listing status. Refresh to retry.|公開状態を取得できません。再読み込みしてください。|공개 상태를 읽을 수 없습니다. 새로고침하세요.
+作品管理状态无效，请刷新重试。|Invalid listing status. Refresh to retry.|公開状態が無効です。再読み込みしてください。|공개 상태가 올바르지 않습니다. 새로고침하세요.
+操作失败，请重试。|Operation failed. Try again.|操作に失敗しました。再試行してください。|작업에 실패했습니다. 다시 시도하세요.
+`;
+Object.assign(uiMessages, Object.fromEntries(adminMessages.trim().split('\n').map(line => { const [key, ...values] = line.split('|'); return [key, values]; })));
 uiTemplates.push(['未确认发布：{0}。分享 ZIP 已生成，可先下载保留。', ['Publication not confirmed: {0}. Sharing ZIP created; download it to keep a copy.', '公開未確認：{0}。共有ZIPを作成しました。ダウンロードして保存できます。', '게시 미확인: {0}. 공유 ZIP을 생성했습니다. 다운로드하여 보관하세요.']]);
 
 export const builtinCategoryNames = ['机器人伙伴', '原创伙伴', '可选工具', '健康提醒', '专注陪伴', '提醒与计时', '身心陪伴', '生活陪伴', '资源与工具', '学习与效率'];

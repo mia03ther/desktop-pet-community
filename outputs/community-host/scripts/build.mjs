@@ -13,7 +13,7 @@ if (dirname(publicRoot) !== root) throw new Error('构建公开目录越界。')
 // 只清理本构建产生的公开副本，历史素材与持久化数据库在其他目录。
 await rm(publicRoot, { recursive: true, force: true });
 await mkdir(publicRoot, { recursive: true });
-const pageNames = ['index.html', 'style.css', 'app.js', 'catalog.js', 'plugin-catalog.js', 'community-data.js', 'community-core.js', 'community-pages.js', 'locale.js', 'locale-messages.js', 'package-core.js', 'native-package-contract.js', 'plugin-covers.js', 'publication-client.js', 'publication-config.js'];
+const pageNames = ['index.html', 'style.css', 'app.js', 'catalog.js', 'plugin-catalog.js', 'community-data.js', 'community-core.js', 'community-pages.js', 'locale.js', 'locale-messages.js', 'package-core.js', 'native-package-contract.js', 'plugin-covers.js', 'publication-client.js', 'publication-config.js', 'catalog-management.js', 'admin.html', 'admin.js', 'admin.css'];
 for (const name of pageNames) await cp(resolve(canonical, name), resolve(publicRoot, name));
 const manifest = JSON.parse(await readFile(resolve(canonical, 'gallery-files.json'), 'utf8'));
 if (manifest.schemaVersion !== 2 || !Array.isArray(manifest.files)) throw new Error('请先生成带摘要的公开素材清单。');

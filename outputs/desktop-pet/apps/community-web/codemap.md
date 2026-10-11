@@ -1,5 +1,7 @@
 # apps/community-web
 
+`dist/admin.html`／`admin.js`／`admin.css` 提供独立四语作品管理页面，复用既有界面语言与浅色样式。`catalog-management.js` 在公开目录分组前读取服务端下架与分类覆盖，因此广场、作者、榜单、合集及搜索共享同一有效目录；作品和原作者不翻译。管理数据与授权由 Cloudflare Worker 单独持有，本机预览无写入权限。具体操作和密钥维护见仓库根 `docs/community-administration.md`。
+
 共创平台的顶栏标记为正式版；桌面安装包的版本与签名状态独立保留。超过 Pages 单文件上限的原生视频动作 ZIP 使用维护者登记的固定 HTTPS 完整包地址，`packageManifest` 与 `packageLicense` 及逐项动作素材在本站公开，完整 ZIP 的大小和 SHA-256 随目录保存。打包器登记这些文件，包测试仍调用实际媒体清单和文件校验器；公网下载验收另核完整发行 ZIP 的原字节。下载接口不接受访客提供的目标地址。
 
 新增开源伙伴沿用 `catalog.js` 唯一目录：`distribution:media` 保留已验收的完整独立动作 ZIP，`mediaActions` 指向逐项公开素材；`distribution:standalone` 指向固定官方完整应用发行。`build-packages.mjs` 不把这两类重新生成图集包，只登记公开的动作、缩略图及原生 ZIP。`app.js` 按是否含 atlas 选择预览，原应用无动作时显示封面、运行要求和对应真实下载名称；不存在素材的原应用不伪造动作或本机兼容状态。下载仍进入原 `/api/download/{id}`，其原应用分支只按构建目录重定向，不接受客户端提供的目标 URL。新作品的作者与法定声明保留；本机个人设置不进入网站或素材包。

@@ -7,9 +7,12 @@ import { pluginCovers } from './plugin-covers.js';
 import { createCommunityPages } from './community-pages.js';
 import { createPluginPublicationClient, configuredSubmissionRepository, githubSubmissionUrl } from './publication-client.js';
 import { publicSiteUrl, submissionRepository } from './publication-config.js';
+import { loadCatalogManagement, managedWorks } from './catalog-management.js';
 
 const $ = selector => document.querySelector(selector);
-const works = [...pets, ...toolPlugins, ...sourcePlugins, ...templates.map(item => ({ ...item, kind: 'plugin', author: templateCredit.author, download: `assets/${item.id}.zip` }))].map(item => ({ ...item, ...(item.kind === 'plugin' ? { cover: pluginCovers[item.id] ?? item.cover ?? item.presentation?.cover } : {}), ...(item.author === projectAuthor ? { authorHandle: projectAuthor, authorUrl: projectAuthorUrl } : {}) }));
+let managementError;
+const management = await loadCatalogManagement().catch(error => { managementError = error; return { available: true, items: [] }; });
+const works = managedWorks(managementError ? [] : [...pets, ...toolPlugins, ...sourcePlugins, ...templates.map(item => ({ ...item, kind: 'plugin', author: templateCredit.author, download: `assets/${item.id}.zip` }))], management).map(item => ({ ...item, ...(management.available ? { download: `/api/download/${item.id}` } : {}), ...(item.kind === 'plugin' ? { cover: pluginCovers[item.id] ?? item.cover ?? item.presentation?.cover } : {}), ...(item.author === projectAuthor ? { authorHandle: projectAuthor, authorUrl: projectAuthorUrl } : {}) }));
 const pluginWorks = works.filter(item => item.kind === 'plugin');
 const petWorks = works.filter(item => item.kind === 'pet');
 const publication = createPluginPublicationClient();
@@ -286,7 +289,7 @@ function renderGallery() {
   $('#gallery-title').textContent = kind === 'pet' ? '桌宠广场' : '插件广场';
   $('#catalog-title').textContent = kind === 'pet' ? '桌宠作品' : '插件作品';
   $('#gallery-total').textContent = kind === 'pet' ? `共 ${all.length} 只宠物` : `共 ${all.length} 个插件`;
-  const categories = ['全部', ...(kind === 'pet' ? galleryCategories : new Set(all.map(item => item.category)))];
+  const categories = ['全部', ...new Set([...(kind === 'pet' ? galleryCategories : []), ...all.map(item => item.category)])];
   $('.category-bar').innerHTML = categories.map(item => {
     const count = all.filter(work => item === '全部' || work.category === item).length;
     const builtin = item === '全部' || builtinCategoryLabels.has(item) && (kind === 'pet' || all.some(work => builtinWorkIds.has(work.id) && work.category === item));
@@ -1036,6 +1039,7 @@ function updatePublicationUI() {
 }
 
 function insertPublicPlugins(items) {
+  items = managedWorks(managementError ? [] : items, management);
   for (const item of items) {
     const existing = works.findIndex(work => work.id === item.id);
     if (existing >= 0) works[existing] = item; else works.push(item);
@@ -1269,6 +1273,10 @@ window.addEventListener('pagehide', () => {
   clearTimeout(toastTimer);
 });
 renderRoute();
+if (managementError) {
+  const notice = document.createElement('p'); notice.setAttribute('role', 'alert'); notice.textContent = managementError.message;
+  $('#main').prepend(notice); toast(managementError.message);
+}
 void initializePublication();
 
 // AI 浏览器与可见筛选使用同一个状态入口，不读取本机资料。
