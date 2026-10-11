@@ -7,3 +7,5 @@
 `worker/media-assets.mjs` 只处理 `gallery-files.json` 登记的视频路径，路由生成器复用同一名单。Pages 原静态服务的 Range 返回整片，因此这些视频的 HEAD 补完整大小、GET 单区间返回 206 和真实 Content-Range，越界返回 416。请求不能指定外部资源；多区间或格式无效的 Range 忽略，返回完整资源；If-Range 不匹配当前 SHA-256 ETag 时也返回完整资源。素材字节不改动，分段通过标准流管道截取、到达末端取消上游，在 Workers 使用 FixedLengthStream 确保长度，不缓存完整视频。其他资源仍走 ASSETS，API 的来源与身份规则保留。
 
 `tests/media-assets.test.mjs` 保护真实登记媒体的 HEAD、首段、中段、尾段、越界、取消、未登记路径和平台固定长度响应；公网验收另外实测 Pages 的 HEAD／206／416，测试通过不代替部署结果。
+
+视频路由按同一媒体父目录合并，Worker 内仍逐文件检查登记名单。本轮190个视频合并为4个目录规则，加API共5条，避免逐视频生成规则超出Pages限制。构建与真实发布包测试同时检查包含和排除规则合计不超过100条、每条不超过100字符；图集、ZIP和其他目录保留静态服务。规则依据见[Cloudflare路由说明](https://developers.cloudflare.com/pages/functions/routing/)。

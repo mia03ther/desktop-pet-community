@@ -15,6 +15,28 @@ assert.ok(video, '公开清单应包含本轮发布的视频。');
 const url = origin + '/' + video.path;
 const ASSETS = await publicAssets(resolve(root, '../community-host/public'));
 
+test('真实发布包视频父目录路由覆盖全部登记原片且不扩大素材范围', async () => {
+  const routes=JSON.parse(await readFile(resolve(root,'dist/_routes.json'),'utf8'));
+  assert.equal(routes.version,1);assert.ok(Array.isArray(routes.include));assert.ok(Array.isArray(routes.exclude));
+  const rules=[...routes.include,...routes.exclude];assert.ok(rules.length<=100,'包含和排除规则合计不能超过100条');
+  assert.ok(rules.every(rule=>typeof rule==='string'&&rule.length<=100),'每条路由不能超过100字符');
+  assert.ok(routes.include.includes('/api/*'));assert.deepEqual(routes.exclude,[]);
+  const videos=manifest.files.filter(file=>['video/mp4','video/webm'].includes(file.mime)).map(file=>'/'+file.path);
+  assert.deepEqual(new Set(videoAssetPaths),new Set(videos),'路由引用完整公开原片登记名单');
+  const matches=(rule,path)=>rule.endsWith('*')?path.startsWith(rule.slice(0,-1)):path===rule;
+  for(const path of videos)assert.ok(routes.include.some(rule=>matches(rule,path)),path);
+  const directories=new Set(videos.map(path=>path.slice(0,path.lastIndexOf('/'))));
+  const mediaRoutes=routes.include.filter(rule=>rule!=='/api/*');assert.equal(mediaRoutes.length,directories.size);
+  for(const rule of mediaRoutes){
+    assert.ok(rule.startsWith('/assets/pets/')&&rule.endsWith('/*'),rule);
+    assert.ok(directories.has(rule.slice(0,-2)),'只允许逐文件登记的直接父目录：'+rule);
+    const unknown=rule.slice(0,-1)+'not-registered.webm';
+    assert.equal(await serveVideoAsset(new Request(origin+unknown),{fetch(){throw new Error('未登记视频不得通过媒体入口读取');}}),null);
+    assert.equal((await worker.fetch(new Request(origin+unknown),{ASSETS})).status,404);
+  }
+});
+
+
 test('本轮Clawa与PC中文说明经真实公开目录返回GET和HEAD原字节', async () => {
   for (const name of ['README-导入与授权说明.md', '使用说明.md']) {
     const file = manifest.files.find(entry => entry.path.split('/').at(-1) === name);
