@@ -4,18 +4,18 @@
   "description": "zhen'chu",
   "mediaVersion": 1,
   "actions": {
-    "idle": "actions/33e436b9.mp4",
-    "action-5d628916": "actions/5d628916.mp4",
-    "action-82c84ef1": "actions/82c84ef1.mp4",
-    "action-33e436b9": "actions/65733b1d.mp4",
-    "action-9fb12ac7": "actions/9fb12ac7.mp4",
-    "action-d2366c8d": "actions/d2366c8d.mp4",
-    "action-da836117": "actions/da836117.mp4",
-    "action-e904a850": "actions/e904a850.mp4",
-    "action-327f461c": "actions/327f461c.mp4",
-    "action-5f6dea1c": "actions/5f6dea1c.mp4",
-    "action-856878f8": "actions/856878f8.mp4",
-    "action-358100d6": "actions/358100d6.mp4"
+    "idle": "actions/33e436b9.webm",
+    "action-5d628916": "actions/5d628916.webm",
+    "action-82c84ef1": "actions/82c84ef1.webm",
+    "action-33e436b9": "actions/65733b1d.webm",
+    "action-9fb12ac7": "actions/9fb12ac7.webm",
+    "action-d2366c8d": "actions/d2366c8d.webm",
+    "action-da836117": "actions/da836117.webm",
+    "action-e904a850": "actions/e904a850.webm",
+    "action-327f461c": "actions/327f461c.webm",
+    "action-5f6dea1c": "actions/5f6dea1c.webm",
+    "action-856878f8": "actions/856878f8.webm",
+    "action-358100d6": "actions/358100d6.webm"
   },
   "actionDefinitions": {
     "idle": {
@@ -82,8 +82,6 @@
     "dragged": "action-5d628916"
   },
   "background": {
-    "mode": "chroma",
-    "color": "#13ba2d",
-    "tolerance": 70
+    "mode": "alpha"
   }
 }

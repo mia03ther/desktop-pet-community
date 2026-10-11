@@ -1274,5 +1274,3 @@ if (modelContext?.registerTool) {
   } catch (error) { console.warn('当前浏览器不支持广场工具', error.message); }
   window.addEventListener('pagehide', () => lifecycle.abort(), { once: true });
 }
-
-document.addEventListener("community-account-changed", () => void initializePublication());

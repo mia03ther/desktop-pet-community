@@ -4791,72 +4791,72 @@ export const pets = [
     "mediaActions": {
       "idle": {
         "displayName": "pearl-official-idle-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/33e436b9.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/33e436b9.webm"
       },
       "action-5d628916": {
         "displayName": "pearl-official-dragged-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/5d628916.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/5d628916.webm"
       },
       "action-82c84ef1": {
         "displayName": "pearl-official-failed-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/82c84ef1.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/82c84ef1.webm"
       },
       "action-33e436b9": {
         "displayName": "pearl-official-clicked-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/65733b1d.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/65733b1d.webm"
       },
       "action-9fb12ac7": {
         "displayName": "pearl-official-jumping-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/9fb12ac7.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/9fb12ac7.webm"
       },
       "action-d2366c8d": {
         "displayName": "pearl-official-review-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/d2366c8d.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/d2366c8d.webm"
       },
       "action-da836117": {
         "displayName": "pearl-official-running-left-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/da836117.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/da836117.webm"
       },
       "action-e904a850": {
         "displayName": "pearl-official-running-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/e904a850.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/e904a850.webm"
       },
       "action-327f461c": {
         "displayName": "pearl-official-running-right-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/327f461c.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/327f461c.webm"
       },
       "action-5f6dea1c": {
         "displayName": "pearl-official-sleeping-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/5f6dea1c.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/5f6dea1c.webm"
       },
       "action-856878f8": {
         "displayName": "pearl-official-waiting-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/856878f8.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/856878f8.webm"
       },
       "action-358100d6": {
         "displayName": "pearl-official-waving-personality-01-原件",
-        "type": "video/mp4",
-        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/358100d6.mp4"
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/cloud-lykinzlj1/actions/358100d6.webm"
       }
     },
     "download": "https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/pets-20261010/cloud-lykinzlj1.zip",
-    "downloadLabel": "下载完整桌宠 ZIP（196 MB）",
-    "hostNotice": "下载完整 ZIP 后，在控制中心「我的桌宠」导入并设为当前桌宠。12 个状态已与对应动作绑定，动作名称、种类和绑定可继续自定义；视频在本地按包内设置抠除纯色背景。",
+    "downloadLabel": "下载完整桌宠 ZIP（125 MB）",
+    "hostNotice": "下载完整 ZIP 后，在控制中心「我的桌宠」导入并设为当前桌宠。12 个状态已与对应动作绑定，动作名称、种类和绑定可继续自定义；视频已自带透明通道，无需抠像，边缘更干净。",
     "packageManifest": "assets/pets/user-projects-20261010/cloud-lykinzlj1/pet.json",
     "packageLicense": "assets/pets/user-projects-20261010/cloud-lykinzlj1/LICENSE.txt",
-    "archiveBytes": 205169901,
-    "archiveSha256": "4ab46c7eac9c60c63b81b57a8f5099e43ecb041e912718b0007c2998e551f870",
+    "archiveBytes": 130713060,
+    "archiveSha256": "6b49ab0190dbbf6a3f6382bb1ce7bdfe44c91c38bfbcca9edc0184f45017d4bf",
     "license": "CC Lykinzlj-NC 4.0",
     "source": "https://github.com/xunguangzlj-cloud/desktop-pet-community/issues/1",
     "importedAt": "2026-10-10",
