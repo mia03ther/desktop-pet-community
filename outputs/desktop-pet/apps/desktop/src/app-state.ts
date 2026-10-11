@@ -776,7 +776,7 @@ function validateInstalledPetFiles(petId: string, source: InstalledPetState["sou
         if (stats.isSymbolicLink() || !stats.isFile() || stats.size <= 0 || stats.size > maxPetMediaFileBytes) return "动作媒体文件缺失或大小无效。";
         total += stats.size;
       }
-      return total > maxPetMediaTotalBytes ? "动作媒体总大小超过 200 MiB。" : undefined;
+      return total > maxPetMediaTotalBytes ? `动作媒体总大小超过 ${Math.round(maxPetMediaTotalBytes / 1024 / 1024)} MiB。` : undefined;
     }
     const spritesheet = statSync(spritesheetPath);
     if (!spritesheet.isFile()) return "spritesheet.webp is not a file.";

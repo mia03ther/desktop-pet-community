@@ -244,7 +244,7 @@ async function createInstalledMediaPetRender(metadata: MediaPetMetadata, display
     const stats = await lstat(join(directory, file));
     if (stats.isSymbolicLink() || !stats.isFile() || stats.size <= 0 || stats.size > maxPetMediaFileBytes) throw new Error("动作素材不是有效的本机普通文件。");
     total += stats.size;
-    if (total > maxPetMediaTotalBytes) throw new Error("动作媒体总大小超过 200 MiB。");
+    if (total > maxPetMediaTotalBytes) throw new Error(`动作媒体总大小超过 ${Math.round(maxPetMediaTotalBytes / 1024 / 1024)} MiB。`);
     return `${file}:${stats.size}:${stats.mtimeMs}`;
   }));
   const flipped = isPetFlippedHorizontally(metadata.id);

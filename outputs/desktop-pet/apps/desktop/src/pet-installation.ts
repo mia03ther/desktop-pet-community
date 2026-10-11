@@ -24,9 +24,9 @@ import { readLocalPackageFiles, selectLocalPackageRoot } from "./local-package-f
 import { convertShimejiPetPackage } from "./shimeji-pet-import.js";
 
 const maxZipDownloadBytes = maxPetShareArchiveBytes;
-const maxExtractedTotalBytes = 200 * 1024 * 1024;
+const maxExtractedTotalBytes = 1024 * 1024 * 1024;
 const maxFiles = 500;
-const maxIndividualFileBytes = 100 * 1024 * 1024;
+const maxIndividualFileBytes = 256 * 1024 * 1024;
 const downloadTimeoutMs = 30_000;
 
 export interface LocalPetInstallResult {
@@ -247,13 +247,13 @@ export async function installShimejiPetFromFolderWithResult(folderPath: string):
 }
 
 async function installLocalPetPackage(sourcePath: string, convertShimeji = false): Promise<LocalPetInstallResult> {
-  let files = await readLocalPackageFiles(sourcePath, { maxBytes: 200 * 1024 * 1024, maxFileBytes: maxIndividualFileBytes, maxFiles: 1000 });
+  let files = await readLocalPackageFiles(sourcePath, { maxBytes: maxExtractedTotalBytes, maxFileBytes: maxIndividualFileBytes, maxFiles: 1000 });
   if (![...files.keys()].some((name) => basename(name) === "pet.json")) {
     if (!convertShimeji) throw new Error("此项目需要原宿主。请先检测兼容性并保留原项目；Shimeji 素材转换必须另行明确选择。");
     files = await convertShimejiPetPackage(files, basename(sourcePath).replace(/\.zip$/i, ""));
   }
   const imported = selectLocalPackageRoot(files, ["pet.json"]);
-  if (imported.files.size > 1000 || [...imported.files.values()].reduce((total, bytes) => total + bytes.length, 0) > 200 * 1024 * 1024) throw new Error("归档或转换后的素材包超过 1000 文件或 200 MiB。");
+  if (imported.files.size > 1000 || [...imported.files.values()].reduce((total, bytes) => total + bytes.length, 0) > maxExtractedTotalBytes) throw new Error("归档或转换后的素材包超过 1000 文件或 200 MiB。");
   const manifestBytes = imported.files.get("pet.json")!;
   if (manifestBytes.length > maxCodexPetJsonBytes) throw new Error("pet.json 过大。");
   const parsed: unknown = JSON.parse(manifestBytes.toString("utf8"));

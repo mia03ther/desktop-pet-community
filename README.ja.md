@@ -39,7 +39,7 @@
 
 ### コミュニティペット紹介
 
-プラットフォームには 117 体のペットと 24 個のプラグインが収録されています。以下の作品は[共创平台](https://desktoppet-e9e.pages.dev)でプレビュー・ダウンロード・インポートできます：
+プラットフォームには 132 のペットと 24 個のプラグインが収録されています。以下の作品は[共创平台](https://desktoppet-e9e.pages.dev)でプレビュー・ダウンロード・インポートできます：
 
 | <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="派蒙"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
 |:---:|:---:|:---:|

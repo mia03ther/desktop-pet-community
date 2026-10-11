@@ -41,7 +41,7 @@ External AI requires your own accounts, tools, and configuration. Preset entries
 
 ### Community pets showcase
 
-The platform hosts 117 pets and 24 plugins. Preview, download, and import these works on the [community platform](https://desktoppet-e9e.pages.dev):
+The platform hosts 132 pet entries and 24 plugins. Preview, download, and import these works on the [community platform](https://desktoppet-e9e.pages.dev):
 
 | <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="Firefly"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="Paimon"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
 |:---:|:---:|:---:|

@@ -32,7 +32,7 @@ export async function readPetPackageAssets(directory: string, metadata: Installe
   for (const file of uniquePetMediaFiles(metadata)) {
     const bytes = await readBoundedRegularFile(join(directory, file), maxPetMediaFileBytes, file);
     total += bytes.byteLength;
-    if (total > maxPetMediaTotalBytes) throw new Error("动作媒体总大小超过 200 MiB。");
+    if (total > maxPetMediaTotalBytes) throw new Error(`动作媒体总大小超过 ${Math.round(maxPetMediaTotalBytes / 1024 / 1024)} MiB。`);
     await validatePetMediaBytes(bytes, file, metadata);
     assets.set(file, bytes);
   }

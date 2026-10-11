@@ -4932,6 +4932,392 @@ export const pets = [
       "透明视频",
       "Windows"
     ]
+  },
+  {
+    "id": "dsh-pet-actions",
+    "title": "达妮娅 · 动作包",
+    "author": "Lykinzlj",
+    "kind": "pet",
+    "category": "游戏角色",
+    "version": "0.3.1",
+    "description": "达妮娅原服装 71 个透明视频动作的可导入动作包，来自开源项目 dsh-pet：待机、行走、点击与拖拽回应、挥手、跳跃，以及思考、工作、整理、等待、完成、出错六档工作状态联动。",
+    "distribution": "media",
+    "thumbnail": "assets/pets/user-projects-20261010/dsh-pet-actions/thumbnail.webp",
+    "mediaActions": {
+      "action-a001": {
+        "displayName": "举钱袋轻晃",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a001.webm"
+      },
+      "action-a002": {
+        "displayName": "佯装无辜",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a002.webm"
+      },
+      "action-a003": {
+        "displayName": "侧头摆手",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a003.webm"
+      },
+      "action-a004": {
+        "displayName": "侧身张望",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a004.webm"
+      },
+      "action-a005": {
+        "displayName": "侧身踏步",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a005.webm"
+      },
+      "action-a006": {
+        "displayName": "侧身踱步张望",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a006.webm"
+      },
+      "action-a007": {
+        "displayName": "侧身轻晃",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a007.webm"
+      },
+      "action-a008": {
+        "displayName": "傲娇别过头",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a008.webm"
+      },
+      "action-a009": {
+        "displayName": "原地向右走",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a009.webm"
+      },
+      "action-a010": {
+        "displayName": "原地向左走",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a010.webm"
+      },
+      "action-a011": {
+        "displayName": "叉腰小得意",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a011.webm"
+      },
+      "action-a012": {
+        "displayName": "双手合拢抬手",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a012.webm"
+      },
+      "action-a013": {
+        "displayName": "嘘这是秘密",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a013.webm"
+      },
+      "action-a014": {
+        "displayName": "坐下看书",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a014.webm"
+      },
+      "action-a015": {
+        "displayName": "坐地清点金币",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a015.webm"
+      },
+      "action-a016": {
+        "displayName": "害羞遮脸",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a016.webm"
+      },
+      "action-a017": {
+        "displayName": "小拳拳生气",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a017.webm"
+      },
+      "action-a018": {
+        "displayName": "展示南瓜灯",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a018.webm"
+      },
+      "action-a019": {
+        "displayName": "左右张望",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a019.webm"
+      },
+      "action-a020": {
+        "displayName": "庆祝",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a020.webm"
+      },
+      "action-a021": {
+        "displayName": "开心点头",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a021.webm"
+      },
+      "action-a022": {
+        "displayName": "张臂转圈",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a022.webm"
+      },
+      "action-a023": {
+        "displayName": "忙碌点按",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a023.webm"
+      },
+      "action-a024": {
+        "displayName": "悄悄偷笑",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a024.webm"
+      },
+      "action-a025": {
+        "displayName": "戳破小泡泡",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a025.webm"
+      },
+      "action-a026": {
+        "displayName": "扑克牌小魔术",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a026.webm"
+      },
+      "action-a027": {
+        "displayName": "托南瓜灯摆手",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a027.webm"
+      },
+      "action-a028": {
+        "displayName": "托腮观察",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a028.webm"
+      },
+      "action-a029": {
+        "displayName": "抬手下蹲",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a029.webm"
+      },
+      "action-a030": {
+        "displayName": "抬手遮脸",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a030.webm"
+      },
+      "action-a031": {
+        "displayName": "抬掌轻点",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a031.webm"
+      },
+      "action-a032": {
+        "displayName": "抱书翻阅",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a032.webm"
+      },
+      "action-a033": {
+        "displayName": "抱书踏步",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a033.webm"
+      },
+      "action-a034": {
+        "displayName": "抱臂装严肃",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a034.webm"
+      },
+      "action-a035": {
+        "displayName": "招手邀你靠近",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a035.webm"
+      },
+      "action-a036": {
+        "displayName": "指向旁边",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a036.webm"
+      },
+      "action-a037": {
+        "displayName": "指尖轻点",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a037.webm"
+      },
+      "action-a038": {
+        "displayName": "挥手告别",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a038.webm"
+      },
+      "action-a039": {
+        "displayName": "捂嘴轻笑",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a039.webm"
+      },
+      "action-a040": {
+        "displayName": "捂耳朵嫌吵",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a040.webm"
+      },
+      "action-a041": {
+        "displayName": "捧生日蛋糕",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a041.webm"
+      },
+      "action-a042": {
+        "displayName": "掌心托光球",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a042.webm"
+      },
+      "action-a043": {
+        "displayName": "掌心托泡泡",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a043.webm"
+      },
+      "action-a044": {
+        "displayName": "提钱袋坐下",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a044.webm"
+      },
+      "action-a045": {
+        "displayName": "提钱袋摆动",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a045.webm"
+      },
+      "action-a046": {
+        "displayName": "提钱袋转身",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a046.webm"
+      },
+      "action-a047": {
+        "displayName": "摇头拒绝",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a047.webm"
+      },
+      "action-a048": {
+        "displayName": "摊手点头",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a048.webm"
+      },
+      "action-a049": {
+        "displayName": "摊手疑惑",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a049.webm"
+      },
+      "action-a050": {
+        "displayName": "放松肩膀",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a050.webm"
+      },
+      "action-a051": {
+        "displayName": "歪头眨眼",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a051.webm"
+      },
+      "action-a052": {
+        "displayName": "比心wink",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a052.webm"
+      },
+      "action-a053": {
+        "displayName": "比耶问候",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a053.webm"
+      },
+      "idle": {
+        "displayName": "泡泡坐姿待机",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a054.webm"
+      },
+      "action-a055": {
+        "displayName": "点鼻尖恶作剧",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a055.webm"
+      },
+      "action-a056": {
+        "displayName": "竖拇指夸奖",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a056.webm"
+      },
+      "action-a057": {
+        "displayName": "胸前抬手",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a057.webm"
+      },
+      "action-a058": {
+        "displayName": "被点惊讶",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a058.webm"
+      },
+      "action-a059": {
+        "displayName": "贴耳手势",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a059.webm"
+      },
+      "action-a060": {
+        "displayName": "超绝小手刀",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a060.webm"
+      },
+      "action-a061": {
+        "displayName": "跃起转身",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a061.webm"
+      },
+      "action-a062": {
+        "displayName": "跃起转身庆祝",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a062.webm"
+      },
+      "action-a063": {
+        "displayName": "跃起转身点赞",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a063.webm"
+      },
+      "action-a064": {
+        "displayName": "蹲身转头",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a064.webm"
+      },
+      "action-a065": {
+        "displayName": "轻摆裙角行礼",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a065.webm"
+      },
+      "action-a066": {
+        "displayName": "轻轻鼓掌",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a066.webm"
+      },
+      "action-a067": {
+        "displayName": "闭眼抬手点头",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a067.webm"
+      },
+      "action-a068": {
+        "displayName": "闭眼挥手摇摆",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a068.webm"
+      },
+      "action-a069": {
+        "displayName": "闭眼转身摇摆",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a069.webm"
+      },
+      "action-a070": {
+        "displayName": "闭眼轻晃",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a070.webm"
+      },
+      "action-a071": {
+        "displayName": "雀跃庆祝",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a071.webm"
+      }
+    },
+    "download": "https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/pets-20261011/dsh-pet-actions.zip",
+    "downloadLabel": "下载完整动作包 ZIP（592 MB）",
+    "hostNotice": "下载完整 ZIP 后，在控制中心「我的桌宠」导入并设为当前桌宠。动作包约 592 MB，自带透明通道；导入需要随本包一同发布的桌面版（本机导入限额 1 GiB），当前已发布的 v4.0.1-preview 版仍按 200 MiB 拦截。71 个动作名称、分类与状态绑定导入后可继续自定义。",
+    "packageManifest": "assets/pets/user-projects-20261010/dsh-pet-actions/pet.json",
+    "packageLicense": "assets/pets/user-projects-20261010/dsh-pet-actions/LICENSE.txt",
+    "archiveBytes": 620559705,
+    "archiveSha256": "f7c9830faf4d1d065ac45075dbad58ae6295a4a7206b8ac3d98cdccc9a7e9035",
+    "license": "代码 MIT；角色、视频及第三方素材权利独立，随原项目发行说明保留。",
+    "source": "https://github.com/xunguangzlj-cloud/danya-pet",
+    "importedAt": "2026-10-11",
+    "tags": [
+      "达妮娅",
+      "视频动作",
+      "透明通道",
+      "可导入",
+      "开源"
+    ],
+    "collections": []
   }
 ];
 export function petCredit(work) {

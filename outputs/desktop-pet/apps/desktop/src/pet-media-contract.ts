@@ -20,8 +20,8 @@ export interface MediaPetMetadata {
   readonly staticActions?: readonly string[];
   readonly background: PetMediaBackground;
 }
-export const maxPetMediaFileBytes = 100 * 1024 * 1024;
-export const maxPetMediaTotalBytes = 200 * 1024 * 1024;
+export const maxPetMediaFileBytes = 256 * 1024 * 1024;
+export const maxPetMediaTotalBytes = 1024 * 1024 * 1024;
 
 export function isPetMediaFile(value: unknown): value is PetMediaFile {
   return typeof value === "string" && value.length <= 240 && /\.(?:mp4|webm|webp)$/i.test(value)
