@@ -1,5 +1,5 @@
 // 打包后瘦身：剔除 sharp(@img) 中非当前平台的原生二进制与构建工具依赖。
-// darwin-arm64/x64 只需要对应 sharp-darwin-* + sharp-libvips-darwin-*，其余平台包纯占体积。
+// darwin-arm64 只需要 sharp-darwin-arm64 + sharp-libvips-darwin-arm64，其余平台包纯占体积。
 const { rmSync, existsSync } = require("node:fs");
 const { join } = require("node:path");
 
@@ -14,7 +14,7 @@ const keepPrefixes = new Set([
 
 module.exports = async function afterPack(context) {
   if (context.electronPlatformName !== "darwin") return;
-  const { readdirSync } = require("node:fs");
+  const { readdirSync, statSync } = require("node:fs");
   // appOutDir 可能是 .app 本身，也可能是不含后缀的输出目录（builder 版本行为不一），自动探测。
   const candidates = [context.appOutDir, ...readdirSync(context.appOutDir, { withFileTypes: true })
     .filter((e) => e.isDirectory() && e.name.endsWith(".app"))
@@ -30,21 +30,20 @@ module.exports = async function afterPack(context) {
     console.log("afterPack: @img dir not found at " + imgDir);
     return;
   }
-  const removed = [];
+  let freed = 0;
   for (const entry of readdirSync(imgDir)) {
     if (keepPrefixes.has(entry)) continue;
+    const dir = join(imgDir, entry);
     try {
-      rmSync(join(imgDir, entry), { recursive: true, force: true });
-      removed.push(entry);
+      freed += statSync(dir).size;
+      rmSync(dir, { recursive: true, force: true });
     } catch { /* 单个失败不阻塞打包 */ }
   }
   // node-gyp 仅在原生模块编译时需要，运行时无用
   const nodeGyp = join(unpackedRoot, "node-gyp");
   if (existsSync(nodeGyp)) {
-    try {
-      rmSync(nodeGyp, { recursive: true, force: true });
-      removed.push("node-gyp");
-    } catch { /* 单个失败不阻塞打包 */ }
+    try { freed += statSync(nodeGyp).size; } catch { /* 仅统计 */ }
+    rmSync(nodeGyp, { recursive: true, force: true });
   }
-  console.log(`afterPack: removed non-darwin native packages: ${removed.length > 0 ? removed.join(", ") : "(none)"}`);
+  console.log(`afterPack: trimmed non-darwin native packages (~${Math.round(freed / 1024 / 1024)} MB)`);
 };
