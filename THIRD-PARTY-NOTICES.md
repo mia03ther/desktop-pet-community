@@ -75,3 +75,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+## Codachi 原创像素角色
+
+来源：blairjordan/codachi，固定提交 `d24a6ebdc357cf1daff2c49b940fba4f4c0b66a7`。蓝色怪物与小鸟的原 README 明确称为用于 Codex／ChatGPT 的原创图集，原仓库根 MIT 未对这两张图另列例外。两份下载 ZIP 保留原 PNG、MIT 原文、README 及适配说明；播放用无损 WebP 仅把原待机第 0 帧复制到空白中性格，不缩放原动作像素，不新增动作。原 IDE 源码未声明新图集时序，本系统按 V2 约定播放；素材导入不迁移原 IDE 孵化、编辑器和控制逻辑。

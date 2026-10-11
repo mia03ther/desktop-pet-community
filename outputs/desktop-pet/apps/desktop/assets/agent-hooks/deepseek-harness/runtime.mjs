@@ -210,6 +210,42 @@ function getSecureXdgRuntimeDir() {
   }
 }
 
+// ../../packages/client/src/agent-activity.ts
+var adapters = /* @__PURE__ */ new Set(["codex", "zcode", "deepseek-harness", "doubao", "claude", "opencode", "pi", "openclaw", "cursor", "zed"]);
+var phases = /* @__PURE__ */ new Set(["session-start", "turn-start", "tool-start", "tool-complete", "tool-failed", "permission", "turn-end", "session-end", "interrupt"]);
+var isAdapter = (value) => typeof value === "string" && adapters.has(value);
+var isPhase = (value) => typeof value === "string" && phases.has(value);
+var isDigest = (value) => typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+var isToolName = (value) => typeof value === "string" && /^[a-zA-Z0-9_.:-]{1,100}$/.test(value);
+function sanitizeAgentActivityEvent(value, now = Date.now()) {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return void 0;
+  const { adapter, sessionId, event, turnId, callId, toolName, editedFileIds, sentAt } = value;
+  if (!isAdapter(adapter) || !isDigest(sessionId) || !isPhase(event) || typeof sentAt !== "number" || !Number.isSafeInteger(sentAt) || sentAt < now - 10 * 6e4 || sentAt > now + 6e4) return void 0;
+  if (turnId !== void 0 && !isDigest(turnId)) return void 0;
+  if (callId !== void 0 && !isDigest(callId)) return void 0;
+  if (toolName !== void 0 && !isToolName(toolName)) return void 0;
+  let files;
+  if (editedFileIds !== void 0) {
+    if (event !== "tool-complete" || !Array.isArray(editedFileIds) || editedFileIds.length > 100) return void 0;
+    files = [];
+    for (let index = 0; index < editedFileIds.length; index += 1) {
+      const id = editedFileIds[index];
+      if (!isDigest(id)) return void 0;
+      files.push(id);
+    }
+  }
+  return {
+    adapter,
+    sessionId,
+    event,
+    sentAt,
+    ...turnId !== void 0 ? { turnId } : {},
+    ...callId !== void 0 ? { callId } : {},
+    ...toolName !== void 0 ? { toolName } : {},
+    ...files !== void 0 ? { editedFileIds: files } : {}
+  };
+}
+
 // ../../packages/client/src/remote-protocol.ts
 import { isIPv4 } from "node:net";
 var openPetsRemoteProtocol = "openpets-remote";
@@ -327,7 +363,12 @@ function createOpenPetsClient(options = {}) {
     acquireLease: (leaseOptions) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.acquire", { requestedPetId: leaseOptions?.requestedPetId, clientPid: process.pid, sessionNonce: SESSION_NONCE }, options),
     heartbeatLease: (leaseId) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.heartbeat", { leaseId }, options),
     releaseLease: (leaseId) => remote ? unsupportedRemote() : sendDiscoveredRequest("lease.release", { leaseId }, options),
-    reportActivity: (event) => remote ? unsupportedRemote() : sendDiscoveredRequest("pet.react", { reaction: event.event === "permission" ? "waiting" : event.event === "tool-failed" ? "error" : event.event === "turn-end" ? "success" : ["session-end", "session-start", "interrupt"].includes(event.event) ? "idle" : "thinking", externalAi: event }, options),
+    reportActivity: async (event) => {
+      if (remote) return unsupportedRemote();
+      const activity = sanitizeAgentActivityEvent(event);
+      if (!activity) throw new OpenPetsClientError("invalid_params", "\u5916\u90E8 AI \u6D3B\u52A8\u5143\u6570\u636E\u65E0\u6548\uFF1B\u53EA\u63A5\u53D7\u6709\u754C\u7684\u4F1A\u8BDD\u6458\u8981\u4E0E\u5DE5\u5177\u540D\u79F0\u3002");
+      return sendDiscoveredRequest("pet.react", { reaction: activity.event === "permission" ? "waiting" : activity.event === "tool-failed" ? "error" : activity.event === "turn-end" ? "success" : ["session-end", "session-start", "interrupt"].includes(activity.event) ? "idle" : "thinking", externalAi: activity }, options);
+    },
     react: (reaction, reactOptions) => remote ? sendRemoteRequest(remote.endpoint, remote.token, remote.clientId, "pet.react", { reaction: validateRemoteReaction(reaction) }, options) : sendDiscoveredRequest("pet.react", { reaction: validateReaction(reaction), leaseId: reactOptions?.leaseId }, options),
     say: (message, sayOptions) => remote ? sendRemoteRequest(remote.endpoint, remote.token, remote.clientId, "pet.say", { message: validateRemoteMessage(message), ...sayOptions?.reaction === void 0 ? {} : { reaction: validateRemoteReaction(sayOptions.reaction) } }, options) : sendDiscoveredRequest("pet.say", { message, reaction: sayOptions?.reaction, leaseId: sayOptions?.leaseId }, options),
     showMedia: (path, mediaOptions) => {

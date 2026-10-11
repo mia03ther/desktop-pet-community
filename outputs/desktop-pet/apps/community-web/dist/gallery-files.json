@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "upstreamCommit": "0d0f06bb1721aef4ddbc7f893276f235ed8458ec",
-  "publicPets": 154,
+  "publicPets": 156,
   "publicPlugins": 24,
   "files": [
     {
@@ -1173,6 +1173,42 @@
       "mime": "image/webp",
       "bytes": 26558,
       "sha256": "ae9a74bd31ea22a7d4255ce910867949c32b099127da7761998ce3acda40d0eb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/codachi-bird/package.zip",
+      "mime": "application/zip",
+      "bytes": 3538798,
+      "sha256": "5d70ea549c755749b44c242675b257b613655dd0a3d8258ba07223af057e233e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/codachi-bird/spritesheet.webp",
+      "mime": "image/webp",
+      "bytes": 1466138,
+      "sha256": "bd0757e1a962e6b9868e6f20522c3485167664608ff86752b39c419c1ba3c2b4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/codachi-bird/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 19584,
+      "sha256": "045fdcc5ee08f73d8702daa2722d2d79f6f181945717dce8d9b64d1a8d199c2a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/codachi-blue-monster/package.zip",
+      "mime": "application/zip",
+      "bytes": 3574451,
+      "sha256": "41a0713fa49c28ff78088969447a0162636e0a9af27a977f3c96c02fa40865d1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/codachi-blue-monster/spritesheet.webp",
+      "mime": "image/webp",
+      "bytes": 1549142,
+      "sha256": "119a85c803bc1397e26a529f133bb7ce3466529d166dbb0ebdd61608db23a033"
+    },
+    {
+      "path": "assets/pets/mit-20261011/codachi-blue-monster/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 21532,
+      "sha256": "b4338f74da0d8419eed0e04cc84d512e2937af84b1629f99717472def5661a09"
     },
     {
       "path": "assets/pets/mit-20261011/desktop-cat-1ilit/actions/idle.webp",

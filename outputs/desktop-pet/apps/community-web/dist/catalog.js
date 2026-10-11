@@ -127,6 +127,56 @@ export const cat = {
 };
 export const pets = [
   {
+    "id": "codachi-blue-monster",
+    "title": "Codachi 蓝色怪物",
+    "description": "Codachi 官方供 Codex/ChatGPT 使用的原创像素角色图集，含九类状态和视线素材；适配版补充静止中性格。",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "blairjordan",
+    "authorUrl": "",
+    "source": "https://github.com/blairjordan/codachi/tree/d24a6ebdc357cf1daff2c49b940fba4f4c0b66a7",
+    "license": "MIT根原文；官方原创图声明随原README，未发现独立素材例外。",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/codachi-blue-monster/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/codachi-blue-monster/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 3574451,
+    "archiveSha256": "41a0713fa49c28ff78088969447a0162636e0a9af27a977f3c96c02fa40865d1",
+    "upstreamCommit": "d24a6ebdc357cf1daff2c49b940fba4f4c0b66a7",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/codachi-blue-monster/spritesheet.webp"
+  },
+  {
+    "id": "codachi-bird",
+    "title": "Codachi 小鸟",
+    "description": "Codachi 官方供 Codex/ChatGPT 使用的原创像素角色图集，含九类状态和视线素材；适配版补充静止中性格。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "blairjordan",
+    "authorUrl": "",
+    "source": "https://github.com/blairjordan/codachi/tree/d24a6ebdc357cf1daff2c49b940fba4f4c0b66a7",
+    "license": "MIT根原文；官方原创图声明随原README，未发现独立素材例外。",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/codachi-bird/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/codachi-bird/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 3538798,
+    "archiveSha256": "5d70ea549c755749b44c242675b257b613655dd0a3d8258ba07223af057e233e",
+    "upstreamCommit": "d24a6ebdc357cf1daff2c49b940fba4f4c0b66a7",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/codachi-bird/spritesheet.webp"
+  },
+  {
     "id": "oc-claw-homie",
     "title": "Homie",
     "description": "A tiny smug patriotic cape-wearing superhero companion.",
