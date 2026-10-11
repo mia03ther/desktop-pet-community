@@ -1,4 +1,4 @@
-<p align="center"><strong>中文</strong> · <a href="README.en.md">English</a> · <a href="README.ja.md">日本語</a></p>
+<p align="center"><a href="README.md"><strong>中文（默认）</strong></a> · <a href="README.en.md">English</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
 <p align="center">
   <img src="outputs/desktop-pet/apps/community-web/dist/assets/brand-logo.png" width="112" alt="desktop pet 标志">
@@ -31,7 +31,7 @@
 - **多个 AI 工作联动**：一个桌宠可展示多个已接入会话的工作状态、具体工具和成功编辑文件数。Codex、ZCode 提供 Hook 接入，其他工具按各自桥接能力配置；工作监测与桌宠对话的 AI 分开管理。
 - **按支持情况查看额度**：Codex 支持官方只读订阅额度窗口；DeepSeek 对话来源支持官方余额查询，OpenRouter 支持官方密钥额度适配。未接通的来源显示未知，桌宠对话的 token 用量不冒充其他 AI 工具的剩余额度。
 - **按需安装插件**：喝水、久坐、眼睛休息、番茄钟等提醒，以及文件助手、电脑守护均为可选插件。提醒进入同一桌宠对话；文件助手提供本地定位与虚拟分类库，实际整理先查看计划，电脑守护提供监测和建议。
-- **共创平台**：桌宠广场、插件广场、需求广场、榜单与作者页；制作和直接导入分开，支持自定义视频动作、插件封面及完整作品投稿。持续收录GitHub优秀作者开源桌宠、插件与优秀作者上传的桌宠、插件，素材按各自许可发布。[共创平台](https://desktoppet-e9e.pages.dev)
+- **共创平台**：桌宠广场、插件广场、需求广场、榜单与作者页；制作和直接导入分开，支持自定义视频动作、插件封面及完整作品投稿。现有 362 件桌宠与 24 件插件，其中包含 Codex Pet 全部 316 件作品；每件保留原作者与原素材条款。默认按真实点赞与下载量热门优先展示，右上角支持中英日韩四语切换并记忆选择，首次使用默认中文。[共创平台](https://desktoppet-e9e.pages.dev)
 https://desktoppet-e9e.pages.dev/#pets
 - **开放导入**：兼容作品在本系统安装运行；不兼容项目保留原件，无法支持的操作禁用。有可识别原程序及运行环境时，可明确选择独立启动，不强制改写原项目逻辑。
 
@@ -39,9 +39,9 @@ https://desktoppet-e9e.pages.dev/#pets
 
 ### 社区收录桌宠示例
 
-| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/lulu--yogazz"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/lulu--yogazz-thumb.webp" width="150" alt="Lulu"></a> | <a href="https://github.com/PC2005-cloud/dsh-pet"><img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="150" alt="dsh-pet"></a> |
+| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/lulu--yogazz"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/lulu--yogazz-thumb.webp" width="150" alt="Lulu"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/pc2005-dsh-pet"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/pc2005-dsh-pet-20261011/thumbnail.webp" width="150" alt="dsh-pet"></a> |
 |:---:|:---:|:---:|
-| **流萤** | **Lulu** | **[dsh-pet](https://github.com/PC2005-cloud/dsh-pet)** |
+| **流萤** | **Lulu** | **[dsh-pet](https://desktoppet-e9e.pages.dev/#pets/pc2005-dsh-pet)** |
 | <a href="https://desktoppet-e9e.pages.dev/#pets/bongocat-vladelaina"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp" width="150" alt="BongoCat"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/cloud-lykinzlj1"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp" width="150" alt="真珠"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/danya-pet-windows"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp" width="150" alt="达妮娅 · 三形态"></a> |
 | **BongoCat** | **真珠** | **达妮娅 · 三形态** |
 
@@ -50,10 +50,10 @@ https://desktoppet-e9e.pages.dev/#pets
 ### 若不熟悉 GitHub 下载流程
 
 1. 直接把网址复制给 AI，让 AI 帮你安装。
-2. [Windows 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-windows-x64-portable.zip)，完整解压后双击 `desktop-pet.exe`。macOS 用户可下载下方对应的 Mac 包。
+2. [Windows 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-windows-x64-portable.zip)，完整解压后双击 `desktop-pet.exe`。macOS 用户可下载下方对应的 Mac 包。
 ### Windows
 
-1. 打开 [v4.0.3 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
+1. 打开 [v4.0.4 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
 2. 将便携 ZIP **完整解压**到一个可写目录，例如 `D:\Apps\desktop-pet`。保留同目录的 `resources`、运行库与其他文件，不单独移动 EXE，也不直接在 ZIP 内启动。
 3. 双击解压目录中的 `desktop-pet.exe`。自带运行环境，无需安装 Node.js 或 Python；首次启动创建本机档案，不附带作者的 AI 账号或个人设置。
 4. 平时直接打开此 EXE；也可为它创建桌面快捷方式。基础桌宠无需配置 AI，插件从共创平台按需下载后导入。
@@ -63,14 +63,14 @@ https://desktoppet-e9e.pages.dev/#pets
 核对下载文件完整性可在 PowerShell 执行：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.3-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.4-windows-x64-portable.zip
 ```
 
 将结果与同一 Release 的 `SHA256SUMS.txt` 对照；核对哈希只能确认文件一致，不能代替安全审计。
 
 ### macOS（Apple Silicon／arm64）
 
-[Mac 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-mac-arm64.zip)：完整解压，将 `desktop-pet.app` 放入“应用程序”后打开。
+[Mac 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-mac-arm64.zip)：完整解压，将 `desktop-pet.app` 放入“应用程序”后打开。
 
 支持 macOS arm64 源码构建；PR #2 的 Mac 打包改动已合并。与 Windows 一样，桌宠、控制中心、人设和本系统插件使用同一套代码；Windows 专用诊断、原 Windows EXE 与依赖原宿主的功能仍按平台能力限制。
 
@@ -182,7 +182,7 @@ https://desktoppet-e9e.pages.dev/#pets
 | 插件、字体、桌宠素材 | 各自目录与下载包中的 `LICENSE`、署名和素材条款分别适用；见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) |
 | 角色形象、作品 IP、商标与参考素材 | 相应权利属于各权利人，代码 MIT 许可不授予这些素材或角色的额外权利 |
 
-素材中存在 CC BY、CC BY-NC 等不同条款；非商业许可作品仅在许可范围内使用，不能因本项目代码开放就统一商用。未明确允许再分发的原件不在公开发布范围内。本项目不宣称取得所有角色或参考素材的独立官方授权；投稿者须明确自己可许可的内容与条件。
+素材中存在 CC BY、CC BY-NC 等不同条款；非商业许可作品仅在许可范围内使用，不能因本项目代码开放就统一商用。全量收录保留每件原许可；个人使用、原仓库限定或需另行许可等限制仍然有效，本站不授予额外权利。本项目不宣称取得所有角色或参考素材的独立官方授权；投稿者须明确自己可许可的内容与条件。
 
 应用的本机档案、凭据、聊天、日志、浏览器状态和历史制作记录不随源码或便携包发布。启用自己配置的 AI 后，请求按照对应提供方条款处理；使用前按需检查发送内容和插件权限。当前测试和发布范围以[交付状态](outputs/desktop-pet/docs/release-status.md)为准。
 

@@ -1,5 +1,5 @@
 import { collections, requestSeeds } from './community-data.js';
-import { validateRequest, normalizeRequestState, rankPets, rankAuthors, collectionWorks, contributorHref, contributorProfile, workStatistics, contributorRankingStatistics } from './community-core.js';
+import { validateRequest, normalizeRequestState, rankPets, rankAuthors, collectionWorks, contributorHref, contributorProfile, workStatistics, contributorRankingStatistics, compareWorkPopularity } from './community-core.js';
 import { petDisplayAuthor } from './catalog.js';
 import { githubSubmissionUrl } from './publication-client.js';
 
@@ -44,6 +44,10 @@ export function createCommunityPages({ pets, plugins, activityFor, escapeHtml, i
     return rankPets(entries, Object.fromEntries(entries.map(work => [work.id, activityFor(work.id)])), period, Date.now());
   }
 
+  function popularWorks(entries) {
+    return [...entries].sort((a, b) => compareWorkPopularity(a, b, activityFor));
+  }
+
   function rankingRows(entries, kind, period = 'week') {
     if (!entries.length) return '<li class="community-empty">还没有互动记录。去广场为喜欢的伙伴点赞或下载，它就会出现在这里。</li>';
     return entries.map((entry, index) => {
@@ -61,7 +65,7 @@ export function createCommunityPages({ pets, plugins, activityFor, escapeHtml, i
   }
 
   function collectionCard(item) {
-    const members = collectionWorks(item, pets);
+    const members = popularWorks(collectionWorks(item, pets));
     return `<article class="community-collection-card"><a class="community-collection-visual" href="#collections/${item.id}" aria-label="浏览 ${escapeHtml(item.title)}">${members.slice(0, 5).map(work => `<img src="${escapeHtml(work.thumbnail)}" alt="${escapeHtml(work.title)}" loading="lazy" width="192" height="208">`).join('')}</a><button type="button" class="community-collection-share" data-share-collection="${item.id}" aria-label="分享 ${escapeHtml(item.title)}">${icon('share')}</button><div class="community-collection-body"><p class="community-collection-kind">${item.type === 'franchise' ? '作品系列' : '主题系列'}</p><div class="community-collection-title-row"><h3><a href="#collections/${item.id}">${escapeHtml(item.title)}</a></h3><span>${members.length} 只宠物</span></div><p class="community-collection-description">${escapeHtml(item.description)}</p></div></article>`;
   }
 
@@ -83,7 +87,7 @@ export function createCommunityPages({ pets, plugins, activityFor, escapeHtml, i
     $('#home-pet-count').textContent = pets.length;
     $('#home-collected-count').textContent = `已收录 ${pets.length} 只精品宠物`;
     $('#home-category-count').textContent = new Set(pets.map(item => item.category)).size;
-    const featured = pets.slice(0, 6);
+    const featured = popularWorks(pets).slice(0, 6);
     $('#hero-pets').innerHTML = featured.map(work => `<a class="home-pet-card" href="#pets/${work.id}"><img src="${escapeHtml(work.thumbnail)}" alt="${escapeHtml(work.title)}" width="192" height="208"><span>${escapeHtml(work.title)}</span></a>`).join('');
     $('#home-pet-ranking').innerHTML = rankingRows(petRanking('week').slice(0, 5), 'pets');
     $('#home-author-ranking').innerHTML = rankingRows(rankAuthors(pets).slice(0, 5), 'authors');
@@ -174,7 +178,7 @@ export function createCommunityPages({ pets, plugins, activityFor, escapeHtml, i
     $('#contributor-works-title').textContent = profile ? `${profile.name} 的${kind === 'plugins' ? '插件' : '桌宠'}` : '创作者的作品';
     $('#contributor-kind-tabs').innerHTML = profile ? `<a class="button ${kind === 'pets' ? 'primary' : 'secondary'}" href="${escapeHtml(contributorHref(author, 'pets'))}" aria-current="${kind === 'pets' ? 'page' : 'false'}">桌宠 ${profile.petCount}</a><a class="button ${kind === 'plugins' ? 'primary' : 'secondary'}" href="${escapeHtml(contributorHref(author, 'plugins'))}" aria-current="${kind === 'plugins' ? 'page' : 'false'}">插件 ${profile.pluginCount}</a>` : '';
     $('#contributor-statistics-scope').textContent = `${snapshot.scope === 'site' ? '全站' : '此浏览器'}${snapshot.available ? '下载与点赞' : '统计暂不可用'} · 当前作品类型 · 下载不代表安装成功`;
-    $('#contributor-works').innerHTML = profile?.members.length ? profile.members.map(work => renderCard(work)).join('') : '<p class="community-empty">本站暂无此类型作品。</p>';
+    $('#contributor-works').innerHTML = profile?.members.length ? popularWorks(profile.members).map(work => renderCard(work)).join('') : '<p class="community-empty">本站暂无此类型作品。</p>';
     const usable = Boolean(session()?.interactionsAvailable || session()?.available);
     const key = `${kind}/${author}/${usable}`;
     if (contributorIdentity?.key === key) { displayContributorState(); return; }
@@ -206,7 +210,7 @@ export function createCommunityPages({ pets, plugins, activityFor, escapeHtml, i
     if (item) {
       $('#collection-detail-title').textContent = item.title;
       $('#collection-detail-description').textContent = item.description;
-      $('#collection-pets').innerHTML = collectionWorks(item, pets).map(work => `<article class="work-card"><div class="card-stage"><a class="card-preview" href="#pets/${work.id}"><img src="${escapeHtml(work.thumbnail)}" alt="${escapeHtml(work.title)}" width="192" height="208"></a></div><div class="card-body"><h2><a href="#pets/${work.id}">${escapeHtml(work.title)}</a></h2><p class="byline">作者 ${escapeHtml(petDisplayAuthor(work))}</p><div class="card-actions"><a class="button secondary" href="#pets/${work.id}">预览动作</a><a class="button primary" href="${escapeHtml(work.download)}" download data-download="${work.id}">下载 ZIP</a></div></div></article>`).join('');
+      $('#collection-pets').innerHTML = popularWorks(collectionWorks(item, pets)).map(work => `<article class="work-card"><div class="card-stage"><a class="card-preview" href="#pets/${work.id}"><img src="${escapeHtml(work.thumbnail)}" alt="${escapeHtml(work.title)}" width="192" height="208"></a></div><div class="card-body"><h2><a href="#pets/${work.id}">${escapeHtml(work.title)}</a></h2><p class="byline">作者 ${escapeHtml(petDisplayAuthor(work))}</p><div class="card-actions"><a class="button secondary" href="#pets/${work.id}">预览动作</a><a class="button primary" href="${escapeHtml(work.download)}" download data-download="${work.id}">下载 ZIP</a></div></div></article>`).join('');
     } else {
       const query = $('#collection-search').value.trim().toLocaleLowerCase();
       const matches = collections.filter(entry => (collectionFilter === 'all' || entry.type === collectionFilter) && `${entry.title} ${entry.description} ${collectionWorks(entry, pets).map(work => work.title).join(' ')}`.toLocaleLowerCase().includes(query));

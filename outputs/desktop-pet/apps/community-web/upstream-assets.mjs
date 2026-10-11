@@ -12,6 +12,11 @@ export function assessAssetPermission(statement) {
 
 export function assetAttribution(work) {
   const permission = assessAssetPermission(work.license);
-  if (permission.status !== 'redistributable') throw new Error(`没有确认该版本的再分发许可：${work.id}`);
-  return `# ${work.title} 归属与素材许可\n\n作者：${work.author}\n\n固定提交：${work.upstreamCommit}\n\n原作品与投稿资料：${work.source}\n\n原素材声明：${work.assetsLicenseSource}\n\n${permission.licenseUrl ? `素材许可直达链接：${permission.licenseUrl}\n\n` : ''}投稿者的完整原条款：\n\n${work.license}\n\n本次改变：pet.json、submission.json 与 spritesheet.webp 原件逐字节保留。仅新增本站分享说明和归属资料；网页缩略图截取自原图集，原图集不改写。\n\n许可范围：上面的声明记录投稿者对其可许可贡献的授权。角色、商标、参考图、肖像及其他第三方权利不因本包取得额外许可；未独立取得这些权利人的授权证明。仓库代码的MIT与素材许可分开，原仓库代码许可另留在 ORIGINAL-REPOSITORY-LICENSE。\n`;
+  for (const field of ['id', 'title', 'author', 'upstreamCommit', 'source', 'assetsLicenseSource', 'license']) {
+    if (typeof work[field] !== 'string' || !work[field].trim()) throw new Error(`作品归属资料缺少 ${field}`);
+  }
+  const scope = permission.status === 'redistributable'
+    ? permission.reason
+    : `${permission.reason}。本站收录不修改这些限制，也不授予新的使用、修改、再分发或商用权利；需另行许可时请联系原权利人。`;
+  return `# ${work.title} 归属与素材许可\n\n作者：${work.author}\n\n固定提交：${work.upstreamCommit}\n\n原作品与投稿资料：${work.source}\n\n原素材声明：${work.assetsLicenseSource}\n\n${permission.licenseUrl ? `素材许可直达链接：${permission.licenseUrl}\n\n` : ''}投稿者的完整原条款：\n\n${work.license}\n\n原条款范围：${scope}\n\n本次改变：pet.json、submission.json 与 spritesheet.webp 原件逐字节保留。仅新增本站分享说明和归属资料；网页缩略图截取自原图集，原图集不改写。\n\n许可范围：上面的声明记录投稿者对其可许可贡献的授权。角色、商标、参考图、肖像及其他第三方权利不因本包取得额外许可；未独立取得这些权利人的授权证明。仓库代码的MIT与素材许可分开，原仓库代码许可另留在 ORIGINAL-REPOSITORY-LICENSE。\n`;
 }

@@ -1,0 +1,1 @@
+Clawa为原上游Hatch生成bundled fixture；PET.md提供来源，无单独美术许可正文。本包不将其它Codex内置宠物授权归入MIT。

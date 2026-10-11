@@ -2,9 +2,34 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { pets, projectAuthor, projectAuthorUrl } from '../dist/catalog.js';
 import { collections, requestSeeds } from '../dist/community-data.js';
-import { validateRequest, normalizeRequestState, rankPets, rankAuthors, collectionWorks, contributorHref, contributorProfile, workStatistics, contributorRankingStatistics } from '../dist/community-core.js';
+import { validateRequest, normalizeRequestState, rankPets, rankAuthors, collectionWorks, contributorHref, contributorProfile, workStatistics, contributorRankingStatistics, compareWorkPopularity } from '../dist/community-core.js';
 
 const validRequest = { title: '陪读猫咪', description: '会翻书，也会打盹。', category: '动物伙伴', version: 2 };
+
+test('热门优先按下载加点赞总量，同分点赞更多在前，保留零互动作品', () => {
+  const works = ['likes', 'downloads', 'mixed', 'zero'].map(id => ({ id, title: id }));
+  const activity = { likes: { scope: 'site', likes: 10, downloads: 0 }, downloads: { scope: 'site', likes: 0, downloads: 12 }, mixed: { scope: 'site', likes: 8, downloads: 4 } };
+  const ordered = [...works].sort((a, b) => compareWorkPopularity(a, b, id => activity[id]));
+  assert.deepEqual(ordered.map(work => work.id), ['mixed', 'downloads', 'likes', 'zero']);
+  assert.deepEqual(works.map(work => work.id), ['likes', 'downloads', 'mixed', 'zero']);
+});
+
+test('无统计与无效计数不造热度，同名同分按编号稳定展示', () => {
+  const works = ['b', 'c', 'a'].map(id => ({ id, title: '同名' }));
+  const activity = { b: { scope: 'site', downloads: -5, likes: NaN }, c: null };
+  assert.deepEqual([...works].sort((a, b) => compareWorkPopularity(a, b, id => activity[id])).map(work => work.id), ['a', 'b', 'c']);
+});
+
+test('热门比较读取最新统计，浏览器点赞只计当前点赞，全站不重复加本人点赞', () => {
+  const works = [{ id: 'browser', title: '浏览器' }, { id: 'site', title: '全站' }];
+  const activity = { browser: { downloads: 2, liked: true }, site: { scope: 'site', downloads: 2, likes: 0, liked: true } };
+  const sort = () => [...works].sort((a, b) => compareWorkPopularity(a, b, id => activity[id])).map(work => work.id);
+  assert.deepEqual(sort(), ['browser', 'site']);
+  activity.site.likes = 3;
+  assert.deepEqual(sort(), ['site', 'browser']);
+  activity.browser.liked = false;
+  assert.equal(activity.browser.downloads, 2);
+});
 
 test('需求仅保留有效创作字段，并拒绝空文字、超长内容和不支持的分类版本', () => {
   assert.deepEqual(validateRequest({ ...validRequest, title: '  陪读猫咪  ', version: '2', secret: '不能保留' }), validRequest);

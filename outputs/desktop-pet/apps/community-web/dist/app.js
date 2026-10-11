@@ -1,6 +1,7 @@
+import { createSiteLocale } from './locale.js';
 import { attribution, petManifest, zipPackage, safePackagePath, readZipPackage, normalizePackageFiles, inspectImportPackage, videoPetManifest, coverImageType, prepareWorkPackage, creationImageChecks, packageWorkFields, petStateIds, packageImportLimits } from './package-core.js';
 import { actions, templates, templateCredit, pets, petDisplayAuthor, toolPlugins, projectAuthor, projectAuthorUrl } from './catalog.js';
-import { contributorHref } from './community-core.js';
+import { contributorHref, compareWorkPopularity } from './community-core.js';
 import { sourcePlugins } from './plugin-catalog.js';
 import { pluginCovers } from './plugin-covers.js';
 import { createCommunityPages } from './community-pages.js';
@@ -92,7 +93,7 @@ async function recordActivity(id, kind) {
     if (!publicationSession.anonymousInteractions && !publicationSession.signedIn) { toast('互动服务暂不可用。'); return; }
     if (!sharedActivity) { toast('公共统计暂不可用，请刷新后重试。'); return; }
     likePending.add(id);
-    try { sharedActivity = await publication.like(id, !activityFor(id).liked); activitySnapshotAt = new Date().toISOString(); updateActivityDisplay(id); communityPages.refresh(); }
+    try { sharedActivity = await publication.like(id, !activityFor(id).liked); activitySnapshotAt = new Date().toISOString(); updateActivityDisplay(id); refreshActivityOrder(); }
     catch (error) { toast(error.message); }
     finally { likePending.delete(id); }
     return;
@@ -112,6 +113,12 @@ async function recordActivity(id, kind) {
     storageAvailable = false;
   }
   updateActivityDisplay(id);
+  if (kind === 'download') setTimeout(refreshActivityOrder, 0);
+  else refreshActivityOrder();
+}
+
+function refreshActivityOrder() {
+  if (['pets', 'plugins'].includes(route) && ['popular', 'downloads', 'likes', 'trending'].includes($('#sort').value)) renderGallery();
   communityPages.refresh();
 }
 
@@ -138,6 +145,7 @@ function filteredWorks() {
     && `${item.title} ${item.author} ${item.description} ${item.category} ${(item.tags ?? []).join(' ')}`.toLocaleLowerCase().includes(query));
   const order = $('#sort').value;
   return matches.sort((a, b) => {
+    if (order === 'popular') return compareWorkPopularity(a, b, activityFor);
     if (order === 'name') return a.title.localeCompare(b.title, 'zh-CN');
     if (order === 'downloads') return activityFor(b.id).downloads - activityFor(a.id).downloads;
     if (order === 'likes') return (activityFor(b.id).likes ?? Number(activityFor(b.id).liked)) - (activityFor(a.id).likes ?? Number(activityFor(a.id).liked));
@@ -223,6 +231,8 @@ function updatePreview(prefix, mode, index) {
   $(`#${prefix}-look-buttons`).querySelectorAll('button').forEach(button => {
     button.setAttribute('aria-pressed', String(mode === 'look' && Number(button.dataset.previewLook) === index));
   });
+  $(`#${prefix}-current-preview`).setAttribute('data-i18n-ui-parameters', 'builtin');
+  sprite.setAttribute('data-i18n-ui-parameters', 'builtin');
   $(`#${prefix}-current-preview`).textContent = `正在预览：${label}`;
   sprite.setAttribute('aria-label', `桌宠预览：${label}`);
 }
@@ -340,8 +350,8 @@ function openToolDetail(tool) {
   }
   dialog.innerHTML = `<div class="dialog-heading"><h2 id="tool-detail-title">${escapeHtml(tool.title)}</h2><button type="button" class="secondary" aria-label="关闭工具详情">关闭</button></div>
     ${tool.cover || tool.presentation?.cover ? `<div class="card-stage"><img class="plugin-cover" src="${escapeHtml(tool.cover || tool.presentation.cover)}" alt="${escapeHtml(tool.title)} 封面"></div>` : ''}
-    <p>${escapeHtml(tool.description)}</p>
-    ${tool.features.length ? `<h3>提供的功能</h3><ul>${tool.features.map(feature => `<li>${escapeHtml(feature)}</li>`).join('')}</ul>` : ''}
+    <p data-i18n-preserve>${escapeHtml(tool.description)}</p>
+    ${tool.features.length ? `<h3>提供的功能</h3><ul data-i18n-preserve>${tool.features.map(feature => `<li>${escapeHtml(feature)}</li>`).join('')}</ul>` : ''}
     ${tool.hostNotice ? `<p>${escapeHtml(tool.hostNotice)}</p>` : ''}
     <p>作者：${escapeHtml(tool.author)}${tool.version ? ` · V${escapeHtml(tool.version)}` : ''}<br>许可：${escapeHtml(tool.license)}</p>
     <div class="dialog-actions"><a class="button primary" href="${escapeHtml(tool.download)}" download="${escapeHtml(tool.id)}.zip" data-download="${tool.id}">下载插件 ZIP</a><a href="#guide">查看安装指南</a></div>`;
@@ -370,7 +380,7 @@ function openPublicMediaPet(work) {
   if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'public-pet-detail'; dialog.setAttribute('aria-labelledby', 'public-pet-title'); dialog.addEventListener('close', () => { if (location.hash.startsWith('#pets/')) history.replaceState(null, '', '#pets'); }); document.body.append(dialog); }
   dialog.querySelectorAll('video').forEach(video => video.pause());
   const entries = Object.entries(work.mediaActions || {});
-  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><p>许可：${escapeHtml(work.license || '见包内声明')}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download="${work.distribution === 'standalone' ? '' : escapeHtml(work.id) + '.zip'}" data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
+  dialog.innerHTML = `<div class="dialog-heading"><h2 id="public-pet-title">${escapeHtml(work.title)}</h2><button class="secondary" type="button" aria-label="关闭桌宠详情">关闭</button></div><p data-i18n-preserve>${escapeHtml(work.description)}</p><div class="preview-stage" data-public-media></div>${entries.length ? `<label>预览动作<select data-public-action>${entries.map(([id, entry]) => `<option value="${escapeHtml(id)}">${escapeHtml(entry.displayName)}</option>`).join('')}</select></label>` : ''}${work.hostNotice ? `<p>${escapeHtml(work.hostNotice)}</p>` : ''}<p>作者：${escapeHtml(work.author)}</p><p data-i18n-preserve>许可：${escapeHtml(work.license || '见包内声明')}</p><div class="dialog-actions"><a class="button primary" href="${escapeHtml(work.download)}" download="${work.distribution === 'standalone' ? '' : escapeHtml(work.id) + '.zip'}" data-download="${work.id}">${escapeHtml(work.downloadLabel || '下载桌宠 ZIP')}</a>${(work.secondaryDownloads || []).map(file => `<a class="button secondary" href="${escapeHtml(file.url)}" download>${escapeHtml(file.label)}</a>`).join('')}</div>`;
   const preview = () => {
     const entry = work.mediaActions?.[dialog.querySelector('select')?.value];
     const stage = dialog.querySelector('[data-public-media]'); stage.replaceChildren();
@@ -551,8 +561,7 @@ $('#cards').addEventListener('click', async event => {
   if (!work) return;
   if (control.dataset.like) {
     await recordActivity(id, 'like');
-    if (['likes', 'trending'].includes($('#sort').value)) {
-      renderGallery();
+    if (['popular', 'likes', 'trending'].includes($('#sort').value)) {
       Array.from($('#cards').querySelectorAll('[data-like]')).find(button => button.dataset.like === id)?.focus();
     }
   } else if (control.dataset.preview) {
@@ -688,6 +697,7 @@ function previewClip(index) {
   $('#creator-pet-stage video')?.pause();
   $('#creator-pet-stage .sprite')?.getAnimations().forEach(animation => animation.cancel());
   $('#creator-pet-stage').replaceChildren(element);
+  $('#creator-current-preview').removeAttribute('data-i18n-ui-parameters');
   $('#creator-current-preview').textContent = `正在预览：${clipMetadata()[index].displayName} · 原素材背景`;
 }
 
@@ -1133,7 +1143,7 @@ async function petCover(files) {
 
 async function refreshSharedActivity() {
   if (!publicationSession?.interactionsAvailable) return;
-  try { const snapshot = await publication.activitySnapshot(); sharedActivity = snapshot.items; sharedContributorFollowers = snapshot.contributors; activitySnapshotAt = new Date().toISOString(); works.forEach(work => updateActivityDisplay(work.id)); communityPages.refresh(); }
+  try { const snapshot = await publication.activitySnapshot(); sharedActivity = snapshot.items; sharedContributorFollowers = snapshot.contributors; activitySnapshotAt = new Date().toISOString(); works.forEach(work => updateActivityDisplay(work.id)); refreshActivityOrder(); }
   catch { toast('公共统计暂时无法读取，请刷新重试。'); }
 }
 
@@ -1151,7 +1161,7 @@ async function initializePublication() {
   if (requests.status === 'fulfilled') communityPages.setPublicRequests(requests.value);
   if (publicationSession.available && (list.status === 'rejected' || petList.status === 'rejected')) toast('公开作品暂时无法读取，请刷新重试。');
   updatePublicationUI();
-  renderRoute(); works.forEach(work => updateActivityDisplay(work.id));
+  renderRoute(); works.forEach(work => updateActivityDisplay(work.id)); refreshActivityOrder();
 }
 
 async function draftStore(mode, kind, value) {
@@ -1278,3 +1288,7 @@ if (modelContext?.registerTool) {
   } catch (error) { console.warn('当前浏览器不支持广场工具', error.message); }
   window.addEventListener('pagehide', () => lifecycle.abort(), { once: true });
 }
+
+// 界面语言与路由、文件草稿分别保存，自动刷新只翻译受控界面节点。
+const siteLocale = createSiteLocale();
+window.addEventListener('pagehide', event => { if (!event?.persisted) siteLocale.dispose(); });

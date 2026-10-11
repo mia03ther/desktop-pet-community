@@ -1,0 +1,168 @@
+{
+  "id": "clawa",
+  "displayName": "Clawa",
+  "description": "A cheerful orange compile-spirit fox with a cream face and belly, lightning tail, and teal codefire paws.",
+  "author": "Igor Warzocha",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "running-right": "actions/running-right.webp",
+    "running-left": "actions/running-left.webp",
+    "waving": "actions/waving.webp",
+    "jumping": "actions/jumping.webp",
+    "failed": "actions/failed.webp",
+    "waiting": "actions/waiting.webp",
+    "running": "actions/running.webp",
+    "review": "actions/review.webp",
+    "look-000": "actions/look-000.webp",
+    "look-22_5": "actions/look-22_5.webp",
+    "look-045": "actions/look-045.webp",
+    "look-67_5": "actions/look-67_5.webp",
+    "look-090": "actions/look-090.webp",
+    "look-112_5": "actions/look-112_5.webp",
+    "look-135": "actions/look-135.webp",
+    "look-157_5": "actions/look-157_5.webp",
+    "look-180": "actions/look-180.webp",
+    "look-202_5": "actions/look-202_5.webp",
+    "look-225": "actions/look-225.webp",
+    "look-247_5": "actions/look-247_5.webp",
+    "look-270": "actions/look-270.webp",
+    "look-292_5": "actions/look-292_5.webp",
+    "look-315": "actions/look-315.webp",
+    "look-337_5": "actions/look-337_5.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "idle",
+      "category": "原项目九核心动作"
+    },
+    "running-right": {
+      "displayName": "running-right",
+      "category": "原项目九核心动作"
+    },
+    "running-left": {
+      "displayName": "running-left",
+      "category": "原项目九核心动作"
+    },
+    "waving": {
+      "displayName": "waving",
+      "category": "原项目九核心动作"
+    },
+    "jumping": {
+      "displayName": "jumping",
+      "category": "原项目九核心动作"
+    },
+    "failed": {
+      "displayName": "failed",
+      "category": "原项目九核心动作"
+    },
+    "waiting": {
+      "displayName": "waiting",
+      "category": "原项目九核心动作"
+    },
+    "running": {
+      "displayName": "running",
+      "category": "原项目九核心动作"
+    },
+    "review": {
+      "displayName": "review",
+      "category": "原项目九核心动作"
+    },
+    "look-000": {
+      "displayName": "look-000",
+      "category": "原项目静态视线"
+    },
+    "look-22_5": {
+      "displayName": "look-22_5",
+      "category": "原项目静态视线"
+    },
+    "look-045": {
+      "displayName": "look-045",
+      "category": "原项目静态视线"
+    },
+    "look-67_5": {
+      "displayName": "look-67_5",
+      "category": "原项目静态视线"
+    },
+    "look-090": {
+      "displayName": "look-090",
+      "category": "原项目静态视线"
+    },
+    "look-112_5": {
+      "displayName": "look-112_5",
+      "category": "原项目静态视线"
+    },
+    "look-135": {
+      "displayName": "look-135",
+      "category": "原项目静态视线"
+    },
+    "look-157_5": {
+      "displayName": "look-157_5",
+      "category": "原项目静态视线"
+    },
+    "look-180": {
+      "displayName": "look-180",
+      "category": "原项目静态视线"
+    },
+    "look-202_5": {
+      "displayName": "look-202_5",
+      "category": "原项目静态视线"
+    },
+    "look-225": {
+      "displayName": "look-225",
+      "category": "原项目静态视线"
+    },
+    "look-247_5": {
+      "displayName": "look-247_5",
+      "category": "原项目静态视线"
+    },
+    "look-270": {
+      "displayName": "look-270",
+      "category": "原项目静态视线"
+    },
+    "look-292_5": {
+      "displayName": "look-292_5",
+      "category": "原项目静态视线"
+    },
+    "look-315": {
+      "displayName": "look-315",
+      "category": "原项目静态视线"
+    },
+    "look-337_5": {
+      "displayName": "look-337_5",
+      "category": "原项目静态视线"
+    }
+  },
+  "staticActions": [
+    "look-000",
+    "look-22_5",
+    "look-045",
+    "look-67_5",
+    "look-090",
+    "look-112_5",
+    "look-135",
+    "look-157_5",
+    "look-180",
+    "look-202_5",
+    "look-225",
+    "look-247_5",
+    "look-270",
+    "look-292_5",
+    "look-315",
+    "look-337_5"
+  ],
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "running-right",
+    "running-left": "running-left",
+    "waving": "waving",
+    "jumping": "jumping",
+    "failed": "failed",
+    "waiting": "waiting",
+    "running": "running",
+    "review": "review"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}

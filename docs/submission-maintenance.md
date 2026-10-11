@@ -57,6 +57,8 @@ node --test outputs/community-cloudflare/tests/*.test.mjs
 
 合并验收通过的 PR，再按本站现有 Cloudflare Pages 流程部署 `outputs/community-cloudflare/dist`。以上构建命令没有执行公网部署。保持现有数据库与环境绑定，部署凭据不提交到仓库。
 
+完整目录使用官方 Wrangler CLI 发布，构建保护 Pages 免费方案的20,000文件和单文件25 MiB限制；浏览器拖放上传的1,000文件限制不能当作CLI限制。四语界面的`locale.js`和`locale-messages.js`必须同时保留在网页、本机预览和宿主构建的明确名单中。原作者、作品名称、许可和用户输入不随界面语言改写。
+
 在[公网网站](https://desktoppet-e9e.pages.dev)确认作品出现在对应广场、详情可打开、完整 ZIP 可下载并导入，作者与许可正确后，回复投稿 Issue，附作品链接和收录 PR，然后关闭申请。
 
 

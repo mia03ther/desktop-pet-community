@@ -41,6 +41,6 @@ async function collect(directory) {
   }
 }
 await collect(dist);
-if (entries.length > 1000) throw new Error('超过网页上传的 1000 文件限制，请使用官方 CLI。');
+if (entries.length > 20000) throw new Error('超过 Cloudflare Pages 免费方案的 20000 文件限制。');
 await writeFile(resolve(root, 'build-manifest.json'), JSON.stringify({ builtAt: new Date().toISOString(), mode: 'anonymous-interactions', migrations: ['0000_first_deathstrike.sql', '0001_rainy_patch.sql', '0011_anonymous_interactions.sql'], files: entries, totalBytes: entries.reduce((sum, entry) => sum + entry.bytes, 0) }, null, 2));
 console.log(JSON.stringify({ mode: 'anonymous-interactions', files: entries.length, totalBytes: entries.reduce((sum, entry) => sum + entry.bytes, 0), largestFile: Math.max(...entries.map(entry => entry.bytes)), workerBytes: (await stat(resolve(dist, '_worker.js'))).size }));

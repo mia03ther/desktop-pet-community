@@ -18,6 +18,7 @@ import { assessAssetPermission } from './upstream-assets.mjs';
 import { validateArchiveAttribution } from './package-attribution-check.mjs';
 import { readLocalPackageFiles, selectLocalPackageRoot } from '../desktop/dist/local-package-files.js';
 import { validateInstalledPetMetadata, validatePetMediaBytes } from '../desktop/dist/pet-media-files.js';
+import { validateNeutralCellAdaptation } from './neutral-cell-adaptation-check.mjs';
 
 const require = createRequire(new URL('../desktop/package.json', import.meta.url));
 const yauzl = require('yauzl');
@@ -122,9 +123,14 @@ for (const pet of pets) {
   await sharp(packageFiles['spritesheet.webp']).raw().toBuffer();
   assert.deepEqual(packageFiles['spritesheet.webp'], await readFile(new URL(`./dist/${pet.atlas}`, import.meta.url)));
   validateArchiveAttribution(packageFiles, pet);
+  assert.ok(!pet.atlasAdaptation || pet.assetSource, '图集修订必须关联受信的原件来源');
   if (pet.assetSource) {
-    assert.equal(assessAssetPermission(pet.license).status, 'redistributable');
-    for (const name of ['pet.json', 'submission.json', 'spritesheet.webp', 'ORIGINAL-ASSETS-LICENSE.md', 'ORIGINAL-REPOSITORY-LICENSE']) assert.deepEqual(packageFiles[name], await readFile(new URL(`./${pet.assetSource}/${name}`, import.meta.url)));
+    const sourceFiles = {};
+    for (const name of ['pet.json', 'submission.json', 'spritesheet.webp', 'ORIGINAL-ASSETS-LICENSE.md', 'ORIGINAL-REPOSITORY-LICENSE']) {
+      sourceFiles[name] = await readFile(new URL(`./${pet.assetSource}/${name}`, import.meta.url));
+      if (name !== 'spritesheet.webp' || !pet.atlasAdaptation) assert.deepEqual(packageFiles[name], sourceFiles[name]);
+    }
+    if (pet.atlasAdaptation) await validateNeutralCellAdaptation(packageFiles, pet, sourceFiles, { sharp, readZip });
     assert.equal(JSON.parse(packageFiles['submission.json']).author, pet.author);
     assert.equal(packageFiles['ASSET-TERMS.txt'].toString('utf8'), pet.license);
     const attributionNotes = packageFiles['ATTRIBUTION.md'].toString('utf8');

@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createCommunityPages } from '../dist/community-pages.js';
+import { collections } from '../dist/community-data.js';
 
-function pageFixture(publication, statistics = { scope: 'site', available: true, updatedAt: '2026-10-10T01:00:00Z', contributors: new Map([['共同作者', 7]]) }, repository = '') {
+function pageFixture(publication, statistics = { scope: 'site', available: true, updatedAt: '2026-10-10T01:00:00Z', contributors: new Map([['共同作者', 7]]) }, repository = '', content = {}) {
   const original = { document: globalThis.document, localStorage: globalThis.localStorage, location: globalThis.location, window: globalThis.window, FormData: globalThis.FormData };
   const saved = [], opened = [];
   const elements = new Map();
@@ -16,12 +17,41 @@ function pageFixture(publication, statistics = { scope: 'site', available: true,
   globalThis.location = { hash: '' };
   globalThis.window = { open(...args) { opened.push(args); return null; } };
   globalThis.FormData = class { constructor(form) { this.fields = form.fields; } [Symbol.iterator]() { return Object.entries(this.fields)[Symbol.iterator](); } };
-  const pets = [{ id: 'cat', kind: 'pet', title: '猫咪', author: '共同作者', authorHandle: 'shared', thumbnail: 'cat.webp', authorUrl: 'https://example.com/author' }];
-  const plugins = [{ id: 'water', kind: 'plugin', title: '喝水提醒', author: '共同作者', cover: 'water.webp', category: '提醒' }];
-  const activity = { cat: { scope: 'site', downloads: 3, likes: 2, weekly: 1, weeklyDownloads: 1, weeklyLikes: 0 }, water: { scope: 'site', downloads: 8, likes: 4, weekly: 5, weeklyDownloads: 2, weeklyLikes: 3 } };
+  const pets = content.pets ?? [{ id: 'cat', kind: 'pet', title: '猫咪', author: '共同作者', authorHandle: 'shared', thumbnail: 'cat.webp', authorUrl: 'https://example.com/author' }];
+  const plugins = content.plugins ?? [{ id: 'water', kind: 'plugin', title: '喝水提醒', author: '共同作者', cover: 'water.webp', category: '提醒' }];
+  const activity = content.activity ?? { cat: { scope: 'site', downloads: 3, likes: 2, weekly: 1, weeklyDownloads: 1, weeklyLikes: 0 }, water: { scope: 'site', downloads: 8, likes: 4, weekly: 5, weeklyDownloads: 2, weeklyLikes: 3 } };
   const pages = createCommunityPages({ pets, plugins, activityFor: id => activity[id], escapeHtml: value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]), icon: () => '', toast() {}, copyGalleryText() {}, download() {}, browseGallery() {}, publication, session: () => ({ available: false, interactionsAvailable: true, anonymousInteractions: true }), renderCard: work => `<article data-work="${work.id}">${work.title}</article>`, statisticsSnapshot: () => statistics, submissionRepository: () => repository });
-  return { pages, element, saved, opened, click(selector, dataset) { return element(selector).listeners.click({ target: { closest: () => ({ dataset }) } }); }, restore() { for (const [key, value] of Object.entries(original)) if (value === undefined) delete globalThis[key]; else globalThis[key] = value; } };
+  return { pages, element, saved, opened, activity, click(selector, dataset) { return element(selector).listeners.click({ target: { closest: () => ({ dataset }) } }); }, restore() { for (const [key, value] of Object.entries(original)) if (value === undefined) delete globalThis[key]; else globalThis[key] = value; } };
 }
+
+test('作者页面实际作品顺序优先热门，统计刷新后重排且保留零记录作品', async () => {
+  const pets = ['downloads', 'likes', 'zero'].map(id => ({ id, title: id, kind: 'pet', author: '共同作者', thumbnail: id + '.webp' }));
+  const activity = { downloads: { scope: 'site', downloads: 8, likes: 0 }, likes: { scope: 'site', downloads: 2, likes: 6 } };
+  const fixture = pageFixture({ contributor: async () => ({ available: false }) }, undefined, '', { pets, activity });
+  const order = () => [...fixture.element('#contributor-works').innerHTML.matchAll(/data-work="([^"]+)"/g)].map(match => match[1]);
+  try {
+    fixture.pages.render('contributors', 'pets', encodeURIComponent('共同作者'));
+    assert.deepEqual(order(), ['likes', 'downloads', 'zero']);
+    activity.downloads.downloads = 20;
+    fixture.pages.refresh();
+    assert.deepEqual(order(), ['downloads', 'likes', 'zero']);
+    assert.equal(fixture.element('#contributor-work-count').textContent, 3);
+    await new Promise(resolve => setImmediate(resolve));
+  } finally { fixture.restore(); }
+});
+
+test('首页伙伴和合集内部按实际热度展示，合集不因零互动减少成员', () => {
+  const collection = collections.find(item => item.petIds.length >= 3);
+  const pets = collection.petIds.slice(0, 3).map(id => ({ id, title: id, kind: 'pet', author: '共同作者', thumbnail: id + '.webp', download: id + '.zip' }));
+  const activity = { [pets[0].id]: { scope: 'site', downloads: 4, likes: 0 }, [pets[1].id]: { scope: 'site', downloads: 1, likes: 7 } };
+  const fixture = pageFixture({}, undefined, '', { pets, plugins: [], activity });
+  try {
+    fixture.pages.render('pets');
+    assert.deepEqual([...fixture.element('#hero-pets').innerHTML.matchAll(/href="#pets\/([^"]+)"/g)].map(match => match[1]), [pets[1].id, pets[0].id, pets[2].id]);
+    fixture.pages.render('collections', collection.id);
+    assert.deepEqual([...fixture.element('#collection-pets').innerHTML.matchAll(/data-download="([^"]+)"/g)].map(match => match[1]), [pets[1].id, pets[0].id, pets[2].id]);
+  } finally { fixture.restore(); }
+});
 
 test('榜单类型与周期按钮实际切换，贡献者条目打开对应本站作者页', () => {
   const fixture = pageFixture({});

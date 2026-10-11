@@ -20,6 +20,7 @@
       <a href="#create" data-route="create">共创平台</a>
       <a href="#guide" data-route="guide">安装指南</a>
     </nav>
+    <label class="locale-picker"><span class="visually-hidden">界面语言</span><select id="site-locale" aria-label="界面语言"><option value="zh-CN">简体中文</option><option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option></select></label>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切换深色主题" title="切换主题"><span aria-hidden="true">☼</span></button>
   </header>
   <main id="main">
@@ -81,7 +82,7 @@
           <p id="gallery-status" class="gallery-status" aria-live="polite">点赞、下载与近期趋势仅记录在此浏览器，不代表全站统计。</p>
           <div class="gallery-controls">
             <button id="gallery-random" class="secondary" type="button"><span aria-hidden="true">⚄</span>随机发现</button>
-            <label class="sort-label"><span class="sr-only">广场排序</span><select id="sort"><option value="random">随机</option><option value="downloads" title="按此浏览器发起 ZIP 下载的次数排序">最多下载</option><option value="likes">最多点赞</option><option value="trending">近期趋势</option><option value="name">名称（A → Z）</option></select></label>
+            <label class="sort-label"><span class="sr-only">广场排序</span><select id="sort"><option value="popular" title="按当前统计的点赞与下载总量排序，同分时点赞更多在前">热门优先</option><option value="random">随机</option><option value="downloads" title="按当前统计的下载次数排序">最多下载</option><option value="likes">最多点赞</option><option value="trending">近期趋势</option><option value="name">名称（A → Z）</option></select></label>
           </div>
         </div>
       </div>
@@ -160,7 +161,7 @@
             <input name="source" type="hidden" value="">
             <div id="pet-make-fields">
               <label>动作素材方式<select id="pet-media-mode"><option value="video">逐动作视频 / 动画 WebP</option><option value="atlas">WebP 图集</option></select></label>
-              <div id="pet-video-fields"><label class="upload-label">添加动作文件<input id="clip-input" type="file" accept="video/mp4,video/webm,image/webp,.mp4,.webm,.webp" multiple></label><p class="hint">每个文件是一个独立动作。名称、种类和与 AI 状态的对应关系均可自定义，未绑定状态显示待机。单文件 100 MB，总计 200 MB。</p><div id="clip-list" class="creator-clips"></div><div class="field-grid"><label>背景处理<select id="clip-background"><option value="chroma">纯色背景去背</option><option value="alpha">素材自带透明通道</option></select></label><label id="clip-color-label">背景颜色<input id="clip-color" type="color" value="#00ff00"></label></div><details><summary>AI 与交互动作绑定</summary><div id="state-bindings" class="field-grid"></div></details></div>
+              <div id="pet-video-fields"><label class="upload-label">添加动作文件<input id="clip-input" type="file" accept="video/mp4,video/webm,image/webp,.mp4,.webm,.webp" multiple></label><p class="hint">每个文件是一个独立动作。名称、种类和与 AI 状态的对应关系均可自定义，未绑定状态显示待机。单文件 512 MiB，总计 1 GiB。</p><div id="clip-list" class="creator-clips"></div><div class="field-grid"><label>背景处理<select id="clip-background"><option value="chroma">纯色背景去背</option><option value="alpha">素材自带透明通道</option></select></label><label id="clip-color-label">背景颜色<input id="clip-color" type="color" value="#00ff00"></label></div><details><summary>AI 与交互动作绑定</summary><div id="state-bindings" class="field-grid"></div></details></div>
               <div id="pet-atlas-fields" hidden><label class="upload-label">选择 WebP 图集<input id="atlas-input" type="file" accept="image/webp,.webp"></label><p class="hint">V1：1536 × 1872；V2：1536 × 2288。每格 192 × 208，8 列，透明背景。最大 24 MB。</p></div>
             </div>
             <div id="pet-import-fields" hidden><h3>先导入原项目文件</h3><div class="package-upload-options"><label class="upload-label">ZIP<input id="pet-package-zip" type="file" accept=".zip,application/zip"></label><label class="upload-label">完整文件夹<input id="pet-package-folder" type="file" webkitdirectory multiple></label><label class="upload-label">清单与配套文件<input id="pet-package-files" type="file" multiple></label></div><div id="pet-compatibility" class="compatibility-report" hidden></div><p id="pet-package-status" class="hint" role="status">尚未导入文件</p><div id="pet-import-capabilities" class="import-capabilities"><button class="secondary" type="button" data-import-preview disabled>预览原素材</button><button class="secondary" type="button" disabled title="导入保留原清单，不在网页改写映射">AI 动作绑定由原清单定义</button><p id="pet-import-capability-note" class="hint">导入后显示本系统支持范围。</p></div><div id="pet-import-preview" class="preview-stage" hidden></div><ul id="pet-package-list" class="package-file-list"></ul></div>

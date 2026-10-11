@@ -9,7 +9,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const canonical = resolve(root, '../desktop-pet/apps/community-web/dist');
 const publicRoot = resolve(root, 'public');
 const clientRoot = resolve(root, 'dist/client');
-const pageNames = ['index.html', 'style.css', 'app.js', 'catalog.js', 'plugin-catalog.js', 'community-data.js', 'community-core.js', 'community-pages.js', 'package-core.js', 'native-package-contract.js', 'plugin-covers.js', 'publication-client.js', 'publication-config.js'];
+const pageNames = ['index.html', 'style.css', 'app.js', 'catalog.js', 'plugin-catalog.js', 'community-data.js', 'community-core.js', 'community-pages.js', 'locale.js', 'locale-messages.js', 'package-core.js', 'native-package-contract.js', 'plugin-covers.js', 'publication-client.js', 'publication-config.js'];
 await mkdir(publicRoot, { recursive: true });
 for (const name of pageNames) await cp(resolve(canonical, name), resolve(publicRoot, name));
 await cp(resolve(root, 'tests/fixtures/catalog.js'), resolve(publicRoot, 'catalog.js'));

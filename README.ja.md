@@ -1,6 +1,4 @@
-<p align="center">
-  <a href="README.md">中文</a> · <a href="README.en.md">English</a> · <a href="README.ja.md"><strong>日本語</strong></a>
-</p>
+<p align="center"><a href="README.md">中文（默认）</a> · <a href="README.en.md">English</a> · <a href="README.ja.md"><strong>日本語</strong></a> · <a href="README.ko.md">한국어</a></p>
 
 <p align="center">
   <img src="outputs/desktop-pet/apps/community-web/dist/assets/brand-logo.png" width="112" alt="desktop pet ロゴ">
@@ -29,22 +27,22 @@
 - **デスクトップの仲間**：ドラッグ、サイズ変更、非表示に対応しています。初期設定では静かに待機し、クリックするとランダムに反応します。静かに待機するモードを解除するとランダムにアクションを再生し、実際の AI 作業状態との連携を優先します。
 - **自由なアクション設定**：スプライトシート、アニメーション WebP、動画アクションに対応しています。アクションの名前、カテゴリ、ランダム再生の候補、AI／クリック／ドラッグなどの状態への割り当てを変更できます。
 - **ペットとの会話**：自分のクラウド AI またはローカル AI をペットの頭脳として設定できます。複数の接続先と独自の互換 API に対応しています。入力と回答のフォント、吹き出しのスタイルを変更でき、コントロールセンターでは時刻付きの履歴を確認できます。
-- **キャラクター設定**：全体に適用する Markdown を自分で書く、抽出済みのキャラクター Skill をインポートする、設定済みの AI で資料からキャラクター設定を抽出する、という方法を選べます。有効にした完全な Skill のキャラクター設定は、キーワードによる呼び出しなしでペットとの会話に使用されます。Skill に含まれる任意のスクリプトは自動実行しません。
+- **キャラクター設定**：全体に適用する Markdown を自分で書く、抽出済みのキャラクター Skill や Tavern V1／V2／V3 の JSON・PNG キャラクターカードをインポートする、設定済みの AI で資料からキャラクター設定を抽出する、という方法を選べます。有効にした完全な Skill のキャラクター設定は、キーワードによる呼び出しなしでペットとの会話に使用されます。Skill に含まれる任意のスクリプトは自動実行しません。
 - **複数の AI ツールとの作業連携**：1 匹のペットで、接続済みの複数セッションの作業状態、具体的なツール、編集に成功したファイル数を表示できます。Codex と ZCode には Hook 接続を用意し、ほかのツールはそれぞれのブリッジ機能に合わせて設定します。作業監視用 AI と、ペットとの会話用 AI は別々に管理します。
 - **対応する接続先の利用枠を確認**：Codex では公式の読み取り専用サブスクリプション利用枠に対応しています。DeepSeek の会話接続先では公式の残高照会、OpenRouter では公式の API キー利用枠への対応があります。接続できていない接続先は「不明」と表示し、ペットとの会話で使ったトークン数を、ほかの AI ツールの残り利用枠として表示することはありません。
 - **必要なプラグインを選んでインストール**：水分補給、長時間の座りすぎ、目の休憩、ポモドーロなどのリマインダー、ファイルアシスタント、PC ケアは任意のプラグインです。リマインダーは同じペットとの会話に届きます。ファイルアシスタントはローカルファイルの検索と仮想分類ライブラリを提供し、実際の整理前には計画を確認できます。PC ケアは監視と提案を行います。
-- **共創プラットフォーム**：ペット広場、プラグイン広場、要望広場、ランキング、作者ページを用意しています。制作と直接インポートを分け、独自の動画アクション、プラグインのカバー画像、完全な作品の投稿に対応しています。現在の公開カタログにはペット 161 件、プラグイン 24 件があり、素材はそれぞれのライセンスに従って公開しています。
+- **共創プラットフォーム**：ペット広場、プラグイン広場、要望広場、ランキング、作者ページを用意しています。制作と直接インポートを分け、独自の動画アクション、プラグインのカバー画像、完全な作品の投稿に対応しています。現在の公開カタログにはペット 362 件、プラグイン 24 件があり、Codex Pet の全 316 作品を含み、元の作者名と素材の利用条件を保持します。実際のいいね数とダウンロード数に基づいて人気作品を優先表示します。右上から中国語・英語・日本語・韓国語に切り替えられ、選択を保存します。初回は中国語です。
 - **幅広いインポート**：互換性のある作品は本システムにインストールして実行できます。互換性のないプロジェクトは原本を保持し、対応できない操作を無効にします。元のプログラムと実行環境を識別できる場合は、独立した起動を明示的に選べます。元のプロジェクトのロジックを強制的に書き換えることはありません。
 
 外部 AI の利用には、自分のアカウント、ツール、設定が必要です。プリセットの接続入口、接続経路のテスト、元のプログラムの起動は、すべてのプラットフォームが接続済みであることや、任意のインポート済みプロジェクトが完全に動作することを意味しません。実際の提供内容と検証範囲は[提供状況](outputs/desktop-pet/docs/release-status.md)を参照してください。
 
 ### コミュニティペット紹介
 
-プラットフォームには 161 のペットと 24 個のプラグインが収録されています。コミュニティの作品は[共创平台](https://desktoppet-e9e.pages.dev)で探せます。dsh-pet のカードはそのプロジェクトを開きます：
+プラットフォームには 362 のペットと 24 個のプラグインが収録されています。コミュニティの作品は[共创平台](https://desktoppet-e9e.pages.dev)で探せます。dsh-pet のカードからプラットフォームのダウンロードページを開けます：
 
-| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/lulu--yogazz"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/lulu--yogazz-thumb.webp" width="150" alt="Lulu"></a> | <a href="https://github.com/PC2005-cloud/dsh-pet"><img src="https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/preview/daiji-huxi-xiuxian.gif" width="150" alt="dsh-pet"></a> |
+| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/lulu--yogazz"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/lulu--yogazz-thumb.webp" width="150" alt="Lulu"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/pc2005-dsh-pet"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/pc2005-dsh-pet-20261011/thumbnail.webp" width="150" alt="dsh-pet"></a> |
 |:---:|:---:|:---:|
-| **流萤** | **Lulu** | **[dsh-pet](https://github.com/PC2005-cloud/dsh-pet)** |
+| **流萤** | **Lulu** | **[dsh-pet](https://desktoppet-e9e.pages.dev/#pets/pc2005-dsh-pet)** |
 | <a href="https://desktoppet-e9e.pages.dev/#pets/bongocat-vladelaina"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp" width="150" alt="BongoCat"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/cloud-lykinzlj1"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp" width="150" alt="真珠"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/danya-pet-windows"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp" width="150" alt="达妮娅 · 三形态"></a> |
 | **BongoCat** | **真珠** | **达妮娅 · 三形态** |
 
@@ -52,7 +50,7 @@
 
 ### Windows ポータブル版
 
-1. [v4.0.3 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
+1. [v4.0.4 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
 2. ポータブル ZIP を、`D:\Apps\desktop-pet` などの書き込み可能なフォルダーに**すべて展開**します。同じフォルダー内の `resources`、ランタイム、その他のファイルを保持してください。EXE だけを移動したり、ZIP の中から直接起動したりしないでください。
 3. 展開先の `desktop-pet.exe` をダブルクリックします。実行環境は同梱されているため、Node.js や Python のインストールは不要です。初回起動時にローカルプロファイルを作成します。作者の AI アカウントや個人設定は含まれていません。
 4. 通常はこの EXE を直接開きます。デスクトップにショートカットを作成することもできます。基本のペット機能に AI の設定は不要です。プラグインは共創プラットフォームから必要なものをダウンロードしてインポートします。
@@ -62,14 +60,14 @@
 ダウンロードしたファイルの整合性は、PowerShell で次のコマンドを実行して確認できます。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.3-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.4-windows-x64-portable.zip
 ```
 
 結果を同じリリースの `SHA256SUMS.txt` と照合してください。ハッシュの照合で確認できるのはファイルの一致であり、セキュリティ監査の代わりにはなりません。
 
 ### macOS（Apple Silicon／arm64）
 
-[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-windows-x64-portable.zip) · [Mac をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-mac-arm64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
+[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-windows-x64-portable.zip) · [Mac をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-mac-arm64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
 
 macOS arm64 のソースビルドに対応し、PR #2 の Mac 向けパッケージ変更は統合済みです。ペット、コントロールセンター、キャラクター設定、本システムのプラグインは Windows と同じコードを使用します。Windows 専用の診断、元の Windows EXE、外部ホストを必要とする機能には、それぞれの環境が必要です。
 
@@ -236,7 +234,7 @@ node outputs/community-cloudflare/scripts/build.mjs
 | プラグイン、フォント、ペット素材 | 各ディレクトリとダウンロードパッケージ内の `LICENSE`、クレジット、素材利用条件を個別に適用。[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)を参照 |
 | キャラクターの外見、作品の IP、商標、参考素材 | 各権利はそれぞれの権利者に帰属。コードの MIT ライセンスは、これらの素材やキャラクターについて追加の権利を付与しない |
 
-素材には CC BY、CC BY-NC など異なる条件があります。非商用ライセンスの作品はその条件の範囲でのみ使用でき、本プロジェクトのコードが公開されていることを理由に、すべての素材を商用利用することはできません。再配布が明示的に許可されていない原本は、公開リリースの対象に含めません。本プロジェクトは、すべてのキャラクターや参考素材について個別の公式許諾を取得したとは主張しません。投稿者は、自分が許諾できる内容と条件を明示する必要があります。
+素材には CC BY、CC BY-NC など異なる条件があります。非商用ライセンスの作品はその条件の範囲でのみ使用でき、本プロジェクトのコードが公開されていることを理由に、すべての素材を商用利用することはできません。全件収録しても元の利用条件は変わりません。個人利用・元のリポジトリ限定・別途許可などの制限がある場合は従ってください。本サイトは追加の権利を許諾しません。本プロジェクトは、すべてのキャラクターや参考素材について個別の公式許諾を取得したとは主張しません。投稿者は、自分が許諾できる内容と条件を明示する必要があります。
 
 アプリのローカルプロファイル、認証情報、チャット、ログ、ブラウザーの状態、過去の制作記録は、ソースコードやポータブルパッケージに含めて公開しません。自分で設定した AI を有効にすると、リクエストは各プロバイダーの条件に従って処理されます。利用前に、必要に応じて送信内容とプラグイン権限を確認してください。現在のテストとリリースの範囲は[提供状況](outputs/desktop-pet/docs/release-status.md)を基準とします。
 

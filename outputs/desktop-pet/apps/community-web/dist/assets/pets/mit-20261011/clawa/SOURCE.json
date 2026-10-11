@@ -1,0 +1,138 @@
+{
+  "repository": "IgorWarzocha/howaboua-pi-stuff",
+  "commit": "336be4d27da28660d0688182b9ff983b6ccea0dc",
+  "petId": "clawa",
+  "displayName": "Clawa",
+  "author": "Igor Warzocha",
+  "codeLicense": "MIT",
+  "codeLicenseScope": "根与Pi Pet子包完整MIT源代码许可",
+  "characterArtworkLicense": "Clawa为原上游Hatch生成bundled fixture；PET.md提供来源，无单独美术许可正文。本包不将其它Codex内置宠物授权归入MIT。",
+  "wholeCharacterIPMITClaimed": false,
+  "originalAtlasSha256": "75205dbefd6b145d50bbf78c4443d2257199da922d93c420042c19823d27d720",
+  "originalAtlasGitBlob": "6c4bf0368ca35b6705811f445bc6b82b208c08c5",
+  "sourceLayout": {
+    "frameWidth": 192,
+    "frameHeight": 208,
+    "columns": 8,
+    "rows": 11
+  },
+  "timingSource": "packages/pi-pet/src/pet-loader.ts STANDARD_ROWS",
+  "originalManifestSha256": "296f714a742853a6a6fb3ce77e729bfd62dfa6c5d60a86fbd3e46108efd5aa1f",
+  "sourceFiles": [
+    {
+      "path": "LICENSE",
+      "blob": "2fd3d4e9ace72f872d4b9193afbb1b7f8edadbea",
+      "bytes": 1070,
+      "sha256": "62e30d946c466ae06393dc26d5073a46e03759eae97fa2d078b934534d15be6e",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/LICENSE",
+      "method": "复用已固定根许可证据",
+      "savedAs": "originals/LICENSE"
+    },
+    {
+      "path": "packages/pi-pet/LICENSE",
+      "blob": "2fd3d4e9ace72f872d4b9193afbb1b7f8edadbea",
+      "bytes": 1070,
+      "sha256": "62e30d946c466ae06393dc26d5073a46e03759eae97fa2d078b934534d15be6e",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/LICENSE",
+      "method": "复用已固定源码证据",
+      "savedAs": "originals/packages/pi-pet/LICENSE"
+    },
+    {
+      "path": "packages/pi-pet/pets/clawa/PET.md",
+      "blob": "4c7a7641e75cfb03d46e606f869e88726081eeee",
+      "bytes": 1012,
+      "sha256": "4a595afa6484241f930ca1fa805bd9f913fa128cd5bd7841b90fba76dd46f459",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/pets/clawa/PET.md",
+      "method": "复用已固定源码证据",
+      "savedAs": "originals/packages/pi-pet/pets/clawa/PET.md"
+    },
+    {
+      "path": "packages/pi-pet/pets/clawa/pet.json",
+      "blob": "1af21afd4219418cfeb4e36c2257709fe88e3944",
+      "bytes": 241,
+      "sha256": "296f714a742853a6a6fb3ce77e729bfd62dfa6c5d60a86fbd3e46108efd5aa1f",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/pets/clawa/pet.json",
+      "method": "复用已固定源码证据",
+      "savedAs": "originals/packages/pi-pet/pets/clawa/pet.json.original.txt"
+    },
+    {
+      "path": "packages/pi-pet/pets/clawa/spritesheet.webp",
+      "blob": "6c4bf0368ca35b6705811f445bc6b82b208c08c5",
+      "bytes": 2790392,
+      "sha256": "75205dbefd6b145d50bbf78c4443d2257199da922d93c420042c19823d27d720",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/pets/clawa/spritesheet.webp",
+      "method": "官方固定Git blob API",
+      "savedAs": "originals/packages/pi-pet/pets/clawa/spritesheet.webp"
+    },
+    {
+      "path": "packages/pi-pet/pets/clawa/validation.json",
+      "blob": "d0314229c197effda2d04da1e8359a0014955bc8",
+      "bytes": 18124,
+      "sha256": "9c9832b460eede859b1daa5ca848b35e163a1b741753fed79bf975249e6303d5",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/pets/clawa/validation.json",
+      "method": "官方固定Git blob API",
+      "savedAs": "originals/packages/pi-pet/pets/clawa/validation.json"
+    },
+    {
+      "path": "packages/pi-pet/src/pet-loader.ts",
+      "blob": "55dedc6c0d06afadc06db8076f6b9851ae8bd7c5",
+      "bytes": 11972,
+      "sha256": "e631ca1b5218e88d3be14cbf150b6e0e4f0d5b6d2f3f03cf5e61027f0188f3a8",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/src/pet-loader.ts",
+      "method": "官方固定Git blob API",
+      "savedAs": "originals/packages/pi-pet/src/pet-loader.ts"
+    },
+    {
+      "path": "packages/pi-pet/src/pet-image-size.ts",
+      "blob": "b1012655c9794ef781e24ecb3bc1def5d0f21a33",
+      "bytes": 2716,
+      "sha256": "90b732402f6f6fa8ae0b3d92f9e59df544259de2340720ce7297d6bafc4a0f0a",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/src/pet-image-size.ts",
+      "method": "官方固定Git blob API",
+      "savedAs": "originals/packages/pi-pet/src/pet-image-size.ts"
+    },
+    {
+      "path": "packages/pi-pet/src/protocol/index.ts",
+      "blob": "7027b202f6eed5df12f16b9cec2f5cf32d599a53",
+      "bytes": 2476,
+      "sha256": "68a46a88085f497ef41f377ca26b28297c4ed9671745c6786fb65d683f9e6b15",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/src/protocol/index.ts",
+      "method": "官方固定Git blob API",
+      "savedAs": "originals/packages/pi-pet/src/protocol/index.ts"
+    },
+    {
+      "path": "packages/pi-pet/src/web/main.ts",
+      "blob": "163b8d4d57b421e2e2c3f4971823f5e912a70cba",
+      "bytes": 22880,
+      "sha256": "0dcb510f6bf8c7383d063dea192c7cfa7117d27bddccaac7cba77f946483330b",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/src/web/main.ts",
+      "method": "复用已固定源码证据",
+      "savedAs": "originals/packages/pi-pet/src/web/main.ts"
+    },
+    {
+      "path": "packages/pi-pet/src/web/styles.css",
+      "blob": "db506c24de99754aaa0c67f1fd26bdb6cd059657",
+      "bytes": 10108,
+      "sha256": "1997ce82320290adff9f2963957cae67becf35f6886b1f3109e7502946ea6b69",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/src/web/styles.css",
+      "method": "复用已固定源码证据",
+      "savedAs": "originals/packages/pi-pet/src/web/styles.css"
+    },
+    {
+      "path": "packages/pi-pet/src/desktop/main.ts",
+      "blob": "7368e79a152bc148a751edd85d518d02e56adcc2",
+      "bytes": 15393,
+      "sha256": "cf5830dd97cc32a28d626af28364f3ab2a0d3c6f9ff66915333768a514f7971d",
+      "url": "https://github.com/IgorWarzocha/howaboua-pi-stuff/blob/336be4d27da28660d0688182b9ff983b6ccea0dc/packages/pi-pet/src/desktop/main.ts",
+      "method": "复用已固定源码证据",
+      "savedAs": "originals/packages/pi-pet/src/desktop/main.ts"
+    }
+  ],
+  "limitations": [
+    "原Pi/GipPity的键鼠、AI会话、语音、远程同步、工作状态监听属于原宿主，素材包不包含这些运行能力。",
+    "25预览项是9原动画和16静态视线；16视线不算新增核心动作或人物，本系统媒体包不自动接管原宿主16向鼠标视线追踪。",
+    "未增加睡眠、点击或拖拽动画，没有把原动画冒名补动作；窗口拖拽等使用本系统现有行为。",
+    "原图集全部88格与原manifest/PET/validation及固定源码均保留原字节；展示动画只是对原细胞无损封装，无重绘、插帧、改名或AI生成。",
+    "代码MIT与美术授权范围分列：Clawa是原上游Hatch生成bundled fixture，未找到独立美术许可声明；不声称角色美术、商标、其他Codex内置宠物均MIT。"
+  ]
+}

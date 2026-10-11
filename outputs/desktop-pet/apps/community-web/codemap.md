@@ -16,9 +16,15 @@
 
 `publication-config.js`唯一配置已创建核实的自有投稿仓库`xunguangzlj-cloud/desktop-pet-community`，`publication-client.js`纯函数校验固定HTTPS GitHub仓库及服务一致性、生成对应YAML字段预填URL；缺配置不猜作者仓库，服务不能改送上游。`app.js`四入口先经原严格制作或完整导入链生成一次ZIP，以其实际bytes／SHA-256预填，再打开表单及提供手动链接；不自动上传附件、发送Issue或插入公共作品。GitHub侧提交与维护者收录由仓库持有，本站无密码；大包按仓库PR指南，原件不缩减。`tests/publication-client.test.mjs`保护四流程字段、真实摘要及仓库边界，需求DOM测试保护先保存草稿和弹窗后备。
 
-`dist/catalog.js` 是公开作品、动作和提醒模板的唯一内容所有者。新公共`pets`目录为固定提交`0d0f06bb1721aef4ddbc7f893276f235ed8458ec`的117件明确素材再分发条款作品，覆盖11类、V1 64件和V2 53件；官网全部316件／948原文件归档在工作区`work/gallery-reference/full-20261009/`，其余199条款只归档。每项保作者、完整单项许可、固定提交、图集／透明缩略图／新版本ZIP。可见卡片及桌宠详情只展示作者，来源和许可链在包内保留。原始投稿没有作品日期，`date`留空，`importedAt`记录本次加入日期。
+`dist/catalog.js` 是公开作品、动作和提醒模板的唯一内容所有者。本轮比对固定提交 `651b811bee953e4d2dedd2f61440d1921b60fd49` 的完整索引与逐件 Git blob，原 117 件保持，补入缺少的 199 件，共覆盖 Codex Pet 全部 316 件；原作者、原三文件和各自完整素材／仓库许可留档。本站当前共 362 件桌宠、24 件插件，包含 PC2005 的106个原视频动作和 Clawa；平台署名不替换为维护者姓名。网页卡片不增加来源宣传，法律归属与适用条款随下载包保留。原投稿没有作品日期，`date` 留空，`importedAt` 只表示本站加入日期。
 
-`upstream-assets.mjs`是投稿者许可分类与归属说明唯一所有者：标准CC／MIT和明确非商业站外再分发进入公共集合，个人／仅原仓库／未知／未明确再分发不自动公开；素材声明不代替角色IP授权。`upstream-pets/{id}`保原pet.json、submission.json、spritesheet.webp及原ASSETS／仓库许可，`build-packages.mjs`按原字节打包、附加署名／许可直达／真实变更说明，不能重生成上游pet.json。`gallery-files.json` schemaVersion2只登记400项assets，精确path／mime／bytes／sha256；JS／CSS／HTML由固定名单另行持有。旧30原素材和ZIP在dist及独立历史快照保留，未在新清单登记，托管不得递归公开历史目录。`test-packages.mjs`用真实完整本地包读取器核117桌宠、24插件及400资产；全量Electron隔离安装证据在工作区`outputs/validation/gallery-full-20261009/import-02/result.json`，117／117且禁外网。
+`upstream-assets.mjs` 持有投稿素材许可分类与归属说明，完整保留标准许可、非商业、个人／原仓库限定及未确认等真实状态；收录不自动改变这些条件，也不替代角色 IP 权利。`upstream-pets/{id}` 保存原 pet.json、submission.json、spritesheet.webp 和原 ASSETS／仓库许可。新的199件按原字节打包，附加原作者、固定来源、完整条款及真实变更说明；明确需要修补的空白中性格仅使用无损兼容素材，原三文件另行保留，不能冒充所有原件均修改或原图损坏。
+
+`gallery-files.json` schemaVersion2 精确登记 1709 项公开 assets 的 path／mime／bytes／sha256；JS／CSS／HTML由固定名单持有，旧快照和未登记文件不递归公开。`test-packages.mjs`使用真实完整本地包读取器和媒体／图集校验器保护全部桌宠、24件插件、逐件原作者与许可；隔离正式4.0.4的全316安装与少数兼容修订分别保存实际结果，源码包解析不冒充所有完整原宿主运行。
+
+`community-core.js` 的 `compareWorkPopularity` 按真实赞与下载总量降序，同分按赞和稳定作品名称／ID排序。桌宠、插件、首页伙伴、作者页与合集复用此规则。`app.js` 默认热门，可手动改随机、下载、点赞、近期和名称；统计刷新、点赞及下载后保持已有筛选与展示数量。下载点击先完成默认链接动作，再安排排序，避免删除当前下载锚点。无互动作品仍可浏览，不编造上游热度。
+
+`dist/locale.js`拥有右上角中文、英文、日文、韩文选择、同源持久化与DOM翻译生命周期；`dist/locale-messages.js`拥有内置整段界面词条及参数模板。初次及存储不可用时默认中文，显式选择按同源保存，存储getter或方法拒绝均不阻断页面。路由刷新和动态列表同样生效；作品名、原作者、许可证、用户输入、人设文本及导出作品内容不因界面语言被改写。公开模块按明确名单加入本机网站、宿主构建与Cloudflare部署，不递归开放工作目录。
 
 `toolPlugins` 记录文件助手与电脑守护两个可选宿主工具。`dist/plugin-catalog.js` 是 `build-packages.mjs` 从 14 个官方、5 个其他社区源码插件生成的公开目录，包含明确权限、版本、下载地址、SHA-256、维护者、原作者、来源与配置条件。`app.js` 将上述内容与三个提醒模板合为 24 件插件广场；源码和工具详情 `#plugins/{id}` 单独说明功能、批准权限、安装与依赖，不进入声明式提醒编辑器。网页不调用本机工具或操作接口；浏览与共创在网站进行，已有实例仍在本机启停和配置。
 

@@ -1,0 +1,1163 @@
+{
+  "repository": "https://github.com/PC2005-cloud/dsh-pet",
+  "commit": "92662190cdd4dee05e38a5151584cc6254cd7a43",
+  "author": "PC2005-cloud",
+  "originalPetId": "main",
+  "originalPetName": "dsh-pet",
+  "displayName": "蓝鲸少女 · dsh-pet",
+  "sourceCodeLicense": "MIT",
+  "assetLicenseScope": "动画/提示词/源视频允许开源使用，禁止商业使用；展示与分发衍生作品须附原作者地址。",
+  "assetLicenseStatementFile": "ASSET-LICENSE-STATEMENT.txt",
+  "originalReadme": "originals/README.md",
+  "originalConfig": "originals/dsh-pet/assets/config.jsonc",
+  "originalActionCount": 106,
+  "distinctVideoSha256Count": 106,
+  "generatedVideoCount": 0,
+  "transcodedVideoCount": 0,
+  "originalFiles": [
+    {
+      "path": "dsh-pet/assets/config.jsonc",
+      "blob": "2d475316fadb337010ecc30f6254960305f8f19d",
+      "bytes": 25053,
+      "sha256": "ed923e79f0ab7c592b182dbfff18ed6c057f00b2444c48b77b6750396ec636f9",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/config.jsonc",
+      "retainedAs": "originals/dsh-pet/assets/config.jsonc"
+    },
+    {
+      "path": "dsh-pet/assets/webm/被落叶淹没.webm",
+      "blob": "1e35fff171fb8856bd89de91329ef357c7d33e65",
+      "bytes": 766832,
+      "sha256": "91fc8e3dbfcd24546bc30366beb120fb5de7823ed67986dd8032c9c1b29ff079",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%A2%AB%E8%90%BD%E5%8F%B6%E6%B7%B9%E6%B2%A1.webm",
+      "retainedAs": "actions/original-001.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/被鼠标拖拽悬空反馈.webm",
+      "blob": "728f04b2997aa9ec4bdb87d1b9b14d7910bc7fd6",
+      "bytes": 464764,
+      "sha256": "31373a86026636eecc890db763760309360310eb095cf5575b13c9ca2a6cc80e",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%A2%AB%E9%BC%A0%E6%A0%87%E6%8B%96%E6%8B%BD%E6%82%AC%E7%A9%BA%E5%8F%8D%E9%A6%88.webm",
+      "retainedAs": "actions/original-002.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/被吓一跳.webm",
+      "blob": "a7afe71ed72990bbace7026abb1ef69ae7e3706c",
+      "bytes": 282771,
+      "sha256": "537dde496e0f776e775dec1bb7bfe3fbc5eebf89112469a1a910ad0433ccde66",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%A2%AB%E5%90%93%E4%B8%80%E8%B7%B3.webm",
+      "retainedAs": "actions/original-003.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/变鸽子.webm",
+      "blob": "150abd9011b3c9fec7229fa2b30418958040a7ad",
+      "bytes": 509462,
+      "sha256": "796eba8ebe705e9339035e533e4f913fb8b9810432dcd6e7ae4fc1602e9ce3cf",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8F%98%E9%B8%BD%E5%AD%90.webm",
+      "retainedAs": "actions/original-004.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/插茱萸赏菊.webm",
+      "blob": "7e2976e00317dfd681279890ab48f3a68ceb03f9",
+      "bytes": 486358,
+      "sha256": "4e1ba56724da3663e2f5480001ab1141a82e8618c316e6e81e3dae84998452f3",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%8F%92%E8%8C%B1%E8%90%B8%E8%B5%8F%E8%8F%8A.webm",
+      "retainedAs": "actions/original-005.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/拆礼物.webm",
+      "blob": "01445f708db3e19b707e6d1609902dd4da9c0ade",
+      "bytes": 517803,
+      "sha256": "6f781e7eac2b295417c80ff9468902280fdcf3ae5921d59977daa8dab537940c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%8B%86%E7%A4%BC%E7%89%A9.webm",
+      "retainedAs": "actions/original-006.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/超大伸懒腰.webm",
+      "blob": "689e04f120f9f678a9424dac6cadf4b6a0bd6e6b",
+      "bytes": 396987,
+      "sha256": "0ac66d918cc5efd49be1273c3830de73eae5f9bdcd5fcb968d1b2f9b487705ad",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%B6%85%E5%A4%A7%E4%BC%B8%E6%87%92%E8%85%B0.webm",
+      "retainedAs": "actions/original-007.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/晨间刷牙.webm",
+      "blob": "66581dbd88c72bcba960d551b9cdcb0239da7d2f",
+      "bytes": 425460,
+      "sha256": "017e384e7e13732fb12428d024ef686e79df5b79bfab0d83faa7fa50653d1bc4",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%99%A8%E9%97%B4%E5%88%B7%E7%89%99.webm",
+      "retainedAs": "actions/original-008.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃白饭.webm",
+      "blob": "0f400023c2f036e6edc28033083d49f68686d347",
+      "bytes": 459590,
+      "sha256": "b620413d6fa303a0ed9168dc71453c3bddc10141a0b7edeff87dc2e6e054d502",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E7%99%BD%E9%A5%AD.webm",
+      "retainedAs": "actions/original-009.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃冰淇淋融化.webm",
+      "blob": "c696cf2f61366cd9ba973aae1526dbf920c3d85d",
+      "bytes": 509816,
+      "sha256": "17d73682926d6ce4203ad12d9049527e604d448bcc5c82ac5b12950b4ceb0447",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E5%86%B0%E6%B7%87%E6%B7%8B%E8%9E%8D%E5%8C%96.webm",
+      "retainedAs": "actions/original-010.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃大闸蟹.webm",
+      "blob": "f8e0774d6b4b38f27adfecdfc591dd40812f5e38",
+      "bytes": 545299,
+      "sha256": "fbd0f445c15fda1f827e6eb485270ddf9025ac29b3edcac28a5eff7d9aa80f46",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E5%A4%A7%E9%97%B8%E8%9F%B9.webm",
+      "retainedAs": "actions/original-011.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃饺子.webm",
+      "blob": "2dee24954bae172a20ef1e0d44b34d7105872851",
+      "bytes": 554828,
+      "sha256": "a607391c206cb2a1a977d72f318a6b5bfe95aee4da9b11c9de8724bd9981cc06",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E9%A5%BA%E5%AD%90.webm",
+      "retainedAs": "actions/original-012.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃腊八粥.webm",
+      "blob": "c20156c0de0863832d7bc10fb65153559de388be",
+      "bytes": 460665,
+      "sha256": "f821527812875262cc0dda50fe023c603fc89ec566172777c6bff4fa45943011",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E8%85%8A%E5%85%AB%E7%B2%A5.webm",
+      "retainedAs": "actions/original-013.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃年糕.webm",
+      "blob": "7b4473435dfa219428f5bb2e1dbf34fe83b59190",
+      "bytes": 451257,
+      "sha256": "ba0c86988687801a5b19d055d728bb182c8a95a0bdd7071dea16b83c1162135c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E5%B9%B4%E7%B3%95.webm",
+      "retainedAs": "actions/original-014.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃青团.webm",
+      "blob": "00031236d476501f71b3f03f978a4b79952e5097",
+      "bytes": 377524,
+      "sha256": "0d99393dd64ddf0b1ec4ab4cf392c86092ab5edf58d12f5b72e325035da23606",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E9%9D%92%E5%9B%A2.webm",
+      "retainedAs": "actions/original-015.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃汤圆.webm",
+      "blob": "eac65950006cf0814e6e4f1ebe1c73b9e36a8791",
+      "bytes": 437152,
+      "sha256": "53a0f93612bb59c7279010f993a1101b033fc01df1998dd9874d8aea175afa6f",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E6%B1%A4%E5%9C%86.webm",
+      "retainedAs": "actions/original-016.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃糖葫芦.webm",
+      "blob": "def3fa70022f6b728f0d0b3ebbfcff601c406c57",
+      "bytes": 469809,
+      "sha256": "6900468dc166bfb90e1cfb73de9b41a08c62513483ce1300658340cf942be3cd",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E7%B3%96%E8%91%AB%E8%8A%A6.webm",
+      "retainedAs": "actions/original-017.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃晚餐.webm",
+      "blob": "14f9eee2a361a592fd55c95979f5810b7b8dcd03",
+      "bytes": 741965,
+      "sha256": "8902602fb012c29d33392822ab534ed119a136610f6bc2e8c0c51d60afec673a",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E6%99%9A%E9%A4%90.webm",
+      "retainedAs": "actions/original-018.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃午餐.webm",
+      "blob": "83618038d3d4fe98b9f42d0fd7ae1b7a24f686b3",
+      "bytes": 495122,
+      "sha256": "e48a70e61d93195c611c2d4041be32a26a114f78c835ff6b2345459ae39a90ce",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E5%8D%88%E9%A4%90.webm",
+      "retainedAs": "actions/original-019.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃西瓜.webm",
+      "blob": "ffa2c36e86e9056a7e965c73364a50c1fd8bb192",
+      "bytes": 482918,
+      "sha256": "0dd992fb7fb51d707d6589cb813a450437a2bd54046709f424a73353e2d7f78d",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E8%A5%BF%E7%93%9C.webm",
+      "retainedAs": "actions/original-020.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃早餐.webm",
+      "blob": "6691dc43900e3f906b6576cc6eb7e0f23b0e2702",
+      "bytes": 441484,
+      "sha256": "893b61587aeda8ca146e32b596b00903461aab04684a146d84b31965968d60e4",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E6%97%A9%E9%A4%90.webm",
+      "retainedAs": "actions/original-021.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃长寿面.webm",
+      "blob": "ac71008a07686f858627e7f7f69e77448941bb97",
+      "bytes": 489038,
+      "sha256": "2881e1cd4ca31fd56ca578ce2ee73d21222f0006f237c865d9b2dc1ebc436edd",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E9%95%BF%E5%AF%BF%E9%9D%A2.webm",
+      "retainedAs": "actions/original-022.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃重阳糕.webm",
+      "blob": "cc54c1f82bb5c4b8e366fba6433b6534bedcf4fc",
+      "bytes": 468951,
+      "sha256": "d2b6b466fcb1ee689ae130680bf38311e9988d995879ca3b5b1d9aa0b5438058",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E9%87%8D%E9%98%B3%E7%B3%95.webm",
+      "retainedAs": "actions/original-023.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃粽子.webm",
+      "blob": "6ad057c473cbaf209de8d4ec91781d9bc759cda9",
+      "bytes": 446268,
+      "sha256": "f3af3217674427fdc5609bf50b170f69669c84cf229cd7b44261c00da7876ade",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83%E7%B2%BD%E5%AD%90.webm",
+      "retainedAs": "actions/original-024.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吃Token.webm",
+      "blob": "619722b50ea75fcb3c18b3de5d996ce4e87a7893",
+      "bytes": 574754,
+      "sha256": "d46ef798fb189cd7652f63d03a35e6f314e5a598b4a65f76202ec95852eb719c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%83Token.webm",
+      "retainedAs": "actions/original-025.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/抽陀螺.webm",
+      "blob": "1a0cd6a9447c3a36b068fb9db46fd56447520a73",
+      "bytes": 521068,
+      "sha256": "693689d7b4d02ae8cda53f8d580de5087287fc339360dd20909342f566e969ba",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%8A%BD%E9%99%80%E8%9E%BA.webm",
+      "retainedAs": "actions/original-026.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/穿针乞巧.webm",
+      "blob": "f78881f4e996d5160ce4910ed06646b5b9d5bd60",
+      "bytes": 480887,
+      "sha256": "cf16647ec4cb5634e4ff022bfc139a2233cd8be82f2391472bc842f7014ddc90",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%A9%BF%E9%92%88%E4%B9%9E%E5%B7%A7.webm",
+      "retainedAs": "actions/original-027.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吹笛子.webm",
+      "blob": "fd57f820116b72c35e7b50ee3cdb5c20e775062b",
+      "bytes": 768350,
+      "sha256": "9c8b754a3256778cddd88fbb073b649d5b1d2e5f96e70231bc2c3bee06fa7c78",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%B9%E7%AC%9B%E5%AD%90.webm",
+      "retainedAs": "actions/original-028.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/吹气球.webm",
+      "blob": "3a632cd91c409ed1b889f0313ae1394113c0d7c0",
+      "bytes": 751040,
+      "sha256": "3258f91b2000d949ba38f34c1f161b0d5fa148ecffb5a95eb8a3e10b5df7fc87",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%90%B9%E6%B0%94%E7%90%83.webm",
+      "retainedAs": "actions/original-029.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/打瞌睡被惊醒.webm",
+      "blob": "e5c5759895274e1f7c4017dce9c9c51beec44e51",
+      "bytes": 454028,
+      "sha256": "7e10c87cfcbd63b20b5a3787be71b0500381d54ea04a5ac0e9d99f59ed49a6d7",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%89%93%E7%9E%8C%E7%9D%A1%E8%A2%AB%E6%83%8A%E9%86%92.webm",
+      "retainedAs": "actions/original-030.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/大口吃零食.webm",
+      "blob": "ab57e48e28d0e0fb832549e1b546bed28f2eb3df",
+      "bytes": 806998,
+      "sha256": "fdacb534a828b0c669f22a54e8da9bb9b5d731e0132dd5ea946f7badc9229a39",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%A4%A7%E5%8F%A3%E5%90%83%E9%9B%B6%E9%A3%9F.webm",
+      "retainedAs": "actions/original-031.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/待机呼吸休闲.webm",
+      "blob": "fd64a428a2be1d3b4ff6cd7f9867dfe978ba0bbb",
+      "bytes": 441437,
+      "sha256": "deb965d05a85dacf5ff4a20faa757846f0d11679598c3ec578a5571487660395",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%BE%85%E6%9C%BA%E5%91%BC%E5%90%B8%E4%BC%91%E9%97%B2.webm",
+      "retainedAs": "actions/idle.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/荡秋千.webm",
+      "blob": "41c61429405139344b13875135468edb25b6f28e",
+      "bytes": 644126,
+      "sha256": "f32ea98e9c04553ae39939cd76c469192ebc19d98b90ebf93ec4b88bf95b25c9",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%8D%A1%E7%A7%8B%E5%8D%83.webm",
+      "retainedAs": "actions/original-033.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/点击回应-傲娇生气.webm",
+      "blob": "77c6461a1f8ced2dc7272f44192f37dd682becf8",
+      "bytes": 392336,
+      "sha256": "6b7176b98408cb649d1d37b6a6222a21aa6b128187e3e0b2d18550d35ab81064",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%82%B9%E5%87%BB%E5%9B%9E%E5%BA%94-%E5%82%B2%E5%A8%87%E7%94%9F%E6%B0%94.webm",
+      "retainedAs": "actions/original-034.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/点击回应-害羞惊讶.webm",
+      "blob": "499b73c42844bd0268bff9044e0523fcae1c1b27",
+      "bytes": 538281,
+      "sha256": "a04968bbc46d1ebea07f81e5dabd93b0b67a9d07f1371e9887b33075134ad00d",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%82%B9%E5%87%BB%E5%9B%9E%E5%BA%94-%E5%AE%B3%E7%BE%9E%E6%83%8A%E8%AE%B6.webm",
+      "retainedAs": "actions/original-035.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/点击回应-开心跃动.webm",
+      "blob": "fb614abf8d19c650fb5bd4727b2585282733a996",
+      "bytes": 538110,
+      "sha256": "86dcb0c3dd7b651de9c107e927d57a5c4224599101706dbdcc782fa48bcd0ad7",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%82%B9%E5%87%BB%E5%9B%9E%E5%BA%94-%E5%BC%80%E5%BF%83%E8%B7%83%E5%8A%A8.webm",
+      "retainedAs": "actions/original-036.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/点击回应-挠痒咯咯笑.webm",
+      "blob": "d896eb9a91ca8eafa7f0af35a3073dc04a397742",
+      "bytes": 425393,
+      "sha256": "f228279219f4084323ca1bfef1604f7c77bb3f505d45a8d1747b5ac3f9f2393b",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%82%B9%E5%87%BB%E5%9B%9E%E5%BA%94-%E6%8C%A0%E7%97%92%E5%92%AF%E5%92%AF%E7%AC%91.webm",
+      "retainedAs": "actions/original-037.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/点击回应-元气挥手.webm",
+      "blob": "f60556f06c386cfb569f76b0cfa2e34e34fdc362",
+      "bytes": 421669,
+      "sha256": "48cd729ccdcf746369942ea954d242e9afdd5643e1dac3827fa5e67450eb8776",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%82%B9%E5%87%BB%E5%9B%9E%E5%BA%94-%E5%85%83%E6%B0%94%E6%8C%A5%E6%89%8B.webm",
+      "retainedAs": "actions/original-038.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/东张西望.webm",
+      "blob": "3ba4edb2cc647c51edd41b5a6c71eeee8c418ed0",
+      "bytes": 427005,
+      "sha256": "a20ed02ccc5e72075a3ca83fabb57d9aac5ded699f52d00ec6de72069799fcd5",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%B8%9C%E5%BC%A0%E8%A5%BF%E6%9C%9B.webm",
+      "retainedAs": "actions/original-039.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/动物环绕.webm",
+      "blob": "44722e0afb7ef4c1cd85c5c98eadd9b4ade2fea9",
+      "bytes": 981435,
+      "sha256": "814d41e7d619f9a61f38e5494a0cfd703f8bcfd829a14fa921e1c59acf3ce872",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8A%A8%E7%89%A9%E7%8E%AF%E7%BB%95.webm",
+      "retainedAs": "actions/original-040.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/堆雪人.webm",
+      "blob": "ce8e8be3b7e5c0dfbdebf15f5a8fd70e2836ee0f",
+      "bytes": 519196,
+      "sha256": "478bdc31cc60e55e3efa139b81c7d8680a8cf83aca2304495e6da50a20a09cf5",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%A0%86%E9%9B%AA%E4%BA%BA.webm",
+      "retainedAs": "actions/original-041.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/放风筝.webm",
+      "blob": "000eba2f49a11beb21aa63ddc64c4d1522afa27e",
+      "bytes": 770134,
+      "sha256": "9d9ac75871b1c70a77fc4aaa63dd24778d79cbf492c2c5df42167199c7dd2132",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%94%BE%E9%A3%8E%E7%AD%9D.webm",
+      "retainedAs": "actions/original-042.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/放河灯.webm",
+      "blob": "2827fd308393a036201bc85dca0a9b2cc9f3ee13",
+      "bytes": 379124,
+      "sha256": "af744bed1ff20cc1b0492247add45f2b16433fde0b0897c31d6b0579429b788d",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%94%BE%E6%B2%B3%E7%81%AF.webm",
+      "retainedAs": "actions/original-043.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/放孔明灯.webm",
+      "blob": "ca554c0df5fb9cd2f35ad9eb54957b9e1dfcd2cf",
+      "bytes": 594144,
+      "sha256": "cc6540b4651f6603363dd326801921d6ba220ecaaf00828b42d248eb28beeb31",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%94%BE%E5%AD%94%E6%98%8E%E7%81%AF.webm",
+      "retainedAs": "actions/original-044.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/放烟花.webm",
+      "blob": "3a1bcd38b00b170b619e42b76ab8c9ea9225903a",
+      "bytes": 1330462,
+      "sha256": "539ac09ae29ed0a11bd828df096f3e72f606529b3c59e29a5fcf3b051779a4d0",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%94%BE%E7%83%9F%E8%8A%B1.webm",
+      "retainedAs": "actions/original-045.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/工作状态-垂头叹气冒汗.webm",
+      "blob": "653ef82b71d52faa1d26a014afb7764f778926f7",
+      "bytes": 198937,
+      "sha256": "ab00c844e62221905574b4c070e0d7b6fa14fb2afa1064c27a160f10e25f7196",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81-%E5%9E%82%E5%A4%B4%E5%8F%B9%E6%B0%94%E5%86%92%E6%B1%97.webm",
+      "retainedAs": "actions/original-046.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/工作状态-忙碌点按.webm",
+      "blob": "32bc6dbf65a7f1afa403520c3dd37980ca353e5f",
+      "bytes": 475613,
+      "sha256": "b5d702e0c04adb7b255ac702001c24da36c8bf95efc891f693f4976986ab2435",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81-%E5%BF%99%E7%A2%8C%E7%82%B9%E6%8C%89.webm",
+      "retainedAs": "actions/original-047.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/工作状态-清点归档.webm",
+      "blob": "af694fb0013cbc0aa5313ab0221f417b4efdb14a",
+      "bytes": 362510,
+      "sha256": "8c84f58f3a9e7b912e1cbfd89f77eb3652053fc9b2844295c8440cb636305d3b",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81-%E6%B8%85%E7%82%B9%E5%BD%92%E6%A1%A3.webm",
+      "retainedAs": "actions/original-048.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/工作状态-雀跃庆祝.webm",
+      "blob": "edd6645a8ee9b222c720fb20cfff3b715e92db9b",
+      "bytes": 488024,
+      "sha256": "3ff681051a0bb4f152d7535d64b7f3194c30298bf56d41e521216a278f135d3e",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81-%E9%9B%80%E8%B7%83%E5%BA%86%E7%A5%9D.webm",
+      "retainedAs": "actions/original-049.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/工作状态-思考冒泡.webm",
+      "blob": "51bc3bb2fb894e6f1499974d62a3d93592f91859",
+      "bytes": 408849,
+      "sha256": "b4a36cfa28ea5d7089e362a01972c6e880297c6dcd0d39f1994efd889a3c1be5",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81-%E6%80%9D%E8%80%83%E5%86%92%E6%B3%A1.webm",
+      "retainedAs": "actions/original-050.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/工作状态-原地踱步张望.webm",
+      "blob": "7b9459a1efdf4155f5ddd3beb07936fcc5c8a7ed",
+      "bytes": 471725,
+      "sha256": "a56c17ef901fa531324a46a04def2381f65922d319ec83dadde34d2a4669e411",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81-%E5%8E%9F%E5%9C%B0%E8%B8%B1%E6%AD%A5%E5%BC%A0%E6%9C%9B.webm",
+      "retainedAs": "actions/original-051.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/哈欠连天.webm",
+      "blob": "63da356fa373ecf6256bc8f4deb9709577e2f18e",
+      "bytes": 424352,
+      "sha256": "2b23372e1ff2bc2f9078c09740708c960d4ea021f9fc3cca294d9df11e393ec8",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%93%88%E6%AC%A0%E8%BF%9E%E5%A4%A9.webm",
+      "retainedAs": "actions/original-052.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/蝴蝶蜜蜂环绕头顶开花.webm",
+      "blob": "6f39bb90fd8349d5f23d0912a4bc01c2c06470f2",
+      "bytes": 852828,
+      "sha256": "fd286c78001fe57fc093c06a4b79ef077ade2dacd2a77e011d3f393f587707ec",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%9D%B4%E8%9D%B6%E8%9C%9C%E8%9C%82%E7%8E%AF%E7%BB%95%E5%A4%B4%E9%A1%B6%E5%BC%80%E8%8A%B1.webm",
+      "retainedAs": "actions/original-053.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/鲸鱼吐泡泡特效.webm",
+      "blob": "4848e28f2c4fde323025a03a7980b75f1c56f98e",
+      "bytes": 452096,
+      "sha256": "d64d02059dc1602f7de5aa3135d381351363f021b2bceed47655db322cc71db3",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E9%B2%B8%E9%B1%BC%E5%90%90%E6%B3%A1%E6%B3%A1%E7%89%B9%E6%95%88.webm",
+      "retainedAs": "actions/original-054.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/可爱宅舞.webm",
+      "blob": "0b96ac0de6fa7afe72f256148dd719698769043c",
+      "bytes": 576307,
+      "sha256": "4f737e44ea67c20368bdce474b951902c87c37991fb0750da8ed7794df6ec55c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8F%AF%E7%88%B1%E5%AE%85%E8%88%9E.webm",
+      "retainedAs": "actions/original-055.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/蓝鲸现世.webm",
+      "blob": "eb62a155d056d35a16b1d4e961d5ff10c109f684",
+      "bytes": 482896,
+      "sha256": "ed72f0ede7c6cd9482d44aa31002214d461b833c456f3ea40a52c3a0ddc20230",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%93%9D%E9%B2%B8%E7%8E%B0%E4%B8%96.webm",
+      "retainedAs": "actions/original-056.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/撸猫.webm",
+      "blob": "466044675ea20b863db850373aab8a6c2b7c11a8",
+      "bytes": 348432,
+      "sha256": "068d84e944dfce17de1c5a2ee2a4bc391e2848dad88a7df4877ebf23cf38bcec",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%92%B8%E7%8C%AB.webm",
+      "retainedAs": "actions/original-057.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/萌化小幽灵.webm",
+      "blob": "cae5ebbca8634591a49daf5f7a4bc56fa369a7bf",
+      "bytes": 421990,
+      "sha256": "ac2012601d05bf7de7c7cced415b8793b0be3b7cfa569da06c2325f135f7e94f",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%90%8C%E5%8C%96%E5%B0%8F%E5%B9%BD%E7%81%B5.webm",
+      "retainedAs": "actions/original-058.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/女仆屈膝礼仪.webm",
+      "blob": "0bcac6ada85e78527fcce020db73bf0b6eff41d3",
+      "bytes": 365712,
+      "sha256": "6536fb519ba73bbc338d30cf7286b14ffde1278b6d469c64573536dc0f896918",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%A5%B3%E4%BB%86%E5%B1%88%E8%86%9D%E7%A4%BC%E4%BB%AA.webm",
+      "retainedAs": "actions/original-059.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/螃蟹走路.webm",
+      "blob": "6ff80136295718a2e866e70d90fa8a0bada333dd",
+      "bytes": 596902,
+      "sha256": "5696b0878be38cc450d6eaace837aef1c1b5834f1382bc6c11c2de582f284673",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%9E%83%E8%9F%B9%E8%B5%B0%E8%B7%AF.webm",
+      "retainedAs": "actions/original-060.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/凭空生花.webm",
+      "blob": "085fe6d74ddfc268670be32b7c3f78c6806b68f1",
+      "bytes": 620252,
+      "sha256": "d1c336bc54c57a282bec180859c7b7b58912b70b5bca7b2f49495cd30cc7d5d6",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%87%AD%E7%A9%BA%E7%94%9F%E8%8A%B1.webm",
+      "retainedAs": "actions/original-061.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/扑克魔术.webm",
+      "blob": "2e33efead726dff587fa0ca46adef5ecb5d0b7c9",
+      "bytes": 461997,
+      "sha256": "1d44a7624fb027e5f615c747014ab040ddc497f6bdbcb67194a23a53a5dba78c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%89%91%E5%85%8B%E9%AD%94%E6%9C%AF.webm",
+      "retainedAs": "actions/original-062.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/骑木马.webm",
+      "blob": "b578f4c951a11c3fe97bdbd609315d3e72fe6827",
+      "bytes": 697580,
+      "sha256": "5f54a98ccac97eac000d799043411f4fc0732096dc51a2ad766552737578f313",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E9%AA%91%E6%9C%A8%E9%A9%AC.webm",
+      "retainedAs": "actions/original-063.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/轻快记录.webm",
+      "blob": "d0c1bc670b74450e53019b36366edbe54056a363",
+      "bytes": 447726,
+      "sha256": "1da04162fed5cd52bd4a6a6027a6902f50bda0969d34465bc2d332cf3679bbd5",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%BD%BB%E5%BF%AB%E8%AE%B0%E5%BD%95.webm",
+      "retainedAs": "actions/original-064.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/轻快摇摆舞.webm",
+      "blob": "596558b14cacee0d96f5e9d3942fd5731be49718",
+      "bytes": 542928,
+      "sha256": "c621d00e1b959b991df8fc420e409b569e768fad7f75d1fb489375d101fee630",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%BD%BB%E5%BF%AB%E6%91%87%E6%91%86%E8%88%9E.webm",
+      "retainedAs": "actions/original-065.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/三球抛接.webm",
+      "blob": "a76228cb5f42fa159e3ec565b8ef969a7d289dca",
+      "bytes": 549316,
+      "sha256": "a64c08a4b7e5c3549616faf9dcd418e17f156b4b72d906646e4d57067df70d23",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%B8%89%E7%90%83%E6%8A%9B%E6%8E%A5.webm",
+      "retainedAs": "actions/original-066.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/深度思考碎碎念.webm",
+      "blob": "5a40d5bfdfa818a1df37cef6405f10cd8b71961c",
+      "bytes": 433031,
+      "sha256": "db66867cd1f5bf68b0638fe1f966d0fdf95d1573523e60c77aa8913706118e82",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%B7%B1%E5%BA%A6%E6%80%9D%E8%80%83%E7%A2%8E%E7%A2%8E%E5%BF%B5.webm",
+      "retainedAs": "actions/original-067.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/是啊，吃什么.webm",
+      "blob": "e347b7574b4dca0d65bdd34bf9af0a176fbb15a1",
+      "bytes": 588163,
+      "sha256": "94e1d69e05cc66cc1dc8bf6986efc51dfd71fe22fd34166f9efe7ca2d21c1e8c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%98%AF%E5%95%8A%EF%BC%8C%E5%90%83%E4%BB%80%E4%B9%88.webm",
+      "retainedAs": "actions/original-068.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/收红包.webm",
+      "blob": "ca07f8792572e3b182b2077b768fbcf9ece4ee91",
+      "bytes": 472277,
+      "sha256": "a0e7a9a5997aff1357c76eeaaad7a01503c320f7017766dd5a42e643daa505c1",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%94%B6%E7%BA%A2%E5%8C%85.webm",
+      "retainedAs": "actions/original-069.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/涮火锅.webm",
+      "blob": "d3e99cf6d8694b5e83a3957793f8fc7a0fc2cc2a",
+      "bytes": 466547,
+      "sha256": "f0b345c22cf2841137d215a7b9d50252b8be0ede64887e91fdc9bd09843e3c8f",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%B6%AE%E7%81%AB%E9%94%85.webm",
+      "retainedAs": "actions/original-070.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/碎碎念-擦桌碎碎念.webm",
+      "blob": "343513cf0d5583b5f476080d5082f3f5e01588b8",
+      "bytes": 350436,
+      "sha256": "bfb616a3e6ed7375826d8fd00b41b9476d2e4bd65e10abddfb98f04c734e30e6",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%A2%8E%E7%A2%8E%E5%BF%B5-%E6%93%A6%E6%A1%8C%E7%A2%8E%E7%A2%8E%E5%BF%B5.webm",
+      "retainedAs": "actions/original-071.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/碎碎念-对屏碎碎念.webm",
+      "blob": "8b7b357f01a9e5cf733dce28f32e8f94be4a030d",
+      "bytes": 364946,
+      "sha256": "fda85ca286e173b7cf868c91829c3445e55c395e0c788b6be310a855b9b37973",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%A2%8E%E7%A2%8E%E5%BF%B5-%E5%AF%B9%E5%B1%8F%E7%A2%8E%E7%A2%8E%E5%BF%B5.webm",
+      "retainedAs": "actions/original-072.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/碎碎念-发呆碎碎念.webm",
+      "blob": "4afcaf7459e3b27b30252648b388e9cd3296807f",
+      "bytes": 326752,
+      "sha256": "02da8cc2194250ae9708b137a3deff43fed2ebd40a7aa4a033b6262c3485eb5b",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%A2%8E%E7%A2%8E%E5%BF%B5-%E5%8F%91%E5%91%86%E7%A2%8E%E7%A2%8E%E5%BF%B5.webm",
+      "retainedAs": "actions/original-073.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/讨糖南瓜灯.webm",
+      "blob": "3a17ac14fba449e8d7bb0e0d38085825b068a9e1",
+      "bytes": 483293,
+      "sha256": "9535d1a29f780aa2d78ffaabd7ee1765952bf34b2b380e9edc25dc6a3003070b",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%AE%A8%E7%B3%96%E5%8D%97%E7%93%9C%E7%81%AF.webm",
+      "retainedAs": "actions/original-074.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/踢毽子.webm",
+      "blob": "1a0586564e58e6a60e4f151d2bf161e975673e30",
+      "bytes": 531015,
+      "sha256": "68937b619a44e9ca7ccdfe77e5657f7a9bfa238beb33768378b6f254a16f3dbd",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%B8%A2%E6%AF%BD%E5%AD%90.webm",
+      "retainedAs": "actions/original-075.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/偷吃零食被抓住.webm",
+      "blob": "9f50ed6c3ba1a3f96b614e34ecaaf067ef6ab9cd",
+      "bytes": 432201,
+      "sha256": "c3b783351ad38fdd931e80b188ecb12d273f21e4794aed2c41f267bdb75ff897",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%81%B7%E5%90%83%E9%9B%B6%E9%A3%9F%E8%A2%AB%E6%8A%93%E4%BD%8F.webm",
+      "retainedAs": "actions/original-076.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/玩水枪.webm",
+      "blob": "70cabac39a03ab1738540fdb9a9581ae523de463",
+      "bytes": 523346,
+      "sha256": "448f732417ac4dcb6ca140cd3d73896aaea7f5dac2876a9a0f7c0776478d7128",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%8E%A9%E6%B0%B4%E6%9E%AA.webm",
+      "retainedAs": "actions/original-077.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/玩游戏气急败坏.webm",
+      "blob": "a3375c2980634529e84ba2ee61a57776ea8205e9",
+      "bytes": 525022,
+      "sha256": "8e406bc52cf2a20c9d288867367c4df7c45a5dc78443bc5c2fdc83835ac0b4c3",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%8E%A9%E6%B8%B8%E6%88%8F%E6%B0%94%E6%80%A5%E8%B4%A5%E5%9D%8F.webm",
+      "retainedAs": "actions/original-078.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/舞狮头.webm",
+      "blob": "b16d549ec2572f5d693bdc7691e3247544ccb88e",
+      "bytes": 632110,
+      "sha256": "6d2006b4023d44087cf4c7dc055d1d8f2a8cec32e22610807a2dfea7bb0dc367",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%88%9E%E7%8B%AE%E5%A4%B4.webm",
+      "retainedAs": "actions/original-079.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/下五子棋.webm",
+      "blob": "63295b32e6a0522dac3840abb74a5af7b1431a08",
+      "bytes": 514704,
+      "sha256": "0802b6b808f44846b3d194a857fb0ffd38bdea2d7cdb91c9e5e6f311e44f1953",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%B8%8B%E4%BA%94%E5%AD%90%E6%A3%8B.webm",
+      "retainedAs": "actions/original-080.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/小幅度原地360度旋转展示.webm",
+      "blob": "915feb453f11f0267693109b3e847a850cdb1ec7",
+      "bytes": 585715,
+      "sha256": "9f1a927f63c73e3c35ee5f4d2eb58f4a46ac7eca2af69388f320d10cdef8d29c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B0%8F%E5%B9%85%E5%BA%A6%E5%8E%9F%E5%9C%B0360%E5%BA%A6%E6%97%8B%E8%BD%AC%E5%B1%95%E7%A4%BA.webm",
+      "retainedAs": "actions/original-081.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/小提琴演奏.webm",
+      "blob": "2de1533cd0f2d7a72e0099f9ac6f816353f3912f",
+      "bytes": 605350,
+      "sha256": "03816be0fcd499b63ed667e8b87c234094e64c59f1cd222455cf6a27ac832d1c",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%B0%8F%E6%8F%90%E7%90%B4%E6%BC%94%E5%A5%8F.webm",
+      "retainedAs": "actions/original-082.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/写代码.webm",
+      "blob": "47902f235c11fadd22134dd71d2fbcc3a36a13fc",
+      "bytes": 383960,
+      "sha256": "0441287737cdbb993ce90dfa74c67ea4ea3549d8c8ea98946604668464589ed7",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%86%99%E4%BB%A3%E7%A0%81.webm",
+      "retainedAs": "actions/original-083.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/写福字.webm",
+      "blob": "b7aa9ce458b6e8d1c9513b5e4b059a07ca143f88",
+      "bytes": 500314,
+      "sha256": "7841a47a6997bb7c90d81671d524c44b1afc87ca2e8fceb17d06d99003a67181",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%86%99%E7%A6%8F%E5%AD%97.webm",
+      "retainedAs": "actions/original-084.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/摇扇纳凉.webm",
+      "blob": "bbb9b8344e6c30579c967a27831ad85f19db1002",
+      "bytes": 510022,
+      "sha256": "87d4b9454692484e4809b45071751b2144fc82fd8696fafabb32e19af98350f2",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%91%87%E6%89%87%E7%BA%B3%E5%87%89.webm",
+      "retainedAs": "actions/original-085.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/用鲸鱼尾巴拍打地面.webm",
+      "blob": "822a7c41f795906ca46e2f1757c63e6633d39214",
+      "bytes": 352213,
+      "sha256": "e3f92df2cf182fdcb109ad0a865689d66e0a0d10db14c1528e5b3cb2f0bf090d",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%94%A8%E9%B2%B8%E9%B1%BC%E5%B0%BE%E5%B7%B4%E6%8B%8D%E6%89%93%E5%9C%B0%E9%9D%A2.webm",
+      "retainedAs": "actions/original-086.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/优雅女仆舞.webm",
+      "blob": "390c504dfb0b56bb647f0253782a91ee705f8933",
+      "bytes": 578915,
+      "sha256": "74209c4c668545ab1e2366e0d1c0709b7bea0312eeba7e89b553d5b977bfe649",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BC%98%E9%9B%85%E5%A5%B3%E4%BB%86%E8%88%9E.webm",
+      "retainedAs": "actions/original-087.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/悠闲哼歌.webm",
+      "blob": "01bd5c202583ef634de424904e76f2906f7289d3",
+      "bytes": 584008,
+      "sha256": "358905afc2c81a9ed478bcf121a8f2f19276766b1d382d0067456bd57d1d7dbb",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%82%A0%E9%97%B2%E5%93%BC%E6%AD%8C.webm",
+      "retainedAs": "actions/original-088.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/余额-袋空如洗.webm",
+      "blob": "a85eb2206596c7031fbc64146df09f6e7b137aae",
+      "bytes": 383104,
+      "sha256": "3db780bbc96bb362ced36078fecacfb63b9d292c06b533cfb61797adb553a7f8",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BD%99%E9%A2%9D-%E8%A2%8B%E7%A9%BA%E5%A6%82%E6%B4%97.webm",
+      "retainedAs": "actions/original-089.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/余额-分文不剩.webm",
+      "blob": "013b69906a5c56b219bbd74986f973eea53e3675",
+      "bytes": 490318,
+      "sha256": "b232349bdbd962bad7f3a15cfce539c6fadadfd0a286b7f03b03e59cf7aca7a8",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BD%99%E9%A2%9D-%E5%88%86%E6%96%87%E4%B8%8D%E5%89%A9.webm",
+      "retainedAs": "actions/original-090.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/余额-金袋叮当.webm",
+      "blob": "1bbe074a0bef1a7ef80508b3033269885edb6b2c",
+      "bytes": 530955,
+      "sha256": "6fda0c4ae013cf7906afa1cb846717d097db576343dab11006f14ca5c7a9a34f",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BD%99%E9%A2%9D-%E9%87%91%E8%A2%8B%E5%8F%AE%E5%BD%93.webm",
+      "retainedAs": "actions/original-091.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/余额-钱袋满溢.webm",
+      "blob": "34212594a3b9fc03daf2ae742763e62dfe4b034f",
+      "bytes": 622258,
+      "sha256": "dddd6ffc4e763b77360e49c0ccee0987a43c3d253a23e3133c334aabb598b362",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BD%99%E9%A2%9D-%E9%92%B1%E8%A2%8B%E6%BB%A1%E6%BA%A2.webm",
+      "retainedAs": "actions/original-092.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/余额-钱袋如常.webm",
+      "blob": "a52b686a7a3d801a98cccb81534eae2bfa7ac2b3",
+      "bytes": 387407,
+      "sha256": "f6cb9aa1c829fcbc62478dbddd0e0fcd7beb47433cea751d18b81ccccbec95d3",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BD%99%E9%A2%9D-%E9%92%B1%E8%A2%8B%E5%A6%82%E5%B8%B8.webm",
+      "retainedAs": "actions/original-093.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/余额-数金皱眉.webm",
+      "blob": "6c1dac8e3edddc02f4988e1c38e289177c335ecf",
+      "bytes": 319065,
+      "sha256": "94a7e0ee8e1012aadec33492301c893c2d1c5df7e36049dbada8c4a264bf1810",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%BD%99%E9%A2%9D-%E6%95%B0%E9%87%91%E7%9A%B1%E7%9C%89.webm",
+      "retainedAs": "actions/original-094.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地蹲下玩玩具汽车.webm",
+      "blob": "9a4ba01b33e6fba841a99ebf55631433651cdcd3",
+      "bytes": 505114,
+      "sha256": "3ec9978ce3663d9bc4bfe5f5223f0a4e3d9ea6fcd0a6acdbaa802e0cfba36bf2",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E8%B9%B2%E4%B8%8B%E7%8E%A9%E7%8E%A9%E5%85%B7%E6%B1%BD%E8%BD%A6.webm",
+      "retainedAs": "actions/original-095.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地漂浮踏步.webm",
+      "blob": "d700e4fdd38e8795b88f6d81418e8fc196fe80ed",
+      "bytes": 591446,
+      "sha256": "7dee1c14672f1f99bebe5e6f1a52d6664b851ed95f9958ac6c12b753a5e5cc81",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E6%BC%82%E6%B5%AE%E8%B8%8F%E6%AD%A5.webm",
+      "retainedAs": "actions/original-096.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地敲击桌面互动.webm",
+      "blob": "c7e55e6f83c1847a45d81d60c04de2a167680c92",
+      "bytes": 403033,
+      "sha256": "a40f481e89abcc726c89f30b01d085ca8c17a090e71facdd5e7f747e771093eb",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E6%95%B2%E5%87%BB%E6%A1%8C%E9%9D%A2%E4%BA%92%E5%8A%A8.webm",
+      "retainedAs": "actions/original-097.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地跳跃抓碎头顶物品.webm",
+      "blob": "b45cdcb57340f12fff1b40ea9391bdd1d3c2845a",
+      "bytes": 619282,
+      "sha256": "ccb906c677c7b739eb0dbf5307160e66583562c2a6caec72a9d3d14a202fcccd",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E8%B7%B3%E8%B7%83%E6%8A%93%E7%A2%8E%E5%A4%B4%E9%A1%B6%E7%89%A9%E5%93%81.webm",
+      "retainedAs": "actions/original-098.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地小憩沉眠.webm",
+      "blob": "9b258545a841647a11ffdc5882ad8b2bb808a343",
+      "bytes": 433769,
+      "sha256": "31d4a6b36a29b2a4fe097384173d3bbeb3fa2f40f526b13191791456bf7507a1",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E5%B0%8F%E6%86%A9%E6%B2%89%E7%9C%A0.webm",
+      "retainedAs": "actions/original-099.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地重力下蹲压缩.webm",
+      "blob": "67acb52f7e7c49e77b000730b3bff9a65fb21a10",
+      "bytes": 215047,
+      "sha256": "1c8972478a7f347818165db62b468f1624ec11d0862f38aec3078e3870831d24",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E9%87%8D%E5%8A%9B%E4%B8%8B%E8%B9%B2%E5%8E%8B%E7%BC%A9.webm",
+      "retainedAs": "actions/original-100.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地专心玩魔方.webm",
+      "blob": "d2730f4c17e8ccb793973929c237b4fb32d8e3fc",
+      "bytes": 442948,
+      "sha256": "ad54da175ba86b19a84b73b3169fb418b2df016560bb274283f200aca351e712",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E4%B8%93%E5%BF%83%E7%8E%A9%E9%AD%94%E6%96%B9.webm",
+      "retainedAs": "actions/original-101.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/原地左转奔跑.webm",
+      "blob": "d9b6611b32065a7937878a5467cd84d47a1be543",
+      "bytes": 614526,
+      "sha256": "79882aedd7b77caaacce1a34dece68e2f001a3dbfa5f9d049c1ce2fc04518d52",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E5%8E%9F%E5%9C%B0%E5%B7%A6%E8%BD%AC%E5%A5%94%E8%B7%91.webm",
+      "retainedAs": "actions/original-102.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/照镜子.webm",
+      "blob": "f9ead4a5e1ab6cb702bd349794264f398f470867",
+      "bytes": 504127,
+      "sha256": "13dc61c003e500d906b6526765072b7a78c0709491a397d4e70a88ec7ea63310",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E7%85%A7%E9%95%9C%E5%AD%90.webm",
+      "retainedAs": "actions/original-103.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/整体换装试色.webm",
+      "blob": "abd198a8d1e4e67f09d86e4a5bdc99859e61098e",
+      "bytes": 524724,
+      "sha256": "e8e599b12da7f3437c98425f6b192dd0c81a6b63bbba5e7927f53c22f757b094",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E6%95%B4%E4%BD%93%E6%8D%A2%E8%A3%85%E8%AF%95%E8%89%B2.webm",
+      "retainedAs": "actions/original-104.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/中秋赏月吃月饼.webm",
+      "blob": "48beff57ddc5b3c7e1c0387348e33ce8e3a5b819",
+      "bytes": 512341,
+      "sha256": "3f64003262d3f129470721495695ecd231795d859693a748914c02c6e3883a3a",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E4%B8%AD%E7%A7%8B%E8%B5%8F%E6%9C%88%E5%90%83%E6%9C%88%E9%A5%BC.webm",
+      "retainedAs": "actions/original-105.webm"
+    },
+    {
+      "path": "dsh-pet/assets/webm/装点圣诞树.webm",
+      "blob": "1217c9625c3a682732bc4398108ce7c4ae2a07f6",
+      "bytes": 818456,
+      "sha256": "25da448acdbba49c2d4b209d24053b6dd1b79e656273d1f3e659385dc2bc3759",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/assets/webm/%E8%A3%85%E7%82%B9%E5%9C%A3%E8%AF%9E%E6%A0%91.webm",
+      "retainedAs": "actions/original-106.webm"
+    },
+    {
+      "path": "dsh-pet/LICENSE",
+      "blob": "7d87632065ae9bbebe4fb7a275f38f3cd1c30c41",
+      "bytes": 1069,
+      "sha256": "22757dc9c895b2729a2fc684d227cadfb54d5af3dd300029926839e8c4e269ce",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/LICENSE",
+      "retainedAs": "originals/dsh-pet/LICENSE"
+    },
+    {
+      "path": "dsh-pet/package.json",
+      "blob": "4d5ed38f8ec449e8792d7cbceaea75ed42031282",
+      "bytes": 6499,
+      "sha256": "6e24055cef6da4c3350fbd7a9378dc18e15cfc93d9b3992ac87734c95163fdb2",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/package.json",
+      "retainedAs": "originals/dsh-pet/package.json"
+    },
+    {
+      "path": "dsh-pet/README.md",
+      "blob": "19a1a275cfa96f55959d41a513036ef9721eaccc",
+      "bytes": 35886,
+      "sha256": "921aa829ae9a7321168c176c958f840934b59a80ec8e629bcf5d0899ee3e9c9d",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/README.md",
+      "retainedAs": "originals/dsh-pet/README.md"
+    },
+    {
+      "path": "dsh-pet/runtime/electron-helper/sprite.js",
+      "blob": "b97d965bdbdb3ce6046067e85e28b649511cdb17",
+      "bytes": 69707,
+      "sha256": "6a89471facb5dfc68b618b85f898a82d0b17de80b39392d3b56db1d5fabdb4ec",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/runtime/electron-helper/sprite.js",
+      "retainedAs": "originals/dsh-pet/runtime/electron-helper/sprite.js"
+    },
+    {
+      "path": "dsh-pet/src/shared/motion.ts",
+      "blob": "753d89b66ca6a829521fce1d3b5a7699a0f4e538",
+      "bytes": 4391,
+      "sha256": "ea89835863c0d776fa9b7a6b3658588191b85703aa7ab2b8f701875dcf605dc4",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/src/shared/motion.ts",
+      "retainedAs": "originals/dsh-pet/src/shared/motion.ts"
+    },
+    {
+      "path": "dsh-pet/src/shared/state.ts",
+      "blob": "75d09da031c5b2bac9e66e6a569a422069827775",
+      "bytes": 7536,
+      "sha256": "41cc2ab7b6cc7abb66e998da744a293fb86980f9db4825bbc082685d355440b5",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/src/shared/state.ts",
+      "retainedAs": "originals/dsh-pet/src/shared/state.ts"
+    },
+    {
+      "path": "dsh-pet/src/shared/types.ts",
+      "blob": "e6576ccf7226865b78a889c1c8b8c52e1ec58dc1",
+      "bytes": 10543,
+      "sha256": "0b1160d2234961f52f8e6b1695dee2c2d3197fc41d4e56bee6b9aa00e7867d68",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/src/shared/types.ts",
+      "retainedAs": "originals/dsh-pet/src/shared/types.ts"
+    },
+    {
+      "path": "dsh-pet/src/shared/work-status.ts",
+      "blob": "a566fcbb2430ca99ae2f4bca9d163fa327419dcb",
+      "bytes": 2440,
+      "sha256": "d12c17e0389bffd3d3a9d2a2dbbd3df60256cdc9eb5ebfed9e28fa3debb53a98",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/dsh-pet/src/shared/work-status.ts",
+      "retainedAs": "originals/dsh-pet/src/shared/work-status.ts"
+    },
+    {
+      "path": "LICENSE",
+      "blob": "7d87632065ae9bbebe4fb7a275f38f3cd1c30c41",
+      "bytes": 1069,
+      "sha256": "22757dc9c895b2729a2fc684d227cadfb54d5af3dd300029926839e8c4e269ce",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/LICENSE",
+      "retainedAs": "originals/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "blob": "b5d774c2fac79b0d2c663b498df894de5eaf44b1",
+      "bytes": 45623,
+      "sha256": "adb591635dbb1d5bba9910a4379b7e0ee04c02b385af8c51ccbea50b5f0a7b2a",
+      "url": "https://raw.githubusercontent.com/PC2005-cloud/dsh-pet/92662190cdd4dee05e38a5151584cc6254cd7a43/README.md",
+      "retainedAs": "originals/README.md"
+    }
+  ],
+  "stateBindingsByOriginalName": {
+    "idle": "待机呼吸休闲",
+    "running-right": "螃蟹走路",
+    "running-left": "螃蟹走路",
+    "waving": "点击回应-元气挥手",
+    "jumping": "工作状态-雀跃庆祝",
+    "failed": "工作状态-垂头叹气冒汗",
+    "waiting": "工作状态-原地踱步张望",
+    "running": "工作状态-忙碌点按",
+    "review": "工作状态-思考冒泡",
+    "sleeping": "原地小憩沉眠",
+    "clicked": "点击回应-开心跃动",
+    "dragged": "被鼠标拖拽悬空反馈"
+  },
+  "directionLimitation": "向左和向右移动绑定同一原“螃蟹走路”视频，不另制镜像文件，不计两个独立源动作；原宿主方向翻转、移动前后留白与弹簧物理没有移植。",
+  "originalRuntimeFeatures": "原 DSH 插件和 Electron 独立宿主支持键鼠互动、甩抛与回弹、多开、AI 工作气泡、余额、碎碎念、对话与系统通知；完整能力按原项目 README 与官方 npm 安装使用。",
+  "compatibility": "本系统 mediaVersion1；106原动画可逐项预览，九核心状态与睡觉/点击/拖拽映射到现有原视频；本站仍按本系统交互与 AI 接入运行，不执行原项目 Agent/DSH/键鼠监听代码。",
+  "originalFullRuntimeMigrated": false,
+  "originalRuntimeExecuted": false,
+  "officialInstallation": {
+    "dsh": "npm install -g @deepseek-ai/dsh pnpm；dsh plugin --profile desktop add dsh-pet",
+    "standalone": "npm install -g dsh-pet；dsh-pet-standalone",
+    "sourceZip": "https://github.com/PC2005-cloud/dsh-pet/archive/92662190cdd4dee05e38a5151584cc6254cd7a43.zip"
+  },
+  "originalAnimationConfig": {
+    "idle": [
+      "待机呼吸休闲"
+    ],
+    "turn": [
+      "东张西望"
+    ],
+    "drag": [
+      "被鼠标拖拽悬空反馈"
+    ],
+    "clicks": [
+      "点击回应-开心跃动",
+      "点击回应-害羞惊讶",
+      "点击回应-傲娇生气",
+      "点击回应-挠痒咯咯笑",
+      "点击回应-元气挥手"
+    ],
+    "moves": {
+      "default": {
+        "minDist": 60,
+        "maxDist": 240,
+        "margin": 20,
+        "leadSec": 2,
+        "tailSec": 2
+      },
+      "actions": [
+        {
+          "name": "螃蟹走路"
+        },
+        {
+          "name": "原地漂浮踏步",
+          "params": {
+            "minDist": 40,
+            "maxDist": 120
+          }
+        },
+        {
+          "name": "原地左转奔跑",
+          "params": {
+            "minDist": 120,
+            "maxDist": 320,
+            "leadSec": 1.75,
+            "tailSec": 4.8
+          }
+        }
+      ]
+    },
+    "categories": [
+      {
+        "id": "小动作",
+        "weight": 20,
+        "actions": [
+          "悠闲哼歌",
+          "超大伸懒腰",
+          "原地敲击桌面互动",
+          "原地重力下蹲压缩",
+          "哈欠连天",
+          "原地小憩沉眠",
+          "女仆屈膝礼仪",
+          "被吓一跳",
+          "小幅度原地360度旋转展示",
+          "偷吃零食被抓住",
+          "用鲸鱼尾巴拍打地面",
+          "打瞌睡被惊醒",
+          "照镜子",
+          "整体换装试色",
+          "轻快记录",
+          "写代码",
+          "摇扇纳凉",
+          "晨间刷牙"
+        ]
+      },
+      {
+        "id": "玩耍",
+        "weight": 20,
+        "actions": [
+          "原地专心玩魔方",
+          "原地蹲下玩玩具汽车",
+          "鲸鱼吐泡泡特效",
+          "原地跳跃抓碎头顶物品",
+          "玩游戏气急败坏",
+          "玩水枪",
+          "小提琴演奏",
+          "蓝鲸现世",
+          "优雅女仆舞",
+          "轻快摇摆舞",
+          "可爱宅舞",
+          "吹气球",
+          "动物环绕",
+          "放风筝",
+          "拆礼物",
+          "变鸽子",
+          "扑克魔术",
+          "抽陀螺",
+          "吹笛子",
+          "蝴蝶蜜蜂环绕头顶开花",
+          "撸猫",
+          "凭空生花",
+          "骑木马",
+          "三球抛接",
+          "踢毽子",
+          "下五子棋",
+          "荡秋千"
+        ]
+      },
+      {
+        "id": "吃什么",
+        "weight": 16,
+        "actions": [
+          "吃白饭",
+          "大口吃零食",
+          "吃Token",
+          "吃早餐",
+          "吃午餐",
+          "吃晚餐",
+          "吃冰淇淋融化",
+          "吃大闸蟹",
+          "吃糖葫芦",
+          "吃长寿面",
+          "吃西瓜",
+          "涮火锅"
+        ]
+      },
+      {
+        "id": "时节",
+        "weight": 14,
+        "actions": [
+          "被落叶淹没",
+          "中秋赏月吃月饼",
+          "堆雪人",
+          "放烟花",
+          "吃粽子",
+          "吃年糕",
+          "吃青团",
+          "吃腊八粥",
+          "吃重阳糕",
+          "收红包",
+          "写福字",
+          "穿针乞巧",
+          "舞狮头",
+          "讨糖南瓜灯",
+          "插茱萸赏菊",
+          "放河灯",
+          "萌化小幽灵",
+          "装点圣诞树",
+          "放孔明灯",
+          "吃汤圆",
+          "吃饺子"
+        ]
+      },
+      {
+        "id": "文字",
+        "weight": 10,
+        "noMirror": true,
+        "actions": [
+          "是啊，吃什么",
+          "深度思考碎碎念"
+        ]
+      }
+    ],
+    "events": {
+      "balance": [
+        "余额-钱袋满溢",
+        "余额-金袋叮当",
+        "余额-钱袋如常",
+        "余额-数金皱眉",
+        "余额-袋空如洗",
+        "余额-分文不剩"
+      ],
+      "whisper": [
+        "碎碎念-擦桌碎碎念",
+        "碎碎念-发呆碎碎念",
+        "碎碎念-对屏碎碎念"
+      ],
+      "workStatus": [
+        "工作状态-思考冒泡",
+        "工作状态-忙碌点按",
+        "工作状态-清点归档",
+        "工作状态-原地踱步张望",
+        "工作状态-雀跃庆祝",
+        "工作状态-垂头叹气冒汗"
+      ]
+    }
+  }
+}

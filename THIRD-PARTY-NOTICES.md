@@ -4,7 +4,7 @@
 
 - OpenPets 迁入代码的原 MIT 声明完整保存在 outputs/desktop-pet/LICENSE；源自 [OpenPetsHQ/openpets](https://github.com/OpenPetsHQ/openpets)。包内部兼容名称保持原协议约定。
 - 插件各自保留源码目录和 ZIP 内 LICENSE／SHARE.md／原作者资料。MIT、声明式模板与本站自制代码按各自适用范围处理，不把一个插件的许可套给其他作品。
-- 117 件迁入桌宠在 upstream-pets 及下载 ZIP 中保留 pet.json、submission.json、spritesheet.webp 原件与 ORIGINAL-ASSETS-LICENSE.md、ORIGINAL-REPOSITORY-LICENSE。下载包另有 ATTRIBUTION.md 和 ASSET-TERMS.txt，含固定来源与适用许可直达链接。CC BY、CC BY-NC、MIT 等素材条款需分别遵守，CC BY-NC 素材保持非商业范围。
+- Codex Pet 全部 316 件迁入桌宠在 upstream-pets 及下载 ZIP 中保留 pet.json、submission.json、spritesheet.webp 原件与 ORIGINAL-ASSETS-LICENSE.md、ORIGINAL-REPOSITORY-LICENSE。下载包另有 ATTRIBUTION.md 和 ASSET-TERMS.txt，含固定来源与适用许可直达链接。CC BY、CC BY-NC、MIT、个人使用、原仓库限定等素材条款分别保留，非商业与另行许可条件继续适用。收录不授予额外权利，代码许可不代替角色与素材的其他权利。
 - 24 张本站插件封面为本项目辅助制作，迁入作品本身的版权声明不因此改变。
 - 字体 NotoColorEmoji 的原许可随桌面字体文件保存。默认宠物、图标等沿用现有运行资源；不能把其所在代码目录的 MIT 自动扩张为第三方角色素材许可。
 - 原投稿者能许可的贡献，与角色 IP、商标、肖像及参考素材的其他权利分开。没有独立取得这些权利的额外授权证明，不作全面版权保证。
@@ -91,3 +91,9 @@ THE SOFTWARE.
 ## Juejin 内置角色原素材
 
 项目 juejin-cn/juejin-usage，固定提交 `59ab306cb259a83ed1a0d836b18622e8c4df03e0`。代码根MIT原文（Copyright (c) 2026 juejin-cn）随包保留。Hawking、Yoyo、Click标记为原项目提供的IP美术，未提供本轮已核的独立美术授权声明，不用代码MIT替代角色、美术与商标授权。Hawking和Yoyo直接保留原1536×2288高容量V2图集全部字节、原九行与中性格；本站使用本系统V2时序，不称原宿主已播放全部九类动作。Click只移植原待机、右行和右行镜像的左行三活动，只有两段独立源动画；原损坏左行与完整图集仍留档。原许可、原图、contactsheet、pet.json和播放源码随包保留。原应用的AI额度采集与完整宿主行为不在这些素材包中。
+
+## Clawa 与 PC2005 dsh-pet
+
+Clawa 来自 IgorWarzocha/howaboua-pi-stuff 的 packages/pi-pet，固定提交 `336be4d27da28660d0688182b9ff983b6ccea0dc`，作者 IgorWarzocha。保留完整 MIT、原图集与原时序，九个原动画和十六向静止姿态可预览。原 Pi／GipPity 的语音、AI 和完整键鼠行为不在此外观包中。
+
+蓝鲸少女 · dsh-pet 来自 PC2005-cloud/dsh-pet，固定提交 `92662190cdd4dee05e38a5151584cc6254cd7a43`，作者 PC2005-cloud。106 个透明 WebM 按原字节、原时序保留，原 README、MIT 与非商业素材条件随包保留，不覆盖为本站维护者署名。原左右共用的螃蟹走路不计为两段独立原动画；完整宿主、键鼠与 AI 逻辑和本系统外观播放器分别说明。此作品与 Lykinzlj 的达妮娅动作包分别登记。

@@ -32,6 +32,8 @@ try {
     ["community-data.js", "export const requests = [];"],
     ["community-core.js", "export function rankings() { return []; }"],
     ["community-pages.js", "export function refresh() {}"],
+    ["locale.js", "export function createSiteLocale() {}"],
+    ["locale-messages.js", "export const uiMessages = {};"],
     ["package-core.js", "export function inspectImport() {}"],
     ["native-package-contract.js", "export function validateMediaPetMetadata() {}"],
     ["plugin-covers.js", "export const pluginCovers = {};"],

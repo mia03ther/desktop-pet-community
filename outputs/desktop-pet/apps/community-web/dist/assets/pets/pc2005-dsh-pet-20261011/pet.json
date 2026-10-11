@@ -1,0 +1,558 @@
+{
+  "id": "pc2005-dsh-pet",
+  "displayName": "蓝鲸少女 · dsh-pet",
+  "author": "PC2005-cloud",
+  "description": "dsh-pet 蓝发鲸鱼尾少女的106个原透明视频动作；原 WebM 字节、画质与时序完整保留。",
+  "mediaVersion": 1,
+  "actions": {
+    "original-001": "actions/original-001.webm",
+    "original-002": "actions/original-002.webm",
+    "original-003": "actions/original-003.webm",
+    "original-004": "actions/original-004.webm",
+    "original-005": "actions/original-005.webm",
+    "original-006": "actions/original-006.webm",
+    "original-007": "actions/original-007.webm",
+    "original-008": "actions/original-008.webm",
+    "original-009": "actions/original-009.webm",
+    "original-010": "actions/original-010.webm",
+    "original-011": "actions/original-011.webm",
+    "original-012": "actions/original-012.webm",
+    "original-013": "actions/original-013.webm",
+    "original-014": "actions/original-014.webm",
+    "original-015": "actions/original-015.webm",
+    "original-016": "actions/original-016.webm",
+    "original-017": "actions/original-017.webm",
+    "original-018": "actions/original-018.webm",
+    "original-019": "actions/original-019.webm",
+    "original-020": "actions/original-020.webm",
+    "original-021": "actions/original-021.webm",
+    "original-022": "actions/original-022.webm",
+    "original-023": "actions/original-023.webm",
+    "original-024": "actions/original-024.webm",
+    "original-025": "actions/original-025.webm",
+    "original-026": "actions/original-026.webm",
+    "original-027": "actions/original-027.webm",
+    "original-028": "actions/original-028.webm",
+    "original-029": "actions/original-029.webm",
+    "original-030": "actions/original-030.webm",
+    "original-031": "actions/original-031.webm",
+    "idle": "actions/idle.webm",
+    "original-033": "actions/original-033.webm",
+    "original-034": "actions/original-034.webm",
+    "original-035": "actions/original-035.webm",
+    "original-036": "actions/original-036.webm",
+    "original-037": "actions/original-037.webm",
+    "original-038": "actions/original-038.webm",
+    "original-039": "actions/original-039.webm",
+    "original-040": "actions/original-040.webm",
+    "original-041": "actions/original-041.webm",
+    "original-042": "actions/original-042.webm",
+    "original-043": "actions/original-043.webm",
+    "original-044": "actions/original-044.webm",
+    "original-045": "actions/original-045.webm",
+    "original-046": "actions/original-046.webm",
+    "original-047": "actions/original-047.webm",
+    "original-048": "actions/original-048.webm",
+    "original-049": "actions/original-049.webm",
+    "original-050": "actions/original-050.webm",
+    "original-051": "actions/original-051.webm",
+    "original-052": "actions/original-052.webm",
+    "original-053": "actions/original-053.webm",
+    "original-054": "actions/original-054.webm",
+    "original-055": "actions/original-055.webm",
+    "original-056": "actions/original-056.webm",
+    "original-057": "actions/original-057.webm",
+    "original-058": "actions/original-058.webm",
+    "original-059": "actions/original-059.webm",
+    "original-060": "actions/original-060.webm",
+    "original-061": "actions/original-061.webm",
+    "original-062": "actions/original-062.webm",
+    "original-063": "actions/original-063.webm",
+    "original-064": "actions/original-064.webm",
+    "original-065": "actions/original-065.webm",
+    "original-066": "actions/original-066.webm",
+    "original-067": "actions/original-067.webm",
+    "original-068": "actions/original-068.webm",
+    "original-069": "actions/original-069.webm",
+    "original-070": "actions/original-070.webm",
+    "original-071": "actions/original-071.webm",
+    "original-072": "actions/original-072.webm",
+    "original-073": "actions/original-073.webm",
+    "original-074": "actions/original-074.webm",
+    "original-075": "actions/original-075.webm",
+    "original-076": "actions/original-076.webm",
+    "original-077": "actions/original-077.webm",
+    "original-078": "actions/original-078.webm",
+    "original-079": "actions/original-079.webm",
+    "original-080": "actions/original-080.webm",
+    "original-081": "actions/original-081.webm",
+    "original-082": "actions/original-082.webm",
+    "original-083": "actions/original-083.webm",
+    "original-084": "actions/original-084.webm",
+    "original-085": "actions/original-085.webm",
+    "original-086": "actions/original-086.webm",
+    "original-087": "actions/original-087.webm",
+    "original-088": "actions/original-088.webm",
+    "original-089": "actions/original-089.webm",
+    "original-090": "actions/original-090.webm",
+    "original-091": "actions/original-091.webm",
+    "original-092": "actions/original-092.webm",
+    "original-093": "actions/original-093.webm",
+    "original-094": "actions/original-094.webm",
+    "original-095": "actions/original-095.webm",
+    "original-096": "actions/original-096.webm",
+    "original-097": "actions/original-097.webm",
+    "original-098": "actions/original-098.webm",
+    "original-099": "actions/original-099.webm",
+    "original-100": "actions/original-100.webm",
+    "original-101": "actions/original-101.webm",
+    "original-102": "actions/original-102.webm",
+    "original-103": "actions/original-103.webm",
+    "original-104": "actions/original-104.webm",
+    "original-105": "actions/original-105.webm",
+    "original-106": "actions/original-106.webm"
+  },
+  "actionDefinitions": {
+    "original-001": {
+      "displayName": "被落叶淹没",
+      "category": "时节"
+    },
+    "original-002": {
+      "displayName": "被鼠标拖拽悬空反馈",
+      "category": "原拖拽"
+    },
+    "original-003": {
+      "displayName": "被吓一跳",
+      "category": "小动作"
+    },
+    "original-004": {
+      "displayName": "变鸽子",
+      "category": "玩耍"
+    },
+    "original-005": {
+      "displayName": "插茱萸赏菊",
+      "category": "时节"
+    },
+    "original-006": {
+      "displayName": "拆礼物",
+      "category": "玩耍"
+    },
+    "original-007": {
+      "displayName": "超大伸懒腰",
+      "category": "小动作"
+    },
+    "original-008": {
+      "displayName": "晨间刷牙",
+      "category": "小动作"
+    },
+    "original-009": {
+      "displayName": "吃白饭",
+      "category": "吃什么"
+    },
+    "original-010": {
+      "displayName": "吃冰淇淋融化",
+      "category": "吃什么"
+    },
+    "original-011": {
+      "displayName": "吃大闸蟹",
+      "category": "吃什么"
+    },
+    "original-012": {
+      "displayName": "吃饺子",
+      "category": "时节"
+    },
+    "original-013": {
+      "displayName": "吃腊八粥",
+      "category": "时节"
+    },
+    "original-014": {
+      "displayName": "吃年糕",
+      "category": "时节"
+    },
+    "original-015": {
+      "displayName": "吃青团",
+      "category": "时节"
+    },
+    "original-016": {
+      "displayName": "吃汤圆",
+      "category": "时节"
+    },
+    "original-017": {
+      "displayName": "吃糖葫芦",
+      "category": "吃什么"
+    },
+    "original-018": {
+      "displayName": "吃晚餐",
+      "category": "吃什么"
+    },
+    "original-019": {
+      "displayName": "吃午餐",
+      "category": "吃什么"
+    },
+    "original-020": {
+      "displayName": "吃西瓜",
+      "category": "吃什么"
+    },
+    "original-021": {
+      "displayName": "吃早餐",
+      "category": "吃什么"
+    },
+    "original-022": {
+      "displayName": "吃长寿面",
+      "category": "吃什么"
+    },
+    "original-023": {
+      "displayName": "吃重阳糕",
+      "category": "时节"
+    },
+    "original-024": {
+      "displayName": "吃粽子",
+      "category": "时节"
+    },
+    "original-025": {
+      "displayName": "吃Token",
+      "category": "吃什么"
+    },
+    "original-026": {
+      "displayName": "抽陀螺",
+      "category": "玩耍"
+    },
+    "original-027": {
+      "displayName": "穿针乞巧",
+      "category": "时节"
+    },
+    "original-028": {
+      "displayName": "吹笛子",
+      "category": "玩耍"
+    },
+    "original-029": {
+      "displayName": "吹气球",
+      "category": "玩耍"
+    },
+    "original-030": {
+      "displayName": "打瞌睡被惊醒",
+      "category": "小动作"
+    },
+    "original-031": {
+      "displayName": "大口吃零食",
+      "category": "吃什么"
+    },
+    "idle": {
+      "displayName": "待机呼吸休闲",
+      "category": "原待机"
+    },
+    "original-033": {
+      "displayName": "荡秋千",
+      "category": "玩耍"
+    },
+    "original-034": {
+      "displayName": "点击回应-傲娇生气",
+      "category": "原点击回应"
+    },
+    "original-035": {
+      "displayName": "点击回应-害羞惊讶",
+      "category": "原点击回应"
+    },
+    "original-036": {
+      "displayName": "点击回应-开心跃动",
+      "category": "原点击回应"
+    },
+    "original-037": {
+      "displayName": "点击回应-挠痒咯咯笑",
+      "category": "原点击回应"
+    },
+    "original-038": {
+      "displayName": "点击回应-元气挥手",
+      "category": "原点击回应"
+    },
+    "original-039": {
+      "displayName": "东张西望",
+      "category": "原转向"
+    },
+    "original-040": {
+      "displayName": "动物环绕",
+      "category": "玩耍"
+    },
+    "original-041": {
+      "displayName": "堆雪人",
+      "category": "时节"
+    },
+    "original-042": {
+      "displayName": "放风筝",
+      "category": "玩耍"
+    },
+    "original-043": {
+      "displayName": "放河灯",
+      "category": "时节"
+    },
+    "original-044": {
+      "displayName": "放孔明灯",
+      "category": "时节"
+    },
+    "original-045": {
+      "displayName": "放烟花",
+      "category": "时节"
+    },
+    "original-046": {
+      "displayName": "工作状态-垂头叹气冒汗",
+      "category": "原工作事件"
+    },
+    "original-047": {
+      "displayName": "工作状态-忙碌点按",
+      "category": "原工作事件"
+    },
+    "original-048": {
+      "displayName": "工作状态-清点归档",
+      "category": "原工作事件"
+    },
+    "original-049": {
+      "displayName": "工作状态-雀跃庆祝",
+      "category": "原工作事件"
+    },
+    "original-050": {
+      "displayName": "工作状态-思考冒泡",
+      "category": "原工作事件"
+    },
+    "original-051": {
+      "displayName": "工作状态-原地踱步张望",
+      "category": "原工作事件"
+    },
+    "original-052": {
+      "displayName": "哈欠连天",
+      "category": "小动作"
+    },
+    "original-053": {
+      "displayName": "蝴蝶蜜蜂环绕头顶开花",
+      "category": "玩耍"
+    },
+    "original-054": {
+      "displayName": "鲸鱼吐泡泡特效",
+      "category": "玩耍"
+    },
+    "original-055": {
+      "displayName": "可爱宅舞",
+      "category": "玩耍"
+    },
+    "original-056": {
+      "displayName": "蓝鲸现世",
+      "category": "玩耍"
+    },
+    "original-057": {
+      "displayName": "撸猫",
+      "category": "玩耍"
+    },
+    "original-058": {
+      "displayName": "萌化小幽灵",
+      "category": "时节"
+    },
+    "original-059": {
+      "displayName": "女仆屈膝礼仪",
+      "category": "小动作"
+    },
+    "original-060": {
+      "displayName": "螃蟹走路",
+      "category": "原移动"
+    },
+    "original-061": {
+      "displayName": "凭空生花",
+      "category": "玩耍"
+    },
+    "original-062": {
+      "displayName": "扑克魔术",
+      "category": "玩耍"
+    },
+    "original-063": {
+      "displayName": "骑木马",
+      "category": "玩耍"
+    },
+    "original-064": {
+      "displayName": "轻快记录",
+      "category": "小动作"
+    },
+    "original-065": {
+      "displayName": "轻快摇摆舞",
+      "category": "玩耍"
+    },
+    "original-066": {
+      "displayName": "三球抛接",
+      "category": "玩耍"
+    },
+    "original-067": {
+      "displayName": "深度思考碎碎念",
+      "category": "文字"
+    },
+    "original-068": {
+      "displayName": "是啊，吃什么",
+      "category": "文字"
+    },
+    "original-069": {
+      "displayName": "收红包",
+      "category": "时节"
+    },
+    "original-070": {
+      "displayName": "涮火锅",
+      "category": "吃什么"
+    },
+    "original-071": {
+      "displayName": "碎碎念-擦桌碎碎念",
+      "category": "原碎碎念事件"
+    },
+    "original-072": {
+      "displayName": "碎碎念-对屏碎碎念",
+      "category": "原碎碎念事件"
+    },
+    "original-073": {
+      "displayName": "碎碎念-发呆碎碎念",
+      "category": "原碎碎念事件"
+    },
+    "original-074": {
+      "displayName": "讨糖南瓜灯",
+      "category": "时节"
+    },
+    "original-075": {
+      "displayName": "踢毽子",
+      "category": "玩耍"
+    },
+    "original-076": {
+      "displayName": "偷吃零食被抓住",
+      "category": "小动作"
+    },
+    "original-077": {
+      "displayName": "玩水枪",
+      "category": "玩耍"
+    },
+    "original-078": {
+      "displayName": "玩游戏气急败坏",
+      "category": "玩耍"
+    },
+    "original-079": {
+      "displayName": "舞狮头",
+      "category": "时节"
+    },
+    "original-080": {
+      "displayName": "下五子棋",
+      "category": "玩耍"
+    },
+    "original-081": {
+      "displayName": "小幅度原地360度旋转展示",
+      "category": "小动作"
+    },
+    "original-082": {
+      "displayName": "小提琴演奏",
+      "category": "玩耍"
+    },
+    "original-083": {
+      "displayName": "写代码",
+      "category": "小动作"
+    },
+    "original-084": {
+      "displayName": "写福字",
+      "category": "时节"
+    },
+    "original-085": {
+      "displayName": "摇扇纳凉",
+      "category": "小动作"
+    },
+    "original-086": {
+      "displayName": "用鲸鱼尾巴拍打地面",
+      "category": "小动作"
+    },
+    "original-087": {
+      "displayName": "优雅女仆舞",
+      "category": "玩耍"
+    },
+    "original-088": {
+      "displayName": "悠闲哼歌",
+      "category": "小动作"
+    },
+    "original-089": {
+      "displayName": "余额-袋空如洗",
+      "category": "原余额事件"
+    },
+    "original-090": {
+      "displayName": "余额-分文不剩",
+      "category": "原余额事件"
+    },
+    "original-091": {
+      "displayName": "余额-金袋叮当",
+      "category": "原余额事件"
+    },
+    "original-092": {
+      "displayName": "余额-钱袋满溢",
+      "category": "原余额事件"
+    },
+    "original-093": {
+      "displayName": "余额-钱袋如常",
+      "category": "原余额事件"
+    },
+    "original-094": {
+      "displayName": "余额-数金皱眉",
+      "category": "原余额事件"
+    },
+    "original-095": {
+      "displayName": "原地蹲下玩玩具汽车",
+      "category": "玩耍"
+    },
+    "original-096": {
+      "displayName": "原地漂浮踏步",
+      "category": "原移动"
+    },
+    "original-097": {
+      "displayName": "原地敲击桌面互动",
+      "category": "小动作"
+    },
+    "original-098": {
+      "displayName": "原地跳跃抓碎头顶物品",
+      "category": "玩耍"
+    },
+    "original-099": {
+      "displayName": "原地小憩沉眠",
+      "category": "小动作"
+    },
+    "original-100": {
+      "displayName": "原地重力下蹲压缩",
+      "category": "小动作"
+    },
+    "original-101": {
+      "displayName": "原地专心玩魔方",
+      "category": "玩耍"
+    },
+    "original-102": {
+      "displayName": "原地左转奔跑",
+      "category": "原移动"
+    },
+    "original-103": {
+      "displayName": "照镜子",
+      "category": "小动作"
+    },
+    "original-104": {
+      "displayName": "整体换装试色",
+      "category": "小动作"
+    },
+    "original-105": {
+      "displayName": "中秋赏月吃月饼",
+      "category": "时节"
+    },
+    "original-106": {
+      "displayName": "装点圣诞树",
+      "category": "时节"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "original-060",
+    "running-left": "original-060",
+    "waving": "original-038",
+    "jumping": "original-049",
+    "failed": "original-046",
+    "waiting": "original-051",
+    "running": "original-047",
+    "review": "original-050",
+    "sleeping": "original-099",
+    "clicked": "original-036",
+    "dragged": "original-002"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}

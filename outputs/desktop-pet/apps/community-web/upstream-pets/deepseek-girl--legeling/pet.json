@@ -1,0 +1,8 @@
+{
+  "id": "deepseek-girl--legeling",
+  "displayName": "DeepSeek Girl",
+  "description": "聪明亲切的蓝鲸少女，带着鲸鳍与大鲸尾陪你完成任务。",
+  "spriteVersionNumber": 2,
+  "spritesheetPath": "spritesheet.webp",
+  "kind": "character"
+}

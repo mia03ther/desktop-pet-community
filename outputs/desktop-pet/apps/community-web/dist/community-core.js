@@ -54,6 +54,18 @@ export function normalizeRequestState(input, seedIds) {
   return result;
 }
 
+export function compareWorkPopularity(a, b, activityFor) {
+  const score = work => {
+    const entry = activityFor(work.id) ?? {};
+    const count = value => Number.isSafeInteger(value) && value >= 0 ? value : 0;
+    const likes = entry.scope === 'site' ? count(entry.likes) : Number(entry.liked === true);
+    return { downloads: count(entry.downloads), likes };
+  };
+  const left = score(a), right = score(b);
+  return (right.downloads - left.downloads) + (right.likes - left.likes) || right.likes - left.likes
+    || a.title.localeCompare(b.title, 'zh-CN') || a.id.localeCompare(b.id, 'en');
+}
+
 export function rankPets(pets, activity, period, now = Date.now()) {
   const timestamp = now instanceof Date ? now.getTime() : Number(now);
   if (!Number.isFinite(timestamp) || !Array.isArray(pets)) return [];
