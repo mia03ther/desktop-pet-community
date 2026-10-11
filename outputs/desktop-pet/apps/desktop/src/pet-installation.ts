@@ -254,7 +254,7 @@ async function installLocalPetPackage(sourcePath: string, convertShimeji = false
     files = await convertShimejiPetPackage(files, basename(sourcePath).replace(/\.zip$/i, ""));
   }
   const imported = selectLocalPackageRoot(files, ["pet.json"]);
-  if (imported.files.size > packageImportLimits.maxFiles || [...imported.files.values()].reduce((total, bytes) => total + bytes.length, 0) > packageImportLimits.maxBytes) throw new Error("归档或转换后的素材包超过 10000 文件或 1 GiB。");
+  if (imported.files.size > packageImportLimits.maxFiles || [...imported.files.values()].reduce((total, bytes) => total + bytes.length, 0) > packageImportLimits.maxBytes) throw new Error(`归档或转换后的素材包超过 ${packageImportLimits.maxFiles} 文件或 ${Math.round(packageImportLimits.maxBytes / 1024 / 1024)} MiB。`);
   const manifestBytes = imported.files.get("pet.json")!;
   if (manifestBytes.length > maxCodexPetJsonBytes) throw new Error("pet.json 过大。");
   const parsed: unknown = JSON.parse(manifestBytes.toString("utf8"));
