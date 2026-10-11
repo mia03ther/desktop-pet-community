@@ -13,9 +13,9 @@ const esbuild = createRequire(require.resolve("vite/package.json"))("esbuild");
 
 let harnessId = 0;
 // 使用真实窗口加载流程，只替换 Electron 与渲染输入；取消的导航不能提交缓存。
-async function createHarness() {
+async function createHarness(platform: string) {
   const root = globalThis as unknown as Record<string, any>;
-  const state = { queue: [] as Array<Promise<unknown>>, files: new Map<string, string>(), loaded: [] as string[], messages: [] as string[], document: "", loading: false };
+  const state = { queue: [] as Array<Promise<unknown>>, files: new Map<string, string>(), loaded: [] as string[], messages: [] as string[], document: "", loading: false, shapeCalls: 0 };
   root.__petDocumentSwitchTest = state;
   const compiled = (await esbuild.transform(readFileSync(sourcePath, "utf8"), { loader: "ts", format: "esm" })).code as string;
   const providers = new Map<string, Set<string>>();
@@ -26,14 +26,16 @@ async function createHarness() {
   }
   const special: Record<string, string> = {
     app: `{ getPath: () => ${JSON.stringify(testProfileDir)}, commandLine: { getSwitchValue: () => "" } }`,
-    BrowserWindow: 'class {}', screen: '{}',
+    BrowserWindow: 'class {}', screen: '{ getDisplayMatching: () => ({ scaleFactor: 1 }) }',
+    defaultPetSprite: '{ frameWidth: 192, frameHeight: 208 }',
+    calculatePetInteractiveShape: '({ windowWidth, windowHeight }) => ({ shape: [{ x: 0, y: 0, width: windowWidth, height: windowHeight }] })',
     mkdir: 'async () => {}', stat: 'async () => ({})', writeFile: 'async (file, html) => { h.files.set(file, html); }',
     getAppStateSnapshot: '() => ({ preferences: { petScale: 1, hudScale: 1 }, pets: { installed: [{ id: "test-pet", displayName: "测试" }] } })',
     createDefaultPetRenderContent: '() => h.queue.shift()', createInstalledPetRender: '() => h.queue.shift()',
     builtInPet: '{ id: "builtin" }', createBubbleMarkup: '() => ""',
     computeEffectiveWaylandBackend: '() => false', shouldPetWindowBeFocusable: '() => false',
   };
-  const bundle = await esbuild.build({ entryPoints: [sourcePath], bundle: true, write: false, platform: "node", format: "esm", plugins: [{
+  const bundle = await esbuild.build({ entryPoints: [sourcePath], bundle: true, write: false, platform: "node", format: "esm", define: { "process.platform": JSON.stringify(platform) }, plugins: [{
     name: "窗口文档切换测试宿主",
     setup(builder: any) {
       builder.onResolve({ filter: /.*/ }, (args: any) => {
@@ -47,7 +49,8 @@ async function createHarness() {
   }] });
   const module = await import("data:text/javascript;base64," + Buffer.from(bundle.outputFiles[0].contents).toString("base64") + "#" + ++harnessId);
   const window = {
-    id: 1, isDestroyed: () => false, isFocusable: () => false, setFocusable() {}, setIgnoreMouseEvents() {},
+    id: 1, getBounds: () => ({ x: 0, y: 0, width: 192, height: 208 }), setShape() { state.shapeCalls++; },
+    isDestroyed: () => false, isFocusable: () => false, setFocusable() {}, setIgnoreMouseEvents() {},
     webContents: {
       isDestroyed: () => false, isLoading: () => state.loading, getURL: () => pathToFileURL(join(testProfileDir, "rendered-pets", "default.html")).href,
       executeJavaScript: async () => undefined,
@@ -60,29 +63,32 @@ async function createHarness() {
   return { state, render, request, cleanup() { delete root.__petDocumentSwitchTest; } };
 }
 
-for (const explicit of [false, true]) {
-  describe(explicit ? "指定桌宠文档切换" : "默认桌宠文档切换", () => {
-    it("连续切换图集→媒体→图集时，过期导航不能把新内容塞进旧文档", async () => {
-      const h = await createHarness();
-      try {
-        h.state.queue.push(Promise.resolve(h.render("atlas")));
-        await h.request(explicit);
-        for (const mode of ["media", "atlas"]) {
-          let finishFirst!: (value: unknown) => void, finishSecond!: (value: unknown) => void;
-          h.state.queue.push(new Promise(resolve => { finishFirst = resolve; }), new Promise(resolve => { finishSecond = resolve; }));
-          const first = h.request(explicit), second = h.request(explicit);
-          finishFirst(h.render(mode));
-          await first;
-          finishSecond(h.render(mode));
-          await second;
-          assert.equal(h.state.document, mode, "过期导航之后仍须实际导航，刷新样式和 CSP");
-          h.state.queue.push(Promise.resolve(h.render(mode)));
+for (const platform of ["win32", "linux"]) {
+  for (const explicit of [false, true]) {
+    describe(`${explicit ? "指定桌宠文档切换" : "默认桌宠文档切换"}（${platform}）`, () => {
+      it("连续切换图集→媒体→图集时，过期导航不能把新内容塞进旧文档", async () => {
+        const h = await createHarness(platform);
+        try {
+          h.state.queue.push(Promise.resolve(h.render("atlas")));
           await h.request(explicit);
-          assert.equal(h.state.messages.at(-1), `${mode}->${mode}`, "同文档动作更新应继续原位更新");
-        }
-        assert.deepEqual(h.state.loaded, ["atlas", "media", "atlas"]);
-        assert.ok(h.state.messages.every(x => x === "atlas->atlas" || x === "media->media"), "不在旧文档内更新不同类型的内容");
-      } finally { h.cleanup(); }
+          for (const mode of ["media", "atlas"]) {
+            let finishFirst!: (value: unknown) => void, finishSecond!: (value: unknown) => void;
+            h.state.queue.push(new Promise(resolve => { finishFirst = resolve; }), new Promise(resolve => { finishSecond = resolve; }));
+            const first = h.request(explicit), second = h.request(explicit);
+            finishFirst(h.render(mode));
+            await first;
+            finishSecond(h.render(mode));
+            await second;
+            assert.equal(h.state.document, mode, "过期导航之后仍须实际导航，刷新样式和 CSP");
+            h.state.queue.push(Promise.resolve(h.render(mode)));
+            await h.request(explicit);
+            assert.equal(h.state.messages.at(-1), `${mode}->${mode}`, "同文档动作更新应继续原位更新");
+          }
+          assert.deepEqual(h.state.loaded, ["atlas", "media", "atlas"]);
+          assert.equal(h.state.shapeCalls > 0, platform === "linux", "Linux 必须实际经过窗口形状设置流程，Windows 不调用该流程");
+          assert.ok(h.state.messages.every(x => x === "atlas->atlas" || x === "media->media"), "不在旧文档内更新不同类型的内容");
+        } finally { h.cleanup(); }
+      });
     });
-  });
+  }
 }
