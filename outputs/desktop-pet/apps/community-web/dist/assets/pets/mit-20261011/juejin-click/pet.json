@@ -1,0 +1,34 @@
+{
+  "id": "juejin-click",
+  "displayName": "Click",
+  "description": "The teal, bright-eyed Click companion from the supplied IP artwork.",
+  "author": "juejin-cn",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "running-right": "actions/running-right.webp",
+    "running-left": "actions/running-left.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "待机",
+      "category": "Click 原活动"
+    },
+    "running-right": {
+      "displayName": "向右行走",
+      "category": "Click 原活动"
+    },
+    "running-left": {
+      "displayName": "向左行走（原右行镜像）",
+      "category": "Click 原活动"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "running-right",
+    "running-left": "running-left"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}

@@ -15,6 +15,7 @@ import { createTestHarness } from '../../packages/sdk/dist/testing.js';
 import { sourcePlugins } from './dist/plugin-catalog.js';
 import { sourcePluginPackage, sourcePluginLicense } from './source-plugin-packages.mjs';
 import { assessAssetPermission } from './upstream-assets.mjs';
+import { validateArchiveAttribution } from './package-attribution-check.mjs';
 import { readLocalPackageFiles, selectLocalPackageRoot } from '../desktop/dist/local-package-files.js';
 import { validateInstalledPetMetadata, validatePetMediaBytes } from '../desktop/dist/pet-media-files.js';
 
@@ -120,10 +121,7 @@ for (const pet of pets) {
   assert.equal(sheet.hasAlpha, true);
   await sharp(packageFiles['spritesheet.webp']).raw().toBuffer();
   assert.deepEqual(packageFiles['spritesheet.webp'], await readFile(new URL(`./dist/${pet.atlas}`, import.meta.url)));
-  const notes = packageFiles['SHARE.md'].toString('utf8');
-  assert.ok(notes.includes(pet.author));
-  assert.ok(notes.includes(pet.source));
-  assert.ok(notes.includes(pet.license));
+  validateArchiveAttribution(packageFiles, pet);
   if (pet.assetSource) {
     assert.equal(assessAssetPermission(pet.license).status, 'redistributable');
     for (const name of ['pet.json', 'submission.json', 'spritesheet.webp', 'ORIGINAL-ASSETS-LICENSE.md', 'ORIGINAL-REPOSITORY-LICENSE']) assert.deepEqual(packageFiles[name], await readFile(new URL(`./${pet.assetSource}/${name}`, import.meta.url)));

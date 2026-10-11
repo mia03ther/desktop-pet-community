@@ -14,7 +14,7 @@
 
 - **完整包容量所有者**：`package-import-limits.ts` 统一网页、本机原件托管、原生插件与桌宠安装导出的 1 GiB／单文件 512 MiB／10000 文件边界；不放宽执行入口、清单、声明资源或原宿主运行授权。
 
-- **开放本地包导入**：`local-package-files.ts` 唯一持有本地 ZIP／文件夹的有界读取、嵌套根选择、原包装层附件归档及路径隔离。宠物仍由 `pet-installation.ts` 和原事务安装，插件由 `plugin-local-loader.ts` 归一化三种清单名并保留原清单与附件，原 manifest／权限／SDK 校验保持不变。`shimeji-pet-import.ts` 仅将无条件 XML/Pose PNG 序列转换到媒体契约，不执行 Java／条件表达式／原行为引擎。
+- **开放本地包导入**：`local-package-files.ts` 唯一持有本地 ZIP／文件夹的有界读取、嵌套根选择、原包装层附件归档及路径隔离；ZIP条目串行按事件逐块读取，逐块和末尾检查长度，并释放终结监听、拒绝错误或提前关闭。完整内容仍在内存持有。宠物仍由 `pet-installation.ts` 和原事务安装，插件由 `plugin-local-loader.ts` 归一化三种清单名并保留原清单与附件，原 manifest／权限／SDK 校验保持不变。`shimeji-pet-import.ts` 仅将无条件 XML/Pose PNG 序列转换到媒体契约，不执行 Java／条件表达式／原行为引擎。
 
 - **Modular Controllers**: Separate controllers for default pet vs agent pets (lease-based)
 - **Protocol-First IPC**: Versioned JSON protocol over TCP/Unix sockets with token auth

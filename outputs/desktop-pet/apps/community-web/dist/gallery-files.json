@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "upstreamCommit": "0d0f06bb1721aef4ddbc7f893276f235ed8458ec",
-  "publicPets": 158,
+  "publicPets": 161,
   "publicPlugins": 24,
   "files": [
     {
@@ -1341,6 +1341,90 @@
       "mime": "image/webp",
       "bytes": 39184,
       "sha256": "22b015469cd1de488ddcd176d31ad4232506765ffdaaac468b6c5a8004f02054"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/actions/idle.webp",
+      "mime": "image/webp",
+      "bytes": 173266,
+      "sha256": "d795af0239f4952ae6421c5ed49cca468c50bdeda4859e0b21ebd372691d57e4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/actions/running-left.webp",
+      "mime": "image/webp",
+      "bytes": 184436,
+      "sha256": "9ba05320b13f64bec0ea94dabb384a7a2d2df110d998fd1f138624bd782de506"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/actions/running-right.webp",
+      "mime": "image/webp",
+      "bytes": 185652,
+      "sha256": "e47aeaa6080cf1e4e75b581c444c68ea008490340db12ca50ffa7f6c396fa433"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/ASSET-LICENSE-STATUS.txt",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 303,
+      "sha256": "3cc30d0f0c83ef9fff1e97d98fa0027765746822fe93355a85e81ce842565949"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/LICENSE",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1065,
+      "sha256": "108bacc55ca052653529dc0bbd1d7ac0b1560637246b13ee143525de640bf582"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/package.zip",
+      "mime": "application/zip",
+      "bytes": 3721307,
+      "sha256": "b4a3d128ed8d81eba0cae7949e22f15ee03d947e4f350d11eb873c30393a0a36"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/pet.json",
+      "mime": "application/json",
+      "bytes": 844,
+      "sha256": "23a4453ebaef2c352a9c2da3180588b788fd62a905e7534e2cc7530843ecbc81"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-click/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 29108,
+      "sha256": "b03f582fc0dd0d09f202bde6cfa57eab42c18b3cfaf19d8fff0dc190e1d2e4e5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-hawking/package.zip",
+      "mime": "application/zip",
+      "bytes": 5818879,
+      "sha256": "9dfae046dc1540aad1d11bf66406ed318ace31c17c6a5deb24de0df54cd6484f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-hawking/spritesheet.webp",
+      "mime": "image/webp",
+      "bytes": 2245824,
+      "sha256": "cd609e2fde908dadb4f7aae15b8e9f4082482313f7d0181663c1cec73cb86289"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-hawking/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 29744,
+      "sha256": "09a60db67d3befa874c84c9aaef096ba34a01c8a727a3c50a55218f3a7cec9c2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-yoyo/package.zip",
+      "mime": "application/zip",
+      "bytes": 4966090,
+      "sha256": "e87c994314cf53c0c6db91b41da0944477071314fc5ec9048ea562c9ff4ad5c9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-yoyo/spritesheet.webp",
+      "mime": "image/webp",
+      "bytes": 1903868,
+      "sha256": "2c84c4cd4831c42287e846af661d8f96d19407522d3102c92d57712a725568eb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/juejin-yoyo/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 24214,
+      "sha256": "daa908233de08d0ec46f88bc030ff07de0353bcda9369dd3a1c7d876cbae70f2"
     },
     {
       "path": "assets/pets/mit-20261011/kaka-rising-lion/actions/arrogance.webp",

@@ -1,5 +1,6 @@
 import { lstat, readdir, realpath } from "node:fs/promises";
 import { basename, join, relative, resolve, sep } from "node:path";
+import type { Readable } from "node:stream";
 import yauzl from "yauzl";
 import type { Entry, ZipFile } from "yauzl";
 import { readBoundedRegularFile } from "./pet-file-safety.js";
@@ -123,15 +124,39 @@ async function readZipFiles(bytes: Buffer, limits: LocalPackageLimits): Promise<
           if (files.has(name) || files.size >= limits.maxFiles || entry.uncompressedSize > limits.maxFileBytes) throw new Error("ZIP 文件重复或超过大小上限。");
           total += entry.uncompressedSize;
           if (total > limits.maxBytes) throw new Error("ZIP 解压总大小超过上限。");
-          const stream = await new Promise<NodeJS.ReadableStream>((resolveStream, rejectStream) => zip.openReadStream(entry, (error, opened) => error || !opened ? rejectStream(error ?? new Error("无法读取 ZIP 条目。")) : resolveStream(opened)));
+          const stream = await new Promise<Readable>((resolveStream, rejectStream) => zip.openReadStream(entry, (error, opened) => error || !opened ? rejectStream(error ?? new Error("无法读取 ZIP 条目。")) : resolveStream(opened)));
           const chunks: Buffer[] = [];
           let read = 0;
-          for await (const chunk of stream) {
-            const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-            read += buffer.length;
-            if (read > limits.maxFileBytes || read > entry.uncompressedSize) throw new Error("ZIP 条目的实际大小超过声明。");
-            chunks.push(buffer);
-          }
+          await new Promise<void>((completeStream, rejectStream) => {
+            const finish = (error?: Error): void => {
+              stream.off("data", onData);
+              stream.off("error", onError);
+              stream.off("end", onEnd);
+              stream.off("close", onClose);
+              if (error) {
+                stream.destroy();
+                rejectStream(error);
+              } else {
+                completeStream();
+              }
+            };
+            const onData = (chunk: Buffer | string): void => {
+              const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+              read += buffer.length;
+              if (read > limits.maxFileBytes || read > entry.uncompressedSize) {
+                finish(new Error("ZIP 条目的实际大小超过声明。"));
+                return;
+              }
+              chunks.push(buffer);
+            };
+            const onError = (error: Error): void => finish(error);
+            const onEnd = (): void => finish();
+            const onClose = (): void => finish(new Error("ZIP 条目流提前关闭。"));
+            stream.on("data", onData);
+            stream.once("error", onError);
+            stream.once("end", onEnd);
+            stream.once("close", onClose);
+          });
           if (read !== entry.uncompressedSize) throw new Error("ZIP 条目不完整。");
           files.set(name, Buffer.concat(chunks));
         })().then(() => zip.readEntry()).catch(reject);

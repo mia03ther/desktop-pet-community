@@ -127,6 +127,106 @@ export const cat = {
 };
 export const pets = [
   {
+    "id": "juejin-hawking",
+    "title": "Hawking",
+    "description": "保留 Hawking 原高容量透明图集，九类原动作与16向视线，未缩放或重画。",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "juejin-cn",
+    "authorHandle": "juejin-cn",
+    "authorUrl": "https://github.com/juejin-cn",
+    "source": "https://github.com/juejin-cn/juejin-usage/tree/59ab306cb259a83ed1a0d836b18622e8c4df03e0",
+    "license": "代码 MIT；角色美术未提供独立授权声明",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/juejin-hawking/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/juejin-hawking/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入",
+      "原动作"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 5818879,
+    "archiveSha256": "9dfae046dc1540aad1d11bf66406ed318ace31c17c6a5deb24de0df54cd6484f",
+    "upstreamCommit": "59ab306cb259a83ed1a0d836b18622e8c4df03e0",
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入。保留完整原九行动作及16向视线；按本系统V2时序播放，原宿主只驱动待机／左右移动，其他六行未声明原逐帧时长。未提供独立睡觉、点击或拖拽动画；原AI用量监测逻辑未迁入。",
+    "atlas": "assets/pets/mit-20261011/juejin-hawking/spritesheet.webp"
+  },
+  {
+    "id": "juejin-yoyo",
+    "title": "Yoyo",
+    "description": "保留 Yoyo 原高容量透明图集，九类原动作与16向视线，未缩放或重画。",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "juejin-cn",
+    "authorHandle": "juejin-cn",
+    "authorUrl": "https://github.com/juejin-cn",
+    "source": "https://github.com/juejin-cn/juejin-usage/tree/59ab306cb259a83ed1a0d836b18622e8c4df03e0",
+    "license": "代码 MIT；角色美术未提供独立授权声明",
+    "version": 2,
+    "download": "assets/pets/mit-20261011/juejin-yoyo/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/juejin-yoyo/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入",
+      "原动作"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 4966090,
+    "archiveSha256": "e87c994314cf53c0c6db91b41da0944477071314fc5ec9048ea562c9ff4ad5c9",
+    "upstreamCommit": "59ab306cb259a83ed1a0d836b18622e8c4df03e0",
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入。保留完整原九行动作及16向视线；按本系统V2时序播放，原宿主只驱动待机／左右移动，其他六行未声明原逐帧时长。未提供独立睡觉、点击或拖拽动画；原AI用量监测逻辑未迁入。",
+    "atlas": "assets/pets/mit-20261011/juejin-yoyo/spritesheet.webp"
+  },
+  {
+    "id": "juejin-click",
+    "title": "Click",
+    "description": "青绿色亮眼的 Click 原角色；待机、右行和按原逻辑镜像的左行三种活动。",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "juejin-cn",
+    "authorHandle": "juejin-cn",
+    "authorUrl": "https://github.com/juejin-cn",
+    "source": "https://github.com/juejin-cn/juejin-usage/tree/59ab306cb259a83ed1a0d836b18622e8c4df03e0",
+    "license": "代码 MIT；角色美术未提供独立授权声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/juejin-click/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/juejin-click/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入",
+      "原动作"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 3721307,
+    "archiveSha256": "b4a3d128ed8d81eba0cae7949e22f15ee03d947e4f350d11eb873c30393a0a36",
+    "upstreamCommit": "59ab306cb259a83ed1a0d836b18622e8c4df03e0",
+    "hostNotice": "下载 ZIP 后在控制中心「我的桌宠」导入。三种原活动仅有两段独立源动画：左行沿官方修复镜像右行，未把镜像算新动作；缺少独立挥手、跳跃、失败、等待、工作、思考、睡觉、点击和拖拽动画。原11行图集完整留档；原AI用量监测逻辑未迁入。",
+    "distribution": "media",
+    "packageManifest": "assets/pets/mit-20261011/juejin-click/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/juejin-click/ASSET-LICENSE-STATUS.txt",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/juejin-click/actions/idle.webp"
+      },
+      "running-right": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/juejin-click/actions/running-right.webp"
+      },
+      "running-left": {
+        "displayName": "向左行走（原右行镜像）",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/juejin-click/actions/running-left.webp"
+      }
+    }
+  },
+  {
     "id": "seele-xier-idle",
     "title": "希儿 · 原待机",
     "description": "沿用 Seele 项目的原透明待机，保留原 GIF、无损动画与时序；此包只有待机动作。",
