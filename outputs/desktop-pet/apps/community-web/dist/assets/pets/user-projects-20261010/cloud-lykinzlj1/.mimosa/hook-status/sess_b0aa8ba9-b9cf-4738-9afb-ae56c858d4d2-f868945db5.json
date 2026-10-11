@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-10-11T02:00:32.465Z",
+  "sessionId": "sess_b0aa8ba9-b9cf-4738-9afb-ae56c858d4d2",
+  "event": "PostToolUse",
+  "toolName": "Write",
+  "file": "C:\\Users\\XG\\AppData\\Local\\Temp\\ffstatic\\alpha-check\\runner.cjs",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 4,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
