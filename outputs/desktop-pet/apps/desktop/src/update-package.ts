@@ -1,11 +1,15 @@
-import { constants, createReadStream } from "node:fs";
-import { lstat, mkdir, mkdtemp, readdir, realpath, rm, writeFile, access } from "node:fs/promises";
+import * as nodeFs from "node:fs";
+import { createRequire } from "node:module";
 import { createHash } from "node:crypto";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { pipeline } from "node:stream/promises";
-import { createWriteStream } from "node:fs";
 import yauzl, { type Entry, type ZipFile } from "yauzl";
 import { assertLocalPackagePath } from "./local-package-files.js";
+
+// 更新包中的 app.asar 必须按普通归档文件读写，避免 Electron 将其解释成虚拟目录。
+const updateFs: typeof nodeFs = process.versions.electron ? createRequire(import.meta.url)("original-fs") : nodeFs;
+const { constants, createReadStream, createWriteStream } = updateFs;
+const { lstat, mkdir, mkdtemp, readdir, realpath, rm, writeFile, access } = updateFs.promises;
 
 export interface PortableUpdatePlan {
   readonly installDir: string;

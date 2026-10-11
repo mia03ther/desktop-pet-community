@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
+import * as asar from "@electron/asar";
 import { mkdir, mkdtemp, readFile, rm, writeFile, access } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -33,7 +36,7 @@ assert.equal(called, 1);
 const testParent = resolve(".test-dist/update-fixtures");
 await mkdir(testParent, { recursive: true });
 const root = await mkdtemp(join(testParent, "case-"));
-async function createZip(path: string, files: Record<string, string>): Promise<void> {
+async function createZip(path: string, files: Record<string, string | Buffer>): Promise<void> {
   const zip = new yazl.ZipFile();
   const chunks: Buffer[] = [];
   const done = new Promise<void>((complete, reject) => { zip.outputStream.on("data", chunk => chunks.push(chunk)); zip.outputStream.on("end", () => complete()); zip.outputStream.on("error", reject); });
@@ -63,6 +66,29 @@ try {
   const collision = join(root, "collision.zip");
   await createZip(collision, { "app/Case.txt": "one", "app/case.txt": "two" });
   await assert.rejects(extractUpdateZip(collision, join(root, "collision-expanded")), /冲突/);
+  const archiveSource = join(root, "valid-asar-source");
+  await mkdir(archiveSource);
+  await writeFile(join(archiveSource, "package.json"), JSON.stringify({ name: "update-archive-fixture", version: "1.0.0" }));
+  await writeFile(join(archiveSource, "payload.txt"), "真实归档更新回归");
+  const archivePath = join(root, "valid.asar");
+  await asar.createPackage(archiveSource, archivePath);
+  const archiveBytes = await readFile(archivePath);
+  const archiveHash = createHash("sha256").update(archiveBytes).digest("hex");
+  const archiveInstall = join(root, "archive-installed");
+  const archiveProfile = join(root, "archive-profile");
+  await mkdir(join(archiveInstall, "resources"), { recursive: true });
+  await mkdir(archiveProfile);
+  await writeFile(join(archiveInstall, "desktop-pet.exe"), "旧程序占位");
+  await writeFile(join(archiveInstall, "resources/app.asar"), archiveBytes);
+  await writeFile(join(archiveProfile, "settings.json"), "保留用户配置");
+  const archiveZip = join(root, "archive-update.zip");
+  await createZip(archiveZip, { "app/desktop-pet.exe": "新程序占位", "app/resources/app.asar": archiveBytes, "app/LICENSE": "MIT fixture", "app/THIRD-PARTY-NOTICES.md": "fixture notices" });
+  const require = createRequire(import.meta.url);
+  const electronPath = require("electron") as string;
+  const archiveRuntime = spawnSync(electronPath, [resolve(dirname(fileURLToPath(import.meta.url)), "../../tests/update-archive-runtime.cjs"), resolve(dirname(fileURLToPath(import.meta.url)), "../src/update-package.js"), archiveZip, archiveInstall, archiveProfile, archiveHash], { encoding: "utf8", windowsHide: true, env: { ...process.env, ELECTRON_RUN_AS_NODE: "1" }, timeout: 30000 });
+  assert.equal(archiveRuntime.status, 0, archiveRuntime.stderr || archiveRuntime.error?.message);
+  assert.match(archiveRuntime.stdout, /真实 Electron ASAR 归档更新准备通过/);
+  assert.equal(await readFile(join(archiveProfile, "settings.json"), "utf8"), "保留用户配置");
   if (process.platform === "win32") {
     const helper = resolve(dirname(fileURLToPath(import.meta.url)), "../../assets/companion/windows-portable-update.ps1");
     const powershell = join(process.env.SystemRoot || "C:\\Windows", "System32/WindowsPowerShell/v1.0/powershell.exe");
