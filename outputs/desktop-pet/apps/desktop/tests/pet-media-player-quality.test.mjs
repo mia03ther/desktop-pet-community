@@ -1,5 +1,11 @@
 import assert from "node:assert/strict";
-import { createPetMediaPlayer } from "../src/pet-media-player.mjs";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+// 与实际预加载构建一致地解析 TypeScript 的 .js 模块引用，避免依赖未登记的源码旁产物。
+const require = createRequire(import.meta.url);
+const { build } = createRequire(require.resolve("vite/package.json"))("esbuild");
+const bundled = await build({ entryPoints: [fileURLToPath(new URL("../src/pet-media-player.mjs", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
+const { createPetMediaPlayer } = await import("data:text/javascript;base64," + Buffer.from(bundled.outputFiles[0].contents).toString("base64"));
 const metadata = { actions: { idle: "idle.mp4" }, background: { mode: "chroma", color: "#13ba2d", tolerance: 70 } };
 function harness() {
   const calls = [];
