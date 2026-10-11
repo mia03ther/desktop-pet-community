@@ -10,12 +10,12 @@ import worker from '../worker/index.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://desktoppet-e9e.pages.dev';
-const video = manifest.files.find(file => file.mime === 'video/mp4');
+const video = manifest.files.find(file => ['video/mp4', 'video/webm'].includes(file.mime));
 assert.ok(video, '公开清单应包含本轮发布的视频。');
 const url = origin + '/' + video.path;
 const ASSETS = await publicAssets(resolve(root, '../community-host/public'));
 
-test('真实登记 MP4 的 HEAD 有完整大小，首段、中段和尾段精确返回原字节', async () => {
+test('真实登记视频的 HEAD 有完整大小，首段、中段和尾段精确返回原字节', async () => {
   const original = await readFile(resolve(root, '../community-host/public', video.path));
   assert.equal(original.length, video.bytes);
   const head = await worker.fetch(new Request(url, { method: 'HEAD', headers: { range: 'bytes=0-1023' } }), { ASSETS });
@@ -34,7 +34,7 @@ test('真实登记 MP4 的 HEAD 有完整大小，首段、中段和尾段精确
     assert.equal(response.status, 206);
     assert.equal(response.headers.get('content-range'), `bytes ${start}-${end}/${original.length}`);
     assert.equal(response.headers.get('content-length'), String(end - start + 1));
-    assert.equal(response.headers.get('content-type'), 'video/mp4');
+    assert.equal(response.headers.get('content-type'), video.mime);
     assert.deepEqual(Buffer.from(await response.arrayBuffer()), original.subarray(start, end + 1));
   }
 });
@@ -118,7 +118,7 @@ test('真实 workerd 通过固定长度流返回 HEAD／206／416', {
   const script = bundled.outputFiles[0].text + `\nexport default { fetch(request) {
     const assets = { fetch: async request => new Response(request.method === 'HEAD' ? null : new ReadableStream({
       pull(controller) { controller.enqueue(new Uint8Array(512).fill(9)); }
-    }), {headers:{'content-type':'video/mp4'}}) };
+    }), {headers:{'content-type':'${video.mime}'}}) };
     return serveVideoAsset(request, assets);
   }};`;
   const runtime = new Miniflare({ modules: true, script, compatibilityDate: '2026-08-04', port: 0 });
