@@ -5302,7 +5302,7 @@ export const pets = [
     },
     "download": "https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/pets-20261011/dsh-pet-actions.zip",
     "downloadLabel": "下载完整动作包 ZIP（592 MB）",
-    "hostNotice": "下载完整 ZIP 后，在控制中心「我的桌宠」导入并设为当前桌宠。动作包约 592 MB，自带透明通道；导入需要随本包一同发布的桌面版（本机导入限额 1 GiB），当前已发布的 v4.0.1-preview 版仍按 200 MiB 拦截。71 个动作名称、分类与状态绑定导入后可继续自定义。",
+    "hostNotice": "下载完整 ZIP 后，在控制中心「我的桌宠」导入并设为当前桌宠。动作包约 592 MB，自带透明通道；请使用 v4.0.1-preview.4 或更新的桌面版导入（完整包上限 1 GiB）；旧版请先更新。71 个动作名称、分类与状态绑定导入后可继续自定义。",
     "packageManifest": "assets/pets/user-projects-20261010/dsh-pet-actions/pet.json",
     "packageLicense": "assets/pets/user-projects-20261010/dsh-pet-actions/LICENSE.txt",
     "archiveBytes": 620559705,

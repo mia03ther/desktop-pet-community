@@ -5611,6 +5611,392 @@ export const pets = [\r
       "\u900F\u660E\u89C6\u9891",\r
       "Windows"\r
     ]\r
+  },\r
+  {\r
+    "id": "dsh-pet-actions",\r
+    "title": "\u8FBE\u59AE\u5A05 \xB7 \u52A8\u4F5C\u5305",\r
+    "author": "Lykinzlj",\r
+    "kind": "pet",\r
+    "category": "\u6E38\u620F\u89D2\u8272",\r
+    "version": "0.3.1",\r
+    "description": "\u8FBE\u59AE\u5A05\u539F\u670D\u88C5 71 \u4E2A\u900F\u660E\u89C6\u9891\u52A8\u4F5C\u7684\u53EF\u5BFC\u5165\u52A8\u4F5C\u5305\uFF0C\u6765\u81EA\u5F00\u6E90\u9879\u76EE dsh-pet\uFF1A\u5F85\u673A\u3001\u884C\u8D70\u3001\u70B9\u51FB\u4E0E\u62D6\u62FD\u56DE\u5E94\u3001\u6325\u624B\u3001\u8DF3\u8DC3\uFF0C\u4EE5\u53CA\u601D\u8003\u3001\u5DE5\u4F5C\u3001\u6574\u7406\u3001\u7B49\u5F85\u3001\u5B8C\u6210\u3001\u51FA\u9519\u516D\u6863\u5DE5\u4F5C\u72B6\u6001\u8054\u52A8\u3002",\r
+    "distribution": "media",\r
+    "thumbnail": "assets/pets/user-projects-20261010/dsh-pet-actions/thumbnail.webp",\r
+    "mediaActions": {\r
+      "action-a001": {\r
+        "displayName": "\u4E3E\u94B1\u888B\u8F7B\u6643",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a001.webm"\r
+      },\r
+      "action-a002": {\r
+        "displayName": "\u4F6F\u88C5\u65E0\u8F9C",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a002.webm"\r
+      },\r
+      "action-a003": {\r
+        "displayName": "\u4FA7\u5934\u6446\u624B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a003.webm"\r
+      },\r
+      "action-a004": {\r
+        "displayName": "\u4FA7\u8EAB\u5F20\u671B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a004.webm"\r
+      },\r
+      "action-a005": {\r
+        "displayName": "\u4FA7\u8EAB\u8E0F\u6B65",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a005.webm"\r
+      },\r
+      "action-a006": {\r
+        "displayName": "\u4FA7\u8EAB\u8E31\u6B65\u5F20\u671B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a006.webm"\r
+      },\r
+      "action-a007": {\r
+        "displayName": "\u4FA7\u8EAB\u8F7B\u6643",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a007.webm"\r
+      },\r
+      "action-a008": {\r
+        "displayName": "\u50B2\u5A07\u522B\u8FC7\u5934",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a008.webm"\r
+      },\r
+      "action-a009": {\r
+        "displayName": "\u539F\u5730\u5411\u53F3\u8D70",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a009.webm"\r
+      },\r
+      "action-a010": {\r
+        "displayName": "\u539F\u5730\u5411\u5DE6\u8D70",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a010.webm"\r
+      },\r
+      "action-a011": {\r
+        "displayName": "\u53C9\u8170\u5C0F\u5F97\u610F",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a011.webm"\r
+      },\r
+      "action-a012": {\r
+        "displayName": "\u53CC\u624B\u5408\u62E2\u62AC\u624B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a012.webm"\r
+      },\r
+      "action-a013": {\r
+        "displayName": "\u5618\u8FD9\u662F\u79D8\u5BC6",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a013.webm"\r
+      },\r
+      "action-a014": {\r
+        "displayName": "\u5750\u4E0B\u770B\u4E66",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a014.webm"\r
+      },\r
+      "action-a015": {\r
+        "displayName": "\u5750\u5730\u6E05\u70B9\u91D1\u5E01",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a015.webm"\r
+      },\r
+      "action-a016": {\r
+        "displayName": "\u5BB3\u7F9E\u906E\u8138",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a016.webm"\r
+      },\r
+      "action-a017": {\r
+        "displayName": "\u5C0F\u62F3\u62F3\u751F\u6C14",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a017.webm"\r
+      },\r
+      "action-a018": {\r
+        "displayName": "\u5C55\u793A\u5357\u74DC\u706F",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a018.webm"\r
+      },\r
+      "action-a019": {\r
+        "displayName": "\u5DE6\u53F3\u5F20\u671B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a019.webm"\r
+      },\r
+      "action-a020": {\r
+        "displayName": "\u5E86\u795D",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a020.webm"\r
+      },\r
+      "action-a021": {\r
+        "displayName": "\u5F00\u5FC3\u70B9\u5934",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a021.webm"\r
+      },\r
+      "action-a022": {\r
+        "displayName": "\u5F20\u81C2\u8F6C\u5708",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a022.webm"\r
+      },\r
+      "action-a023": {\r
+        "displayName": "\u5FD9\u788C\u70B9\u6309",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a023.webm"\r
+      },\r
+      "action-a024": {\r
+        "displayName": "\u6084\u6084\u5077\u7B11",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a024.webm"\r
+      },\r
+      "action-a025": {\r
+        "displayName": "\u6233\u7834\u5C0F\u6CE1\u6CE1",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a025.webm"\r
+      },\r
+      "action-a026": {\r
+        "displayName": "\u6251\u514B\u724C\u5C0F\u9B54\u672F",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a026.webm"\r
+      },\r
+      "action-a027": {\r
+        "displayName": "\u6258\u5357\u74DC\u706F\u6446\u624B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a027.webm"\r
+      },\r
+      "action-a028": {\r
+        "displayName": "\u6258\u816E\u89C2\u5BDF",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a028.webm"\r
+      },\r
+      "action-a029": {\r
+        "displayName": "\u62AC\u624B\u4E0B\u8E72",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a029.webm"\r
+      },\r
+      "action-a030": {\r
+        "displayName": "\u62AC\u624B\u906E\u8138",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a030.webm"\r
+      },\r
+      "action-a031": {\r
+        "displayName": "\u62AC\u638C\u8F7B\u70B9",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a031.webm"\r
+      },\r
+      "action-a032": {\r
+        "displayName": "\u62B1\u4E66\u7FFB\u9605",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a032.webm"\r
+      },\r
+      "action-a033": {\r
+        "displayName": "\u62B1\u4E66\u8E0F\u6B65",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a033.webm"\r
+      },\r
+      "action-a034": {\r
+        "displayName": "\u62B1\u81C2\u88C5\u4E25\u8083",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a034.webm"\r
+      },\r
+      "action-a035": {\r
+        "displayName": "\u62DB\u624B\u9080\u4F60\u9760\u8FD1",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a035.webm"\r
+      },\r
+      "action-a036": {\r
+        "displayName": "\u6307\u5411\u65C1\u8FB9",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a036.webm"\r
+      },\r
+      "action-a037": {\r
+        "displayName": "\u6307\u5C16\u8F7B\u70B9",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a037.webm"\r
+      },\r
+      "action-a038": {\r
+        "displayName": "\u6325\u624B\u544A\u522B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a038.webm"\r
+      },\r
+      "action-a039": {\r
+        "displayName": "\u6342\u5634\u8F7B\u7B11",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a039.webm"\r
+      },\r
+      "action-a040": {\r
+        "displayName": "\u6342\u8033\u6735\u5ACC\u5435",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a040.webm"\r
+      },\r
+      "action-a041": {\r
+        "displayName": "\u6367\u751F\u65E5\u86CB\u7CD5",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a041.webm"\r
+      },\r
+      "action-a042": {\r
+        "displayName": "\u638C\u5FC3\u6258\u5149\u7403",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a042.webm"\r
+      },\r
+      "action-a043": {\r
+        "displayName": "\u638C\u5FC3\u6258\u6CE1\u6CE1",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a043.webm"\r
+      },\r
+      "action-a044": {\r
+        "displayName": "\u63D0\u94B1\u888B\u5750\u4E0B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a044.webm"\r
+      },\r
+      "action-a045": {\r
+        "displayName": "\u63D0\u94B1\u888B\u6446\u52A8",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a045.webm"\r
+      },\r
+      "action-a046": {\r
+        "displayName": "\u63D0\u94B1\u888B\u8F6C\u8EAB",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a046.webm"\r
+      },\r
+      "action-a047": {\r
+        "displayName": "\u6447\u5934\u62D2\u7EDD",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a047.webm"\r
+      },\r
+      "action-a048": {\r
+        "displayName": "\u644A\u624B\u70B9\u5934",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a048.webm"\r
+      },\r
+      "action-a049": {\r
+        "displayName": "\u644A\u624B\u7591\u60D1",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a049.webm"\r
+      },\r
+      "action-a050": {\r
+        "displayName": "\u653E\u677E\u80A9\u8180",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a050.webm"\r
+      },\r
+      "action-a051": {\r
+        "displayName": "\u6B6A\u5934\u7728\u773C",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a051.webm"\r
+      },\r
+      "action-a052": {\r
+        "displayName": "\u6BD4\u5FC3wink",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a052.webm"\r
+      },\r
+      "action-a053": {\r
+        "displayName": "\u6BD4\u8036\u95EE\u5019",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a053.webm"\r
+      },\r
+      "idle": {\r
+        "displayName": "\u6CE1\u6CE1\u5750\u59FF\u5F85\u673A",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a054.webm"\r
+      },\r
+      "action-a055": {\r
+        "displayName": "\u70B9\u9F3B\u5C16\u6076\u4F5C\u5267",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a055.webm"\r
+      },\r
+      "action-a056": {\r
+        "displayName": "\u7AD6\u62C7\u6307\u5938\u5956",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a056.webm"\r
+      },\r
+      "action-a057": {\r
+        "displayName": "\u80F8\u524D\u62AC\u624B",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a057.webm"\r
+      },\r
+      "action-a058": {\r
+        "displayName": "\u88AB\u70B9\u60CA\u8BB6",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a058.webm"\r
+      },\r
+      "action-a059": {\r
+        "displayName": "\u8D34\u8033\u624B\u52BF",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a059.webm"\r
+      },\r
+      "action-a060": {\r
+        "displayName": "\u8D85\u7EDD\u5C0F\u624B\u5200",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a060.webm"\r
+      },\r
+      "action-a061": {\r
+        "displayName": "\u8DC3\u8D77\u8F6C\u8EAB",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a061.webm"\r
+      },\r
+      "action-a062": {\r
+        "displayName": "\u8DC3\u8D77\u8F6C\u8EAB\u5E86\u795D",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a062.webm"\r
+      },\r
+      "action-a063": {\r
+        "displayName": "\u8DC3\u8D77\u8F6C\u8EAB\u70B9\u8D5E",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a063.webm"\r
+      },\r
+      "action-a064": {\r
+        "displayName": "\u8E72\u8EAB\u8F6C\u5934",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a064.webm"\r
+      },\r
+      "action-a065": {\r
+        "displayName": "\u8F7B\u6446\u88D9\u89D2\u884C\u793C",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a065.webm"\r
+      },\r
+      "action-a066": {\r
+        "displayName": "\u8F7B\u8F7B\u9F13\u638C",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a066.webm"\r
+      },\r
+      "action-a067": {\r
+        "displayName": "\u95ED\u773C\u62AC\u624B\u70B9\u5934",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a067.webm"\r
+      },\r
+      "action-a068": {\r
+        "displayName": "\u95ED\u773C\u6325\u624B\u6447\u6446",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a068.webm"\r
+      },\r
+      "action-a069": {\r
+        "displayName": "\u95ED\u773C\u8F6C\u8EAB\u6447\u6446",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a069.webm"\r
+      },\r
+      "action-a070": {\r
+        "displayName": "\u95ED\u773C\u8F7B\u6643",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a070.webm"\r
+      },\r
+      "action-a071": {\r
+        "displayName": "\u96C0\u8DC3\u5E86\u795D",\r
+        "type": "video/webm",\r
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a071.webm"\r
+      }\r
+    },\r
+    "download": "https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/pets-20261011/dsh-pet-actions.zip",\r
+    "downloadLabel": "\u4E0B\u8F7D\u5B8C\u6574\u52A8\u4F5C\u5305 ZIP\uFF08592 MB\uFF09",\r
+    "hostNotice": "\u4E0B\u8F7D\u5B8C\u6574 ZIP \u540E\uFF0C\u5728\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\u5BA0\u300D\u5BFC\u5165\u5E76\u8BBE\u4E3A\u5F53\u524D\u684C\u5BA0\u3002\u52A8\u4F5C\u5305\u7EA6 592 MB\uFF0C\u81EA\u5E26\u900F\u660E\u901A\u9053\uFF1B\u8BF7\u4F7F\u7528 v4.0.1-preview.4 \u6216\u66F4\u65B0\u7684\u684C\u9762\u7248\u5BFC\u5165\uFF08\u5B8C\u6574\u5305\u4E0A\u9650 1 GiB\uFF09\uFF1B\u65E7\u7248\u8BF7\u5148\u66F4\u65B0\u300271 \u4E2A\u52A8\u4F5C\u540D\u79F0\u3001\u5206\u7C7B\u4E0E\u72B6\u6001\u7ED1\u5B9A\u5BFC\u5165\u540E\u53EF\u7EE7\u7EED\u81EA\u5B9A\u4E49\u3002",\r
+    "packageManifest": "assets/pets/user-projects-20261010/dsh-pet-actions/pet.json",\r
+    "packageLicense": "assets/pets/user-projects-20261010/dsh-pet-actions/LICENSE.txt",\r
+    "archiveBytes": 620559705,\r
+    "archiveSha256": "f7c9830faf4d1d065ac45075dbad58ae6295a4a7206b8ac3d98cdccc9a7e9035",\r
+    "license": "\u4EE3\u7801 MIT\uFF1B\u89D2\u8272\u3001\u89C6\u9891\u53CA\u7B2C\u4E09\u65B9\u7D20\u6750\u6743\u5229\u72EC\u7ACB\uFF0C\u968F\u539F\u9879\u76EE\u53D1\u884C\u8BF4\u660E\u4FDD\u7559\u3002",\r
+    "source": "https://github.com/xunguangzlj-cloud/danya-pet",\r
+    "importedAt": "2026-10-11",\r
+    "tags": [\r
+      "\u8FBE\u59AE\u5A05",\r
+      "\u89C6\u9891\u52A8\u4F5C",\r
+      "\u900F\u660E\u901A\u9053",\r
+      "\u53EF\u5BFC\u5165",\r
+      "\u5F00\u6E90"\r
+    ],\r
+    "collections": []\r
   }\r
 ];\r
 export function petCredit(work) {\r
@@ -10492,6 +10878,392 @@ var pets = [
       "\u900F\u660E\u89C6\u9891",
       "Windows"
     ]
+  },
+  {
+    "id": "dsh-pet-actions",
+    "title": "\u8FBE\u59AE\u5A05 \xB7 \u52A8\u4F5C\u5305",
+    "author": "Lykinzlj",
+    "kind": "pet",
+    "category": "\u6E38\u620F\u89D2\u8272",
+    "version": "0.3.1",
+    "description": "\u8FBE\u59AE\u5A05\u539F\u670D\u88C5 71 \u4E2A\u900F\u660E\u89C6\u9891\u52A8\u4F5C\u7684\u53EF\u5BFC\u5165\u52A8\u4F5C\u5305\uFF0C\u6765\u81EA\u5F00\u6E90\u9879\u76EE dsh-pet\uFF1A\u5F85\u673A\u3001\u884C\u8D70\u3001\u70B9\u51FB\u4E0E\u62D6\u62FD\u56DE\u5E94\u3001\u6325\u624B\u3001\u8DF3\u8DC3\uFF0C\u4EE5\u53CA\u601D\u8003\u3001\u5DE5\u4F5C\u3001\u6574\u7406\u3001\u7B49\u5F85\u3001\u5B8C\u6210\u3001\u51FA\u9519\u516D\u6863\u5DE5\u4F5C\u72B6\u6001\u8054\u52A8\u3002",
+    "distribution": "media",
+    "thumbnail": "assets/pets/user-projects-20261010/dsh-pet-actions/thumbnail.webp",
+    "mediaActions": {
+      "action-a001": {
+        "displayName": "\u4E3E\u94B1\u888B\u8F7B\u6643",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a001.webm"
+      },
+      "action-a002": {
+        "displayName": "\u4F6F\u88C5\u65E0\u8F9C",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a002.webm"
+      },
+      "action-a003": {
+        "displayName": "\u4FA7\u5934\u6446\u624B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a003.webm"
+      },
+      "action-a004": {
+        "displayName": "\u4FA7\u8EAB\u5F20\u671B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a004.webm"
+      },
+      "action-a005": {
+        "displayName": "\u4FA7\u8EAB\u8E0F\u6B65",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a005.webm"
+      },
+      "action-a006": {
+        "displayName": "\u4FA7\u8EAB\u8E31\u6B65\u5F20\u671B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a006.webm"
+      },
+      "action-a007": {
+        "displayName": "\u4FA7\u8EAB\u8F7B\u6643",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a007.webm"
+      },
+      "action-a008": {
+        "displayName": "\u50B2\u5A07\u522B\u8FC7\u5934",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a008.webm"
+      },
+      "action-a009": {
+        "displayName": "\u539F\u5730\u5411\u53F3\u8D70",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a009.webm"
+      },
+      "action-a010": {
+        "displayName": "\u539F\u5730\u5411\u5DE6\u8D70",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a010.webm"
+      },
+      "action-a011": {
+        "displayName": "\u53C9\u8170\u5C0F\u5F97\u610F",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a011.webm"
+      },
+      "action-a012": {
+        "displayName": "\u53CC\u624B\u5408\u62E2\u62AC\u624B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a012.webm"
+      },
+      "action-a013": {
+        "displayName": "\u5618\u8FD9\u662F\u79D8\u5BC6",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a013.webm"
+      },
+      "action-a014": {
+        "displayName": "\u5750\u4E0B\u770B\u4E66",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a014.webm"
+      },
+      "action-a015": {
+        "displayName": "\u5750\u5730\u6E05\u70B9\u91D1\u5E01",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a015.webm"
+      },
+      "action-a016": {
+        "displayName": "\u5BB3\u7F9E\u906E\u8138",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a016.webm"
+      },
+      "action-a017": {
+        "displayName": "\u5C0F\u62F3\u62F3\u751F\u6C14",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a017.webm"
+      },
+      "action-a018": {
+        "displayName": "\u5C55\u793A\u5357\u74DC\u706F",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a018.webm"
+      },
+      "action-a019": {
+        "displayName": "\u5DE6\u53F3\u5F20\u671B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a019.webm"
+      },
+      "action-a020": {
+        "displayName": "\u5E86\u795D",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a020.webm"
+      },
+      "action-a021": {
+        "displayName": "\u5F00\u5FC3\u70B9\u5934",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a021.webm"
+      },
+      "action-a022": {
+        "displayName": "\u5F20\u81C2\u8F6C\u5708",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a022.webm"
+      },
+      "action-a023": {
+        "displayName": "\u5FD9\u788C\u70B9\u6309",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a023.webm"
+      },
+      "action-a024": {
+        "displayName": "\u6084\u6084\u5077\u7B11",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a024.webm"
+      },
+      "action-a025": {
+        "displayName": "\u6233\u7834\u5C0F\u6CE1\u6CE1",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a025.webm"
+      },
+      "action-a026": {
+        "displayName": "\u6251\u514B\u724C\u5C0F\u9B54\u672F",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a026.webm"
+      },
+      "action-a027": {
+        "displayName": "\u6258\u5357\u74DC\u706F\u6446\u624B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a027.webm"
+      },
+      "action-a028": {
+        "displayName": "\u6258\u816E\u89C2\u5BDF",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a028.webm"
+      },
+      "action-a029": {
+        "displayName": "\u62AC\u624B\u4E0B\u8E72",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a029.webm"
+      },
+      "action-a030": {
+        "displayName": "\u62AC\u624B\u906E\u8138",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a030.webm"
+      },
+      "action-a031": {
+        "displayName": "\u62AC\u638C\u8F7B\u70B9",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a031.webm"
+      },
+      "action-a032": {
+        "displayName": "\u62B1\u4E66\u7FFB\u9605",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a032.webm"
+      },
+      "action-a033": {
+        "displayName": "\u62B1\u4E66\u8E0F\u6B65",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a033.webm"
+      },
+      "action-a034": {
+        "displayName": "\u62B1\u81C2\u88C5\u4E25\u8083",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a034.webm"
+      },
+      "action-a035": {
+        "displayName": "\u62DB\u624B\u9080\u4F60\u9760\u8FD1",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a035.webm"
+      },
+      "action-a036": {
+        "displayName": "\u6307\u5411\u65C1\u8FB9",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a036.webm"
+      },
+      "action-a037": {
+        "displayName": "\u6307\u5C16\u8F7B\u70B9",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a037.webm"
+      },
+      "action-a038": {
+        "displayName": "\u6325\u624B\u544A\u522B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a038.webm"
+      },
+      "action-a039": {
+        "displayName": "\u6342\u5634\u8F7B\u7B11",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a039.webm"
+      },
+      "action-a040": {
+        "displayName": "\u6342\u8033\u6735\u5ACC\u5435",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a040.webm"
+      },
+      "action-a041": {
+        "displayName": "\u6367\u751F\u65E5\u86CB\u7CD5",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a041.webm"
+      },
+      "action-a042": {
+        "displayName": "\u638C\u5FC3\u6258\u5149\u7403",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a042.webm"
+      },
+      "action-a043": {
+        "displayName": "\u638C\u5FC3\u6258\u6CE1\u6CE1",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a043.webm"
+      },
+      "action-a044": {
+        "displayName": "\u63D0\u94B1\u888B\u5750\u4E0B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a044.webm"
+      },
+      "action-a045": {
+        "displayName": "\u63D0\u94B1\u888B\u6446\u52A8",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a045.webm"
+      },
+      "action-a046": {
+        "displayName": "\u63D0\u94B1\u888B\u8F6C\u8EAB",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a046.webm"
+      },
+      "action-a047": {
+        "displayName": "\u6447\u5934\u62D2\u7EDD",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a047.webm"
+      },
+      "action-a048": {
+        "displayName": "\u644A\u624B\u70B9\u5934",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a048.webm"
+      },
+      "action-a049": {
+        "displayName": "\u644A\u624B\u7591\u60D1",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a049.webm"
+      },
+      "action-a050": {
+        "displayName": "\u653E\u677E\u80A9\u8180",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a050.webm"
+      },
+      "action-a051": {
+        "displayName": "\u6B6A\u5934\u7728\u773C",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a051.webm"
+      },
+      "action-a052": {
+        "displayName": "\u6BD4\u5FC3wink",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a052.webm"
+      },
+      "action-a053": {
+        "displayName": "\u6BD4\u8036\u95EE\u5019",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a053.webm"
+      },
+      "idle": {
+        "displayName": "\u6CE1\u6CE1\u5750\u59FF\u5F85\u673A",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a054.webm"
+      },
+      "action-a055": {
+        "displayName": "\u70B9\u9F3B\u5C16\u6076\u4F5C\u5267",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a055.webm"
+      },
+      "action-a056": {
+        "displayName": "\u7AD6\u62C7\u6307\u5938\u5956",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a056.webm"
+      },
+      "action-a057": {
+        "displayName": "\u80F8\u524D\u62AC\u624B",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a057.webm"
+      },
+      "action-a058": {
+        "displayName": "\u88AB\u70B9\u60CA\u8BB6",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a058.webm"
+      },
+      "action-a059": {
+        "displayName": "\u8D34\u8033\u624B\u52BF",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a059.webm"
+      },
+      "action-a060": {
+        "displayName": "\u8D85\u7EDD\u5C0F\u624B\u5200",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a060.webm"
+      },
+      "action-a061": {
+        "displayName": "\u8DC3\u8D77\u8F6C\u8EAB",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a061.webm"
+      },
+      "action-a062": {
+        "displayName": "\u8DC3\u8D77\u8F6C\u8EAB\u5E86\u795D",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a062.webm"
+      },
+      "action-a063": {
+        "displayName": "\u8DC3\u8D77\u8F6C\u8EAB\u70B9\u8D5E",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a063.webm"
+      },
+      "action-a064": {
+        "displayName": "\u8E72\u8EAB\u8F6C\u5934",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a064.webm"
+      },
+      "action-a065": {
+        "displayName": "\u8F7B\u6446\u88D9\u89D2\u884C\u793C",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a065.webm"
+      },
+      "action-a066": {
+        "displayName": "\u8F7B\u8F7B\u9F13\u638C",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a066.webm"
+      },
+      "action-a067": {
+        "displayName": "\u95ED\u773C\u62AC\u624B\u70B9\u5934",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a067.webm"
+      },
+      "action-a068": {
+        "displayName": "\u95ED\u773C\u6325\u624B\u6447\u6446",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a068.webm"
+      },
+      "action-a069": {
+        "displayName": "\u95ED\u773C\u8F6C\u8EAB\u6447\u6446",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a069.webm"
+      },
+      "action-a070": {
+        "displayName": "\u95ED\u773C\u8F7B\u6643",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a070.webm"
+      },
+      "action-a071": {
+        "displayName": "\u96C0\u8DC3\u5E86\u795D",
+        "type": "video/webm",
+        "url": "assets/pets/user-projects-20261010/dsh-pet-actions/actions/a071.webm"
+      }
+    },
+    "download": "https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/pets-20261011/dsh-pet-actions.zip",
+    "downloadLabel": "\u4E0B\u8F7D\u5B8C\u6574\u52A8\u4F5C\u5305 ZIP\uFF08592 MB\uFF09",
+    "hostNotice": "\u4E0B\u8F7D\u5B8C\u6574 ZIP \u540E\uFF0C\u5728\u63A7\u5236\u4E2D\u5FC3\u300C\u6211\u7684\u684C\u5BA0\u300D\u5BFC\u5165\u5E76\u8BBE\u4E3A\u5F53\u524D\u684C\u5BA0\u3002\u52A8\u4F5C\u5305\u7EA6 592 MB\uFF0C\u81EA\u5E26\u900F\u660E\u901A\u9053\uFF1B\u8BF7\u4F7F\u7528 v4.0.1-preview.4 \u6216\u66F4\u65B0\u7684\u684C\u9762\u7248\u5BFC\u5165\uFF08\u5B8C\u6574\u5305\u4E0A\u9650 1 GiB\uFF09\uFF1B\u65E7\u7248\u8BF7\u5148\u66F4\u65B0\u300271 \u4E2A\u52A8\u4F5C\u540D\u79F0\u3001\u5206\u7C7B\u4E0E\u72B6\u6001\u7ED1\u5B9A\u5BFC\u5165\u540E\u53EF\u7EE7\u7EED\u81EA\u5B9A\u4E49\u3002",
+    "packageManifest": "assets/pets/user-projects-20261010/dsh-pet-actions/pet.json",
+    "packageLicense": "assets/pets/user-projects-20261010/dsh-pet-actions/LICENSE.txt",
+    "archiveBytes": 620559705,
+    "archiveSha256": "f7c9830faf4d1d065ac45075dbad58ae6295a4a7206b8ac3d98cdccc9a7e9035",
+    "license": "\u4EE3\u7801 MIT\uFF1B\u89D2\u8272\u3001\u89C6\u9891\u53CA\u7B2C\u4E09\u65B9\u7D20\u6750\u6743\u5229\u72EC\u7ACB\uFF0C\u968F\u539F\u9879\u76EE\u53D1\u884C\u8BF4\u660E\u4FDD\u7559\u3002",
+    "source": "https://github.com/xunguangzlj-cloud/danya-pet",
+    "importedAt": "2026-10-11",
+    "tags": [
+      "\u8FBE\u59AE\u5A05",
+      "\u89C6\u9891\u52A8\u4F5C",
+      "\u900F\u660E\u901A\u9053",
+      "\u53EF\u5BFC\u5165",
+      "\u5F00\u6E90"
+    ],
+    "collections": []
   }
 ];
 var toolPlugins = [

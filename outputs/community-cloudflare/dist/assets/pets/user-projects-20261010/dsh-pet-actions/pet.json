@@ -1,0 +1,382 @@
+{
+  "id": "dsh-pet-actions",
+  "displayName": "达妮娅 · 动作包",
+  "description": "达妮娅原服装 71 个透明视频动作，来自开源项目 dsh-pet（github.com/xunguangzlj-cloud/danya-pet）。",
+  "mediaVersion": 1,
+  "actions": {
+    "action-a001": "actions/a001.webm",
+    "action-a002": "actions/a002.webm",
+    "action-a003": "actions/a003.webm",
+    "action-a004": "actions/a004.webm",
+    "action-a005": "actions/a005.webm",
+    "action-a006": "actions/a006.webm",
+    "action-a007": "actions/a007.webm",
+    "action-a008": "actions/a008.webm",
+    "action-a009": "actions/a009.webm",
+    "action-a010": "actions/a010.webm",
+    "action-a011": "actions/a011.webm",
+    "action-a012": "actions/a012.webm",
+    "action-a013": "actions/a013.webm",
+    "action-a014": "actions/a014.webm",
+    "action-a015": "actions/a015.webm",
+    "action-a016": "actions/a016.webm",
+    "action-a017": "actions/a017.webm",
+    "action-a018": "actions/a018.webm",
+    "action-a019": "actions/a019.webm",
+    "action-a020": "actions/a020.webm",
+    "action-a021": "actions/a021.webm",
+    "action-a022": "actions/a022.webm",
+    "action-a023": "actions/a023.webm",
+    "action-a024": "actions/a024.webm",
+    "action-a025": "actions/a025.webm",
+    "action-a026": "actions/a026.webm",
+    "action-a027": "actions/a027.webm",
+    "action-a028": "actions/a028.webm",
+    "action-a029": "actions/a029.webm",
+    "action-a030": "actions/a030.webm",
+    "action-a031": "actions/a031.webm",
+    "action-a032": "actions/a032.webm",
+    "action-a033": "actions/a033.webm",
+    "action-a034": "actions/a034.webm",
+    "action-a035": "actions/a035.webm",
+    "action-a036": "actions/a036.webm",
+    "action-a037": "actions/a037.webm",
+    "action-a038": "actions/a038.webm",
+    "action-a039": "actions/a039.webm",
+    "action-a040": "actions/a040.webm",
+    "action-a041": "actions/a041.webm",
+    "action-a042": "actions/a042.webm",
+    "action-a043": "actions/a043.webm",
+    "action-a044": "actions/a044.webm",
+    "action-a045": "actions/a045.webm",
+    "action-a046": "actions/a046.webm",
+    "action-a047": "actions/a047.webm",
+    "action-a048": "actions/a048.webm",
+    "action-a049": "actions/a049.webm",
+    "action-a050": "actions/a050.webm",
+    "action-a051": "actions/a051.webm",
+    "action-a052": "actions/a052.webm",
+    "action-a053": "actions/a053.webm",
+    "action-a055": "actions/a055.webm",
+    "action-a056": "actions/a056.webm",
+    "action-a057": "actions/a057.webm",
+    "action-a058": "actions/a058.webm",
+    "action-a059": "actions/a059.webm",
+    "action-a060": "actions/a060.webm",
+    "action-a061": "actions/a061.webm",
+    "action-a062": "actions/a062.webm",
+    "action-a063": "actions/a063.webm",
+    "action-a064": "actions/a064.webm",
+    "action-a065": "actions/a065.webm",
+    "action-a066": "actions/a066.webm",
+    "action-a067": "actions/a067.webm",
+    "action-a068": "actions/a068.webm",
+    "action-a069": "actions/a069.webm",
+    "action-a070": "actions/a070.webm",
+    "action-a071": "actions/a071.webm",
+    "idle": "actions/a054.webm"
+  },
+  "actionDefinitions": {
+    "action-a001": {
+      "displayName": "举钱袋轻晃",
+      "category": "互动"
+    },
+    "action-a002": {
+      "displayName": "佯装无辜",
+      "category": "互动"
+    },
+    "action-a003": {
+      "displayName": "侧头摆手",
+      "category": "互动"
+    },
+    "action-a004": {
+      "displayName": "侧身张望",
+      "category": "互动"
+    },
+    "action-a005": {
+      "displayName": "侧身踏步",
+      "category": "互动"
+    },
+    "action-a006": {
+      "displayName": "侧身踱步张望",
+      "category": "互动"
+    },
+    "action-a007": {
+      "displayName": "侧身轻晃",
+      "category": "互动"
+    },
+    "action-a008": {
+      "displayName": "傲娇别过头",
+      "category": "互动"
+    },
+    "action-a009": {
+      "displayName": "原地向右走",
+      "category": "互动"
+    },
+    "action-a010": {
+      "displayName": "原地向左走",
+      "category": "互动"
+    },
+    "action-a011": {
+      "displayName": "叉腰小得意",
+      "category": "互动"
+    },
+    "action-a012": {
+      "displayName": "双手合拢抬手",
+      "category": "互动"
+    },
+    "action-a013": {
+      "displayName": "嘘这是秘密",
+      "category": "互动"
+    },
+    "action-a014": {
+      "displayName": "坐下看书",
+      "category": "互动"
+    },
+    "action-a015": {
+      "displayName": "坐地清点金币",
+      "category": "互动"
+    },
+    "action-a016": {
+      "displayName": "害羞遮脸",
+      "category": "互动"
+    },
+    "action-a017": {
+      "displayName": "小拳拳生气",
+      "category": "互动"
+    },
+    "action-a018": {
+      "displayName": "展示南瓜灯",
+      "category": "互动"
+    },
+    "action-a019": {
+      "displayName": "左右张望",
+      "category": "互动"
+    },
+    "action-a020": {
+      "displayName": "庆祝",
+      "category": "互动"
+    },
+    "action-a021": {
+      "displayName": "开心点头",
+      "category": "互动"
+    },
+    "action-a022": {
+      "displayName": "张臂转圈",
+      "category": "互动"
+    },
+    "action-a023": {
+      "displayName": "忙碌点按",
+      "category": "互动"
+    },
+    "action-a024": {
+      "displayName": "悄悄偷笑",
+      "category": "互动"
+    },
+    "action-a025": {
+      "displayName": "戳破小泡泡",
+      "category": "互动"
+    },
+    "action-a026": {
+      "displayName": "扑克牌小魔术",
+      "category": "互动"
+    },
+    "action-a027": {
+      "displayName": "托南瓜灯摆手",
+      "category": "互动"
+    },
+    "action-a028": {
+      "displayName": "托腮观察",
+      "category": "互动"
+    },
+    "action-a029": {
+      "displayName": "抬手下蹲",
+      "category": "互动"
+    },
+    "action-a030": {
+      "displayName": "抬手遮脸",
+      "category": "互动"
+    },
+    "action-a031": {
+      "displayName": "抬掌轻点",
+      "category": "互动"
+    },
+    "action-a032": {
+      "displayName": "抱书翻阅",
+      "category": "互动"
+    },
+    "action-a033": {
+      "displayName": "抱书踏步",
+      "category": "互动"
+    },
+    "action-a034": {
+      "displayName": "抱臂装严肃",
+      "category": "互动"
+    },
+    "action-a035": {
+      "displayName": "招手邀你靠近",
+      "category": "互动"
+    },
+    "action-a036": {
+      "displayName": "指向旁边",
+      "category": "互动"
+    },
+    "action-a037": {
+      "displayName": "指尖轻点",
+      "category": "互动"
+    },
+    "action-a038": {
+      "displayName": "挥手告别",
+      "category": "互动"
+    },
+    "action-a039": {
+      "displayName": "捂嘴轻笑",
+      "category": "互动"
+    },
+    "action-a040": {
+      "displayName": "捂耳朵嫌吵",
+      "category": "互动"
+    },
+    "action-a041": {
+      "displayName": "捧生日蛋糕",
+      "category": "互动"
+    },
+    "action-a042": {
+      "displayName": "掌心托光球",
+      "category": "互动"
+    },
+    "action-a043": {
+      "displayName": "掌心托泡泡",
+      "category": "互动"
+    },
+    "action-a044": {
+      "displayName": "提钱袋坐下",
+      "category": "互动"
+    },
+    "action-a045": {
+      "displayName": "提钱袋摆动",
+      "category": "互动"
+    },
+    "action-a046": {
+      "displayName": "提钱袋转身",
+      "category": "互动"
+    },
+    "action-a047": {
+      "displayName": "摇头拒绝",
+      "category": "互动"
+    },
+    "action-a048": {
+      "displayName": "摊手点头",
+      "category": "互动"
+    },
+    "action-a049": {
+      "displayName": "摊手疑惑",
+      "category": "互动"
+    },
+    "action-a050": {
+      "displayName": "放松肩膀",
+      "category": "互动"
+    },
+    "action-a051": {
+      "displayName": "歪头眨眼",
+      "category": "互动"
+    },
+    "action-a052": {
+      "displayName": "比心wink",
+      "category": "互动"
+    },
+    "action-a053": {
+      "displayName": "比耶问候",
+      "category": "互动"
+    },
+    "idle": {
+      "displayName": "泡泡坐姿待机",
+      "category": "陪伴"
+    },
+    "action-a055": {
+      "displayName": "点鼻尖恶作剧",
+      "category": "互动"
+    },
+    "action-a056": {
+      "displayName": "竖拇指夸奖",
+      "category": "互动"
+    },
+    "action-a057": {
+      "displayName": "胸前抬手",
+      "category": "互动"
+    },
+    "action-a058": {
+      "displayName": "被点惊讶",
+      "category": "互动"
+    },
+    "action-a059": {
+      "displayName": "贴耳手势",
+      "category": "互动"
+    },
+    "action-a060": {
+      "displayName": "超绝小手刀",
+      "category": "互动"
+    },
+    "action-a061": {
+      "displayName": "跃起转身",
+      "category": "互动"
+    },
+    "action-a062": {
+      "displayName": "跃起转身庆祝",
+      "category": "互动"
+    },
+    "action-a063": {
+      "displayName": "跃起转身点赞",
+      "category": "互动"
+    },
+    "action-a064": {
+      "displayName": "蹲身转头",
+      "category": "互动"
+    },
+    "action-a065": {
+      "displayName": "轻摆裙角行礼",
+      "category": "互动"
+    },
+    "action-a066": {
+      "displayName": "轻轻鼓掌",
+      "category": "互动"
+    },
+    "action-a067": {
+      "displayName": "闭眼抬手点头",
+      "category": "互动"
+    },
+    "action-a068": {
+      "displayName": "闭眼挥手摇摆",
+      "category": "互动"
+    },
+    "action-a069": {
+      "displayName": "闭眼转身摇摆",
+      "category": "互动"
+    },
+    "action-a070": {
+      "displayName": "闭眼轻晃",
+      "category": "互动"
+    },
+    "action-a071": {
+      "displayName": "雀跃庆祝",
+      "category": "互动"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "clicked": "action-a051",
+    "dragged": "action-a058",
+    "running-left": "action-a010",
+    "running-right": "action-a009",
+    "running": "action-a023",
+    "waving": "action-a038",
+    "jumping": "action-a061",
+    "failed": "action-a017",
+    "waiting": "action-a006",
+    "review": "action-a032",
+    "sleeping": "action-a014"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}
