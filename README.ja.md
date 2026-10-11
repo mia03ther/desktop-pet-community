@@ -37,6 +37,16 @@
 
 外部 AI の利用には、自分のアカウント、ツール、設定が必要です。プリセットの接続入口、接続経路のテスト、元のプログラムの起動は、すべてのプラットフォームが接続済みであることや、任意のインポート済みプロジェクトが完全に動作することを意味しません。実際の提供内容と検証範囲は[提供状況](outputs/desktop-pet/docs/release-status.md)を参照してください。
 
+### コミュニティペット紹介
+
+プラットフォームには 117 体のペットと 24 個のプラグインが収録されています。以下の作品は[共创平台](https://desktoppet-e9e.pages.dev)でプレビュー・ダウンロード・インポートできます：
+
+| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="派蒙"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
+|:---:|:---:|:---:|
+| **流萤** | **派蒙** | **Aemeath Mini** |
+| <a href="https://desktoppet-e9e.pages.dev/#pets/bongocat-vladelaina"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp" width="150" alt="BongoCat"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/cloud-lykinzlj1"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp" width="150" alt="真珠"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/danya-pet-windows"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp" width="150" alt="达妮娅 · 三形态"></a> |
+| **BongoCat** | **真珠** | **达妮娅 · 三形态** |
+
 ## 2. インストール方法
 
 ### Windows ポータブル版
@@ -117,6 +127,7 @@ node outputs/community-cloudflare/scripts/build.mjs
 <!-- CONTRIBUTORS_START -->
 <p>
   <a href="https://github.com/xunguangzlj-cloud"><img src="assets/contributors/xunguangzlj-cloud.svg" width="64" height="64" alt="Lykinzlj" title="Lykinzlj"></a>
+  <a href="https://github.com/wuxuancheng66"><img src="assets/contributors/wuxuancheng66.svg" width="64" height="64" alt="wuxuancheng66" title="wuxuancheng66"></a>
   <a href="https://github.com/legeling"><img src="assets/contributors/legeling.svg" width="64" height="64" alt="legeling" title="legeling"></a>
   <a href="https://github.com/cuNuo"><img src="assets/contributors/cuNuo.svg" width="64" height="64" alt="cuNuo" title="cuNuo"></a>
   <a href="https://github.com/xchangee"><img src="assets/contributors/xchangee.svg" width="64" height="64" alt="tal" title="tal"></a>

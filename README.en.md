@@ -39,6 +39,16 @@
 
 External AI requires your own accounts, tools, and configuration. Preset entries, connection tests, or launching an original application do not establish that every platform is connected or that every imported project can run completely. See [delivery status](outputs/desktop-pet/docs/release-status.md) for the actual delivery and validation scope.
 
+### Community pets showcase
+
+The platform hosts 117 pets and 24 plugins. Preview, download, and import these works on the [community platform](https://desktoppet-e9e.pages.dev):
+
+| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="Firefly"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="Paimon"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
+|:---:|:---:|:---:|
+| **Firefly** | **Paimon** | **Aemeath Mini** |
+| <a href="https://desktoppet-e9e.pages.dev/#pets/bongocat-vladelaina"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp" width="150" alt="BongoCat"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/cloud-lykinzlj1"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp" width="150" alt="Zhenzhu"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/danya-pet-windows"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp" width="150" alt="Danya"></a> |
+| **BongoCat** | **Zhenzhu** | **Danya** |
+
 ## 2. Installation
 
 ### Windows portable version
@@ -119,6 +129,7 @@ To submit a work, package it and fill in its information on the website, then op
 <!-- CONTRIBUTORS_START -->
 <p>
   <a href="https://github.com/xunguangzlj-cloud"><img src="assets/contributors/xunguangzlj-cloud.svg" width="64" height="64" alt="Lykinzlj" title="Lykinzlj"></a>
+  <a href="https://github.com/wuxuancheng66"><img src="assets/contributors/wuxuancheng66.svg" width="64" height="64" alt="wuxuancheng66" title="wuxuancheng66"></a>
   <a href="https://github.com/legeling"><img src="assets/contributors/legeling.svg" width="64" height="64" alt="legeling" title="legeling"></a>
   <a href="https://github.com/cuNuo"><img src="assets/contributors/cuNuo.svg" width="64" height="64" alt="cuNuo" title="cuNuo"></a>
   <a href="https://github.com/xchangee"><img src="assets/contributors/xchangee.svg" width="64" height="64" alt="tal" title="tal"></a>

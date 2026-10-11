@@ -36,6 +36,16 @@ https://desktoppet-e9e.pages.dev/#pets
 
 外部 AI 需要自己的账号、工具和配置；预设入口、链路测试或原程序启动不代表全部平台已经接通，也不代表任意导入项目都能完整运行。当前实际交付和验证范围见[交付状态](outputs/desktop-pet/docs/release-status.md)。
 
+### 社区桌宠精选
+
+共创平台已收录 117 件桌宠与 24 件插件。以下作品可在[共创平台](https://desktoppet-e9e.pages.dev)查看动态预览、下载并导入桌面端：
+
+| <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="派蒙"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
+|:---:|:---:|:---:|
+| **流萤** | **派蒙** | **Aemeath Mini** |
+| <a href="https://desktoppet-e9e.pages.dev/#pets/bongocat-vladelaina"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/adapted-20261010/bongocat-vladelaina/thumbnail.webp" width="150" alt="BongoCat"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/cloud-lykinzlj1"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/cloud-lykinzlj1/thumbnail.webp" width="150" alt="真珠"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/danya-pet-windows"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/user-projects-20261010/danya-pet-windows/thumbnail.webp" width="150" alt="达妮娅 · 三形态"></a> |
+| **BongoCat** | **真珠** | **达妮娅 · 三形态** |
+
 ## 2. 安装方法
 ### 若不熟悉GitHub下载流程
 1.直接把网址复制给AI，让AI帮你安装
@@ -120,6 +130,7 @@ https://desktoppet-e9e.pages.dev/#pets
 <!-- CONTRIBUTORS_START -->
 <p>
   <a href="https://github.com/xunguangzlj-cloud"><img src="assets/contributors/xunguangzlj-cloud.svg" width="64" height="64" alt="Lykinzlj" title="Lykinzlj"></a>
+  <a href="https://github.com/wuxuancheng66"><img src="assets/contributors/wuxuancheng66.svg" width="64" height="64" alt="wuxuancheng66" title="wuxuancheng66"></a>
   <a href="https://github.com/huty828"><img src="assets/contributors/huty828.svg" width="64" height="64" alt="mythos@memes" title="mythos@memes"></a>
   <a href="https://github.com/jibo1601-lang"><img src="assets/contributors/jibo1601-lang.svg" width="64" height="64" alt="jibo1601-lang" title="jibo1601-lang"></a>
 </p>
