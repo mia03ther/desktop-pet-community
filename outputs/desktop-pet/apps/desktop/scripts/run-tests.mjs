@@ -70,6 +70,9 @@ async function main() {
   console.log("\n[preflight] Checking npm release gate invariants...");
   await run("node", ["scripts/npm-release-gate.test.mjs"]);
 
+  // 验证视频在高分屏和不同桌宠大小下保留实际绘制精度。
+  await run("node", ["tests/pet-media-player-quality.test.mjs"]);
+
   const { behaviorTests, contractTests, distChecks } = await discoverArtifacts(rootDir);
   await rm(join(rootDir, ".test-dist"), { force: true, recursive: true });
   logDiscoveredArtifacts("behavior tests", behaviorTests);

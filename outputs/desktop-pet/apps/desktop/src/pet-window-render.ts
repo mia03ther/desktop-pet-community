@@ -255,7 +255,7 @@ async function createInstalledMediaPetRender(metadata: MediaPetMetadata, display
       <head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src file: data: openpets-installed:; media-src data: openpets-installed: openpets-session-media:; connect-src openpets-installed: openpets-session-media:; font-src file:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-src 'none'"><meta name="viewport" content="width=device-width, initial-scale=1"><title>desktop pet</title>
       <style>${createPetWindowCss(false, scale, hudScale, petDragRegion)}
       .installed-card { width: ${Math.ceil(192 * scale)}px; height: ${Math.ceil(208 * scale)}px; position: relative; }
-      .installed-media { position: absolute; width: 192px; height: 208px; transform: scale(${scale}); transform-origin: top left; pointer-events: none; }
+      .installed-media { position: absolute; width: ${Math.ceil(192 * scale)}px; height: ${Math.ceil(208 * scale)}px; image-rendering: auto; pointer-events: none; }
       </style><style id="pet-chat-appearance-style">${createPetChatAppearanceCss(getAppStateSnapshot().preferences.petChatAppearance)}</style></head><body>${bodyHtml}</body></html>`,
   };
 }

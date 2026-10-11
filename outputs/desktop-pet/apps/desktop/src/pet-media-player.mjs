@@ -1,5 +1,5 @@
 import { removePetChroma, resolvePetMediaPlaybackAction } from "./pet-media-contract.ts";
-/** 去背只处理 192×208 的桌宠画布；隐藏后停止解码播放和绘制定时器。 */
+/** 按显示尺寸和屏幕像素比绘制；隐藏后停止解码播放和绘制定时器。 */
 export function createPetMediaPlayer(canvas, metadata, urlForFile) {
     canvas.width = 192;
     canvas.height = 208;
@@ -80,6 +80,20 @@ export function createPetMediaPlayer(canvas, metadata, urlForFile) {
                 reportError();
                 return;
             }
+            // 两倍采样保留缩小与去背边缘细节，画布不超过原素材或 2048 像素。
+            const bounds = canvas.getBoundingClientRect();
+            const displayWidth = Math.max(1, bounds.width || 192);
+            const displayHeight = Math.max(1, bounds.height || 208);
+            const pixelRatio = Math.max(1, owner.defaultView?.devicePixelRatio || 1);
+            const resolution = Math.min(pixelRatio * 2, width / displayWidth, height / displayHeight, 2048 / Math.max(displayWidth, displayHeight));
+            const targetWidth = Math.max(1, Math.round(displayWidth * resolution));
+            const targetHeight = Math.max(1, Math.round(displayHeight * resolution));
+            if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+            }
+            context.imageSmoothingEnabled = true;
+            context.imageSmoothingQuality = "high";
             context.clearRect(0, 0, canvas.width, canvas.height);
             const ratio = Math.min(canvas.width / width, canvas.height / height);
             const drawnWidth = width * ratio;
