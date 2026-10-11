@@ -32,6 +32,10 @@ extraResources:
     to: community-web
   - from: ../../LICENSE
     to: legal/THIRD-PARTY-LICENSE.txt
+  - from: ../../../../LICENSE
+    to: legal/LICENSE.txt
+  - from: ../../../../THIRD-PARTY-NOTICES.md
+    to: legal/THIRD-PARTY-NOTICES.md
 
 asar: true
 asarUnpack:

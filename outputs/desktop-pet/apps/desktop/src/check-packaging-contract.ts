@@ -135,6 +135,8 @@ function checkPackageOutput(outputDir: string, target: PackagingTarget): void {
     }
   }
   assert.equal(readFileSync(join(appResourceDir, "legal", "THIRD-PARTY-LICENSE.txt"), "utf8"), readFileSync(join(repoRoot, "LICENSE"), "utf8"), "法定许可声明须随包原样保留。");
+  assert.equal(readFileSync(join(appResourceDir, "legal", "LICENSE.txt"), "utf8"), readFileSync(resolve(repoRoot, "../../LICENSE"), "utf8"), "根项目许可须随包原样保留。");
+  assert.equal(readFileSync(join(appResourceDir, "legal", "THIRD-PARTY-NOTICES.md"), "utf8"), readFileSync(resolve(repoRoot, "../../THIRD-PARTY-NOTICES.md"), "utf8"), "根项目第三方版权声明须随包原样保留。");
   const appContents = join(appResourceDir, "app.asar.unpacked");
   assert.ok(existsSync(appContents), "packaged app.asar.unpacked resources are missing.");
   assertPackagedAgentBridges(appContents);

@@ -169,6 +169,48 @@ try {
   assert.match(dialogue.placeholder, /桌宠/);
   assert.ok(dialogue.fontFamily.length > 0);
   result.checks.push({ name: "实际右键菜单与中文对话输入", menuLabels, nativePopupIntercepted: true, ...dialogue });
+  // 仅选择随包的已知提醒 ZIP；拒绝一次权限后，再明确批准同一份权限清单。
+  const expectedPermissions = ["pet:speak", "pet:interact", "audio", "schedule", "storage", "commands"];
+  const pluginZip = join(resources, "community-web", "assets", "openpets.water-reminder.zip");
+  assert.ok(existsSync(pluginZip), "发布包缺少共创站喝水提醒 ZIP。");
+  await evaluate(`(()=>{${context}globalThis.__smokeImport={approve:false,filters:[],permissions:[],openDialog:e.dialog.showOpenDialog,messageBox:e.dialog.showMessageBox};const state=globalThis.__smokeImport;e.dialog.showOpenDialog=async(...args)=>{const options=args.at(-1);if(!options.filters?.some(filter=>filter.extensions.includes('zip')))throw Error('导入入口没有开放 ZIP');state.filters.push(options.filters);return {canceled:false,filePaths:[${JSON.stringify(pluginZip)}]};};e.dialog.showMessageBox=async(...args)=>{const options=args.at(-1);if(options.title==='导入插件'&&options.message==='选择要导入的插件包')return {response:0,checkboxChecked:false};if(options.title!=='安装 desktop pet 插件'||options.detail!==${JSON.stringify('Permissions: '+expectedPermissions.join(', '))})throw Error('验收拒绝未知权限确认');state.permissions.push({detail:options.detail,approved:state.approve});return {response:state.approve?0:1,checkboxChecked:false};};return true;})()`);
+  const render = expression => evaluate(`(async()=>{${context}const studio=r(e.app.getAppPath()+'/dist/windows.js').getControlCenterWindow();return studio.webContents.executeJavaScript(${JSON.stringify(expression)});})()`);
+  try {
+    const rejected = await render("window.openPetsControlCenter.loadLocalPlugin()");
+    assert.equal(rejected.ok, true);
+    assert.equal(rejected.snapshot.plugins.some(plugin => plugin.id === "openpets.water-reminder"), false, "拒绝权限后不得安装或启用插件。");
+    await evaluate("globalThis.__smokeImport.approve=true");
+    const imported = await render("window.openPetsControlCenter.loadLocalPlugin()");
+    assert.equal(imported.ok, true, imported.error);
+    let installed;
+    for (let attempt = 0; attempt < 100; attempt++) {
+      installed = (await render("window.openPetsControlCenter.getPluginsSnapshot()")).plugins.find(plugin => plugin.id === "openpets.water-reminder");
+      if (installed?.enabled && installed.commands?.some(command => command.id === "test-reminder")) break;
+      await pause(100);
+    }
+    assert.ok(installed?.enabled && !installed.brokenReason, "真实 ZIP 插件没有正常启用。");
+    assert.deepEqual([...installed.approvedPermissions].sort(), [...expectedPermissions].sort());
+    assert.ok(installed.commands.some(command => command.id === "test-reminder"));
+    const before = (await render("window.openPetsControlCenter.ai.getSnapshot()")).conversation.items.length;
+    const commanded = await render("window.openPetsControlCenter.executePluginCommand('openpets.water-reminder','test-reminder')");
+    assert.equal(commanded.ok, true, commanded.error);
+    let reminder;
+    for (let attempt = 0; attempt < 100; attempt++) {
+      const items = (await render("window.openPetsControlCenter.ai.getSnapshot()")).conversation.items;
+      reminder = items.slice(before).find(item => item.text.includes("喝水休息一下？"));
+      if (reminder) break;
+      await pause(100);
+    }
+    assert.ok(reminder?.createdAt, "真实插件提醒没有带时间进入桌宠会话。");
+    const disabled = await render("window.openPetsControlCenter.setPluginEnabled('openpets.water-reminder',false)");
+    assert.equal(disabled.ok, true, disabled.error);
+    assert.equal(disabled.snapshot.plugins.find(plugin => plugin.id === "openpets.water-reminder").enabled, false);
+    const confirmations = await evaluate("({filters:globalThis.__smokeImport.filters,permissions:globalThis.__smokeImport.permissions})");
+    assert.deepEqual(confirmations.permissions.map(item => item.approved), [false, true]);
+    result.checks.push({ name: "实际共创站 ZIP 导入、权限拒绝与授权、提醒会话及停用", id: installed.id, zipSha256: digest(pluginZip), approvedPermissions: installed.approvedPermissions, nativePickerIntercepted: true, permissionDialogIntercepted: true, actualPreloadIpc: true, reminderHasTimestamp: true, disabledAfterTest: true });
+  } finally {
+    await evaluate(`(()=>{${context}e.dialog.showOpenDialog=globalThis.__smokeImport.openDialog;e.dialog.showMessageBox=globalThis.__smokeImport.messageBox;return true;})()`);
+  }
   const captures = await evaluate(`(async()=>{${context}const studio=r(e.app.getAppPath()+'/dist/windows.js').getControlCenterWindow();const pet=r(e.app.getAppPath()+'/dist/default-pet-controller.js').getDefaultPetWindowForPlugins();return {studio:(await studio.webContents.capturePage()).toPNG().toString('base64'),pet:(await pet.webContents.capturePage()).toPNG().toString('base64')};})()`);
   writeFileSync(join(output, "control-center.png"), Buffer.from(captures.studio, "base64"));
   writeFileSync(join(output, "pet.png"), Buffer.from(captures.pet, "base64"));
@@ -180,7 +222,7 @@ try {
   assert.equal(digest(archive), archiveDigest, "验收不得修改发布包。");
   result.checks.push({ name: "正常退出与原包保持", code: exit.code, archiveUnchanged: true });
   result.passed = true;
-  console.log("发布包真实启动、原生依赖、控制中心、桌宠显示与正常退出验收通过。");
+  console.log("发布包真实启动、原生依赖、控制中心、桌宠显示、ZIP 插件导入与正常退出验收通过。");
 } catch (error) {
   result.error = error instanceof Error ? error.message : String(error);
   throw error;
