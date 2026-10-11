@@ -38,8 +38,6 @@ https://desktoppet-e9e.pages.dev/#pets
 
 ### 社区桌宠精选
 
-共创平台已收录 117 件桌宠与 24 件插件。以下作品可在[共创平台](https://desktoppet-e9e.pages.dev)查看动态预览、下载并导入桌面端：
-
 | <a href="https://desktoppet-e9e.pages.dev/#pets/firefly--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/firefly--lingxiaotian-thumb.webp" width="150" alt="流萤"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/paimon--lingxiaotian"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/paimon--lingxiaotian-thumb.webp" width="150" alt="派蒙"></a> | <a href="https://desktoppet-e9e.pages.dev/#pets/aemeath-mini--cunuo"><img src="outputs/desktop-pet/apps/community-web/dist/assets/pets/upstream-20261009/aemeath-mini--cunuo-thumb.webp" width="150" alt="Aemeath Mini"></a> |
 |:---:|:---:|:---:|
 | **流萤** | **派蒙** | **Aemeath Mini** |
