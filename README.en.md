@@ -35,7 +35,7 @@
 - **Multiple AI work connections**: One pet can display the work states, specific tools, and successful file edit counts of multiple connected sessions. Codex and ZCode provide Hook integration; other tools depend on their respective bridges. AI work monitoring and the AI used for pet conversations are configured separately.
 - **Usage data where supported**: Codex supports official, read-only subscription usage windows. DeepSeek conversation sources support official balance queries, and OpenRouter supports an adapter for official API key limits. Unconnected sources display unknown; pet conversation token usage does not represent the remaining allowance of other AI tools.
 - **Optional plugins**: Water, sitting, eye-rest, and Pomodoro reminders, the file assistant, and computer care are installed as needed. Reminders appear in the same pet conversation. The file assistant offers local file lookup and a virtual organization library, with a plan to review before actual organization; computer care offers monitoring and recommendations.
-- **Community platform**: Browse pets, plugins, requests, rankings, and author pages. Creation and direct import have separate workflows, with custom video actions, plugin covers, and complete work submissions. The current public catalog contains 117 pets and 24 plugins, each distributed under its applicable license.
+- **Community platform**: Browse pets, plugins, requests, rankings, and author pages. Creation and direct import have separate workflows, with custom video actions, plugin covers, and complete work submissions. The current public catalog contains 154 pets and 24 plugins, each distributed under its applicable license.
 - **Open import**: Compatible works can be installed and run in this system. Incompatible projects retain their original files, and unsupported operations are disabled. When an original application and its runtime can be identified, you can explicitly choose to launch it independently, preserving its original project logic.
 
 External AI requires your own accounts, tools, and configuration. Preset entries, connection tests, or launching an original application do not establish that every platform is connected or that every imported project can run completely. See [delivery status](outputs/desktop-pet/docs/release-status.md) for the actual delivery and validation scope.
@@ -54,7 +54,7 @@ The platform hosts 132 pet entries and 24 plugins. Explore community works on th
 
 ### Windows portable version
 
-1. Open the [v4.0.2 release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest) and download the Windows x64 portable ZIP and `SHA256SUMS.txt`. GitHub's automatically generated `Source code` ZIP contains source code.
+1. Open the [v4.0.3 release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest) and download the Windows x64 portable ZIP and `SHA256SUMS.txt`. GitHub's automatically generated `Source code` ZIP contains source code.
 2. **Extract the entire portable ZIP** to a writable directory, such as `D:\Apps\desktop-pet`. Keep `resources`, runtime libraries, and all other files together. Do not move the EXE on its own or launch it inside the ZIP.
 3. Double-click `desktop-pet.exe` in the extracted directory. The runtime is included, so Node.js and Python do not need to be installed. The first launch creates a local profile; the author's AI accounts and personal settings are not included.
 4. Open this EXE for everyday use, or create a desktop shortcut. The basic pet does not require AI configuration. Download and import plugins from the community platform as needed.
@@ -64,14 +64,14 @@ Packages are available for **Windows x64** and **macOS arm64 (Apple Silicon)**. 
 To check download integrity, run this in PowerShell:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.2-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.3-windows-x64-portable.zip
 ```
 
 Compare the result with `SHA256SUMS.txt` from the same release. A matching hash confirms file consistency; it does not replace a security audit.
 
 ### macOS (Apple Silicon / arm64)
 
-[Download Windows](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-windows-x64-portable.zip) · [Download Mac](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-mac-arm64.zip). Extract the Mac ZIP and move `desktop-pet.app` to Applications.
+[Download Windows](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-windows-x64-portable.zip) · [Download Mac](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-mac-arm64.zip). Extract the Mac ZIP and move `desktop-pet.app` to Applications.
 
 macOS arm64 source builds are supported, and PR #2's Mac packaging changes have been merged. The pet, control center, persona editor, and native plugins share the same code as Windows. Windows-only diagnostics, original Windows executables, and external-host features retain their platform requirements.
 

@@ -33,7 +33,7 @@
 - **複数の AI ツールとの作業連携**：1 匹のペットで、接続済みの複数セッションの作業状態、具体的なツール、編集に成功したファイル数を表示できます。Codex と ZCode には Hook 接続を用意し、ほかのツールはそれぞれのブリッジ機能に合わせて設定します。作業監視用 AI と、ペットとの会話用 AI は別々に管理します。
 - **対応する接続先の利用枠を確認**：Codex では公式の読み取り専用サブスクリプション利用枠に対応しています。DeepSeek の会話接続先では公式の残高照会、OpenRouter では公式の API キー利用枠への対応があります。接続できていない接続先は「不明」と表示し、ペットとの会話で使ったトークン数を、ほかの AI ツールの残り利用枠として表示することはありません。
 - **必要なプラグインを選んでインストール**：水分補給、長時間の座りすぎ、目の休憩、ポモドーロなどのリマインダー、ファイルアシスタント、PC ケアは任意のプラグインです。リマインダーは同じペットとの会話に届きます。ファイルアシスタントはローカルファイルの検索と仮想分類ライブラリを提供し、実際の整理前には計画を確認できます。PC ケアは監視と提案を行います。
-- **共創プラットフォーム**：ペット広場、プラグイン広場、要望広場、ランキング、作者ページを用意しています。制作と直接インポートを分け、独自の動画アクション、プラグインのカバー画像、完全な作品の投稿に対応しています。現在の公開カタログにはペット 117 件、プラグイン 24 件があり、素材はそれぞれのライセンスに従って公開しています。
+- **共創プラットフォーム**：ペット広場、プラグイン広場、要望広場、ランキング、作者ページを用意しています。制作と直接インポートを分け、独自の動画アクション、プラグインのカバー画像、完全な作品の投稿に対応しています。現在の公開カタログにはペット 154 件、プラグイン 24 件があり、素材はそれぞれのライセンスに従って公開しています。
 - **幅広いインポート**：互換性のある作品は本システムにインストールして実行できます。互換性のないプロジェクトは原本を保持し、対応できない操作を無効にします。元のプログラムと実行環境を識別できる場合は、独立した起動を明示的に選べます。元のプロジェクトのロジックを強制的に書き換えることはありません。
 
 外部 AI の利用には、自分のアカウント、ツール、設定が必要です。プリセットの接続入口、接続経路のテスト、元のプログラムの起動は、すべてのプラットフォームが接続済みであることや、任意のインポート済みプロジェクトが完全に動作することを意味しません。実際の提供内容と検証範囲は[提供状況](outputs/desktop-pet/docs/release-status.md)を参照してください。
@@ -52,7 +52,7 @@
 
 ### Windows ポータブル版
 
-1. [v4.0.2 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
+1. [v4.0.3 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
 2. ポータブル ZIP を、`D:\Apps\desktop-pet` などの書き込み可能なフォルダーに**すべて展開**します。同じフォルダー内の `resources`、ランタイム、その他のファイルを保持してください。EXE だけを移動したり、ZIP の中から直接起動したりしないでください。
 3. 展開先の `desktop-pet.exe` をダブルクリックします。実行環境は同梱されているため、Node.js や Python のインストールは不要です。初回起動時にローカルプロファイルを作成します。作者の AI アカウントや個人設定は含まれていません。
 4. 通常はこの EXE を直接開きます。デスクトップにショートカットを作成することもできます。基本のペット機能に AI の設定は不要です。プラグインは共創プラットフォームから必要なものをダウンロードしてインポートします。
@@ -62,14 +62,14 @@
 ダウンロードしたファイルの整合性は、PowerShell で次のコマンドを実行して確認できます。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.2-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.3-windows-x64-portable.zip
 ```
 
 結果を同じリリースの `SHA256SUMS.txt` と照合してください。ハッシュの照合で確認できるのはファイルの一致であり、セキュリティ監査の代わりにはなりません。
 
 ### macOS（Apple Silicon／arm64）
 
-[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-windows-x64-portable.zip) · [Mac をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.2/desktop-pet-4.0.2-mac-arm64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
+[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-windows-x64-portable.zip) · [Mac をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.3/desktop-pet-4.0.3-mac-arm64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
 
 macOS arm64 のソースビルドに対応し、PR #2 の Mac 向けパッケージ変更は統合済みです。ペット、コントロールセンター、キャラクター設定、本システムのプラグインは Windows と同じコードを使用します。Windows 専用の診断、元の Windows EXE、外部ホストを必要とする機能には、それぞれの環境が必要です。
 

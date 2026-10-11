@@ -1,0 +1,100 @@
+{
+  "id": "aemeath-withclaude",
+  "displayName": "爱弥斯 · 像素伙伴",
+  "author": "77wliNd",
+  "description": "原像素爱弥斯完整15动作，按180毫秒原时序无损适配。",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "running-right": "actions/running-right.webp",
+    "running-left": "actions/running-left.webp",
+    "waving": "actions/waving.webp",
+    "jumping": "actions/jumping.webp",
+    "failed": "actions/failed.webp",
+    "waiting": "actions/waiting.webp",
+    "running": "actions/running.webp",
+    "review": "actions/review.webp",
+    "chatting": "actions/chatting.webp",
+    "fetching": "actions/fetching.webp",
+    "searching": "actions/searching.webp",
+    "analyzing": "actions/analyzing.webp",
+    "building": "actions/building.webp",
+    "celebrating": "actions/celebrating.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "待机",
+      "category": "原作九核心动作"
+    },
+    "running-right": {
+      "displayName": "向右行走",
+      "category": "原作九核心动作"
+    },
+    "running-left": {
+      "displayName": "向左行走",
+      "category": "原作九核心动作"
+    },
+    "waving": {
+      "displayName": "挥手",
+      "category": "原作九核心动作"
+    },
+    "jumping": {
+      "displayName": "跳跃",
+      "category": "原作九核心动作"
+    },
+    "failed": {
+      "displayName": "失败反应",
+      "category": "原作九核心动作"
+    },
+    "waiting": {
+      "displayName": "等待",
+      "category": "原作九核心动作"
+    },
+    "running": {
+      "displayName": "工作进行中",
+      "category": "原作九核心动作"
+    },
+    "review": {
+      "displayName": "思考",
+      "category": "原作九核心动作"
+    },
+    "chatting": {
+      "displayName": "对话",
+      "category": "原作扩展任务动作"
+    },
+    "fetching": {
+      "displayName": "获取信息",
+      "category": "原作扩展任务动作"
+    },
+    "searching": {
+      "displayName": "搜索",
+      "category": "原作扩展任务动作"
+    },
+    "analyzing": {
+      "displayName": "分析",
+      "category": "原作扩展任务动作"
+    },
+    "building": {
+      "displayName": "构建",
+      "category": "原作扩展任务动作"
+    },
+    "celebrating": {
+      "displayName": "庆祝",
+      "category": "原作扩展任务动作"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "running-right",
+    "running-left": "running-left",
+    "waving": "waving",
+    "jumping": "jumping",
+    "failed": "failed",
+    "waiting": "waiting",
+    "running": "running",
+    "review": "review"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}

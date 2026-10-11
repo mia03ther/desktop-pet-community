@@ -1,6 +1,6 @@
 import { allowedReactions, type OpenPetsReaction } from "./local-ipc-protocol.js";
 import { defaultWaitingAnimationDurationMs, type WaitingAnimationDurationMs } from "./app-state-core.js";
-import { codexV2SpriteLayout } from "./codex-pets-core.js";
+import { codexV2SpriteLayout, type CodexPetSpriteLayout } from "./codex-pets-core.js";
 
 export type PetMotionState = "idle" | "run-left" | "run-right";
 export type UniversalSpriteState = "idle" | "running-right" | "running-left" | "waving" | "jumping" | "failed" | "waiting" | "running" | "review";
@@ -98,6 +98,17 @@ export function getConfiguredSpriteStates(waitingAnimationDurationMs: WaitingAni
       ...defaultPetSprite.states.waiting,
       durationMs: waitingAnimationDurationMs,
     },
+  };
+}
+
+export function getConfiguredPreviewSprite(
+  layout: CodexPetSpriteLayout,
+  waitingAnimationDurationMs: WaitingAnimationDurationMs = defaultWaitingAnimationDurationMs,
+) {
+  return {
+    fileName: defaultPetSprite.fileName,
+    ...layout,
+    states: getConfiguredSpriteStates(waitingAnimationDurationMs),
   };
 }
 

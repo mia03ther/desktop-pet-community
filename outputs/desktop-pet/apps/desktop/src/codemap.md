@@ -422,7 +422,7 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
 - `pet-motion-engine.ts`: Interpolated movement vector/tick engine for plugin-driven pet motion and target-following behavior
 - `built-in-pet.ts`: Built-in pet constant
 - `reaction-messages.ts`: Message pools for each reaction type
-- `reaction-animation-mapping.ts`: Reaction-to-animation state mapping, user-configurable overrides, bundled V2 Hoodie Cat atlas metadata, canonical sprite state definitions, and derived waiting-duration state tables
+- `reaction-animation-mapping.ts`: Reaction-to-animation state mapping, user-configurable overrides, bundled V2 Hoodie Cat atlas metadata, canonical sprite state definitions, and derived waiting-duration state tables；`getConfiguredPreviewSprite` 按当前图集布局组合设置预览，V1 不继承内置 V2 静止帧。
 - `i18n/`: Host message catalogs and localized reaction pools; see [i18n/codemap.md](i18n/codemap.md)
 
 **IPC**:

@@ -1,0 +1,6 @@
+代码许可：77wliNd/aemeath_withclaude 根 LICENSE 为完整 MIT，原文保留。
+素材声明：原 README 说明像素素材取自 lzy-buaa-jdi/ameath（Gitee），作者声明该素材按 MIT 提供；参考角色本人爱弥斯的官方视觉设定。
+官方素材来源声明：https://github.com/77wliNd/aemeath_withclaude/blob/d54ced98e46a749da2580cb72b0275340e5f2fca/README.md#来源与授权
+原像素素材来源：https://gitee.com/lzy-buaa-jdi/ameath
+本包不是角色原版权方的官方项目。角色及原作知识产权仍归各自权利人；代码 MIT 不自动覆盖角色原 IP。
+本次只核实并保留该仓库的素材来源声明，没有冒称已独立核实 Gitee 上游美术许可；本包不把全部角色美术统一标成代码 MIT。

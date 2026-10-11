@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "upstreamCommit": "0d0f06bb1721aef4ddbc7f893276f235ed8458ec",
-  "publicPets": 149,
+  "publicPets": 154,
   "publicPlugins": 24,
   "files": [
     {
@@ -731,6 +731,120 @@
       "sha256": "d2959c94724806ac0f5256a38e6aa5518002dd84808f92d03c7d2af9a3b23407"
     },
     {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/analyzing.webp",
+      "mime": "image/webp",
+      "bytes": 134720,
+      "sha256": "f243b0af28fefa5eb94ce55da1c0b8b73132eaae093d57a833a034b2a39c4b68"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/building.webp",
+      "mime": "image/webp",
+      "bytes": 114172,
+      "sha256": "c7257dc669e68e65d343e8e9441539c2a89d29e6ff38de6952fc534b27619cdc"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/celebrating.webp",
+      "mime": "image/webp",
+      "bytes": 141040,
+      "sha256": "f8d67f4c449052f636fe8c4e7b45aef94ec8e236eee5a737514950d4bc2b4174"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/chatting.webp",
+      "mime": "image/webp",
+      "bytes": 272786,
+      "sha256": "79d3f68d6eda9f0209b4657b0788a3f0df15407540e54f9241b59640bcc24573"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/failed.webp",
+      "mime": "image/webp",
+      "bytes": 138556,
+      "sha256": "437303243817a32a450c309c53b686cab791e685daa828596a649770bfb8223f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/fetching.webp",
+      "mime": "image/webp",
+      "bytes": 135512,
+      "sha256": "e84438357db06caf2516bcb867f7e6b57590efb6928d77786cebd87475cd28d5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/idle.webp",
+      "mime": "image/webp",
+      "bytes": 159030,
+      "sha256": "d008afaf35e814bad809dddd15c2678d245608e080b1d18a32d9f1be0ed754a4"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/jumping.webp",
+      "mime": "image/webp",
+      "bytes": 150828,
+      "sha256": "ac3b2f5507eb6fc4b1c9625462c610fbdcbc8f16539a28fbdabd6a04ae6635ec"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/review.webp",
+      "mime": "image/webp",
+      "bytes": 195556,
+      "sha256": "c67f7f09bff71eae0e28062fe9ae3c06493224e59693a7ff12f7dc1b6da4f1e5"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/running-left.webp",
+      "mime": "image/webp",
+      "bytes": 278006,
+      "sha256": "34eb4c54eaca761c95e2d9a857a1a2132a6d782a2cf370ff8de31e6d65f973c7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/running-right.webp",
+      "mime": "image/webp",
+      "bytes": 276274,
+      "sha256": "9d0be5a471d1140cb5d05a9e2467d88909e2e90e95257edd3534b43919c1c0cb"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/running.webp",
+      "mime": "image/webp",
+      "bytes": 128630,
+      "sha256": "ec224f0da099a04b2ff49b5abb8b481558604e28456b7953c593f5daf4605687"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/searching.webp",
+      "mime": "image/webp",
+      "bytes": 142672,
+      "sha256": "75f4d80d8dc8ae634b5ad86dccabb4c9b6b6c8da65977dc3e8d10e14b3cb78d1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/waiting.webp",
+      "mime": "image/webp",
+      "bytes": 102206,
+      "sha256": "4a28f5358cb4e5658bcb6e0f33796cbc03fce8e87502af8b653f30bd29772af1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/actions/waving.webp",
+      "mime": "image/webp",
+      "bytes": 99254,
+      "sha256": "62cbc57da88a0a4dc02b7ae1dbfdace724f23806c6cd28d8e84cb23633c2a0f7"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/ASSET-LICENSE-STATEMENT.txt",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 776,
+      "sha256": "03232c004978f20ef419c1e3006c509c1f770da8709f2880b8794217ccc7696a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/package.zip",
+      "mime": "application/zip",
+      "bytes": 3076248,
+      "sha256": "9cedd8fadfef64e2a374d6bae9ed18cbec31c6ddffa52eafaf38b68b9cf60387"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/pet.json",
+      "mime": "application/json",
+      "bytes": 2714,
+      "sha256": "f5c1f08cef655a1e82d486a5e36cbac7e09faaa1993d9c00a1a37cb65ad5e9ac"
+    },
+    {
+      "path": "assets/pets/mit-20261011/aemeath-withclaude/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 26416,
+      "sha256": "a91abfe41645a1e0743ec8f51597d4b308af2ab51eacf3da4960258fe60fffdc"
+    },
+    {
       "path": "assets/pets/mit-20261011/black-whale-personal-center/actions/busy.webp",
       "mime": "image/webp",
       "bytes": 69772,
@@ -911,6 +1025,84 @@
       "sha256": "0cf80ea1a91af27a8edb0f6cada460014615d47eb175bf7a7e1ac152ec3e3384"
     },
     {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/failed.webp",
+      "mime": "image/webp",
+      "bytes": 285698,
+      "sha256": "8e4ff9b66ee6667bba0dc7524c34e2f5117bf5d68feea36c200dcde6b42a89f3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/idle.webp",
+      "mime": "image/webp",
+      "bytes": 188344,
+      "sha256": "b957369b1b8549a2927f3dd450ae3c97fdd9f8a943ad0e4da58ddd2e8a1b36da"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/jumping.webp",
+      "mime": "image/webp",
+      "bytes": 174946,
+      "sha256": "70b6bc17b92af8840adce8a5d45a577dacd83cf4185a71115ef99d7178f8d0b9"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/review.webp",
+      "mime": "image/webp",
+      "bytes": 192638,
+      "sha256": "a60ad5d489bdf26d6e4797e20f0071f603df314848a07fe17480f7eefb5929d1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/running-left.webp",
+      "mime": "image/webp",
+      "bytes": 261848,
+      "sha256": "366c3510a7a494c826bb6b3ecfd7a04a5e1847e2121b559e3581230286fd47c2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/running-right.webp",
+      "mime": "image/webp",
+      "bytes": 261422,
+      "sha256": "b1bdb2f7f618b56f8f1a3c5a4a552b0536a2780dc51425b0284c0dcb6a1c54c2"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/running.webp",
+      "mime": "image/webp",
+      "bytes": 190130,
+      "sha256": "f50e818f64ff21f1cf5004b26ce25ac1e5f42aefb87756cd57130452fd1718dd"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/waiting.webp",
+      "mime": "image/webp",
+      "bytes": 189536,
+      "sha256": "daa0c68958d46cfc288219f209f9390115b80caa963a7aa2b011ff1bd9fc8a58"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/actions/waving.webp",
+      "mime": "image/webp",
+      "bytes": 133872,
+      "sha256": "7369ff8f076c68eb874e97fd45a4a09558745d021c6d62366296f61695f8b899"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/ASSET-LICENSE-STATUS.txt",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 467,
+      "sha256": "6e3439bb5396f059069a154f69b4a84ac0d154704e8f09068df21ed1d00c0b1e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/package.zip",
+      "mime": "application/zip",
+      "bytes": 4359364,
+      "sha256": "55e44d41b041f76783be8d77dc3c70d678a7fc6aaa1f6ffe6d7a6a3e87c50c55"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/pet.json",
+      "mime": "application/json",
+      "bytes": 1824,
+      "sha256": "6634ba7ef87034acff739b7a290bd5a1737c4541a89794d23b7d446d1985d7c1"
+    },
+    {
+      "path": "assets/pets/mit-20261011/boba-petdex/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 32346,
+      "sha256": "fc40e988334898531ba1a2a37cad2bff905adac618600f86f128ee2d74a8aa5a"
+    },
+    {
       "path": "assets/pets/mit-20261011/cc-haha-bubu-fix/package.zip",
       "mime": "application/zip",
       "bytes": 1839938,
@@ -1041,6 +1233,78 @@
       "mime": "image/webp",
       "bytes": 380,
       "sha256": "261f87d8e94f26073f83987828c5928a2df6fab5ffafcee71b0b03b773c3207d"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/failed.webp",
+      "mime": "image/webp",
+      "bytes": 262378,
+      "sha256": "9a1caa1d1bf3c6e339cdf72cce45fac8162327e2d2642fff8befc9f34a721352"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/idle.webp",
+      "mime": "image/webp",
+      "bytes": 234830,
+      "sha256": "d1d51884bb1e8d64c22f8da914de4cbdbf1f4fefd24bc51ac5ec41193cc584db"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/jumping.webp",
+      "mime": "image/webp",
+      "bytes": 171100,
+      "sha256": "1b277b134654fcbd3de4bb923dd1c343a156c32a9e9f9975f98d883284767c6e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/running-left.webp",
+      "mime": "image/webp",
+      "bytes": 282338,
+      "sha256": "f2846c3410f5d433df7fd7efd2f87ff4bf1e428d567f06cf88ad6989872adf93"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/running-right.webp",
+      "mime": "image/webp",
+      "bytes": 281250,
+      "sha256": "463d40ee626c644d8c7325edd35a224aa5c17c96c6b4e31b282f3653e78ffc44"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/speaking.webp",
+      "mime": "image/webp",
+      "bytes": 141170,
+      "sha256": "9ac668c23182abc6069d393ac949dacf72c255a7a74b81042d4dee7767abc60a"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/waiting.webp",
+      "mime": "image/webp",
+      "bytes": 225668,
+      "sha256": "eb80b10700ae4ed0bb28179dc288eec918fd3e416a419f4ed1fbc2b547fc0c74"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/actions/working.webp",
+      "mime": "image/webp",
+      "bytes": 226000,
+      "sha256": "6060dbef4650f83d60e68d5260cf93f89da709c9d4b2a984c1777387c3425557"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/LICENSE",
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1077,
+      "sha256": "8afbc591f620720580c00279b5d04d6d700398c4f4f53e54217a7c3eeb50689e"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/package.zip",
+      "mime": "application/zip",
+      "bytes": 3988524,
+      "sha256": "7bda315d3c005693fca1dc9d9f7f9b844f460fee5a76602ba349b3e90c6ab14f"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/pet.json",
+      "mime": "application/json",
+      "bytes": 1616,
+      "sha256": "78300266ac6eaa0a6f5d9727e551f4468100fa14badf4f0f09450c7a81fac6b8"
+    },
+    {
+      "path": "assets/pets/mit-20261011/gooey-pi/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 39184,
+      "sha256": "22b015469cd1de488ddcd176d31ad4232506765ffdaaac468b6c5a8004f02054"
     },
     {
       "path": "assets/pets/mit-20261011/memmy-companion/actions/blush.webp",
@@ -1533,6 +1797,42 @@
       "mime": "image/webp",
       "bytes": 19286,
       "sha256": "aa5915725cfd73aef5610081f990257f0486950c6d13d36a29ab023616399d47"
+    },
+    {
+      "path": "assets/pets/mit-20261011/oc-claw-homie/package.zip",
+      "mime": "application/zip",
+      "bytes": 2731866,
+      "sha256": "c3b6f1e7473d7a4ee156821ca0c545e6e20b88379b7b9c0c2276b827bead9e95"
+    },
+    {
+      "path": "assets/pets/mit-20261011/oc-claw-homie/spritesheet.webp",
+      "mime": "image/webp",
+      "bytes": 1238094,
+      "sha256": "3f7c9d95e7fd12c3fb90980bde44bb6e86655de90bf1066104b30dbdfaa45d36"
+    },
+    {
+      "path": "assets/pets/mit-20261011/oc-claw-homie/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 21062,
+      "sha256": "a7595acf9d73678a6b4edaf3372d846a40aae1743db3843eb2d4847a45ea379b"
+    },
+    {
+      "path": "assets/pets/mit-20261011/oc-claw-taffy/package.zip",
+      "mime": "application/zip",
+      "bytes": 4460655,
+      "sha256": "363c1135d4bdaa8a2bb3b79c52eb777bc1202d1c8989cb2071db6f22a9aa44f3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/oc-claw-taffy/spritesheet.webp",
+      "mime": "image/webp",
+      "bytes": 2200008,
+      "sha256": "acb12ba3de6efacc335836e4c5992055e8ef5704606049792898dc41d075d8b3"
+    },
+    {
+      "path": "assets/pets/mit-20261011/oc-claw-taffy/thumbnail.webp",
+      "mime": "image/webp",
+      "bytes": 35474,
+      "sha256": "d62f0166de47812aab1a616aedaed83c8121a9d78287b0c378017b0c366d177f"
     },
     {
       "path": "assets/pets/mit-20261011/whale-girl-vlln/actions/celebrate.webp",

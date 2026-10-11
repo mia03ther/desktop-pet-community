@@ -1,0 +1,4 @@
+Boba 原作者：railly。
+Petdex 源码许可为 MIT；原项目 README 明确每只桌宠资产由提交者按其声明许可持有。
+本次官方 Boba ZIP 仅含 pet.json 与 spritesheet.webp，没有素材许可文件；官方 pet.json、公开 V1/V2 manifest 与作品页面未提供可确认的素材再分发许可。
+代码 MIT；Boba 美术未提供独立授权声明。原作者与原素材完整保留，本包不宣称代码 MIT 自动覆盖该美术。

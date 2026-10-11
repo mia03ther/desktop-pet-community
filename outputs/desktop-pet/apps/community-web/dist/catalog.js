@@ -127,6 +127,303 @@ export const cat = {
 };
 export const pets = [
   {
+    "id": "oc-claw-homie",
+    "title": "Homie",
+    "description": "A tiny smug patriotic cape-wearing superhero companion.",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "rainnoon",
+    "authorUrl": "",
+    "source": "https://github.com/rainnoon/oc-claw/tree/4667c8c082cecf7e38440dfc2f6f89f7a9b6cc90",
+    "license": "代码MIT；美术非商业",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/oc-claw-homie/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/oc-claw-homie/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 2731866,
+    "archiveSha256": "c3b6f1e7473d7a4ee156821ca0c545e6e20b88379b7b9c0c2276b827bead9e95",
+    "upstreamCommit": "4667c8c082cecf7e38440dfc2f6f89f7a9b6cc90",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/oc-claw-homie/spritesheet.webp"
+  },
+  {
+    "id": "oc-claw-taffy",
+    "title": "Taffy",
+    "description": "A tiny pixel chibi aviator girl pet with pink hair, round brass goggles with heart lenses, and a waist charm matching the plush face from the second reference.",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "rainnoon",
+    "authorUrl": "",
+    "source": "https://github.com/rainnoon/oc-claw/tree/4667c8c082cecf7e38440dfc2f6f89f7a9b6cc90",
+    "license": "代码MIT；美术非商业",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/oc-claw-taffy/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/oc-claw-taffy/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 4460655,
+    "archiveSha256": "363c1135d4bdaa8a2bb3b79c52eb777bc1202d1c8989cb2071db6f22a9aa44f3",
+    "upstreamCommit": "4667c8c082cecf7e38440dfc2f6f89f7a9b6cc90",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "atlas": "assets/pets/mit-20261011/oc-claw-taffy/spritesheet.webp"
+  },
+  {
+    "id": "boba-petdex",
+    "title": "Boba",
+    "description": "railly 的奶茶水獭 Boba，沿 Petdex 原生九状态逐帧时序无损适配。",
+    "kind": "pet",
+    "category": "动物伙伴",
+    "author": "railly",
+    "authorUrl": "",
+    "source": "https://github.com/crafter-station/petdex/tree/31c0aee7f4fb387774b87d40e8047dc0f9cea94b",
+    "license": "代码 MIT；Boba 美术未提供独立授权声明",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/boba-petdex/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/boba-petdex/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 4359364,
+    "archiveSha256": "55e44d41b041f76783be8d77dc3c70d678a7fc6aaa1f6ffe6d7a6a3e87c50c55",
+    "upstreamCommit": "31c0aee7f4fb387774b87d40e8047dc0f9cea94b",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/idle.webp"
+      },
+      "running-right": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/running-right.webp"
+      },
+      "running-left": {
+        "displayName": "向左行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/running-left.webp"
+      },
+      "waving": {
+        "displayName": "挥手",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/waving.webp"
+      },
+      "jumping": {
+        "displayName": "跳跃",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/jumping.webp"
+      },
+      "failed": {
+        "displayName": "失败反应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/failed.webp"
+      },
+      "waiting": {
+        "displayName": "等待",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/waiting.webp"
+      },
+      "running": {
+        "displayName": "工作进行中",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/running.webp"
+      },
+      "review": {
+        "displayName": "思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/boba-petdex/actions/review.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/boba-petdex/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/boba-petdex/ASSET-LICENSE-STATUS.txt"
+  },
+  {
+    "id": "gooey-pi",
+    "title": "GooeyPi",
+    "description": "A friendly purple jelly pet shaped like the mathematical pi symbol.",
+    "kind": "pet",
+    "category": "原创角色",
+    "author": "am-will / GooeyPi contributors",
+    "authorUrl": "",
+    "source": "https://github.com/am-will/gooey-pi/tree/459c9965690468c69d7434f82acf4b5eeee8e4bf",
+    "license": "MIT；GooeyPi contributors",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/gooey-pi/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/gooey-pi/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 3988524,
+    "archiveSha256": "7bda315d3c005693fca1dc9d9f7f9b844f460fee5a76602ba349b3e90c6ab14f",
+    "upstreamCommit": "459c9965690468c69d7434f82acf4b5eeee8e4bf",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/idle.webp"
+      },
+      "running-right": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/running-right.webp"
+      },
+      "running-left": {
+        "displayName": "向左行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/running-left.webp"
+      },
+      "speaking": {
+        "displayName": "说话",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/speaking.webp"
+      },
+      "jumping": {
+        "displayName": "跳跃",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/jumping.webp"
+      },
+      "failed": {
+        "displayName": "失败反应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/failed.webp"
+      },
+      "waiting": {
+        "displayName": "等待",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/waiting.webp"
+      },
+      "working": {
+        "displayName": "工作",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/gooey-pi/actions/working.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/gooey-pi/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/gooey-pi/LICENSE"
+  },
+  {
+    "id": "aemeath-withclaude",
+    "title": "爱弥斯 · 像素伙伴",
+    "description": "原像素爱弥斯完整15动作，按180毫秒原时序无损适配。",
+    "kind": "pet",
+    "category": "动漫角色",
+    "author": "77wliNd",
+    "authorUrl": "",
+    "source": "https://github.com/77wliNd/aemeath_withclaude/tree/d54ced98e46a749da2580cb72b0275340e5f2fca",
+    "license": "代码 MIT；像素素材按原仓库 MIT 声明，角色权利另计",
+    "version": 1,
+    "download": "assets/pets/mit-20261011/aemeath-withclaude/package.zip",
+    "thumbnail": "assets/pets/mit-20261011/aemeath-withclaude/thumbnail.webp",
+    "tags": [
+      "透明素材",
+      "可导入"
+    ],
+    "importedAt": "2026-10-11",
+    "collections": [],
+    "archiveBytes": 3076248,
+    "archiveSha256": "9cedd8fadfef64e2a374d6bae9ed18cbec31c6ddffa52eafaf38b68b9cf60387",
+    "upstreamCommit": "d54ced98e46a749da2580cb72b0275340e5f2fca",
+    "hostNotice": "下载 ZIP，在控制中心「我的桌宠」导入并设为当前桌宠。",
+    "distribution": "media",
+    "mediaActions": {
+      "idle": {
+        "displayName": "待机",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/idle.webp"
+      },
+      "running-right": {
+        "displayName": "向右行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/running-right.webp"
+      },
+      "running-left": {
+        "displayName": "向左行走",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/running-left.webp"
+      },
+      "waving": {
+        "displayName": "挥手",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/waving.webp"
+      },
+      "jumping": {
+        "displayName": "跳跃",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/jumping.webp"
+      },
+      "failed": {
+        "displayName": "失败反应",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/failed.webp"
+      },
+      "waiting": {
+        "displayName": "等待",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/waiting.webp"
+      },
+      "running": {
+        "displayName": "工作进行中",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/running.webp"
+      },
+      "review": {
+        "displayName": "思考",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/review.webp"
+      },
+      "chatting": {
+        "displayName": "对话",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/chatting.webp"
+      },
+      "fetching": {
+        "displayName": "获取信息",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/fetching.webp"
+      },
+      "searching": {
+        "displayName": "搜索",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/searching.webp"
+      },
+      "analyzing": {
+        "displayName": "分析",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/analyzing.webp"
+      },
+      "building": {
+        "displayName": "构建",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/building.webp"
+      },
+      "celebrating": {
+        "displayName": "庆祝",
+        "type": "image/webp",
+        "url": "assets/pets/mit-20261011/aemeath-withclaude/actions/celebrating.webp"
+      }
+    },
+    "packageManifest": "assets/pets/mit-20261011/aemeath-withclaude/pet.json",
+    "packageLicense": "assets/pets/mit-20261011/aemeath-withclaude/ASSET-LICENSE-STATEMENT.txt"
+  },
+  {
     "id": "windowpet-ganyu",
     "title": "甘雨 · WindowPet",
     "description": "保留 WindowPet 原图集全部九种状态：待机、行走、坐下、问候、爬行、攀爬、跳跃、落下与被拿起。原静态姿态明确按静态保留。",

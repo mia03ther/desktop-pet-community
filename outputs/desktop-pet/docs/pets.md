@@ -483,6 +483,10 @@ pet entries. Its Pets, Dashboard, and Settings previews therefore scale V1
 atlases as 8×9, V2 atlases as 8×11, and show the static V2 neutral cell instead
 of treating the extra rows as part of a nine-row animation.
 
+动作设置快照从当前桌宠自己的图集布局组合播放时序，不继承内置 V2 的静止帧。
+V1 待机预览播放原六帧；V2 才使用其自身声明的 row 0、column 6 静止姿态。
+该快照由 `reaction-animation-mapping.ts` 的纯组合函数提供给 `windows.ts`。
+
 At startup, OpenPets also performs an idempotent repair for Codex V2 imports
 created by older releases that copied the 11-row atlas but dropped the version
 marker from the installed `pet.json`. It restores only that marker, and only

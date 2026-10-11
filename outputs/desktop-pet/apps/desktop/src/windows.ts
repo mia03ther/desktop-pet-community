@@ -31,7 +31,7 @@ import {
   type PluginConfigSoundPickResult,
   type PluginServiceResult,
 } from "./plugin-service.js";
-import { defaultPetSprite, getConfiguredSpriteStates, reactionAnimationMetadata, selectableAnimationMetadata, waitingAnimationDurationOptions } from "./reaction-animation-mapping.js";
+import { defaultPetSprite, getConfiguredPreviewSprite, reactionAnimationMetadata, selectableAnimationMetadata, waitingAnimationDurationOptions } from "./reaction-animation-mapping.js";
 import { readSafePluginManifest } from "./plugin-manifest-reader.js";
 import { registerSessionMediaProtocol } from "./session-media-cache.js";
 import { registerPluginAssetProtocol } from "./plugin-asset-protocol.js";
@@ -969,7 +969,7 @@ async function getReactionAnimationSettingsSnapshot(): Promise<unknown> {
       label: t(`settings.animation.${animation.id}.label`),
       description: t(`settings.animation.${animation.id}.description`),
     })),
-    sprite: { ...defaultPetSprite, ...preview.spriteLayout, states: getConfiguredSpriteStates(state.preferences.waitingAnimationDurationMs) },
+    sprite: getConfiguredPreviewSprite(preview.spriteLayout, state.preferences.waitingAnimationDurationMs),
     waitingAnimationDurationMs: state.preferences.waitingAnimationDurationMs,
     waitingAnimationDurationOptions: waitingAnimationDurationOptions.map((option) => ({
       value: option.value,

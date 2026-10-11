@@ -1,0 +1,63 @@
+{
+  "id": "gooey-pi",
+  "displayName": "GooeyPi",
+  "description": "A friendly purple jelly pet shaped like the mathematical pi symbol.",
+  "author": "am-will / GooeyPi contributors",
+  "mediaVersion": 1,
+  "actions": {
+    "idle": "actions/idle.webp",
+    "running-right": "actions/running-right.webp",
+    "running-left": "actions/running-left.webp",
+    "speaking": "actions/speaking.webp",
+    "jumping": "actions/jumping.webp",
+    "failed": "actions/failed.webp",
+    "waiting": "actions/waiting.webp",
+    "working": "actions/working.webp"
+  },
+  "actionDefinitions": {
+    "idle": {
+      "displayName": "待机",
+      "category": "GooeyPi 原活动"
+    },
+    "running-right": {
+      "displayName": "向右行走",
+      "category": "GooeyPi 原活动"
+    },
+    "running-left": {
+      "displayName": "向左行走",
+      "category": "GooeyPi 原活动"
+    },
+    "speaking": {
+      "displayName": "说话",
+      "category": "GooeyPi 原活动"
+    },
+    "jumping": {
+      "displayName": "跳跃",
+      "category": "GooeyPi 原活动"
+    },
+    "failed": {
+      "displayName": "失败反应",
+      "category": "GooeyPi 原活动"
+    },
+    "waiting": {
+      "displayName": "等待",
+      "category": "GooeyPi 原活动"
+    },
+    "working": {
+      "displayName": "工作",
+      "category": "GooeyPi 原活动"
+    }
+  },
+  "stateBindings": {
+    "idle": "idle",
+    "running-right": "running-right",
+    "running-left": "running-left",
+    "jumping": "jumping",
+    "failed": "failed",
+    "waiting": "waiting",
+    "running": "working"
+  },
+  "background": {
+    "mode": "alpha"
+  }
+}
