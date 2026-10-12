@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=Version" alt="Release version">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=Downloads" alt="Release asset downloads">
   <img src="https://img.shields.io/badge/Platform-Windows%20x64-60bba0" alt="Windows x64">
-  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64 / x64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub stars">
 </p>
 
@@ -50,26 +50,26 @@ The platform hosts 362 pet entries and 24 plugins. Explore community works on th
 
 ### Windows portable version
 
-1. Open the [v4.0.4 release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest) and download the Windows x64 portable ZIP and `SHA256SUMS.txt`. GitHub's automatically generated `Source code` ZIP contains source code.
+1. Open the [v4.0.6 release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest) and download the Windows x64 portable ZIP and `SHA256SUMS.txt`. GitHub's automatically generated `Source code` ZIP contains source code.
 2. **Extract the entire portable ZIP** to a writable directory, such as `D:\Apps\desktop-pet`. Keep `resources`, runtime libraries, and all other files together. Do not move the EXE on its own or launch it inside the ZIP.
 3. Double-click `desktop-pet.exe` in the extracted directory. The runtime is included, so Node.js and Python do not need to be installed. The first launch creates a local profile; the author's AI accounts and personal settings are not included.
 4. Open this EXE for everyday use, or create a desktop shortcut. The basic pet does not require AI configuration. Download and import plugins from the community platform as needed.
 
-Packages are available for **Windows x64** and **macOS arm64 (Apple Silicon)**. Windows builds are not code signed; validated Linux and Windows ARM packages are not yet available. Check GitHub updates from Settings in the control center; updates preserve local personas, plugins, conversations, and AI settings.
+Packages are available for **Windows x64** and **macOS arm64 / x64 (Apple Silicon)**. Windows builds are not code signed; validated Linux and Windows ARM packages are not yet available. Check GitHub updates from Settings in the control center; updates preserve local personas, plugins, conversations, and AI settings.
 
 To check download integrity, run this in PowerShell:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.4-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.6-windows-x64-portable.zip
 ```
 
 Compare the result with `SHA256SUMS.txt` from the same release. A matching hash confirms file consistency; it does not replace a security audit.
 
-### macOS (Apple Silicon / arm64)
+### macOS (Apple Silicon / Intel)
 
-[Download Windows](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-windows-x64-portable.zip) · [Download Mac](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-mac-arm64.zip). Extract the Mac ZIP and move `desktop-pet.app` to Applications.
+[Download Windows](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-windows-x64-portable.zip) · [Download Mac (Apple Silicon)](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-arm64.zip) · [Download Mac (Intel)](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-x64.zip). Extract the Mac ZIP and move `desktop-pet.app` to Applications.
 
-macOS arm64 source builds are supported, and PR #2's Mac packaging changes have been merged. The pet, control center, persona editor, and native plugins share the same code as Windows. Windows-only diagnostics, original Windows executables, and external-host features retain their platform requirements.
+macOS arm64 / x64 source builds are supported, and PR #2's Mac packaging changes have been merged. The pet, control center, persona editor, and native plugins share the same code as Windows. Windows-only diagnostics, original Windows executables, and external-host features retain their platform requirements.
 
 On an Apple Silicon Mac, install Node.js 24, pnpm 11.0.8, and Xcode Command Line Tools, then run:
 

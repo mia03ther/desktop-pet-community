@@ -124,6 +124,7 @@ function checkPackageOutput(outputDir: string, target: PackagingTarget): void {
   assert.ok(!existsSync(join(appResourceDir, "plugins", "official")), "插件由共创站提供，程序不再内置安装插件。");
   const communityDir = join(appResourceDir, "community-web");
   assert.ok(existsSync(join(communityDir, "plugin-catalog.js")), "共创站必须包含插件画廊数据。");
+  assert.ok(!existsSync(join(communityDir, "assets", "pets")), "正式程序从公网平台获取作品，不应重复携带全部桌宠素材。");
   for (const group of ["official", "community"]) {
     const pluginRoot = join(repoRoot, "plugins", group);
     for (const entry of readdirSync(pluginRoot, { withFileTypes: true })) {

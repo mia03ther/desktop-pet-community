@@ -30,6 +30,11 @@ files:
 extraResources:
   - from: ../community-web/dist
     to: community-web
+    # 正式程序打开公网平台，完整作品素材留在平台，本地开发预览仍使用原 dist。
+    filter:
+      - '**/*'
+      - '!assets/pets'
+      - '!assets/pets/**'
   - from: ../../LICENSE
     to: legal/THIRD-PARTY-LICENSE.txt
   - from: ../../../../LICENSE

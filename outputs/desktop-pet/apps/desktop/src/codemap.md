@@ -524,7 +524,7 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
 - `agent-setup-codex.ts` / `agent-setup-zcode.ts`：管理各工具用户级官方 Hooks／MCP 及本项目条目，固定本机发现文件；Codex 状态始终保留“信任待确认”，ZCode 全局 Hooks 已停用或同名 MCP 不属本项目时报告冲突。
 - `agent-setup-deepseek-harness.ts`：拥有本档案 `integrations/dsh` bundle 准备与源校验、profile 备份、官方 plugin 命令调用和读回验证；`web` 与 `desktop` 档案分别配置，安装登记不代表当前运行界面已加载。
 - Harness 安装与移除在官方 CLI 整理后保留其他依赖、bundle 顺序及用户字段；本机自测不设置工作动作。`progress.mjs` 关闭终态回合，迟到输出不重新保活，整轮失败清除该会话工具活动。
-- `agent-setup-external.ts` 为 Windows 默认安装的 Harness Desktop 选择其随附 CLI；显式命令路径优先，npm CLI 拒绝 desktop profile 时安装页给出明确提示。
+- `agent-setup-external.ts` 为 Windows、Mac 常见安装位置的 Harness Desktop 选择随附 CLI；未指定 profile 时有桌面 CLI 则默认 desktop，显式配置优先，npm CLI 拒绝 desktop 时给出明确提示。
 - `agent-setup-doubao.ts`：拥有本档案 `integrations/doubao/doubao-pet-bridge.mjs` 的生成、冲突检查、移除和本机测试；兼容六种简短状态，另接收有界的正式应用会话／工具事件，`remote: false`，不读豆包登录状态，不建立 HTTP 服务，不传聊天文本或额度。聚合卡片明确禁用 PC／网页自动连接，开发桥不算其客户端已连接。
 - `external-ai-setup-types.ts` / `external-command-runner.ts`：前者定义渲染器可消费的窄卡片、动作与白名单；后者单独管理新增外部工具的命令运行、16 KiB 输出流和超时后自有进程树清理，不替代既有 runner。
 - `claude-memory.ts`: Claude instructions file management (`~/.claude/openpets.md`)
@@ -592,4 +592,4 @@ Windows 原子替换遇到短暂 EPERM／EACCES：文件操作记录有有限异
 
 ## 共创网站入口
 
-community-website.ts 使用预先登记的 HTTPS 站点时直接返回公开入口，不启动本机服务器；未提供托管地址时按需提供回环静态预览，只有公开资源白名单和 GET/HEAD，禁止任意路径和写入，并拥有启动并发与关闭生命周期。公开图集、单帧缩略图和安装 ZIP 按编译时固定作品名单登记，客户端模块也逐项登记，构建清单不成为文件接口；未登记资源即使存在于公开目录也不开放。windows.ts 校验控制中心发送方，调用固定 pets/plugins/create 入口并使用 shell.openExternal，网页内排行、需求和合集路由不扩展桌面契约。网站代码、图集和 ZIP 随便携包资源复制；公共投稿和互动由网站服务持有，草稿仍存当前网站源的浏览器，网页不消费桌面 IPC 或本机档案。
+community-website.ts 使用预先登记的 HTTPS 站点时直接返回公开入口，不启动本机服务器；未提供托管地址时按需提供回环静态预览，只有公开资源白名单和 GET/HEAD，禁止任意路径和写入，并拥有启动并发与关闭生命周期。公开图集、单帧缩略图和安装 ZIP 按编译时固定作品名单登记，客户端模块也逐项登记，构建清单不成为文件接口；未登记资源即使存在于公开目录也不开放。windows.ts 校验控制中心发送方，调用固定 pets/plugins/create 入口并使用 shell.openExternal，网页内排行、需求和合集路由不扩展桌面契约。正式安装包保留网站模块与插件 ZIP，完整桌宠素材由公网平台提供，本地开发预览仍使用完整 dist；公共投稿和互动由网站服务持有，草稿仍存当前网站源的浏览器，网页不消费桌面 IPC 或本机档案。

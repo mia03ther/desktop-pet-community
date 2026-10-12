@@ -133,7 +133,7 @@ export async function installDeepSeekHarness(dependencies: DeepSeekHarnessSetupD
     }
     const after = getDeepSeekHarnessSetup(dependencies);
     if (!result.ok && /profile ["']desktop["'] is managed exclusively/i.test(result.stderr)) {
-      return { ok: false, action, message: "desktop profile 需要 Harness Desktop 随附的 dsh 命令，npm CLI 无法管理。请在命令路径中选择该桌面版的 resources/runtime/cli/bin/dsh.cmd，退出 Harness 后重试。", changed: false };
+      return { ok: false, action, message: "desktop profile 需要 Harness Desktop 随附的 dsh 命令，npm CLI 无法管理。请选择桌面版 resources/runtime/cli/bin/dsh（Windows 为 dsh.cmd），退出 Harness 后重试。", changed: false };
     }
     if (!result.ok || result.timedOut || result.overflow || after.status.state !== "configured") {
       return { ok: false, action, message: "DSH 插件安装尚未通过验证。请查看 DSH 的插件管理日志，解决后刷新；不会标记为已连接。", changed: after.status.canRemove };

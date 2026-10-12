@@ -18,7 +18,7 @@ import { getOpenClawSetup as buildOpenClawSetup, mutateOpenClaw as applyOpenClaw
 import { getZedSetup as buildZedSetup, installZedGlobal as applyZedInstall, removeZedGlobal as applyZedRemove, replaceZedGlobal as applyZedReplace, type ZedSetupPreview, type ZedSetupStatus } from "./agent-setup-zed.js";
 import { externalAiSetupActions, type ExternalAiSetup, type ExternalAiSetupAction } from "./external-ai-setup-types.js";
 import { getDiscoveryFilePath } from "./local-ipc-paths.js";
-import { getExternalAiSetups, runExternalAiSetupAction } from "./agent-setup-external.js";
+import { getDefaultDeepSeekHarnessProfile, getExternalAiSetups, runExternalAiSetupAction } from "./agent-setup-external.js";
 import { runExternalCommand } from "./external-command-runner.js";
 import type { ExternalAiSessionStatus } from "./external-ai-setup-types.js";
 import type { ExternalAiAdapter, ExternalAiProgress } from "./external-ai-activity.js";
@@ -329,7 +329,7 @@ function getAgentSetupCommandPaths(): AgentSetupCommandPaths {
     openclaw: preferences.openclawCommandPath ?? "",
     dsh: preferences.dshCommandPath ?? "",
     codex: preferences.codexCommandPath ?? "",
-    dshProfile: preferences.dshProfile ?? "web",
+    dshProfile: preferences.dshProfile ?? getDefaultDeepSeekHarnessProfile(app.getPath("home"), process.platform),
   };
 }
 
@@ -343,7 +343,7 @@ function getExternalAiDependencies() {
     platform: process.platform,
     nodeCommand: getPreferredNodeCommand(),
     dshCommand: getAppStateSnapshot().preferences.dshCommandPath || "dsh",
-    dshProfile: getAppStateSnapshot().preferences.dshProfile || "web",
+    dshProfile: getAppStateSnapshot().preferences.dshProfile || getDefaultDeepSeekHarnessProfile(app.getPath("home"), process.platform),
     clientEntryPath: mapAsarPathToUnpacked(createRequire(require.resolve("@open-pets/cli")).resolve("@open-pets/client")),
     mcpEntryPath: mapAsarPathToUnpacked(require.resolve("@open-pets/mcp")),
     discoveryPath: getDiscoveryFilePath(),

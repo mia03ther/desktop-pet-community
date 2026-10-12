@@ -162,9 +162,9 @@ provider responses. Cancellation records use the available reason (`user`,
 `session`, or `capture`) so a stopped Talk attempt is distinguishable from a
 provider or capture failure without exposing content.
 
-## 当前项目的 macOS arm64 构建
+## 当前项目的 macOS 双架构构建
 
-在 Apple Silicon Mac 使用 Node.js 24、pnpm 11.0.8 与 Xcode Command Line Tools：
+分别在 Apple Silicon 与 Intel Mac 使用 Node.js 24、pnpm 11.0.8 与 Xcode Command Line Tools。下例为 arm64；Intel 的 `--arm64`／`--arch arm64` 替换为 `--x64`／`--arch x64`：
 
 ```bash
 pnpm install --frozen-lockfile
@@ -175,7 +175,9 @@ node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --
 
 目录产物与 ZIP／DMG 位于 `apps/desktop/dist-electron/`。Mac 的 `afterPack` 保留 darwin arm64／x64、libvips、colour 与 wasm 依赖，剔除其他平台的 Sharp 二进制和仅用于构建的 node-gyp；Windows 不执行这项裁剪。配置使用 ad-hoc 本机签名，不等于 Apple Developer ID 签名、公证或系统安全审查。
 
-根仓库 `.github/workflows/macos.yml` 使用 GitHub 公共仓库的免费标准 `macos-14` arm64 runner，明确校验运行架构，构建 ZIP 并调用现有打包契约检查，确保根项目许可、第三方版权声明与桌宠子项目许可随包原样保留。`apps/desktop/scripts/smoke-packaged-app.mjs` 仅启动该包、创建全新隔离档案，实际验证原生 Sharp 编解码、IPC、控制中心预加载、桌宠窗口、右键中文对话、共创站喝水提醒 ZIP 导入和正常退出，保存截图和结果。原生菜单弹出、文件选择和权限确认由验收截获，实际输入事件、预加载 IPC、插件安装、权限拒绝／批准、提醒写入会话与停用仍走正式程序链路；不代表人工操作所有原生对话框已验收。CI 不访问维护者配置，不启动远程 AI，也不冒称所有 AI 平台和外部宿主都能在 Mac 工作；Windows 专用诊断与原 Windows EXE 仍有平台限制。
+根仓库 `.github/workflows/macos.yml` 使用 GitHub 公共仓库的免费标准 `macos-14` arm64 与 `macos-15-intel` x64 runner，分别校验原生架构、接入与对话回归，构建 ZIP 并调用现有打包契约检查，确保根项目许可、第三方版权声明与桌宠子项目许可随包原样保留。`apps/desktop/scripts/smoke-packaged-app.mjs` 仅启动该包、创建全新隔离档案，实际验证原生 Sharp 编解码、IPC、控制中心预加载、桌宠窗口、右键中文对话、共创站喝水提醒 ZIP 导入和正常退出，保存截图和结果。原生菜单弹出、文件选择和权限确认由验收截获，实际输入事件、预加载 IPC、插件安装、权限拒绝／批准、提醒写入会话与停用仍走正式程序链路；不代表人工操作所有原生对话框已验收。CI 不访问维护者配置，不启动远程 AI，也不冒称所有 AI 平台和外部宿主都能在 Mac 工作；Windows 专用诊断与原 Windows EXE 仍有平台限制。
+
+正式安装包打开预先登记的公网共创入口，只保留网站模块、插件包与必要运行资源，不重复携带 `assets/pets` 中的整套公开作品。开发预览仍使用完整网站 dist，公网素材和下载不受此裁剪影响。Mac ZIP 在生成和上传前均检查小于 2 GiB，避免构建成功但无法发布。
 
 ## 正式程序更新
 

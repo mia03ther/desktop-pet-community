@@ -1,4 +1,4 @@
-name: macOS arm64 构建与运行
+name: macOS 双架构构建与运行
 
 on:
   push:
@@ -22,7 +22,18 @@ concurrency:
 
 jobs:
   build:
-    runs-on: macos-14
+    name: Mac ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+            arch: arm64
+            machine: arm64
+          - runner: macos-15-intel
+            arch: x64
+            machine: x86_64
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 60
     defaults:
       run:
@@ -30,8 +41,8 @@ jobs:
     steps:
       - name: 获取代码
         uses: actions/checkout@v4
-      - name: 确认 Apple Silicon 环境
-        run: test "$(uname -m)" = "arm64"
+      - name: 确认目标 Mac 环境
+        run: test "$(uname -m)" = "${{ matrix.machine }}"
       - name: 配置 Node.js
         uses: actions/setup-node@v4
         with:
@@ -48,27 +59,33 @@ jobs:
           pnpm build
           pnpm --filter @open-pets/desktop typecheck
           node apps/desktop/tests/mac-trim-sharp.test.mjs
+      - name: 原生运行接入与对话回归测试
+        run: |
+          pnpm --filter @open-pets/desktop test:build
+          pnpm --filter @open-pets/desktop exec node --test .test-dist/tests/agent-setup-deepseek-harness.test.js .test-dist/tests/agent-setup-external.test.js .test-dist/tests/deepseek-harness-progress.test.js .test-dist/tests/external-agent-runtime-bridge.test.js .test-dist/tests/external-ai-activity.test.js
+          pnpm --filter @open-pets/desktop exec node .test-dist/tests/text-model-client.test.js
       - name: 构建 Mac ZIP
-        run: pnpm --filter @open-pets/desktop exec electron-builder --mac zip --arm64 --publish never
+        run: pnpm --filter @open-pets/desktop exec electron-builder --mac zip --${{ matrix.arch }} --publish never
       - name: 校验实际包与原生依赖
-        run: node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
+        run: node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch ${{ matrix.arch }}
       - name: 隔离档案实际运行
-        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/mac-arm64/desktop-pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch arm64
+        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/mac-${{ matrix.arch }}/desktop-pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch ${{ matrix.arch }}
       - name: 生成下载校验值
         run: |
           cd apps/desktop/dist-electron
-          shasum -a 256 desktop-pet-*-mac-arm64.zip > SHA256SUMS-macos-arm64.txt
+          test "$(stat -f %z desktop-pet-*-mac-${{ matrix.arch }}.zip)" -lt 2147483648
+          shasum -a 256 desktop-pet-*-mac-${{ matrix.arch }}.zip > SHA256SUMS-macos-${{ matrix.arch }}.txt
       - name: 保存构建与运行证据
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: desktop-pet-macos-arm64
+          name: desktop-pet-macos-${{ matrix.arch }}
           retention-days: 1
           if-no-files-found: warn
           compression-level: 0
           path: |
-            outputs/desktop-pet/apps/desktop/dist-electron/desktop-pet-*-mac-arm64.zip
-            outputs/desktop-pet/apps/desktop/dist-electron/SHA256SUMS-macos-arm64.txt
+            outputs/desktop-pet/apps/desktop/dist-electron/desktop-pet-*-mac-${{ matrix.arch }}.zip
+            outputs/desktop-pet/apps/desktop/dist-electron/SHA256SUMS-macos-${{ matrix.arch }}.txt
             work/macos-ci/result.json
             work/macos-ci/packaged-run.log
             work/macos-ci/control-center.png

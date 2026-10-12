@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=%E7%89%88%E6%9C%AC" alt="发布版本">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=%E4%B8%8B%E8%BD%BD" alt="发布文件下载数">
   <img src="https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Windows%20x64-60bba0" alt="Windows x64">
-  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64 / x64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub Star">
 </p>
 
@@ -50,29 +50,29 @@ https://desktoppet-e9e.pages.dev/#pets
 ### 若不熟悉 GitHub 下载流程
 
 1. 直接把网址复制给 AI，让 AI 帮你安装。
-2. [Windows 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-windows-x64-portable.zip)，完整解压后双击 `desktop-pet.exe`。macOS 用户可下载下方对应的 Mac 包。
+2. [Windows 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-windows-x64-portable.zip)，完整解压后双击 `desktop-pet.exe`。macOS 用户可下载下方对应的 Mac 包。
 ### Windows
 
-1. 打开 [v4.0.4 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
+1. 打开 [v4.0.6 Release](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)，下载 Windows x64 便携 ZIP 和 `SHA256SUMS.txt`。GitHub 自动生成的 `Source code` ZIP 是源码。
 2. 将便携 ZIP **完整解压**到一个可写目录，例如 `D:\Apps\desktop-pet`。保留同目录的 `resources`、运行库与其他文件，不单独移动 EXE，也不直接在 ZIP 内启动。
 3. 双击解压目录中的 `desktop-pet.exe`。自带运行环境，无需安装 Node.js 或 Python；首次启动创建本机档案，不附带作者的 AI 账号或个人设置。
 4. 平时直接打开此 EXE；也可为它创建桌面快捷方式。基础桌宠无需配置 AI，插件从共创平台按需下载后导入。
 
-提供 **Windows x64** 与 **macOS arm64（Apple Silicon）** 包。Windows 程序尚未进行代码签名；Linux 与 Windows ARM 暂无本项目已验收的安装包。控制中心「设置」可检查 GitHub 更新；更新保留本机人设、插件、对话与 AI 配置。
+提供 **Windows x64** 与 **macOS arm64 / x64（Apple Silicon）** 包。Windows 程序尚未进行代码签名；Linux 与 Windows ARM 暂无本项目已验收的安装包。控制中心「设置」可检查 GitHub 更新；更新保留本机人设、插件、对话与 AI 配置。
 
 核对下载文件完整性可在 PowerShell 执行：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.4-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.6-windows-x64-portable.zip
 ```
 
 将结果与同一 Release 的 `SHA256SUMS.txt` 对照；核对哈希只能确认文件一致，不能代替安全审计。
 
 ### macOS（Apple Silicon／arm64）
 
-[Mac 一键下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-mac-arm64.zip)：完整解压，将 `desktop-pet.app` 放入“应用程序”后打开。
+[Mac M 系列下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-arm64.zip) · [Mac Intel 下载](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-x64.zip)：完整解压，将 `desktop-pet.app` 放入“应用程序”后打开。
 
-支持 macOS arm64 源码构建；PR #2 的 Mac 打包改动已合并。与 Windows 一样，桌宠、控制中心、人设和本系统插件使用同一套代码；Windows 专用诊断、原 Windows EXE 与依赖原宿主的功能仍按平台能力限制。
+支持 macOS arm64 / x64 源码构建；PR #2 的 Mac 打包改动已合并。与 Windows 一样，桌宠、控制中心、人设和本系统插件使用同一套代码；Windows 专用诊断、原 Windows EXE 与依赖原宿主的功能仍按平台能力限制。
 
 在 Apple Silicon Mac 上安装 Node.js 24、pnpm 11.0.8 与 Xcode Command Line Tools，然后执行：
 
@@ -85,7 +85,7 @@ pnpm --filter @open-pets/desktop exec electron-builder --mac --arm64 --publish n
 node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch arm64
 ```
 
-输出位于 `apps/desktop/dist-electron/`，ZIP 内为完整的 `desktop-pet.app`，DMG 可拖入“应用程序”。Mac 构建采用 ad-hoc 本机签名，尚未取得 Apple Developer ID 签名与公证；遇 Gatekeeper 提示时，可按系统“隐私与安全性”中的提示批准自己信任的下载。CI 在 macOS arm64 上检查实际包、原生依赖、控制中心、桌宠显示与正常退出；最新结果和可下载构建见 [macOS 构建](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)。CI 验收不代表所有 Mac 型号与第三方宿主均已实测。
+输出位于 `apps/desktop/dist-electron/`，ZIP 内为完整的 `desktop-pet.app`，DMG 可拖入“应用程序”。Mac 构建采用 ad-hoc 本机签名，尚未取得 Apple Developer ID 签名与公证；遇 Gatekeeper 提示时，可按系统“隐私与安全性”中的提示批准自己信任的下载。CI 在 macOS arm64 / x64 上检查实际包、原生依赖、控制中心、桌宠显示与正常退出；最新结果和可下载构建见 [macOS 构建](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)。CI 验收不代表所有 Mac 型号与第三方宿主均已实测。
 
 ### 从源码开发与构建
 

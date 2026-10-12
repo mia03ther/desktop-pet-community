@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=Version" alt="공개 버전">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=Downloads" alt="다운로드 수">
   <img src="https://img.shields.io/badge/Platform-Windows%20x64-60bba0" alt="Windows x64">
-  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64 / x64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub Star">
 </p>
 
@@ -38,24 +38,24 @@
 
 ### Windows 포터블 버전
 
-1. [Windows 바로 다운로드](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-windows-x64-portable.zip)에서 ZIP을 받고, 같은 [v4.0.4 릴리스](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.4)의 `SHA256SUMS.txt`도 확인하세요. 자동 생성되는 `Source code` ZIP은 소스 코드입니다.
+1. [Windows 바로 다운로드](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-windows-x64-portable.zip)에서 ZIP을 받고, 같은 [v4.0.6 릴리스](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/tag/v4.0.6)의 `SHA256SUMS.txt`도 확인하세요. 자동 생성되는 `Source code` ZIP은 소스 코드입니다.
 2. 쓰기 가능한 폴더(예: `D:\Apps\desktop-pet`)에 **ZIP 전체를 압축 해제**하세요. `resources`와 런타임 파일을 함께 두고 EXE만 이동하거나 압축 파일 안에서 실행하지 마세요.
 3. `desktop-pet.exe`를 실행하세요. 런타임을 포함하므로 Node.js와 Python을 별도 설치할 필요가 없습니다. 최초 실행 시 로컬 프로필을 만들며 제작자의 AI 계정이나 개인 설정은 포함하지 않습니다.
 4. 평소에는 같은 EXE나 바탕 화면 바로 가기를 실행합니다. 기본 펫은 AI 연결 없이도 사용할 수 있습니다. 플러그인은 플랫폼에서 개별 설치하세요.
 
-Windows x64와 macOS arm64를 제공합니다. Windows는 코드 서명이 없으며 Linux 및 Windows ARM의 검증된 패키지는 아직 없습니다. 제어 센터의 설정에서 GitHub 업데이트를 확인할 수 있고 기존 성격·플러그인·대화·AI 설정은 보존합니다.
+Windows x64와 macOS arm64 / x64를 제공합니다. Windows는 코드 서명이 없으며 Linux 및 Windows ARM의 검증된 패키지는 아직 없습니다. 제어 센터의 설정에서 GitHub 업데이트를 확인할 수 있고 기존 성격·플러그인·대화·AI 설정은 보존합니다.
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.4-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.6-windows-x64-portable.zip
 ```
 
 같은 릴리스의 `SHA256SUMS.txt`와 비교하세요. 일치하는 해시는 파일 일관성을 확인하며 전체 보안 감사를 대신하지 않습니다.
 
-### macOS (Apple Silicon / arm64)
+### macOS (Apple Silicon / Intel)
 
-[Mac 바로 다운로드](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-mac-arm64.zip)를 전체 압축 해제하고 `desktop-pet.app`을 응용 프로그램 폴더로 옮겨 실행하세요.
+[Mac (M 시리즈) 다운로드](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-arm64.zip) · [Mac (Intel) 다운로드](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-x64.zip)를 전체 압축 해제하고 `desktop-pet.app`을 응용 프로그램 폴더로 옮겨 실행하세요.
 
-macOS arm64 빌드와 PR #2의 패키징 수정을 반영했습니다. Apple Developer ID 서명과 공증은 아직 없습니다. Gatekeeper가 확인을 요청하면 신뢰할 수 있는 파일인지 확인한 뒤 시스템 설정의 개인정보 보호 및 보안에서 허용하세요. 실제 arm64 패키지의 네이티브 Sharp, 제어 센터, 펫, 중국어 대화, ZIP 알림 플러그인 및 정상 종료를 CI로 검증했습니다. 모든 Mac 모델이나 외부 AI 계정에 대한 검증은 아닙니다. [macOS 빌드](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)를 참조하세요.
+macOS arm64 / x64 빌드와 PR #2의 패키징 수정을 반영했습니다. Apple Developer ID 서명과 공증은 아직 없습니다. Gatekeeper가 확인을 요청하면 신뢰할 수 있는 파일인지 확인한 뒤 시스템 설정의 개인정보 보호 및 보안에서 허용하세요. 실제 arm64 패키지의 네이티브 Sharp, 제어 센터, 펫, 중국어 대화, ZIP 알림 플러그인 및 정상 종료를 CI로 검증했습니다. 모든 Mac 모델이나 외부 AI 계정에 대한 검증은 아닙니다. [macOS 빌드](https://github.com/xunguangzlj-cloud/desktop-pet-community/actions/workflows/macos.yml)를 참조하세요.
 
 소스에서 Mac 패키지를 만들려면 Node.js 24, pnpm 11.0.8, Xcode Command Line Tools가 필요합니다.
 

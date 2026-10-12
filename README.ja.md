@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/github/v/release/xunguangzlj-cloud/desktop-pet-community?label=%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" alt="公開バージョン">
   <img src="https://img.shields.io/github/downloads/xunguangzlj-cloud/desktop-pet-community/total?label=%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89" alt="リリースファイルのダウンロード数">
   <img src="https://img.shields.io/badge/%E5%AF%BE%E5%BF%9C%E7%92%B0%E5%A2%83-Windows%20x64-60bba0" alt="Windows x64">
-  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64">
+  <img src="https://img.shields.io/badge/macOS-arm64-60bba0" alt="macOS arm64 / x64">
   <img src="https://img.shields.io/github/stars/xunguangzlj-cloud/desktop-pet-community?label=Star" alt="GitHub Star">
 </p>
 
@@ -50,26 +50,26 @@
 
 ### Windows ポータブル版
 
-1. [v4.0.4 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
+1. [v4.0.6 リリース](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/latest)から、Windows x64 用ポータブル ZIP と `SHA256SUMS.txt` をダウンロードします。GitHub が自動生成する `Source code` ZIP はソースコードです。
 2. ポータブル ZIP を、`D:\Apps\desktop-pet` などの書き込み可能なフォルダーに**すべて展開**します。同じフォルダー内の `resources`、ランタイム、その他のファイルを保持してください。EXE だけを移動したり、ZIP の中から直接起動したりしないでください。
 3. 展開先の `desktop-pet.exe` をダブルクリックします。実行環境は同梱されているため、Node.js や Python のインストールは不要です。初回起動時にローカルプロファイルを作成します。作者の AI アカウントや個人設定は含まれていません。
 4. 通常はこの EXE を直接開きます。デスクトップにショートカットを作成することもできます。基本のペット機能に AI の設定は不要です。プラグインは共創プラットフォームから必要なものをダウンロードしてインポートします。
 
-**Windows x64** と **macOS arm64（Apple Silicon）** 用パッケージを提供します。Windows のコード署名は未取得です。Linux、Windows ARM の検証済みパッケージはまだありません。コントロールセンターの「設定」から GitHub の更新を確認できます。更新時はローカルのキャラクター設定、プラグイン、会話、AI 設定を保持します。
+**Windows x64** と **macOS arm64 / x64（Apple Silicon）** 用パッケージを提供します。Windows のコード署名は未取得です。Linux、Windows ARM の検証済みパッケージはまだありません。コントロールセンターの「設定」から GitHub の更新を確認できます。更新時はローカルのキャラクター設定、プラグイン、会話、AI 設定を保持します。
 
 ダウンロードしたファイルの整合性は、PowerShell で次のコマンドを実行して確認できます。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.4-windows-x64-portable.zip
+Get-FileHash -Algorithm SHA256 .\desktop-pet-4.0.6-windows-x64-portable.zip
 ```
 
 結果を同じリリースの `SHA256SUMS.txt` と照合してください。ハッシュの照合で確認できるのはファイルの一致であり、セキュリティ監査の代わりにはなりません。
 
 ### macOS（Apple Silicon／arm64）
 
-[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-windows-x64-portable.zip) · [Mac をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.4/desktop-pet-4.0.4-mac-arm64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
+[Windows をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-windows-x64-portable.zip) · [Mac（M シリーズ）をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-arm64.zip) · [Mac（Intel）をダウンロード](https://github.com/xunguangzlj-cloud/desktop-pet-community/releases/download/v4.0.6/desktop-pet-4.0.6-mac-x64.zip)。Mac ZIP をすべて展開し、`desktop-pet.app` をアプリケーションへ移動して開きます。
 
-macOS arm64 のソースビルドに対応し、PR #2 の Mac 向けパッケージ変更は統合済みです。ペット、コントロールセンター、キャラクター設定、本システムのプラグインは Windows と同じコードを使用します。Windows 専用の診断、元の Windows EXE、外部ホストを必要とする機能には、それぞれの環境が必要です。
+macOS arm64 / x64 のソースビルドに対応し、PR #2 の Mac 向けパッケージ変更は統合済みです。ペット、コントロールセンター、キャラクター設定、本システムのプラグインは Windows と同じコードを使用します。Windows 専用の診断、元の Windows EXE、外部ホストを必要とする機能には、それぞれの環境が必要です。
 
 Apple Silicon Mac に Node.js 24、pnpm 11.0.8、Xcode Command Line Tools をインストールし、次を実行します。
 

@@ -29,6 +29,9 @@ profile 里有同名包不会被当作新版就绪。更新后需重启相应 Ha
 profile，真实会话必须使用安装了该 bundle 的 profile。
 `desktop` 必须使用 Harness Desktop 随附的 CLI，npm 版 CLI 会明确拒绝。
 Windows 默认安装位置会自动探测其 `resources/runtime/cli/bin/dsh.cmd`；
+Mac 探测 `/Applications/DeepSeek Harness.app` 与用户 `~/Applications` 中
+同名应用的 `Contents/Resources/runtime/cli/bin/dsh`。未指定 profile 且检测到
+官方桌面命令时默认使用 `desktop`；已有显式命令与 profile 设置继续优先。
 自定义安装位置在控制中心填写该安装的命令路径，不与 npm 版运行时混用。
 官方 CLI 安装或移除后会重新整理整个 profile 的 bundle 清单；桌宠仅管理
 自己的条目，保留原有其他依赖、bundle 顺序及配置字段，命令失败时也保留。

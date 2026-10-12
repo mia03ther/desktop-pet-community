@@ -11,13 +11,19 @@ on:
         description: 本仓库成功的 macOS 构建运行编号
         required: true
         type: string
+      arch:
+        description: 要发布的 Mac 架构
+        required: true
+        default: arm64
+        type: choice
+        options: [arm64, x64]
 
 permissions:
   contents: write
   actions: read
 
 concurrency:
-  group: publish-mac-${{ inputs.tag }}
+  group: publish-mac-${{ inputs.tag }}-${{ inputs.arch }}
   cancel-in-progress: false
 
 jobs:
@@ -29,6 +35,7 @@ jobs:
       GH_REPO: ${{ github.repository }}
       RELEASE_TAG: ${{ inputs.tag }}
       MAC_RUN: ${{ inputs.mac_run }}
+      MAC_ARCH: ${{ inputs.arch }}
     steps:
       - name: 核对版本与真实验收运行
         shell: bash
@@ -36,6 +43,7 @@ jobs:
           set -euo pipefail
           [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
           [[ "$MAC_RUN" =~ ^[0-9]+$ ]]
+          [[ "$MAC_ARCH" == arm64 || "$MAC_ARCH" == x64 ]]
           gh release view "$RELEASE_TAG" --json tagName,isDraft,isPrerelease,targetCommitish > release.json
           jq -e '.isDraft == true and .isPrerelease == false' release.json
           gh api "repos/$GH_REPO/actions/runs/$MAC_RUN" > run.json
@@ -45,12 +53,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh run download "$MAC_RUN" --name desktop-pet-macos-arm64 --dir artifacts
-          mapfile -t packages < <(find artifacts -type f -name "desktop-pet-${RELEASE_TAG#v}-mac-arm64.zip")
-          mapfile -t sums < <(find artifacts -type f -name SHA256SUMS-macos-arm64.txt)
+          gh run download "$MAC_RUN" --name "desktop-pet-macos-$MAC_ARCH" --dir artifacts
+          mapfile -t packages < <(find artifacts -type f -name "desktop-pet-${RELEASE_TAG#v}-mac-$MAC_ARCH.zip")
+          mapfile -t sums < <(find artifacts -type f -name "SHA256SUMS-macos-$MAC_ARCH.txt")
           mapfile -t results < <(find artifacts -type f -name result.json)
           [[ ${#packages[@]} == 1 && ${#sums[@]} == 1 && ${#results[@]} == 1 ]]
-          jq -e '.passed == true and .expectedPlatform == "darwin" and .expectedArch == "arm64" and .originalProfileAccessed == false' "${results[0]}"
+          jq -e --arg arch "$MAC_ARCH" '.passed == true and .expectedPlatform == "darwin" and .expectedArch == $arch and .originalProfileAccessed == false' "${results[0]}"
+          [[ $(stat -c %s "${packages[0]}") -lt 2147483648 ]]
           (
             cd "$(dirname "${sums[0]}")"
             sha256sum --check "$(basename "${sums[0]}")"

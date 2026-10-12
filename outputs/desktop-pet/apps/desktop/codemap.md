@@ -45,6 +45,8 @@ Windows 日常入口使用直接指向 EXE 的桌宠与工作室快捷方式，�
 
 **Installation**: Catalog fetch (V3 with pagination fallback to V2) → ZIP download → `yauzl` extraction → validation → `pet-install-transaction.ts` orchestrates filesystem promotion, state mutation, rollback, recovery, and side effects using the pure `pet-install-transaction-protocol.ts` journal/schema/naming/recovery policy → tray refresh
 
+**Mac Harness Desktop**：未指定 profile 时探测系统与用户应用目录的官方 CLI，默认 desktop；显式设置保持优先，监测与对话分别验证。
+
 **Agent Setup**: UI → `agent-setup.ts` → Claude/OpenCode/Cursor/Zed setup or OpenClaw version/list/inspect discovery → MCP/config/hooks changes or native OpenClaw install/update/enable/remove → post-action status refresh
 
 **工作室**：托盘／桌宠菜单 → `windows.ts` 安全窗口与路由 → `control-center-preload.cjs` 窄 API → `renderer/src/main.tsx` → `studio/StudioApp.tsx` 七页面。页面独立设计，功能服务继续持有凭据、事务、对话历史、插件权限、人设与取消，界面不复制这些所有者。

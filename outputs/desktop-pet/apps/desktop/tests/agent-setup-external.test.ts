@@ -1,15 +1,15 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join, relative, resolve } from "node:path";
 import { test } from "node:test";
 
-import { getExternalAiSetups, runExternalAiSetupAction, type ExternalAiCommandResult, type ExternalAiSetupDependencies } from "../src/agent-setup-external.js";
+import { getDefaultDeepSeekHarnessProfile, getExternalAiSetups, runExternalAiSetupAction, type ExternalAiCommandResult, type ExternalAiSetupDependencies } from "../src/agent-setup-external.js";
 import type { ExternalAiSetupAction } from "../src/external-ai-setup-types.js";
 
 function fixture() {
-  const root = mkdtempSync(join(tmpdir(), "desktop-pet-external-"));
+  const root = mkdtempSync(join(realpathSync(tmpdir()), "desktop-pet-external-"));
   const desktopDir = resolve(process.cwd());
   const requireDesktop = createRequire(join(desktopDir, "package.json"));
   const cliEntry = requireDesktop.resolve("@open-pets/cli");
@@ -46,7 +46,7 @@ function fixture() {
 }
 
 function clean(root: string): void {
-  const owned = relative(tmpdir(), root);
+  const owned = relative(realpathSync(tmpdir()), root);
   assert.ok(owned.startsWith("desktop-pet-external-") && !owned.includes(".."));
   rmSync(root, { recursive: true, force: true });
 }
@@ -81,6 +81,7 @@ test("Windows 桌面 profile 默认探测随附 CLI，显式指定的命令路�
     const bundledCommand = join(context.homeDir, "AppData", "Local", "Programs", "DeepSeek Harness", "resources", "runtime", "cli", "bin", "dsh.cmd");
     mkdirSync(join(bundledCommand, ".."), { recursive: true });
     writeFileSync(bundledCommand, "测试随附命令");
+    assert.equal(getDefaultDeepSeekHarnessProfile(context.homeDir, "win32"), "desktop");
     const runCommand = context.runCommand;
     const setups = await getExternalAiSetups({
       ...context,
@@ -99,6 +100,32 @@ test("Windows 桌面 profile 默认探测随附 CLI，显式指定的命令路�
     calls.length = 0;
     await getExternalAiSetups({ ...context, platform: "win32" });
     assert.equal(calls.some(call => call.command === bundledCommand), false);
+  } finally { clean(root); }
+});
+
+test("Mac 桌面 profile 探测用户应用目录的随附 CLI，不借用 npm CLI", async () => {
+  const { root, context, calls } = fixture();
+  try {
+    const bundledCommand = join(context.homeDir, "Applications", "DeepSeek Harness.app", "Contents", "Resources", "runtime", "cli", "bin", "dsh");
+    mkdirSync(join(bundledCommand, ".."), { recursive: true });
+    writeFileSync(bundledCommand, "测试随附命令");
+    assert.equal(getDefaultDeepSeekHarnessProfile(context.homeDir, "darwin"), "desktop");
+    const runCommand = context.runCommand;
+    const setups = await getExternalAiSetups({
+      ...context,
+      platform: "darwin",
+      dshCommand: "dsh",
+      runCommand: async (command, args, timeout, input) => {
+        if (command === bundledCommand) {
+          calls.push({ command, args });
+          return { ok: true, stdout: "0.2.0", stderr: "" };
+        }
+        return runCommand(command, args, timeout, input);
+      },
+    });
+    assert.equal(setups.find(item => item.id === "deepseek-harness")?.program.detected, true);
+    assert.ok(calls.some(call => call.command === bundledCommand));
+    assert.equal(calls.some(call => call.command === "dsh"), false);
   } finally { clean(root); }
 });
 

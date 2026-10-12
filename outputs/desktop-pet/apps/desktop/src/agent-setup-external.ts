@@ -71,12 +71,26 @@ async function adapterDependencies(context: ExternalAiSetupDependencies) {
 }
 
 function preferredDshCommand(context: ExternalAiSetupDependencies): string {
-  if (context.platform !== "win32" || context.dshProfile !== "desktop" || context.dshCommand !== "dsh") {
+  if (context.dshProfile !== "desktop" || context.dshCommand !== "dsh") {
     return context.dshCommand;
   }
   // 桌面 profile 必须由同一安装随附的 CLI 管理，npm CLI 明确拒绝该 profile。
-  const desktopCommand = join(context.homeDir, "AppData", "Local", "Programs", "DeepSeek Harness", "resources", "runtime", "cli", "bin", "dsh.cmd");
-  return existsSync(desktopCommand) ? desktopCommand : context.dshCommand;
+  return bundledDshCommands(context.homeDir, context.platform).find(command => existsSync(command)) ?? context.dshCommand;
+}
+
+export function getDefaultDeepSeekHarnessProfile(homeDir: string, platform: NodeJS.Platform): "desktop" | "web" {
+  return bundledDshCommands(homeDir, platform).some(command => existsSync(command)) ? "desktop" : "web";
+}
+
+function bundledDshCommands(homeDir: string, platform: NodeJS.Platform): string[] {
+  return platform === "win32"
+    ? [join(homeDir, "AppData", "Local", "Programs", "DeepSeek Harness", "resources", "runtime", "cli", "bin", "dsh.cmd")]
+    : platform === "darwin"
+      ? [
+        join("/Applications", "DeepSeek Harness.app", "Contents", "Resources", "runtime", "cli", "bin", "dsh"),
+        join(homeDir, "Applications", "DeepSeek Harness.app", "Contents", "Resources", "runtime", "cli", "bin", "dsh"),
+      ]
+      : [];
 }
 
 async function detectCommand(command: string, context: ExternalAiSetupDependencies) {
