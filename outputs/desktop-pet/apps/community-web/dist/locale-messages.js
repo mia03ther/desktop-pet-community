@@ -8,6 +8,7 @@ desktop pet · 广场与制作工作台|desktop pet · Gallery and creator works
 插件广场|Plugin gallery|プラグイン広場|플러그인 갤러리
 共创平台|Community creation|共同制作プラットフォーム|공동 제작 플랫폼
 安装指南|Installation guide|インストールガイド|설치 안내
+前往 GitHub|Open GitHub|GitHub を開く|GitHub 열기
 社区共创 · 持续收录|Community creations · Growing collection|コミュニティ制作 · 随時追加|커뮤니티 제작 · 계속 추가
 作品收录|Works collected|収録作品|등록 작품
 分类数|Categories|カテゴリー数|분류 수
