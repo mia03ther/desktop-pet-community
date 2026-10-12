@@ -30,9 +30,11 @@ jobs:
           - runner: macos-14
             arch: arm64
             machine: arm64
+            appDirectory: mac-arm64
           - runner: macos-15-intel
             arch: x64
             machine: x86_64
+            appDirectory: mac
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 60
     defaults:
@@ -69,7 +71,7 @@ jobs:
       - name: 校验实际包与原生依赖
         run: node apps/desktop/dist/check-packaging-contract.js --output --platform darwin --arch ${{ matrix.arch }}
       - name: 隔离档案实际运行
-        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/mac-${{ matrix.arch }}/desktop-pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch ${{ matrix.arch }}
+        run: node apps/desktop/scripts/smoke-packaged-app.mjs --exe "apps/desktop/dist-electron/${{ matrix.appDirectory }}/desktop-pet.app/Contents/MacOS/desktop-pet" --output "$GITHUB_WORKSPACE/work/macos-ci" --platform darwin --arch ${{ matrix.arch }}
       - name: 生成下载校验值
         run: |
           cd apps/desktop/dist-electron
