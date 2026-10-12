@@ -361,6 +361,7 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
 - `default-pet-position-state.ts`: Electron-free default-pet position shape, coordinate/display-key normalization, and bounded per-monitor LRU updates
 - `app-state-core.ts`: Pet scale options, waiting-duration options/normalization, idle cursor-gaze default/normalization, onboarding normalization
 - `pet-assistant-host.ts` / `pet-assistant-service.ts`: Host-owned provider-neutral assistant lifecycle, per-turn prompt composition, terminal outcome reduction, and generation-pinned capability routing
+- `text-model-client.ts`：提供方文字协议；DeepSeek 思考续传信息以 WeakMap 绑定内存消息，只回传给同一来源、模型和接口，不进入公开消息、事件或存档。
 - `pet-assistant-memory.ts`: Electron-/filesystem-free completed-turn memory owner with bounded active context, archive deduplication/context selection, canonical terminal-text appends, and archive list/delete/clear delegation
 - `pet-assistant-archive.ts`: Host-owned local terminal-text archive with atomic writes, retention/quarantine, and bounded prompt-window support
 - `pet-assistant-history-ipc.ts`: Pure narrow history list/delete/clear handler helpers, including startup and identifier validation
@@ -522,6 +523,8 @@ main.ts/settings → i18n.setLocaleFromPreference(system/user locale)
   `main.ts` 在正式 IPC 就绪后通过 `bindAgentSetupActivitySource()` 注入同一个会话投影读取器；快照分别显示配置与近期正式工作事件，不新建第二套会话状态，自测与单独 session-start 不算会话确认。
 - `agent-setup-codex.ts` / `agent-setup-zcode.ts`：管理各工具用户级官方 Hooks／MCP 及本项目条目，固定本机发现文件；Codex 状态始终保留“信任待确认”，ZCode 全局 Hooks 已停用或同名 MCP 不属本项目时报告冲突。
 - `agent-setup-deepseek-harness.ts`：拥有本档案 `integrations/dsh` bundle 准备与源校验、profile 备份、官方 plugin 命令调用和读回验证；`web` 与 `desktop` 档案分别配置，安装登记不代表当前运行界面已加载。
+- Harness 安装与移除在官方 CLI 整理后保留其他依赖、bundle 顺序及用户字段；本机自测不设置工作动作。`progress.mjs` 关闭终态回合，迟到输出不重新保活，整轮失败清除该会话工具活动。
+- `agent-setup-external.ts` 为 Windows 默认安装的 Harness Desktop 选择其随附 CLI；显式命令路径优先，npm CLI 拒绝 desktop profile 时安装页给出明确提示。
 - `agent-setup-doubao.ts`：拥有本档案 `integrations/doubao/doubao-pet-bridge.mjs` 的生成、冲突检查、移除和本机测试；兼容六种简短状态，另接收有界的正式应用会话／工具事件，`remote: false`，不读豆包登录状态，不建立 HTTP 服务，不传聊天文本或额度。聚合卡片明确禁用 PC／网页自动连接，开发桥不算其客户端已连接。
 - `external-ai-setup-types.ts` / `external-command-runner.ts`：前者定义渲染器可消费的窄卡片、动作与白名单；后者单独管理新增外部工具的命令运行、16 KiB 输出流和超时后自有进程树清理，不替代既有 runner。
 - `claude-memory.ts`: Claude instructions file management (`~/.claude/openpets.md`)

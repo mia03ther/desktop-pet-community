@@ -122,10 +122,19 @@ export async function installDeepSeekHarness(dependencies: DeepSeekHarnessSetupD
   try {
     const current = getDeepSeekHarnessSetup(dependencies);
     if (!current.status.canInstall) return { ok: current.status.state === "configured", action, message: current.status.details, changed: false };
+    const before = readOptionalJson(current.status.configPath);
     prepareManagedBundle(dependencies);
     backupProfile(dependencies);
-    const result = await dependencies.runCommand(current.preview.install, 60_000);
+    let result: DeepSeekHarnessCommandResult;
+    try {
+      result = await dependencies.runCommand(current.preview.install, 60_000);
+    } finally {
+      preserveOtherProfileEntries(current.status.configPath, before);
+    }
     const after = getDeepSeekHarnessSetup(dependencies);
+    if (!result.ok && /profile ["']desktop["'] is managed exclusively/i.test(result.stderr)) {
+      return { ok: false, action, message: "desktop profile 需要 Harness Desktop 随附的 dsh 命令，npm CLI 无法管理。请在命令路径中选择该桌面版的 resources/runtime/cli/bin/dsh.cmd，退出 Harness 后重试。", changed: false };
+    }
     if (!result.ok || result.timedOut || result.overflow || after.status.state !== "configured") {
       return { ok: false, action, message: "DSH 插件安装尚未通过验证。请查看 DSH 的插件管理日志，解决后刷新；不会标记为已连接。", changed: after.status.canRemove };
     }
@@ -140,8 +149,14 @@ export async function removeDeepSeekHarness(dependencies: DeepSeekHarnessSetupDe
   try {
     const current = getDeepSeekHarnessSetup(dependencies);
     if (!current.status.canRemove) return { ok: current.status.state !== "conflict" && current.status.state !== "error", action, message: current.status.details, changed: false };
+    const before = readOptionalJson(current.status.configPath);
     backupProfile(dependencies);
-    const result = await dependencies.runCommand(current.preview.remove, 60_000);
+    let result: DeepSeekHarnessCommandResult;
+    try {
+      result = await dependencies.runCommand(current.preview.remove, 60_000);
+    } finally {
+      preserveOtherProfileEntries(current.status.configPath, before);
+    }
     const after = getDeepSeekHarnessSetup(dependencies);
     if (!result.ok || result.timedOut || result.overflow || after.status.canRemove) {
       return { ok: false, action, message: "DSH 插件移除未通过验证，请查看 DSH 的插件管理日志后刷新。", changed: false };
@@ -166,8 +181,9 @@ export async function testDeepSeekHarness(dependencies: DeepSeekHarnessSetupDepe
       enableStatusLineStream: false,
       enableToolEvents: false,
       clientFactory: () => ({
-        say: async (_text, options) => {
-          await client.say("我在思考中。", options);
+        say: async (_text, _options) => {
+          // 自测不设置工作动作，避免让尚未连接的对话模型看起来正在运行。
+          await client.say("桌宠本机联动测试已通过。", {});
           delivered = true;
         },
       }),
@@ -180,7 +196,7 @@ export async function testDeepSeekHarness(dependencies: DeepSeekHarnessSetupDepe
     handlers.get("agent/status")?.({ status: "running" });
     await Promise.all(pending);
     if (!delivered) throw new Error("本机状态事件未到达桌宠，请检查桌宠运行状态。");
-    return { ok: true, action, message: "本机 Cordis 状态事件已到达桌宠；这只验证本机桥接，实际 DSH 仍需重启后开始工作验证。", changed: false };
+    return { ok: true, action, message: "本机测试消息已到达桌宠。Harness 工作监测需重启后验证，桌宠对话需单独测试所选模型。", changed: false };
   } catch (error) {
     return { ok: false, action, message: errorMessage(error), changed: false };
   }
@@ -188,7 +204,7 @@ export async function testDeepSeekHarness(dependencies: DeepSeekHarnessSetupDepe
 
 interface TestClient {
   status(): Promise<{ readonly appRunning: boolean }>;
-  say(text: string, options: { readonly reaction: string }): Promise<unknown>;
+  say(text: string, options: { readonly reaction?: string }): Promise<unknown>;
 }
 
 interface TestBundle {
@@ -210,6 +226,35 @@ function getProfileDir(dependencies: DeepSeekHarnessSetupDependencies): string {
   if (!isAbsolute(dependencies.dshHomeDir) || !isAbsolute(dependencies.managedBundleDir)) throw new Error("DSH 配置和联动目录必须是绝对路径。");
   if (!/^[A-Za-z0-9_-]{1,64}$/.test(dependencies.profile) || dependencies.profile === "node_modules") throw new Error("DSH profile 名称无效。");
   return join(dependencies.dshHomeDir, "profiles", dependencies.profile);
+}
+
+function preserveOtherProfileEntries(path: string, before: Record<string, unknown>): void {
+  assertNoSymlinks(path);
+  const after = readOptionalJson(path);
+  const previousDependencies = { ...optionalRecord(before.dependencies, "dependencies") };
+  // 官方 CLI 会对全部依赖重新判定 bundle；桌宠只管理自己的条目。
+  delete previousDependencies[packageName];
+  const previousDsh = optionalRecord(before.dsh, "dsh");
+  const currentDsh = optionalRecord(after.dsh, "dsh");
+  const previousProfile = optionalRecord(previousDsh.profile, "dsh.profile");
+  const currentProfile = optionalRecord(currentDsh.profile, "dsh.profile");
+  const previousBundles = Array.isArray(previousProfile.bundles) ? previousProfile.bundles.filter(name => name !== packageName) : [];
+  const currentBundles = Array.isArray(currentProfile.bundles) ? currentProfile.bundles : [];
+  const next = {
+    ...after,
+    ...before,
+    dependencies: { ...optionalRecord(after.dependencies, "dependencies"), ...previousDependencies },
+    dsh: {
+      ...currentDsh,
+      ...previousDsh,
+      profile: {
+        ...currentProfile,
+        ...previousProfile,
+        bundles: [...previousBundles, ...currentBundles.filter(name => !previousBundles.includes(name))],
+      },
+    },
+  };
+  if (JSON.stringify(next) !== JSON.stringify(after)) writeFileSync(path, `${JSON.stringify(next, null, 2)}\n`, { mode: 0o600 });
 }
 
 function isOwnedSource(source: unknown, profileDir: string, managedDir: string): boolean {

@@ -29,6 +29,8 @@ in each `packages/*/codemap.md`.
 
 Codex 和 ZCode 的 Hooks、豆包桥接均固定使用当前桌宠档案及本机客户端，不能因远程环境变量改变路由。新卡片的本机链路测试不调用模型、不使用真实账户凭据；Codex 的信任及其他工具加载新配置后的工作事件仍需在工具内验证。
 
+Harness 的本机测试只显示测试消息，不设置工作动作。安装与移除后保留官方 CLI 整理前的其他依赖、bundle 与用户字段，避免旧 MCP 被移出清单；详情见 [Harness 工作气泡](/deepseek-harness-integration)。
+
 Codex、ZCode、Claude Code、OpenCode、DeepSeek Harness 与 Pi 的工作事件使用平台提供的真实会话编号，传给本机的是
 SHA256 摘要、工具名称和成功编辑文件摘要，不传提示词、命令、路径、原工具结果或账号。
 同一桌宠可分别显示多个会话，保持各来源动作；一个会话结束不清除另一个会话。

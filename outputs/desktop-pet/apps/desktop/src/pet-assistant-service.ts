@@ -390,6 +390,7 @@ export class PetAssistantService {
           if (generated.text.trim() === "") return finish(this.#failed(conversationId, turnId, "Text model returned empty text."));
           if (byteLength(generated.text) > this.#limits.maxFinalOutputBytes) return finish(this.#failed(conversationId, turnId, "Assistant final response is too large."));
           const assistant: PetAssistantMessage = deepFreeze({ role: "assistant", content: generated.text });
+          active.model.retainResponseContext?.(generated, assistant);
           this.#emitActivity(conversationId, turnId, "responding");
           this.#emitTranscript(conversationId, turnId, assistant);
           messages = [...messages, assistant];
@@ -413,6 +414,7 @@ export class PetAssistantService {
         toolCalls += calls.calls.length;
         const presentedCalls = calls.calls.map((call) => presentToolCall(toolSet, call));
         const assistant: PetAssistantMessage = deepFreeze({ role: "assistant", ...(generated.text === undefined ? {} : { content: generated.text }), toolCalls: presentedCalls });
+        active.model.retainResponseContext?.(generated, assistant);
         messages = [...messages, assistant];
         turnMessages.push(assistant);
         this.#emitTranscript(conversationId, turnId, assistant);

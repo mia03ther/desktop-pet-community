@@ -13,6 +13,7 @@ interface ProgressEvent {
   readonly editedFileIds?: readonly string[];
 }
 interface Bridge {
+  status(payload: unknown): void;
   sessionStart(payload: unknown): void;
   sessionEvent(session: unknown, event: unknown): void;
   stream(payload: unknown): void;
@@ -21,6 +22,7 @@ interface Bridge {
   toolResult(exec: unknown, result: unknown): void;
   disposed(session: unknown): void;
 }
+
 interface ProgressModule {
   createDshProgressBridge(options: { emit(event: ProgressEvent): void; now?: () => number }): Bridge;
   registerDesktopPetDshListeners(ctx: { on(name: string, listener: (...args: unknown[]) => unknown): void }, options: {
@@ -28,6 +30,25 @@ interface ProgressModule {
   }): { drain(): Promise<unknown> };
 }
 const progress: ProgressModule = await import(pathToFileURL(join(process.cwd(), "assets", "agent-hooks", "deepseek-harness", "progress.mjs")).href);
+
+test("Harness 失败或空闲后清除活动；迟到输出和工具结果不能重新保活，下一回合仍可开始", () => {
+  const events: ProgressEvent[] = [];
+  const bridge = progress.createDshProgressBridge({ emit: event => events.push(event), now: () => 30_000 });
+  const session = { id: "failed-session" }, agent = { session };
+  bridge.sessionEvent(session, { type: "turn/start", data: { turn: 1 } });
+  bridge.toolStart({ agent, callId: "tool", name: "mcp_search" });
+  bridge.error({ agent });
+  const count = events.length;
+  bridge.stream({ agent, frame: { type: "chunk" } });
+  bridge.toolResult({ agent, callId: "tool", name: "mcp_search" }, { isError: false, value: {} });
+  bridge.status({ agent, status: "idle" });
+  assert.equal(events.length, count);
+  assert.equal(events.at(-1)?.event, "tool-failed");
+  bridge.sessionEvent(session, { type: "turn/start", data: { turn: 2 } });
+  bridge.status({ agent, status: "idle" });
+  assert.equal(events.at(-1)?.event, "interrupt");
+});
+
 
 test("Harness 真实会话与并行调用身份分别投影，正文与路径不进入气泡事件", () => {
   const events: ProgressEvent[] = [];

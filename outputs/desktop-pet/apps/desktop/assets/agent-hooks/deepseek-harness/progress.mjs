@@ -13,7 +13,7 @@ export function createDshProgressBridge({ emit, now = Date.now }) {
     const id = digest(session.id);
     let state = states.get(id);
     if (!state) {
-      state = { id, turn: undefined, failed: false, lastHeartbeat: 0 };
+      state = { id, turn: undefined, failed: false, closed: false, lastHeartbeat: 0 };
       states.set(id, state);
       while (states.size > 100) states.delete(states.keys().next().value);
     }
@@ -39,6 +39,8 @@ export function createDshProgressBridge({ emit, now = Date.now }) {
   };
   return {
     sessionStart(payload) {
+      const state = stateFor(payload?.agent?.session);
+      if (state) { state.turn = undefined; state.failed = false; state.closed = false; }
       send(payload?.agent?.session, "session-start");
     },
     sessionEvent(session, event) {
@@ -47,8 +49,10 @@ export function createDshProgressBridge({ emit, now = Date.now }) {
       if (event.type === "turn/start" && Number.isSafeInteger(event.data?.turn)) {
         state.turn = event.data.turn;
         state.failed = false;
+        state.closed = false;
         send(session, "turn-start");
       } else if (event.type === "turn/end") {
+        state.closed = true;
         const reason = event.data?.reason?.kind;
         if (reason === "error" || state.failed) send(session, "tool-failed");
         else if (reason === "aborted" || reason === "interrupted") send(session, "interrupt");
@@ -60,12 +64,17 @@ export function createDshProgressBridge({ emit, now = Date.now }) {
       const session = payload?.agent?.session;
       const state = stateFor(session);
       if (!state) return;
-      if (payload.status === "running" && state.turn === undefined) send(session, "turn-start");
+      if (payload.status === "running" && state.turn === undefined && !state.closed) send(session, "turn-start");
+      if (payload.status === "idle" && !state.closed) {
+        state.closed = true;
+        // 空闲只证明停止；缺少正式结束事件时不冒称成功。
+        send(session, state.failed ? "tool-failed" : "interrupt");
+      }
     },
     stream(payload) {
       const session = payload?.agent?.session;
       const state = stateFor(session);
-      if (!state || payload?.frame?.type !== "chunk") return;
+      if (!state || state.closed || payload?.frame?.type !== "chunk") return;
       // 只看事件类别，长时间思考时保活；不读取 reasoning/text 的内容。
       if (now() - state.lastHeartbeat >= 15_000 && state.turn !== undefined) {
         state.lastHeartbeat = now();
@@ -74,16 +83,18 @@ export function createDshProgressBridge({ emit, now = Date.now }) {
     },
     error(payload) {
       const state = stateFor(payload?.agent?.session);
-      if (state) state.failed = true;
+      if (state) { state.failed = true; state.closed = true; }
       send(payload?.agent?.session, "tool-failed");
     },
     permission(request) {
       if (record(request?.agent?.session)) send(request.agent.session, "permission");
     },
     toolStart(exec) {
+      if (stateFor(exec?.agent?.session)?.closed) return;
       if (record(exec?.agent?.session)) send(exec.agent.session, "tool-start", toolFields(exec));
     },
     toolResult(exec, result) {
+      if (stateFor(exec?.agent?.session)?.closed) return;
       if (!record(exec?.agent?.session) || !record(result) || typeof result.isError !== "boolean") return;
       const fields = toolFields(exec);
       const value = result.value;

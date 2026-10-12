@@ -75,6 +75,33 @@ test("四个新增外部入口的快照只读，未接入客户端不能标为�
   } finally { clean(root); }
 });
 
+test("Windows 桌面 profile 默认探测随附 CLI，显式指定的命令路径保持优先", async () => {
+  const { root, context, calls } = fixture();
+  try {
+    const bundledCommand = join(context.homeDir, "AppData", "Local", "Programs", "DeepSeek Harness", "resources", "runtime", "cli", "bin", "dsh.cmd");
+    mkdirSync(join(bundledCommand, ".."), { recursive: true });
+    writeFileSync(bundledCommand, "测试随附命令");
+    const runCommand = context.runCommand;
+    const setups = await getExternalAiSetups({
+      ...context,
+      platform: "win32",
+      dshCommand: "dsh",
+      runCommand: async (command, args, timeout, input) => {
+        if (command === bundledCommand) {
+          calls.push({ command, args });
+          return { ok: true, stdout: "0.2.0", stderr: "" };
+        }
+        return runCommand(command, args, timeout, input);
+      },
+    });
+    assert.equal(setups.find(item => item.id === "deepseek-harness")?.program.detected, true);
+    assert.ok(calls.some(call => call.command === bundledCommand));
+    calls.length = 0;
+    await getExternalAiSetups({ ...context, platform: "win32" });
+    assert.equal(calls.some(call => call.command === bundledCommand), false);
+  } finally { clean(root); }
+});
+
 test("四个官方文档动作仅打开固定地址，不运行检测或安装命令", async () => {
   const { root, context, calls, docs } = fixture();
   try {

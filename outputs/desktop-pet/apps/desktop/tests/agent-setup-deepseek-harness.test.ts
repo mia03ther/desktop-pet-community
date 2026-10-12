@@ -33,12 +33,17 @@ test("DSH 用官方 plugin 命令安装本机 bundle，仅移除本项目的依�
         if (args[3] === "add") {
           config.dependencies["desktop-pet-dsh"] = `link:${managedBundleDir}`;
           config.dsh.profile.bundles.push("desktop-pet-dsh");
+          // 模拟官方 CLI 全量整理时挤掉旧 MCP 插件及用户字段。
+          config.dsh.profile.bundles = ["desktop-pet-dsh"];
+          delete config.dependencies["user-plugin"];
+          config.custom = "unexpected-rewrite";
           const installedDir = join(profileDir, "node_modules", "desktop-pet-dsh");
           mkdirSync(installedDir, { recursive: true });
           copyFileSync(join(bundleSourceDir, "package.json"), join(installedDir, "package.json"));
         } else {
           delete config.dependencies["desktop-pet-dsh"];
           config.dsh.profile.bundles = config.dsh.profile.bundles.filter((name: string) => name !== "desktop-pet-dsh");
+          config.dsh.profile.bundles = [];
         }
         writeFileSync(configPath, JSON.stringify(config));
         return { ok: true, stdout: "", stderr: "" };
@@ -57,6 +62,37 @@ test("DSH 用官方 plugin 命令安装本机 bundle，仅移除本项目的依�
     assert.deepEqual(JSON.parse(readFileSync(configPath, "utf8")), original);
     assert.equal(readFileSync(join(profileDir, "cordis.patch.yml"), "utf8"), patch);
     assert.deepEqual(commands[1], ["plugin", "--profile", "web", "remove", "desktop-pet-dsh"]);
+  } finally {
+    rmSync(homeDir, { recursive: true, force: true });
+  }
+});
+
+test("DSH 安装命令中途失败也保留原 MCP 与用户配置", async () => {
+  const homeDir = mkdtempSync(join(realpathSync(tmpdir()), "desktop-pet-dsh-failed-"));
+  try {
+    const profileDir = join(homeDir, "profiles", "web");
+    mkdirSync(profileDir, { recursive: true });
+    const configPath = join(profileDir, "package.json");
+    const original = {
+      dependencies: { "user-mcp": "1.0.0" },
+      dsh: { profile: { bundles: ["user-mcp"], custom: "保留" } },
+    };
+    writeFileSync(configPath, JSON.stringify(original));
+    const dependencies: DeepSeekHarnessSetupDependencies = {
+      dshHomeDir: homeDir,
+      profile: "web",
+      bundleSourceDir: join(process.cwd(), "assets", "agent-hooks", "deepseek-harness"),
+      managedBundleDir: join(homeDir, "bundle"),
+      discoveryPath: join(homeDir, "ipc.json"),
+      preferredCommand: "dsh",
+      detected: true,
+      runCommand: async () => {
+        writeFileSync(configPath, JSON.stringify({ dependencies: {}, dsh: { profile: { bundles: [] } } }));
+        throw new Error("命令中途失败");
+      },
+    };
+    assert.equal((await installDeepSeekHarness(dependencies)).ok, false);
+    assert.deepEqual(JSON.parse(readFileSync(configPath, "utf8")), original);
   } finally {
     rmSync(homeDir, { recursive: true, force: true });
   }

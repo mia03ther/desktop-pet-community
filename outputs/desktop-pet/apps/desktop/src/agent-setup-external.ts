@@ -46,7 +46,7 @@ async function adapterDependencies(context: ExternalAiSetupDependencies) {
     context.runCommand(context.nodeCommand, ["-p", "process.execPath"], 2000),
     detectCommand(context.codexCommand || "codex", context),
     detectCommand("zcode", context),
-    detectCommand(context.dshCommand, context),
+    detectCommand(preferredDshCommand(context), context),
   ]);
   const nodePath = node.ok && isAbsolute(node.stdout.trim()) && existsSync(node.stdout.trim()) ? node.stdout.trim() : context.nodeCommand;
   const common = { nodeCommand: nodePath, clientEntryPath: context.clientEntryPath, discoveryPath: context.discoveryPath };
@@ -68,6 +68,15 @@ async function adapterDependencies(context: ExternalAiSetupDependencies) {
     runCommand: (command, args) => context.runCommand(command, args, 2500),
   };
   return { codexDependencies, zcodeDependencies, dshDependencies, doubaoDependencies, nodePath, detectedPrograms: { codex, zcode, dsh } };
+}
+
+function preferredDshCommand(context: ExternalAiSetupDependencies): string {
+  if (context.platform !== "win32" || context.dshProfile !== "desktop" || context.dshCommand !== "dsh") {
+    return context.dshCommand;
+  }
+  // 桌面 profile 必须由同一安装随附的 CLI 管理，npm CLI 明确拒绝该 profile。
+  const desktopCommand = join(context.homeDir, "AppData", "Local", "Programs", "DeepSeek Harness", "resources", "runtime", "cli", "bin", "dsh.cmd");
+  return existsSync(desktopCommand) ? desktopCommand : context.dshCommand;
 }
 
 async function detectCommand(command: string, context: ExternalAiSetupDependencies) {

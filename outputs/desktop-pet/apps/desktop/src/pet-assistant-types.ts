@@ -88,6 +88,8 @@ export type PetAssistantTextModelResponse = (
 ) & { readonly usage?: PetAssistantTokenUsage };
 
 export interface PetAssistantTextModel {
+  /** 提供方私有续传信息只绑定到内存消息，不进入会话事件或存档。 */
+  retainResponseContext?(response: PetAssistantTextModelResponse, message: PetAssistantMessage): void;
   /** Optional operation snapshot; the host uses one model operation for a whole turn. */
   beginOperation?(): PetAssistantTextModel | Promise<PetAssistantTextModel>;
   generate(

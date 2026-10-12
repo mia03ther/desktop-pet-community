@@ -49,8 +49,9 @@ test("真实 ZCode 子进程与 DSH Cordis bundle 只把状态发到本档案 IP
     assert.equal(quietFailure.code, 0);
     const dependencies: DeepSeekHarnessSetupDependencies = { dshHomeDir: homeDir, profile: "web", bundleSourceDir: join(assetDir, "deepseek-harness"), managedBundleDir: join(homeDir, "bundle"), discoveryPath, preferredCommand: "dsh", detected: false, runCommand: async () => { throw new Error("测试禁止运行外部 AI"); } };
     assert.equal((await testDeepSeekHarness(dependencies)).ok, true);
-    assert.equal(received.at(-1)?.params.reaction, "thinking");
-    assert.equal(received.at(-1)?.params.message, "我在思考中。");
+    assert.equal(received.at(-1)?.params.reaction, undefined);
+    assert.equal(received.at(-1)?.params.externalAi, undefined);
+    assert.ok(received.at(-1)?.params.message);
     assert.equal((await testDeepSeekHarness({ ...dependencies, discoveryPath: invalidDiscovery })).ok, false);
 
     // 暂存完整正式 bundle，避免新增分发资源遗漏；设置由当前测试档案生成。

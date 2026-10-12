@@ -86,7 +86,9 @@ export class ExternalAiActivityTracker {
     if (event.event === "session-start") { state.turnId = undefined; state.files.clear(); state.limited = false; }
     if (event.turnId) state.turnId = event.turnId;
     if (["session-start", "turn-start"].includes(event.event)) state.turnClosed = false;
-    if (["turn-end", "session-end", "interrupt"].includes(event.event)) state.turnClosed = true;
+    // Harness 的 agent/error 与失败回合没有 callId，表示整轮终止；单工具失败仍可继续。
+    const harnessTurnFailed = event.adapter === "deepseek-harness" && event.event === "tool-failed" && !event.callId;
+    if (["turn-end", "session-end", "interrupt"].includes(event.event) || harnessTurnFailed) state.turnClosed = true;
     state.event = event; state.lastSeenAt = Math.min(event.sentAt, this.now()); state.ended = event.event === "session-end";
     if (event.event === "tool-start" && event.callId && event.toolName) {
       if (state.calls.size < 100) state.calls.set(event.callId, event.toolName);

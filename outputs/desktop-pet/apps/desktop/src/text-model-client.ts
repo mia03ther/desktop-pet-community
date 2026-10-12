@@ -31,6 +31,8 @@ export class TextModelClient implements PetAssistantTextModel {
   readonly #maxResponseBytes: number;
   readonly #onUsage?: TextModelClientOptions["onUsage"];
   #snapshotPromise: Promise<ProviderOperationSnapshot> | null = null;
+  readonly #responseContexts = new WeakMap<PetAssistantTextModelResponse, ReasoningContext>();
+  #messageContexts = new WeakMap<PetAssistantMessage, ReasoningContext>();
 
   constructor(secretsOrProvider: PluginSecretsStore | HostProviderOperations, options: TextModelClientOptions = {}) {
     this.#profileId = options.profileId;
@@ -54,11 +56,23 @@ export class TextModelClient implements PetAssistantTextModel {
       const body = encodeAnthropicRequest(request, model);
       response = decodeAnthropicResponse(await this.#request(provider, "/v1/messages", body, signal));
     } else {
-      const body = encodeOpenAiRequest(request, model);
-      response = decodeOpenAiResponse(await this.#request(provider, "/chat/completions", body, signal));
+      const body = encodeOpenAiRequest(request, provider, this.#messageContexts);
+      const raw = await this.#request(provider, "/chat/completions", body, signal);
+      response = decodeOpenAiResponse(raw);
+      const reasoning = isPlainObject(raw) && Array.isArray(raw.choices) && isPlainObject(raw.choices[0])
+        && isPlainObject(raw.choices[0].message) ? raw.choices[0].message.reasoning_content : undefined;
+      if (reasoning !== undefined && reasoning !== null) {
+        if (typeof reasoning !== "string" || byteLength(reasoning) > this.#maxResponseBytes) throw new Error("提供方返回的思考续传字段无效或过大。");
+        this.#responseContexts.set(response, { profileId: provider.profile.id, model, baseUrl: provider.profile.baseUrl, reasoning });
+      }
     }
     if (response.usage) this.#onUsage?.(provider.profile.id, response.usage);
     return response;
+  }
+
+  retainResponseContext(response: PetAssistantTextModelResponse, message: PetAssistantMessage): void {
+    const context = this.#responseContexts.get(response);
+    if (context) this.#messageContexts.set(message, context);
   }
 
   async #request(snapshot: ProviderOperationSnapshot, path: string, body: AssistantJsonObject, signal: AbortSignal): Promise<unknown> {
@@ -78,6 +92,7 @@ export class TextModelClient implements PetAssistantTextModel {
   async beginOperation(): Promise<TextModelClient> {
     const operation = new TextModelClient(this.#provider, { profileId: this.#profileId, timeoutMs: this.#timeoutMs, maxRequestBytes: this.#maxRequestBytes, maxResponseBytes: this.#maxResponseBytes, onUsage: this.#onUsage });
     operation.#snapshotPromise = this.#captureProfile();
+    operation.#messageContexts = this.#messageContexts;
     await operation.#snapshotPromise;
     return operation;
   }
@@ -93,10 +108,22 @@ export function createTextModelClient(secrets: PluginSecretsStore, options?: Tex
   return new TextModelClient(secrets, options);
 }
 
-function encodeOpenAiRequest(request: PetAssistantTextModelRequest, model: string): AssistantJsonObject {
+type ReasoningContext = { readonly profileId: string; readonly model: string; readonly baseUrl: string | undefined; readonly reasoning: string };
+
+function encodeOpenAiRequest(request: PetAssistantTextModelRequest, provider: ProviderOperationSnapshot, contexts: WeakMap<PetAssistantMessage, ReasoningContext>): AssistantJsonObject {
+  const profile = provider.profile;
+  const deepSeek = Boolean(profile.baseUrl && new URL(profile.baseUrl).hostname === "api.deepseek.com");
   return {
-    model,
-    messages: request.messages.map((message) => encodeOpenAiMessage(message)),
+    model: profile.model,
+    messages: request.messages.map((message) => {
+      const encoded = encodeOpenAiMessage(message);
+      if (message.role === "assistant") {
+        const context = contexts.get(message);
+        const sameProvider = context?.profileId === profile.id && context.model === profile.model && context.baseUrl === profile.baseUrl;
+        if (sameProvider || deepSeek) encoded.reasoning_content = sameProvider ? context.reasoning : "";
+      }
+      return encoded;
+    }),
     ...(request.tools.length > 0 ? { tools: request.tools.map((tool) => ({ type: "function", function: { name: tool.name, description: tool.description, parameters: tool.inputSchema } })) } : {}),
   };
 }

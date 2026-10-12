@@ -17,6 +17,19 @@ const time = 1_800_000_000_000;
 const hash = (number: number) => number.toString(16).padStart(64, "0");
 const event = (extra: Partial<ExternalAiEvent> = {}): ExternalAiEvent => ({ adapter: "codex", sessionId: hash(1), event: "turn-start", sentAt: time, ...extra });
 
+test("Harness 整轮失败清空所有工具，旧回合保活与迟到结果不能让气泡继续调用工具", () => {
+  const tracker = new ExternalAiActivityTracker(() => time);
+  const turn = { adapter: "deepseek-harness" as const, turnId: hash(4) };
+  tracker.record(event(turn));
+  tracker.record(event({ ...turn, event: "tool-start", toolName: "mcp_search", callId: hash(8) }));
+  const failed = tracker.record(event({ ...turn, event: "tool-failed" }));
+  assert.equal(failed.progress.activeToolCount, 0);
+  assert.equal(failed.reaction, "error");
+  assert.equal(tracker.record(event(turn)).reaction, "error");
+  assert.equal(tracker.record(event({ ...turn, event: "tool-complete", callId: hash(8) })).reaction, "error");
+  assert.equal(tracker.record(event({ ...turn, turnId: hash(5) })).reaction, "thinking");
+});
+
 test("多个真实会话分别计数和联动；一个结束后另一会话继续工作", () => {
   const tracker = new ExternalAiActivityTracker(() => time);
   let animation = "idle";

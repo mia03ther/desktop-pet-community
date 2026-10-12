@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { createServer } from "node:http";
 
 import { TextModelClient } from "../src/text-model-client.js";
+import { PetAssistantService } from "../src/pet-assistant-service.js";
 import { getPluginPlatformSettings, initializePluginPlatformSettings, selectProviderProfile, updateProviderProfile } from "../src/plugin-platform-settings.js";
 import { hostSecretsOwner, providerSecretKey } from "../src/provider-service.js";
 import { configureProvider } from "./provider-test-helpers.js";
@@ -17,6 +18,48 @@ let calls: Array<{ input: string; init?: RequestInit }> = [];
 
 try {
   initializePluginPlatformSettings(userDataPath);
+  configureProvider({ id: "deepseek-thinking", label: "DeepSeek 测试", adapter: "openai-compatible-text", model: "deepseek-flash", baseUrl: "https://api.deepseek.com", secretRef: "deepseek-thinking" }, "text");
+  const reasoningBodies: Array<{ model: string; messages: Array<Record<string, unknown>>; tools: Array<{ function: { name: string } }> }> = [];
+  const reasoningClient = new TextModelClient(secrets, {
+    fetchImpl: async (_input, init) => {
+      const body = JSON.parse(String(init?.body));
+      reasoningBodies.push(body);
+      if (reasoningBodies.length === 1) {
+        return Response.json({ choices: [{ message: {
+          content: null,
+          reasoning_content: "仅供模型续传的私有思考",
+          tool_calls: [{
+            id: "reasoning-call",
+            type: "function",
+            function: { name: body.tools[0].function.name, arguments: "{}" },
+          }],
+        } }] });
+      }
+      return Response.json({ choices: [{ message: {
+        content: "已完成",
+        reasoning_content: "仅供下一回合续传的私有思考",
+      } }] });
+    },
+  });
+  const reasoningService = new PetAssistantService(reasoningClient, {
+    snapshot: () => ({ capabilities: [{
+      pluginId: "fixture",
+      capability: { id: "inspect", description: "测试工具", inputSchema: { type: "object" } },
+      handle: {},
+    }] }),
+    execute: async () => ({ ok: true, result: { ok: true } }),
+  });
+  const publicEvents: unknown[] = [];
+  reasoningService.subscribe(event => publicEvents.push(event));
+  assert.equal((await reasoningService.startTurn("fixture", "检查一下")).status, "completed");
+  assert.equal(reasoningBodies[1]?.messages.find(message => message.role === "assistant")?.reasoning_content, "仅供模型续传的私有思考");
+  assert.equal((await reasoningService.startTurn("fixture", "继续")).status, "completed");
+  assert.equal(reasoningBodies[2]?.messages.filter(message => message.role === "assistant").at(-1)?.reasoning_content, "仅供下一回合续传的私有思考");
+  assert.doesNotMatch(JSON.stringify(publicEvents), /仅供模型|仅供下一回合|reasoning_content/);
+  updateProviderProfile("deepseek-thinking", { model: "other-model" });
+  await reasoningService.startTurn("fixture", "换模型后继续");
+  assert.ok(reasoningBodies[3]?.messages.filter(message => message.role === "assistant").every(message => message.reasoning_content === ""));
+  await reasoningService.stop();
   configureProvider({ id: "text-test", label: "Text test", adapter: "openai-compatible-text", model: "test-model", baseUrl: "https://provider.test/v1", secretRef: "text-test" }, "text");
 
   const openAi = new TextModelClient(secrets, { fetchImpl: async (input, init) => {
